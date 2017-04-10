@@ -16,7 +16,7 @@ $(document).ready(function() {
                 .keyup(onChange);
         }) //username-email
 
-
+    //validate register form
     $("#jira-setup-account").validate({
         "rules": {
             "jira-setup-account-field-email": {
@@ -35,5 +35,43 @@ $(document).ready(function() {
             }
         } //rules
     }); //validate
+
+    //change username and email in forgot.php
+    $(function(a) {
+        (function() {
+            var b = a("input:checked");
+            if (b.length !== 0) {
+                if (b.attr("id") === "forgotten_forgotPassword") {
+                    a("#username-field,#email-field").addClass("hidden");
+                    a("#username-field").removeClass("hidden");
+                    a("#username,#email").removeProp("required");
+                    a("#username").prop("required", true)
+                } else {
+                    if (b.attr("id") === "forgotten_forgotUserName") {
+                        a("#username-field,#email-field").addClass("hidden");
+                        a("#email-field").removeClass("hidden");
+                        a("#username,#email").removeProp("required");
+                        a("#email").prop("required", true)
+                    }
+                }
+            }
+            a("#forgotten_forgotPassword").change(function() {
+                a("#username-field,#email-field").addClass("hidden");
+                a("#username-field").removeClass("hidden");
+                a("#username,#email").removeProp("required");
+                a("#username").prop("required", true)
+            });
+            a("#forgotten_forgotUserName").change(function() {
+                a("#username-field,#email-field").addClass("hidden");
+                a("#email-field").removeClass("hidden");
+                a("#username,#email").removeProp("required");
+                a("#email").prop("required", true)
+            })
+        })()
+    });
+
+    //TODO ajax check of username and email of forgot.php
+    
+
 
 }); //ready

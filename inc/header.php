@@ -14,4 +14,5 @@
 	<script src="//aui-cdn.atlassian.com/aui-adg/6.0.6/js/aui-datepicker.min.js"></script>
 	<script src="//aui-cdn.atlassian.com/aui-adg/6.0.6/js/aui-soy.min.js"></script>
 	<link rel="stylesheet" href="assets/css/style.css">
+	
 </head>

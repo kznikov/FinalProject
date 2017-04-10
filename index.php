@@ -26,7 +26,11 @@ include 'inc/header.php';
 
 		    					<h2>Administrator account setup</h2>
 		    					
-		    					<p class="jira-setup-account-description">You'll need administrator credentials to log in to JIRA. Please provide an email address, username and password for your first administrator account. Make sure the password is secure.</p>
+		    					<p class="jira-setup-account-description">You'll need administrator credentials to log in to JIRA. Please provide an email address, username and password for your first administrator account. Make sure the password is secure. If you have account 
+		    						<span id="signup-enabled">
+			    				    	<a href="./login.php">Log in</a>
+			    				    </span>
+		    					</p>
 
 		    					<div class="jira-setup-account-contents">
 			    					<div class="jira-setup-account-form-login">
@@ -56,7 +60,7 @@ include 'inc/header.php';
 			    						</div> <!-- class="field-group" -->
 			    					</div> <!-- class="jira-setup-account-form-login" -->
 			    				</div> <!-- class="jira-setup-account-contents" -->
-
+			    				
 		    					<div class="buttons-container jira-setup-account-buttons jira-setup-form-with-no-fields">
 		    						<div class="buttons">	
 		    							<button type="submit" id="jira-setup-account-button-submit" class="aui-button aui-button-primary">Next</button>
@@ -68,11 +72,6 @@ include 'inc/header.php';
 	    		</div><!-- .aui-page-panel-inner -->
 	    	</div> <!-- class="aui-page-panel margin-fix" -->
 	    </section> <!-- end main section -->
-
-	    <footer id="footer" role="contentinfo">
-	    	
-	    </footer>
 	</div> <!-- end page -->
 	<script src="assets/js/app.js"></script>
-</body>
-</html>
+<?php include "inc/footer.php"; ?>

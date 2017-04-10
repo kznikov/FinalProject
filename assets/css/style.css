@@ -1,6 +1,5 @@
-
-
 /*LOGO*/
+
 .aui-header .aui-header-logo img {
     border: 0;
     float: left;
@@ -9,13 +8,13 @@
 }
 
 
-
 /*REGISTRATION*/
+
 .aui-page-panel {
-	width: 800px;
-	margin: 50px auto 0;
-	min-height: auto;
-	border-radius: 5px;
+    width: 800px;
+    margin: 50px auto 0;
+    min-height: auto;
+    border-radius: 5px;
     border-width: 1px;
 }
 
@@ -48,10 +47,51 @@ form.aui .buttons-container {
     clear: both;
     color: #14892c;
     display: block;
-    margin: 5px 0 0 0;   
+    margin: 5px 0 0 0;
 }
 
 form.aui .field-group .error {
     width: 40%;
     clear: none;
 }
+
+
+/*LOGIN*/
+
+.indra-one-wide {
+    max-width: 320px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+/*FORGOT*/
+
+.page-type-message .aui-page-panel {
+    min-width: 400px;
+    max-width: 400px;
+    padding: 20px;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+/*MANAGE SETTINGS*/
+
+
+.manage-account {
+    width: 100%;
+}
+
+.avatar-panel {
+    border-left: 1px solid #ccc;
+}
+
+.aui-avatar {
+    box-sizing: border-box;
+    display: block;
+    vertical-align: text-bottom;
+}
+
