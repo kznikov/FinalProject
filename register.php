@@ -28,7 +28,7 @@ include 'inc/header.php';
 		    					
 		    					<p class="jira-setup-account-description">You'll need administrator credentials to log in to JIRA. Please provide an email address, username and password for your first administrator account. Make sure the password is secure. If you have account 
 		    						<span id="signup-enabled">
-			    				    	<a href="./login.php">Log in</a>
+			    				    	<a href="./index.php">Log in</a>
 			    				    </span>
 		    					</p>
 

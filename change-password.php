@@ -1,5 +1,5 @@
 <?php 
-$pageTitle="Change email address";
+$pageTitle="Change password";
 include 'inc/header.php'; 
 ?>
 
@@ -53,7 +53,7 @@ include 'inc/header.php';
 									<li>
 										<a href="./account-settings.php">Account settings</a>
 									</li>
-									<li class="aui-nav-selected">
+									<li>
 										<a href="./change-email.php">Change email address</a>
 									</li>
 								</ul>
@@ -61,7 +61,7 @@ include 'inc/header.php';
 									<strong>Security</strong>
 								</div>
 								<ul class="aui-nav" resolved="">
-									<li>
+									<li class="aui-nav-selected">
 										<a href="./change-password.php">Change password</a>
 									</li>
 								</ul>						
@@ -70,17 +70,19 @@ include 'inc/header.php';
 					<!-- .aui-page-panel-nav -->
 
 					<section class="aui-page-panel-content">
-						<h2>Change email address</h2>
-						<p>Your email address is currently <strong>email@email.bg</strong>.</p>
+						<h2>Change your password</h2>
 
-						<form id="change-email-form" class="aui" action="" method="post">
-							<div class="field-group">
-								<label for="newEmail">New email address</label>
-								<input class="text" type="email" name="newEmail" id="newEmail" autofocus="">
+						<form id="change-password-form" class="aui" action="#" method="post">	 <div class="field-group">
+								<label for="currentPassword">Current password</label>
+									<input class="text" type="password" name="currentPassword" id="currentPassword" autofocus="">
+							</div>
+							<div class="field-group has-password-revealer">
+								<label for="newPassword">New password</label>
+								<input class="text" type="password" name="newPassword" id="newPassword">
 							</div>
 							<div class="buttons-container">
 								<div class="buttons">
-									<input type="submit" class="aui-button aui-button-primary" value="Change email" resolved="">
+									<input type="submit" class="aui-button aui-button-primary" value="Change password" resolved="">
 								</div>
 							</div>
 						</form>

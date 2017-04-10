@@ -62,7 +62,7 @@ include 'inc/header.php';
 								</div>
 								<ul class="aui-nav" resolved="">
 									<li>
-										<a href="https://id.atlassian.com/manage/change-password">Change password</a>
+										<a href="./change-password.php">Change password</a>
 									</li>
 								</ul>						
 						</nav>
