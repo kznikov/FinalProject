@@ -1,0 +1,57 @@
+
+
+/*LOGO*/
+.aui-header .aui-header-logo img {
+    border: 0;
+    float: left;
+    max-height: 25px;
+    padding: 5px 0;
+}
+
+
+
+/*REGISTRATION*/
+.aui-page-panel {
+	width: 800px;
+	margin: 50px auto 0;
+	min-height: auto;
+	border-radius: 5px;
+    border-width: 1px;
+}
+
+.setup-account-view-container h2 {
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    font-size: 20px;
+}
+
+.jira-setup-account-description {
+    margin-bottom: 20px;
+}
+
+.jira-setup-account-contents {
+    margin-bottom: 20px;
+}
+
+form.aui .buttons-container.jira-setup-form-with-no-fields {
+    text-align: right;
+}
+
+form.aui .buttons-container {
+    border-top: 1px solid #ccc;
+    margin-top: 20px;
+    padding-top: 20px;
+}
+
+.message-success {
+    clear: both;
+    color: #14892c;
+    display: block;
+    margin: 5px 0 0 0;   
+}
+
+form.aui .field-group .error {
+    width: 40%;
+    clear: none;
+}
