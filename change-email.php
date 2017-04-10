@@ -1,5 +1,5 @@
 <?php 
-$pageTitle="Account settings";
+$pageTitle="Change email address";
 include 'inc/header.php'; 
 ?>
 
@@ -50,10 +50,10 @@ include 'inc/header.php';
 									<strong>General</strong>
 								</div>
 								<ul class="aui-nav" resolved="">
-									<li class="aui-nav-selected">
+									<li>
 										<a href="./account-settings.php">Account settings</a>
 									</li>
-									<li>
+									<li class="aui-nav-selected">
 										<a href="./change-email.php">Change email address</a>
 									</li>
 								</ul>
@@ -70,54 +70,20 @@ include 'inc/header.php';
 					<!-- .aui-page-panel-nav -->
 
 					<section class="aui-page-panel-content">
-						<h2>Account settings</h2>
+						<h2>Change email address</h2>
+						<p>Your email address is currently <strong>email@email.bg</strong>.</p>
 
-						<div class="aui-group account-settings">
-							<div class="aui-item">
-								<form id="account-settings-form" class="aui" action="#" method="post">
-									<div class="field-group">
-										<label for="email">Email</label>
-										<span id="email" class="field-value">EMAIL@abv.bg</span>
-										<a href="https://id.atlassian.com/manage/change-email" class="account-settings-change-email">Change email</a>
-									</div>
-									<div class="field-group">
-										<label for="fullName">Full name<span class="aui-icon icon-required"></span>
-										</label>
-										<input class="text" type="text" name="fullName" id="fullName" value="full name" autofocus="">
-									</div>
-									<div class="field-group">
-										<label for="title">Job title</label>
-										<input class="text" type="text" name="title" id="title">
-									</div>
-									<div class="field-group">
-										<label for="org">Organization</label>
-										<input class="text" type="text" name="org" id="org">
-									</div>
-									<div class="field-group">
-										<label for="timezone">Timezone</label>
-										<select id="timezone" name="timezone" class="select">
-											<option value="Pacific/Midway">(GMT -11:00) Pacific/Midway</option>
-										</select>
-									</div>
-									<div class="buttons-container">
-										<div class="buttons">
-											<input type="submit" class="aui-button aui-button-primary" value="Save" resolved="">
-										</div>
-									</div>
-								</form>
-							</div> <!-- class="aui-item" -->
-
-							<div class="aui-item avatar-panel">
-								<div class="user-avatar-form">
-									<span class="aui-avatar aui-avatar-xxxlarge">
-										<span class="aui-avatar-inner">
-										<img src="aui/css/images/add-avatar_2.png">
-										</span>
-									</span>
-									<a href="#edit-avatar" class="aui-button aui-button-link avatar-picker-trigger" type="button" tabindex="0" resolved="">Change avatar</a>
+						<form id="change-email-form" class="aui" action="" method="post">
+							<div class="field-group">
+								<label for="newEmail">New email address</label>
+								<input class="text" type="email" name="newEmail" id="newEmail" autofocus="">
+							</div>
+							<div class="buttons-container">
+								<div class="buttons">
+									<input type="submit" class="aui-button aui-button-primary" value="Change email" resolved="">
 								</div>
 							</div>
-						</div> <!-- class="aui-group account-settings" -->
+						</form>
 					</section> <!-- class="aui-page-panel-content" -->
 
 				</div> <!-- class="aui-page-panel-inner" -->
