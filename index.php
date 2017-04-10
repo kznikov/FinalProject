@@ -60,7 +60,7 @@ include 'inc/header.php';
 	                          <a href="./forgot.php" id="forgot" name="forgot">Unable to access your account?</a><br />
 	                          <span id="signup-disabled">To request an account, please contact your site administrators.</span>
 	                          <span id="signup-enabled">
-	                            <a href="./index.php">Create an account</a>
+	                            <a href="./register.php">Create an account</a>
 	                          </span>
 	                      </p>
 	                  </form>

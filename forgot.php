@@ -49,7 +49,7 @@ include 'inc/header.php';
 				<div class="buttons-container">
 				    <div class="buttons">
 				        <button type="submit" id="email-me" class="aui-button aui-button-primary">Email</button>
-				        <a href="./login.php" class="aui-button aui-button-link">Return to log in page</a>
+				        <a href="./index.php" class="aui-button aui-button-link">Return to log in page</a>
 				    </div>
 				</div>
 			</div>
