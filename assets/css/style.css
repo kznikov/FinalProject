@@ -95,3 +95,40 @@ form.aui .field-group .error {
     vertical-align: text-bottom;
 }
 
+/*DASHBOARD*/
+
+#dashboard-content>.aui-page-header {
+    padding: 20px;
+    overflow: hidden;
+}
+
+.layout {
+    clear: both;
+    padding: 0 20px 20px 20px;
+    position: relative;
+}
+
+.layout-aa .column {
+    width: 47.5%;
+}
+
+.layout .column {
+    display: block;
+    float: left;
+    list-style-type: none;
+    margin: 0 0 -1.5em 2%;
+    min-height: 200px;
+    padding: 0;
+    position: relative;
+}
+
+.layout .column .gadget {
+    background: transparent;
+    border: 1px solid transparent;
+    border-left: 0;
+    border-right: 0;
+    padding: 0 1px 0 1px;
+    display: block;
+    width: auto;
+}
+
