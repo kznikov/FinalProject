@@ -34,8 +34,20 @@ include 'inc/header.php';
 
 		    					<div class="jira-setup-account-contents">
 			    					<div class="jira-setup-account-form-login">
+
+			    					
+			    					<div class="field-group">
+			    						<label for="jira-setup-account-field-username">First Name</label>
+			    						<input class="text jira-setup-account-form-field" type="text" name="jira-setup-account-field-firstname" id="jira-setup-account-field-firstname" placeholder="Type in a first name" required="required">
+
+			    					</div> <!-- class="field-group" -->
+
+			    					<div class="field-group">
+			    						<label for="jira-setup-account-field-username">Last Name</label>
+			    						<input class="text jira-setup-account-form-field" type="text" name="jira-setup-account-field-lastname" id="jira-setup-account-field-lastname" placeholder="Type in a last name" required="required">
+
+			    					</div> <!-- class="field-group" -->
 			    						<div class="field-group">
-			    							
 			    							<label for="jira-setup-account-field-email">Email</label>
 			    							<input class="text jira-setup-account-form-field" type="email" name="jira-setup-account-field-email" id="jira-setup-account-field-email" placeholder="Type your email address" required="required">
 

@@ -19,6 +19,14 @@ $(document).ready(function() {
     //validate register form
     $("#jira-setup-account").validate({
         "rules": {
+            "jira-setup-account-field-firstname": {
+                "required": true,
+                "minlength": 3
+            },
+            "jira-setup-account-field-lastname": {
+                "required": true,
+                "minlength": 3
+            },
             "jira-setup-account-field-email": {
                 "required": true
             },
