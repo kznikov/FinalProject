@@ -1,0 +1,212 @@
+body {
+    background: #f5f5f5;
+    color: #333;
+    font-family: 'Open Sans', sans-serif;
+}
+
+
+h1, h2,h3,h4,h5,h6 {
+	font-family: 'Roboto', sans-serif;	
+}
+
+h1 {
+    color: #333;
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 1.25;
+    text-transform: none;
+    margin: 30px 0 0 0;
+}
+
+h2 {
+    color: #333;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1.25;
+    text-transform: none;
+    margin: 30px 0 0 0;
+}
+
+h3 {
+  color: #333;
+  font-size: 20px;
+  font-weight: normal;
+  line-height: 1.5;
+  text-transform: none;
+  margin: 30px 0 0 0;
+}
+h4 {
+  color: #333;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1.25;
+  text-transform: none;
+  margin: 20px 0 0 0;
+}
+h5 {
+  color: #333;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1.42857143;
+  text-transform: none;
+  margin: 20px 0 0 0;
+}
+h6 {
+  color: #707070;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 1.66666667;
+  text-transform: uppercase;
+  margin: 20px 0 0 0;
+}
+
+.error {
+  color: red;
+}
+
+
+
+/*HEADER*/
+
+
+a.navbar-brand img {
+	width: 60px;
+}
+
+.navbar-inverse {
+    background: #205081;
+    border-bottom: 1px solid #2e3d54;
+    color: #fff;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+    color: #fff;
+}
+
+
+
+/*LOGIN*/
+
+
+#login-panel {
+    max-width: 320px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 100px auto 0;
+    background: #fff;
+}
+
+#login-panel h1 {
+	margin: 0;
+}
+
+#login-panel h2.login-heading {
+	    padding: 20px 0;
+	    margin: 0;
+}
+
+#login-panel .login-footer {
+	padding-top: 20px;
+}
+
+/*REGISTER PAGE*/
+
+
+#register-panel {
+    max-width: 800px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 100px auto 0;
+    background: #fff;
+}
+
+
+#register-panel input.form-control {
+  margin-bottom: 20px;
+}
+
+/*AVATARPAGE*/
+
+#avatar-panel {
+    max-width: 800px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 100px auto 0;
+    background: #fff;
+}
+
+.nextstep {
+  padding: 20px;
+}
+
+.icon-image {
+  border: 1px solid #205081;
+  padding: 27px;
+  border-radius: 50%;
+  background: #f5f5f5;
+}
+
+.icon-image span {
+  font-size: 33px;
+}
+
+
+/*HOMEPAGE*/
+
+#homepage-panel {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 100px auto 0;
+    background: #fff;
+}
+
+.bg-info {
+    margin-top: 56px;
+    border: 1px solid #ddd;
+
+}
+.bg-info h3 {
+    margin: 0;
+    
+}
+
+
+/*MYPROJECTS PAGE*/
+
+.myproject-button {
+ margin-top: 30px;
+ text-align: right;
+}
+
+table.myproject-table {
+  margin-top: 20px;
+}
+
+table tr td a {
+  cursor: pointer;
+}
+
+.bg-success p {
+  padding: 5px;
+}
+
+
+/*REGISTER USERS*/
+
+form#create-user input {
+  margin-bottom: 20px;
+}
+
+.tab-content #preferences, .tab-content #notifications {
+  padding: 17px;
+}
+
+/*FOOTER*/
+
+.footer-logo {
+  padding: 50px 0;
+}
