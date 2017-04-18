@@ -72,7 +72,9 @@
         <li><a href="#">My profile</a></li>
         <li><a href="#">Edit profile</a></li>
         <li role="separator" class="divider"></li>
-        <li><a href="#">Logout</a></li>
+
+        <li><a href="/FinalProject/controller/LogoutController.php">Logout</a></li>
+
       </ul>
       </li>
           </ul>

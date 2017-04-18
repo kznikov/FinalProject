@@ -13,14 +13,17 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#"><img src="images/aui-header-logo-jira.png" alt=""></a>
+          <a class="navbar-brand" href="#"><img src="/FinalProject/view/images/aui-header-logo-jira.png" alt=""></a>
+
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
 			<li class="dropdown">
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User name <span class="caret"></span></a>
 			<ul class="dropdown-menu">
-				<li><a href="#">Logout</a></li>
+
+				<li><a href="/FinalProject/controller/LogoutController.php">Logout</a></li>
+
 			</ul>
 			</li>
           </ul>
@@ -40,7 +43,8 @@
 			<form enctype="multipart/form-data" id="jira-avatar" action="" method="post">
 
         <div id="image-holder" class="col-md-3">
-          <img style="width: 150px;" src="images/add-avatar_2.png" alt="avatar">
+          <img style="width: 150px;" src="/FinalProject/view/images/add-avatar_2.png" alt="avatar">
+
         </div>
 
 				<div class="form-group col-md-9" style="height: 200px;">
