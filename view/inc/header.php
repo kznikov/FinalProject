@@ -15,7 +15,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto" rel="stylesheet"> 
     <link rel="stylesheet" type="text/css" href="/FinalProject/view/css/style.css">
-    
+
     
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
