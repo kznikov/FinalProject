@@ -41,7 +41,7 @@
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Charges<span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="#">My charge</a></li>
+          <li><a href="./mycharge.php">My charge</a></li>
           <li role="separator" class="divider"></li>
           <li><a href="#">Manage</a></li>
           <li><a href="#">Manage All</a></li>
@@ -50,9 +50,9 @@
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Roles <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="#">List</a></li>
+          <li><a href="./roles.php">List</a></li>
           <li role="separator" class="divider"></li>
-          <li><a href="#">Create</a></li>
+          <li><a href="./createrole.php">Create</a></li>
         </ul>
       </li>
             <li class="dropdown">

@@ -183,7 +183,7 @@ a.navbar-brand img {
 }
 
 table.myproject-table {
-  margin-top: 20px;
+  padding: 20px 0;
 }
 
 table tr td a {
@@ -194,7 +194,6 @@ table tr td a {
   padding: 5px;
 }
 
-
 /*REGISTER USERS*/
 
 form#create-user input {
@@ -204,6 +203,9 @@ form#create-user input {
 .tab-content #preferences, .tab-content #notifications {
   padding: 17px;
 }
+
+/*AUTOSUGGEST STYLES*/
+
 
 /*FOOTER*/
 
