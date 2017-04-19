@@ -2,6 +2,9 @@
 	class UserDAO implements IUserDAO {
 		
 		const GET_AND_CHECK_USER_SQL = "SELECT username, id FROM users WHERE username = ? AND password = ?";
+		const REGISTER_NEW_USER_SQL = "INSERT INTO users (username, password, firstname, lastname, email, created) 
+																						VALUES (?, ?, ?, ?, ?, now())";
+		
 		
 		public function loginUser(User $user) {
 			$db = DBConnection::getDb();
@@ -22,12 +25,13 @@
 		public function registerUser(User $user) {
 			$db = DBConnection::getDb();
 			
-			$pstmt = $db->prepare(self::GET_AND_CHECK_USER_SQL);
-			$pstmt->execute(array($user->username, $user->password));
+			$pstmt = $db->prepare(self::REGISTER_NEW_USER_SQL);
+			if ( $pstmt->execute(array($user->username, hash('sha256', $user->password), $user->firstname, $user->lastname), 
+									$user->email)){
+				
+			}
 			
-			$res = $pstmt->fetchAll(PDO::FETCH_ASSOC);
-			
-			if (count($res) === 0)
+	
 				throw new Exception("Are logni se pak ve galfon!");
 				
 				$user = $res[0];

@@ -19,6 +19,12 @@
         <div class="login-header">
            <h1>Log in</h1>
         </div>
+        <?php if(isset($errorMessage) && $errorMessage){?>
+        <div class="aui-message error">
+            <span class="aui-icon icon-error"></span>
+            <span class="error" id="error-authentication_failure_invalid_credentials">Sorry, we didn&#x27;t recognize that username and password combination. Please double-check and try again.</span>
+        </div>
+        <?php }?>
         <div class="login-body">
            <h2 class="login-heading">Use your <strong>JIRA</strong> account</h2>
 

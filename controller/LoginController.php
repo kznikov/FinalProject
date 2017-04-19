@@ -18,7 +18,7 @@
 			header('Location:HomeController.php', true, 302);
 		}
 		catch (Exception $e) {
-			$errorMessage = $e->getMessage();
+			$errorMessage = true;
 			include '../view/index.php';
 		}  
 	}

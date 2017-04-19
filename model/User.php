@@ -36,6 +36,4 @@ class User implements JsonSerializable {
 	}
 }
 
-$minko = new User('Minko', 'AzSymMinko123', 3);
-echo json_encode($minko); 
 ?>
