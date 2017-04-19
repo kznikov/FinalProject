@@ -3,8 +3,10 @@
 		
 		const GET_AND_CHECK_USER_SQL = "SELECT username, id FROM users WHERE username = ? AND password = ?";
 		const REGISTER_NEW_USER_SQL = "INSERT INTO users (username, password, firstname, lastname, email, created) 
-																						VALUES (?, ?, ?, ?, ?, now())";
-		
+																					VALUES (?, ?, ?, ?, ?, NOW())";
+		public function getUserFromDB($username, $password){
+			
+		}
 		
 		public function loginUser(User $user) {
 			$db = DBConnection::getDb();
@@ -15,7 +17,7 @@
 			$res = $pstmt->fetchAll(PDO::FETCH_ASSOC);
 			
 			if (count($res) === 0)
-				throw new Exception("Try again");
+				throw new Exception("Try again!");
 			
 			$user = $res[0];
 			
@@ -26,17 +28,15 @@
 			$db = DBConnection::getDb();
 			
 			$pstmt = $db->prepare(self::REGISTER_NEW_USER_SQL);
-			if ( $pstmt->execute(array($user->username, hash('sha256', $user->password), $user->firstname, $user->lastname), 
-									$user->email)){
+
+			if ( $pstmt->execute(array($user->username, hash('sha256', $user->password), $user->firstname, $user->lastname, 
+									$user->email))){
+				return $user;
 				
+			}else{
+				throw new Exception("Unsuccessful registration!");
 			}
 			
-	
-				throw new Exception("Are logni se pak ve galfon!");
-				
-				$user = $res[0];
-				
-				return new User($user['username'], 'haha', $user['id']);
 		}
 		
 		

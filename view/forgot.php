@@ -21,10 +21,10 @@
         <div class="login-body">
            <form>
               <div class="form-group">
-                 <label for="username">Username</label>
-                 <input type="text" class="form-control" id="username" placeholder="Email">
+                 <label for="email">Email</label>
+                 <input type="text" class="form-control" id="email" placeholder="Email">
               </div>
-              <button type="submit" class="btn btn-primary">Email</button>
+              <input type="submit" class="btn btn-primary" name="submit" value="Send">
            </form>
            <hr>
            <div class="login-footer">
