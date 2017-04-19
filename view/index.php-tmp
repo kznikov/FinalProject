@@ -1,8 +1,7 @@
-<?php 
-  $pageTitle="Login";
-  include "inc/header.php"; 
+<?php
+$pageTitle = "Login";
+include "inc/header.php";
 ?>
-
 <body>
    <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
@@ -19,13 +18,13 @@
         <div class="login-header">
            <h1>Log in</h1>
         </div>
-        <?php if(isset($errorMessage) && $errorMessage){?>
-        <div class="aui-message error">
-            <span class="aui-icon icon-error"></span>
-            <span class="error" id="error-authentication_failure_invalid_credentials">Sorry, we didn&#x27;t recognize that username and password combination. Please double-check and try again.</span>
-        </div>
-        <?php }?>
-        <div class="login-body">
+<?php if (isset($errorMessage) && $errorMessage) {?>
+	<div class="aui-message error">
+	            <span class="aui-icon icon-error"></span>
+	            <span class="error" id="error-authentication_failure_invalid_credentials">Sorry, we didn&#x27;t recognize that username and password combination. Please double-check and try again.</span>
+	        </div>
+	<?php }?>
+<div class="login-body">
            <h2 class="login-heading">Use your <strong>JIRA</strong> account</h2>
 
            <form id="registrationForm" action="../controller/LoginController.php" method="post">
@@ -50,6 +49,5 @@
      </div>
    </section><!-- /.container -->
 
-<?php include "inc/footer.php"; ?>
+<?php include "inc/footer.php";?>
 
-   

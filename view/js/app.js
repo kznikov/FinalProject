@@ -1,17 +1,17 @@
 $(document).ready(function() {
 
     //extract username from email
-    $(function() {
-            var $email = $('#jira-setup-account-field-email');
-            var $username = $('#jira-setup-account-field-username');
+    // $(function() {
+    //         var $email = $('#jira-setup-account-field-email');
+    //         var $username = $('#jira-setup-account-field-username');
 
-            function onChange() {
-                $username.val($email.val().split('@')[0]);
-            };
-            $('#jira-setup-account-field-email')
-                .change(onChange)
-                .keyup(onChange);
-        }) //username-email
+    //         function onChange() {
+    //             $username.val($email.val().split('@')[0]);
+    //         };
+    //         $('#jira-setup-account-field-email')
+    //             .change(onChange)
+    //             .keyup(onChange);
+    //     }) //username-email
 
     //validate register form
     $("#jira-setup-account").validate({
@@ -40,6 +40,18 @@ $(document).ready(function() {
             }
         } //rules
     }); //validate
+
+
+      //validate register form
+    $("#registrationForm").validate({
+        "rules": {
+            "username": {
+                "required": true
+            }
+        } //rules
+    }); //validate
+
+
 
     $('#myTabs a').click(function(e) {
         e.preventDefault()
@@ -91,24 +103,44 @@ $(document).ready(function() {
     });
 });
 
+function checkName() {
+var name = document.getElementById("jira-setup-account-field-username");
+var nameValue = name.value;
+console.log(nameValue);
 
-function updateRoles() {
-    var roles = document.getElementById("roles");
-    var role_result = document.getElementById("role_result");
-
-    var roles_id = roles.options[roles.selectedIndex].value;
-
-    var url = 'rolesuggest.php?roles=' + roles_id;
-
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', url, true);
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            role_result.innerHTML = xhr.responseText;
-        }
-    }
-    xhr.send();
+var xhttp = new XMLHttpRequest();
+ xhttp.onreadystatechange = function() {
+   if (this.readyState == 4 && this.status == 200) {
+     document.getElementById("error").innerHTML =
+     this.responseText;
+     if (this.responseText) {
+        document.getElementById("mySubmit").disabled = true;
+     } else {
+        document.getElementById("mySubmit").disabled = false;
+     }
+   }
+ };
+ xhttp.open("GET", "../controller/ValidateController.php?name=" + nameValue, true);
+ xhttp.send();
 }
 
-var roles = document.getElementById("roles");
-roles.addEventListener("change", updateRoles);
+function checkUserName() {
+var name = document.getElementById("username");
+var nameValue = name.value;
+console.log(nameValue);
+
+var xhttp = new XMLHttpRequest();
+ xhttp.onreadystatechange = function() {
+   if (this.readyState == 4 && this.status == 200) {
+     document.getElementById("exist").innerHTML =
+     this.responseText;
+     if (this.responseText) {
+         document.getElementById("login").disabled = false;
+     } else {
+       document.getElementById("login").disabled = true;
+     }
+   }
+ };
+ xhttp.open("GET", "../controller/ValidateController.php?name=" + nameValue, true);
+ xhttp.send();
+}
