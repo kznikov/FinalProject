@@ -41,6 +41,18 @@ $(document).ready(function() {
         } //rules
     }); //validate
 
+
+      //validate register form
+    $("#registrationForm").validate({
+        "rules": {
+            "username": {
+                "required": true
+            }
+        } //rules
+    }); //validate
+
+
+
     $('#myTabs a').click(function(e) {
         e.preventDefault()
         $(this).tab('show')
@@ -92,22 +104,43 @@ $(document).ready(function() {
 });
 
 function checkName() {
-        var name = document.getElementById("jira-setup-account-field-username");
-        var nameValue = name.value;
-        console.log(nameValue);
+var name = document.getElementById("jira-setup-account-field-username");
+var nameValue = name.value;
+console.log(nameValue);
 
-        var xhttp = new XMLHttpRequest();
-         xhttp.onreadystatechange = function() {
-           if (this.readyState == 4 && this.status == 200) {
-             document.getElementById("error").innerHTML =
-             this.responseText;
-             if (this.responseText) {
-                document.getElementById("mySubmit").disabled = true;
-             } else {
-                document.getElementById("mySubmit").disabled = false;
-             }
-           }
-         };
-         xhttp.open("GET", "../controller/ValidateController.php?name=" + nameValue, true);
-         xhttp.send();
-    }
+var xhttp = new XMLHttpRequest();
+ xhttp.onreadystatechange = function() {
+   if (this.readyState == 4 && this.status == 200) {
+     document.getElementById("error").innerHTML =
+     this.responseText;
+     if (this.responseText) {
+        document.getElementById("mySubmit").disabled = true;
+     } else {
+        document.getElementById("mySubmit").disabled = false;
+     }
+   }
+ };
+ xhttp.open("GET", "../controller/ValidateController.php?name=" + nameValue, true);
+ xhttp.send();
+}
+
+function checkUserName() {
+var name = document.getElementById("username");
+var nameValue = name.value;
+console.log(nameValue);
+
+var xhttp = new XMLHttpRequest();
+ xhttp.onreadystatechange = function() {
+   if (this.readyState == 4 && this.status == 200) {
+     document.getElementById("exist").innerHTML =
+     this.responseText;
+     if (this.responseText) {
+         document.getElementById("login").disabled = false;
+     } else {
+       document.getElementById("login").disabled = true;
+     }
+   }
+ };
+ xhttp.open("GET", "../controller/ValidateController.php?name=" + nameValue, true);
+ xhttp.send();
+}

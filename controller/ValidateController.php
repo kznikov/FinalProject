@@ -12,7 +12,7 @@
 		$checkUser = $userData->checkUserName($name);
 
 		if ($checkUser == false) {
-			echo "<p class=\"error\"> The username is busy </p>";
+			echo "<p class=\"error\"> The username exist. </p>";
 		} 
 
 	}
