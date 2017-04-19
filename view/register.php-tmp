@@ -1,8 +1,7 @@
-<?php 
-  $pageTitle="Register form";
-  include "inc/header.php"; 
+<?php
+$pageTitle = "Register form";
+include "inc/header.php";
 ?>
-
 <body>
    <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
@@ -73,7 +72,7 @@
 				    </div>
 				</div>
 				<div class="buttons-container text-right">
-					<div class="buttons">	
+					<div class="buttons">
 						<input type="submit" class="btn btn-primary" id="mySubmit" name="submit" value="Register">
 					</div>
 				</div> <!-- class="buttons-container" -->
@@ -82,6 +81,5 @@
         </div> <!-- class="register-body" -->
      </div> <!-- id="register-panel" -->
    </section><!-- /.container -->
-<?php include "inc/footer.php"; ?>
+<?php include "inc/footer.php";?>
 
-   

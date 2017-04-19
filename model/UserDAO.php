@@ -2,6 +2,7 @@
 	class UserDAO implements IUserDAO {
 		
 		const GET_AND_CHECK_USER_SQL = "SELECT username, id FROM users WHERE username = ? AND password = ?";
+		const CHECK_IF_USER_EXIST = "SELECT username, id FROM users WHERE username = ?";
 		const REGISTER_NEW_USER_SQL = "INSERT INTO users (username, password, firstname, lastname, email, created) 
 																						VALUES (?, ?, ?, ?, ?, now())";
 		
@@ -20,6 +21,22 @@
 			$user = $res[0];
 			
 			return new User($user['username'], 'p', $user['id']);
+		}
+
+		public function checkUserName($username) {
+			$db = DBConnection::getDb();
+			
+			$pstmt = $db->prepare(self::CHECK_IF_USER_EXIST);
+			$pstmt->execute(array($username));
+			
+			$res = $pstmt->fetchAll(PDO::FETCH_ASSOC);
+
+			if (count($res) === 0) {
+				return true;
+			} else {
+				return false;
+			}
+			
 		}
 		
 		public function registerUser(User $user) {
