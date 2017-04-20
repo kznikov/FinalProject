@@ -6,15 +6,16 @@ require_once "../model/IUserDAO.php";
 		const CHECK_IF_USER_EXIST = "SELECT username, id FROM users WHERE username = ?";
 		const REGISTER_NEW_USER_SQL = "INSERT INTO users (username, password, firstname, lastname, email, created) 
 																					VALUES (?, ?, ?, ?, ?, NOW())";
-		const GET_USER_PASSWORD = "SELECT password FROM users WHERE email LIKE ?";
-		const KEY = "123432534754853";
-		const IV = "6542354643636167";
+		const UPDATE_TOKEN = "UPDATE users SET token = ? WHERE email LIKE ?";
+		const RESET_PASSWORD = "UPDATE users SET password = ? WHERE email LIKE ? AND token LIKE ?";
+		
+		
 		
 		public function loginUser(User $user) {
 			$db = DBConnection::getDb();
 			
 			$pstmt = $db->prepare(self::GET_AND_CHECK_USER_SQL);
-			$pstmt->execute(array($user->username,  openssl_encrypt($user->password, 'AES-256-CBC', self::KEY, OPENSSL_RAW_DATA, self::IV)));
+			$pstmt->execute(array($user->username,  hash('sha256',$user->password)));
 			
 			$res = $pstmt->fetchAll(PDO::FETCH_ASSOC);
 			
@@ -48,7 +49,7 @@ require_once "../model/IUserDAO.php";
 			$pstmt = $db->prepare(self::REGISTER_NEW_USER_SQL);
 
 			
-			if ( $pstmt->execute(array($user->username, openssl_encrypt($user->password, 'AES-256-CBC', self::KEY, OPENSSL_RAW_DATA, self::IV),
+			if ( $pstmt->execute(array($user->username, hash('sha256',$user->password),
 													$user->firstname, $user->lastname, $user->email))){
 				$user->__set('id', $db->lastInsertId());
 				return $user;
@@ -61,15 +62,21 @@ require_once "../model/IUserDAO.php";
 		
 		
 		
-		public function forgotPassword($email) {
+		public static function forgotPassword($email, $token) {
 			$db = DBConnection::getDb();
 			
-			$pstmt = $db->prepare(self::GET_USER_PASSWORD);
-			$pstmt->execute(array($email));
+			$pstmt = $db->prepare(self::UPDATE_TOKEN);
 			
-			$res = $pstmt->fetchAll(PDO::FETCH_ASSOC);
+			return $pstmt->execute(array($token, $email));
+		}
+		
+		
+		public static function resetPassword($email, $token, $pass) {
+			$db = DBConnection::getDb();
 			
-			return openssl_decrypt($res[0]['password'], 'AES-256-CBC', self::KEY, OPENSSL_RAW_DATA, self::IV);
+			$pstmt = $db->prepare(self::RESET_PASSWORD);
+			
+			return $pstmt->execute(array(hash('sha256', $pass), $email, $token));
 		}
 		
 		

@@ -12,11 +12,14 @@ class DBConnection {
 	public static function getDb() {
 		if (self::$db === null) {
 			try {
-				self::$db = new PDO ( "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASS );
-				self::$db->setAttribute ( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+				 self::$db = new PDO ( "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASS );
+				self::$db->setAttribute ( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION ); 
 			}
-			catch (PDOException $e) {
-				throw new Exception("Cannot connect to the database!", $e);
+			catch (Exception $e) {
+				if($e->getCode() === 2002){
+					die("<h3>Cannot connect to the database!</h3>");
+				}
+				
 			}
 		}
 		

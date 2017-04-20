@@ -21,14 +21,14 @@
          <?php if(isset($successMessage) && $successMessage){?>
         <div class="aui-message error">
             <span class="aui-icon icon-error"></span>
-            <span class="success" id="error-authentication_failure_invalid_credentials">The password was sent to your email!</span>
+            <span class="success" id="error-authentication_failure_invalid_credentials">We've sent an email with the instructions to reset your password.</span>
         </div>
         <?php }?>
         <div class="login-body">
-           <form action="../controller/ForgotController.php" method="post">
+           <form id="jira-setup-account" action="../controller/ForgotController.php" method="post">
               <div class="form-group">
                  <label for="email">Email</label>
-                 <input type="text" class="form-control" id="email" name="email" placeholder="Email">
+                 <input id="jira-setup-account-field-email" type="email" class="form-control"  name="email" placeholder="Email" required="required">
               </div>
               <input type="submit" class="btn btn-primary" name="submit" value="Send">
            </form>
