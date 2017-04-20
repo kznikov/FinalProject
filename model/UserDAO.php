@@ -46,15 +46,12 @@ require_once "../model/IUserDAO.php";
 			$db = DBConnection::getDb();
 			
 			$pstmt = $db->prepare(self::REGISTER_NEW_USER_SQL);
-<<<<<<< HEAD
+
 			
 			if ( $pstmt->execute(array($user->username, openssl_encrypt($user->password, 'AES-256-CBC', self::KEY, OPENSSL_RAW_DATA, self::IV),
 													$user->firstname, $user->lastname, $user->email))){
 				$user->__set('id', $db->lastInsertId());
 				return $user;
-=======
-			if ($pstmt->execute(array($user->username, hash('sha256', $user->password), $user->firstname, $user->lastname, $user->email))){
->>>>>>> d7eb5db7965c98e4a459ee12b0ac11d01c692bd2
 				
 			}else{
 				throw new Exception("Unsuccessful registration!");
