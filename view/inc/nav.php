@@ -1,3 +1,9 @@
+<?php 
+
+	$userData = json_decode($_SESSION['user'], true);
+	
+?>
+
  <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -11,7 +17,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="./homepage.php">Home</a></li>
+            <li class="active"><a href="/FinalProject/view/homepage.php">Home</a></li>
             <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Projects <span class="caret"></span></a>
         <ul class="dropdown-menu">
@@ -67,7 +73,7 @@
           </ul>
           <ul class="nav navbar-nav navbar-right">
       <li class="dropdown">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User name <span class="caret"></span></a>
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?= $userData['lastname'].", ".$userData['firstname']." " ?><span class="caret"></span></a>
       <ul class="dropdown-menu">
         <li><a href="#">My profile</a></li>
         <li><a href="#">Edit profile</a></li>

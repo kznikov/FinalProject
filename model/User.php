@@ -34,6 +34,12 @@ class User implements JsonSerializable {
 	public function __get($prop) {
 		return $this->$prop;
 	}
+	
+	public function __set($name, $value){
+		$this->$name = $value;
+	}
+	
+	
 }
 
 ?>

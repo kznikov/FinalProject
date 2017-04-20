@@ -1,6 +1,11 @@
 <?php 
   $pageTitle="Users";
   include "inc/header.php"; 
+  
+  session_start();
+  if(!isset($_SESSION['user'])){
+  	header('Location:../view/index.php');
+  }
 ?>
 
 <body>

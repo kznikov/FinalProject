@@ -65,6 +65,13 @@ h6 {
   color: red;
 }
 
+
+.success {
+  color: green;
+  text-align: center;
+  font-weight: bold;
+}
+
 #exist {
   color: green;
 }

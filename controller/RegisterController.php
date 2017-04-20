@@ -20,6 +20,9 @@
 				
 				$registerUser = $userData->registerUser($user);
 				
+				//var_dump($registerUser);
+				
+				session_start();
 				$_SESSION['user'] = json_encode($registerUser);
 				//var_dump($_SESSION['user']);
 				header('Location: WelcomeController.php', true, 302);
