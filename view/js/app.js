@@ -83,32 +83,11 @@ $(document).ready(function() {
                     reader.readAsDataURL($(this)[0].files[i]);
                 }
             } else {
-                error.innerHTML = 'This browser does not support FileReader.';
+                imageError.innerHTML = 'This browser does not support FileReader.';
             }
         } else {
-            error.innerHTML = 'Please select only images.';
+            imageError.innerHTML = 'Please select only images.';
         }
     });
 });
 
-
-function updateRoles() {
-    var roles = document.getElementById("roles");
-    var role_result = document.getElementById("role_result");
-
-    var roles_id = roles.options[roles.selectedIndex].value;
-
-    var url = 'rolesuggest.php?roles=' + roles_id;
-
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', url, true);
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            role_result.innerHTML = xhr.responseText;
-        }
-    }
-    xhr.send();
-}
-
-var roles = document.getElementById("roles");
-roles.addEventListener("change", updateRoles);

@@ -48,7 +48,7 @@
         </div>
 
 				<div class="form-group col-md-9" style="height: 200px;">
-		        	<label for="fileUpload">File input</label>
+		        	<label for="image">File input</label>
 		        	<input type="file" id="image" name="image" required>
 		        	<p class="help-block">Please upload image.</p>
 		    </div>
@@ -57,9 +57,10 @@
 					<div class="buttons">	
 						<button type="submit" name="uplodeImage" class="btn btn-primary">Next</button>
 					</div>
-				</div> <!-- class="buttons-container" -->
+				</div> <!-- class="buttons-container" --> 
+        <div id="errors"></div>
 			</form>
-			<div class="errors"></div>
+		
 
         </div> <!-- class="register-body" -->
      </div> <!-- id="register-panel" -->
