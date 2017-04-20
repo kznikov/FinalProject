@@ -95,10 +95,10 @@ $(document).ready(function() {
                     reader.readAsDataURL($(this)[0].files[i]);
                 }
             } else {
-                error.innerHTML = 'This browser does not support FileReader.';
+                imageError.innerHTML = 'This browser does not support FileReader.';
             }
         } else {
-            error.innerHTML = 'Please select only images.';
+            imageError.innerHTML = 'Please select only images.';
         }
     });
 });
@@ -144,3 +144,4 @@ var xhttp = new XMLHttpRequest();
  xhttp.open("GET", "../controller/ValidateController.php?name=" + nameValue, true);
  xhttp.send();
 }
+
