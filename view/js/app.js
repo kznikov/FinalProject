@@ -145,7 +145,6 @@ var xhttp = new XMLHttpRequest();
         $( name ).parents( ".col-xs-12" ).addClass( "has-error" ).removeClass( "has-success" );
         $( name ).next( "span" ).addClass( "glyphicon-remove" ).removeClass( "glyphicon-ok" );
      } else {
-
         document.getElementById("mySubmit").disabled = false;
      }
    }
@@ -176,5 +175,25 @@ var xhttp = new XMLHttpRequest();
    }
  };
  xhttp.open("GET", "../controller/ValidateController.php?email=" + emailValue, true);
+ xhttp.send();
+}
+
+
+function checkUserName() {
+var name = document.getElementById("username");
+var nameValue = name.value;
+console.log(nameValue);
+
+var xhttp = new XMLHttpRequest();
+ xhttp.onreadystatechange = function() {
+   if (this.readyState == 4 && this.status == 200) {
+     if (this.responseText) {
+         document.getElementById("login").disabled = false; 
+     } else {
+       document.getElementById("login").disabled = true;
+     }
+   }
+ };
+ xhttp.open("GET", "../controller/ValidateController.php?name=" + nameValue, true);
  xhttp.send();
 }

@@ -5,7 +5,7 @@
 
 	if (isset($_GET['name'])) {
 
-		$name = htmlentities($_GET['name']);
+		$name = htmlentities(trim($_GET['name']));
 
 		$userData = new UserDAO();
 
@@ -19,7 +19,7 @@
 
 	if (isset($_GET['email'])) {
 
-		$email = htmlentities($_GET['email']);
+		$email = htmlentities(trim($_GET['email']));
 
 		$userData = new UserDAO();
 
