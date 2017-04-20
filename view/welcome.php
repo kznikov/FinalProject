@@ -59,13 +59,13 @@
 		        	<input type="file" id="image" name="image" required>
 		        	<p class="help-block">Please upload image.</p>
 		    </div>
-				
+				<div id="errors"></div>
 				<div class="buttons-container text-right">
 					<div class="buttons">	
 						<button type="submit" name="uplodeImage" class="btn btn-primary">Next</button>
 					</div>
 				</div> <!-- class="buttons-container" --> 
-        <div id="errors"></div>
+        
 			</form>
 		
 

@@ -65,7 +65,6 @@ h6 {
   color: red;
 }
 
-
 .success {
   color: green;
   text-align: center;
@@ -76,6 +75,16 @@ h6 {
   color: green;
 }
 
+#ajax_msg {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  width: 300px;
+  z-index: 1;
+  text-align: center;
+  border-radius: 2px;
+  display: none;
+}
 
 
 /*HEADER*/
@@ -136,7 +145,11 @@ a.navbar-brand img {
 
 
 #register-panel input.form-control {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+}
+
+.form-control-feedback {
+    right: 16px;
 }
 
 /*AVATARPAGE*/

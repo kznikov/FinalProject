@@ -4,6 +4,9 @@
 ?>
 
 <body>
+	<div id="ajax_msg" class="alert alert-success">
+		<p>Form was submited</p>
+	</div>
    <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
          <div class="navbar-header">
@@ -25,51 +28,51 @@
 			<form id="jira-setup-account" action="../controller/RegisterController.php" method="post">
 				<div class="form-group">
 					<div class="col-xs-12 col-md-2">
-						<label for="jira-setup-account-field-username">First Name</label>
+						<label class="control-label" for="jira-setup-account-field-username">First Name</label>
 					</div>
 					<div class="col-xs-12 col-md-10">
-			    		<input class="form-control" type="text" name="firstname" id="jira-setup-account-field-firstname" placeholder="Type in a first name" required="required">
+			    		<input class="form-control" type="text" name="firstname" id="jira-setup-account-field-firstname" placeholder="Enter your firstname">
 			    	</div>
 				</div>
 				<div class="form-group">
 					<div class="col-xs-12 col-md-2">
-						<label for="jira-setup-account-field-username">Last Name</label>
+						<label class="control-label" for="jira-setup-account-field-username">Last Name</label>
 					</div>
 					<div class="col-xs-12 col-md-10">
-						<input class="form-control" type="text" name="lastname" id="jira-setup-account-field-lastname" placeholder="Type in a last name" required="required">
+						<input class="form-control" type="text" name="lastname" id="jira-setup-account-field-lastname" placeholder="Enter your lastname">
 					</div>
 				</div>
 				<div class="form-group">
 					<div class="col-xs-12 col-md-2">
-						<label for="jira-setup-account-field-email">Email</label>
+						<label class="control-label" for="jira-setup-account-field-email">Email</label>
 					</div>
 					<div class="col-xs-12 col-md-10">
-						<input class="form-control" type="email" name="email" id="jira-setup-account-field-email" placeholder="Type your email address" required="required">
+						<input class="form-control" type="email" name="email" id="jira-setup-account-field-email" placeholder="Type your email address">
 					</div>
 				</div>
 				<div class="form-group">
 					<div class="col-xs-12 col-md-2">
-						<label for="jira-setup-account-field-username">Username</label>
+						<label class="control-label" for="jira-setup-account-field-username">Username</label>
 					</div>
 					<div class="col-xs-12 col-md-10">
-						<input class="form-control" type="text" name="username" id="jira-setup-account-field-username" placeholder="Type in a username" required="required" onblur="checkName()">
+						<input class="form-control" type="text" name="username" id="jira-setup-account-field-username" placeholder="Type in a username" onblur="checkName()">
 						<div id="error"></div>
 					</div>
 				</div>
 				<div class="form-group">
 					<div class="col-xs-12 col-md-2">
-						<label for="jira-setup-account-field-password">Password</label>
+						<label class="control-label" for="jira-setup-account-field-password">Password</label>
 					</div>
 					<div class="col-xs-12 col-md-10">
-			    		<input class="form-control" type="password" name="password" id="jira-setup-account-field-password" placeholder="Enter a password" required="required">
+			    		<input class="form-control" type="password" name="password" id="jira-setup-account-field-password" placeholder="Enter a password">
 			    	</div>
 				</div>
 				<div class="form-group">
 					<div class="col-xs-12 col-md-2">
-						<label for="jira-setup-account-field-retype-password">Re-type password</label>
+						<label class="control-label" for="jira-setup-account-field-retype-password">Re-type password</label>
 					</div>
 					<div class="col-xs-12 col-md-10">
-				    	<input class="form-control" type="password" name="repassword" id="jira-setup-account-field-retype-password" placeholder="Re-type password" required="required">
+				    	<input class="form-control" type="password" name="repassword" id="jira-setup-account-field-retype-password" placeholder="Re-type password">
 				    </div>
 				</div>
 				<div class="buttons-container text-right">
