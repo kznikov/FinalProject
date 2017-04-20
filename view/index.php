@@ -19,26 +19,27 @@
         <div class="login-header">
            <h1>Log in</h1>
         </div>
+        <?php if(isset($errorMessage) && $errorMessage){?>
+        <div class="aui-message error">
+            <span class="aui-icon icon-error"></span>
+            <span class="error" id="error-authentication_failure_invalid_credentials">Sorry, we didn&#x27;t recognize that username and password combination. Please double-check and try again.</span>
+        </div>
+        <?php }?>
         <div class="login-body">
            <h2 class="login-heading">Use your <strong>JIRA</strong> account</h2>
 
-           <form action="../controller/LoginController.php" method="post">
+           <form id="registrationForm" action="../controller/LoginController.php" method="post">
               <div class="form-group">
                  <label for="username">Username</label>
-                 <input type="text" class="form-control" id="username" name="username" placeholder="Username">
+                 <input type="text" class="form-control" id="username" name="username" placeholder="Username" onblur="checkUserName()" required="required">
+                 <div id="exist"></div>
               </div>
               <div class="form-group">
                  <label for="inputpassword">Password</label>
-                 <input type="password" class="form-control" id="inputpassword" name="password" placeholder="Password">
-
-              </div>
-              <div class="checkbox">
-                 <label>
-                 <input type="checkbox"> Keep me logged in
-                 </label>
+                 <input type="password" class="form-control" id="password" name="password" placeholder="Password" required="required">
               </div>
               <hr>
-              <input type="submit" class="btn btn-primary" name="submit" value="Log in">
+              <input type="submit" class="btn btn-primary" name="submit" id="login" value="Log in">
            </form>
            <div class="login-footer">
              <p><a href="/FinalProject/view/forgot.php" id="forgot" name="forgot">Unable to access your account?</a></p>
