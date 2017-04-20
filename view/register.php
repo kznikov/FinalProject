@@ -47,7 +47,8 @@
 						<label class="control-label" for="jira-setup-account-field-email">Email</label>
 					</div>
 					<div class="col-xs-12 col-md-10">
-						<input class="form-control" type="email" name="email" id="jira-setup-account-field-email" placeholder="Type your email address">
+						<input class="form-control" type="email" name="email" id="jira-setup-account-field-email" placeholder="Type your email address" onblur="checkEmail()">
+						<div id="erroremail"></div>
 					</div>
 				</div>
 				<div class="form-group">

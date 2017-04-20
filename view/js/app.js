@@ -153,3 +153,28 @@ var xhttp = new XMLHttpRequest();
  xhttp.open("GET", "../controller/ValidateController.php?name=" + nameValue, true);
  xhttp.send();
 }
+
+
+function checkEmail() {
+var email = document.getElementById("jira-setup-account-field-email");
+var emailValue = email.value;
+console.log(emailValue);
+
+var xhttp = new XMLHttpRequest();
+ xhttp.onreadystatechange = function() {
+   if (this.readyState == 4 && this.status == 200) {
+     document.getElementById("erroremail").innerHTML =
+     this.responseText;
+     if (this.responseText) {
+        document.getElementById("mySubmit").disabled = true;
+        $( email ).parents( ".col-xs-12" ).addClass( "has-error" ).removeClass( "has-success" );
+        $( email ).next( "span" ).addClass( "glyphicon-remove" ).removeClass( "glyphicon-ok" );
+     } else {
+
+        document.getElementById("mySubmit").disabled = false;
+     }
+   }
+ };
+ xhttp.open("GET", "../controller/ValidateController.php?email=" + emailValue, true);
+ xhttp.send();
+}
