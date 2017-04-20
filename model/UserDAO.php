@@ -3,7 +3,11 @@ require_once "../model/IUserDAO.php";
 	class UserDAO implements IUserDAO {
 		
 		const GET_AND_CHECK_USER_SQL = "SELECT * FROM users WHERE username = ? AND password = ?";
+
 		const CHECK_IF_USER_EXIST = "SELECT username, id FROM users WHERE username = ?";
+		
+		const CHECK_IF_EMAIL_EXIST = "SELECT username, id FROM users WHERE email = ?";
+
 		const REGISTER_NEW_USER_SQL = "INSERT INTO users (username, password, firstname, lastname, email, created) 
 																					VALUES (?, ?, ?, ?, ?, NOW())";
 		const GET_USER_PASSWORD = "SELECT password FROM users WHERE email LIKE ?";
@@ -31,6 +35,22 @@ require_once "../model/IUserDAO.php";
 			
 			$pstmt = $db->prepare(self::CHECK_IF_USER_EXIST);
 			$pstmt->execute(array($username));
+			
+			$res = $pstmt->fetchAll(PDO::FETCH_ASSOC);
+
+			if (count($res) === 0) {
+				return true;
+			} else {
+				return false;
+			}
+			
+		}
+
+		public function checkEmail($email) {
+			$db = DBConnection::getDb();
+			
+			$pstmt = $db->prepare(self::CHECK_IF_EMAIL_EXIST);
+			$pstmt->execute(array($email));
 			
 			$res = $pstmt->fetchAll(PDO::FETCH_ASSOC);
 
