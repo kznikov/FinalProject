@@ -1,6 +1,13 @@
 <?php 
   $pageTitle="Forgot password";
   include "inc/header.php"; 
+  
+  
+/*   if(!isset($_POST['e']) && !isset($_POST['t'])){
+  	header('Location:../view/index.php');
+  } */
+  
+  
 ?>
 
 <body>
@@ -15,22 +22,28 @@
    <section id="content" role="main" class="container">
      <div id="login-panel">
         <div class="login-header">
-           <h2>Forgot password</h2>
+           <h2>Reset password</h2>
         </div>
         <hr>
          <?php if(isset($successMessage) && $successMessage){?>
         <div class="aui-message error">
             <span class="aui-icon icon-error"></span>
-            <span class="success" id="error-authentication_failure_invalid_credentials">We've sent an email with the instructions to reset your password.</span>
+            <span class="success" id="error-authentication_failure_invalid_credentials">Your password was reset successfully.</span>
         </div>
         <?php }?>
         <div class="login-body">
-           <form id="jira-setup-account" action="../controller/ForgotController.php" method="post">
+           <form id="jira-setup-account" action="../controller/ResetController.php" method="post">
               <div class="form-group">
-                 <label for="email">Email</label>
-                 <input id="jira-setup-account-field-email" type="email" class="form-control"  name="email" placeholder="Email" required="required">
+                 <label for="email">Password</label>
+                 <input id="jira-setup-account-field-password" type="password" class="form-control"  name="password" placeholder="Enter a password" required="required">
               </div>
-              <input type="submit" class="btn btn-primary" name="submit" value="Send">
+              <div class="form-group">
+                 <label for="email">Re-type password</label>
+                 <input id="jira-setup-account-field-retype-password" type="password" class="form-control"  name="repassword" placeholder="Re-type password" required="required">
+              </div>
+              <input type="hidden" name='e' value="<?=$_GET['e'] ?>">
+              <input type="hidden" name='t' value="<?=$_GET['t'] ?>">
+              <input type="submit" class="btn btn-primary" name="submit" value="Reset">
            </form>
            <hr>
            <div class="login-footer">
