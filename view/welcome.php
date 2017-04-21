@@ -59,6 +59,7 @@
 		        	<input type="file" id="image" name="image" required>
 		        	<p class="help-block">Please upload image.</p>
 		   		 </div>
+		   		 
 				<div id="errors"></div>
 				<div class="buttons-container text-right">
 					<div class="buttons">	

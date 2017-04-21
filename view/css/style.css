@@ -237,3 +237,8 @@ form#create-user input {
 .footer-logo {
   padding: 50px 0;
 }
+
+
+#notFound{
+	margin: 150px 40%;
+}
