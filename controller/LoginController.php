@@ -2,7 +2,7 @@
 	function __autoload($className) {
 		require_once "../model/" . $className . '.php';	
 	}
-	
+		
 	if (isset($_POST['submit'])) {
 		 try {
 			$user = new User(htmlentities(trim($_POST['username'])),

@@ -53,17 +53,28 @@
                   </td>
                   <td></td>
                   <td class="text-center">
-                     <a href="#"><span class="glyphicon glyphicon-cog" title="Edit"></span></a>
-                     <a href="#"><span class="glyphicon glyphicon-trash" title="Delete"></span></a>
+                    
                   </td>
                </tr>
                <div id="role-result">
+               <?php foreach ($r as $elem){?>
                   <tr>
+                     <td style="vertical-align: middle;"><?= $elem->__get('name')?></td>
                      <td></td>
-                     <td></td>
-                     <td></td>
-                     <td></td>
+                     <td>
+                     	<ul style="list-style:none; padding:0px;">
+                     	<?php foreach ($elem->__get('permissions') as $key=>$perm){?>
+                     		<li><?php echo $key.":".($perm == 1 ? " Yes" : " No") ?></li>
+                     	<?php } ?>
+                     	</ul>
+                     </td>
+                     
+                     <td style="vertical-align: middle;" class="text-center">
+                     	<a href="#"><span class="glyphicon glyphicon-cog" title="Edit"></span></a>
+                     	<a href="#"><span class="glyphicon glyphicon-trash" title="Delete"></span></a>
+                 	 </td>
                   </tr>
+                  <?php }?>
                   
                </div>
             </tbody>

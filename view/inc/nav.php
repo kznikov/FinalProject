@@ -56,7 +56,7 @@
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Roles <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="/FinalProject/view/roles.php">List</a></li>
+          <li><a href="/FinalProject/controller/RoleController.php">List</a></li>
           <li role="separator" class="divider"></li>
           <li><a href="/FinalProject/view/createrole.php">Create</a></li>
         </ul>
@@ -77,7 +77,7 @@
       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?= $userData['lastname'].", ".$userData['firstname']." " ?><span class="caret"></span></a>
       <ul class="dropdown-menu">
         <li><a href="#">My profile</a></li>
-        <li><a href="#">Edit profile</a></li>
+        <li><a href="/FinalProject/view/editProfile.php">Edit profile</a></li>
         <li role="separator" class="divider"></li>
 
         <li><a href="/FinalProject/controller/LogoutController.php">Logout</a></li>
