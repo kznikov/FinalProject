@@ -11,8 +11,8 @@
 		$password = htmlentities(trim($_POST['password']));
 		$repassword = htmlentities(trim($_POST['repassword']));
 		
-		if(!empty($firstname) && !empty($lastname) && !empty($email) && filter_var($email, FILTER_VALIDATE_EMAIL) 
-									&& !empty($username) && !empty($password) && $password === $repassword){
+		if(!empty($firstname) && !empty($lastname) && !empty($email) && filter_var($email, FILTER_VALIDATE_EMAIL) && !empty($username) 
+				&& !empty($password) && $password === $repassword && UserDAO::checkEmail($email) && UserDAO::checkUserName($username)){
 			try {
 				$user = new User($username, $password, $firstname, $lastname, $email);
 		
@@ -25,7 +25,9 @@
 				session_start();
 				$_SESSION['user'] = json_encode($registerUser);
 				//var_dump($_SESSION['user']);
-				header('Location: WelcomeController.php', true, 302);
+				$successMessage = true;
+				include '../view/index.php';
+				//header('Location: WelcomeController.php', true, 302);
 			 }
 			catch (Exception $e) {
 				$errorMessage = true;

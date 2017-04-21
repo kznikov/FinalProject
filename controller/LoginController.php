@@ -14,12 +14,24 @@
 			
 			session_start();
 			$_SESSION['user'] = json_encode($loggedUser);
+			echo "<br/>";
+			//var_dump($loggedUser);
 			//var_dump($_SESSION['user']);
-			header('Location:HomeController.php', true, 302);
+			 $sessionVars = json_decode($_SESSION['user'], true);
+			 //var_dump($sessionVars);
+			// echo $sessionVars['firstLogin'];
+			 if($sessionVars['firstLogin']){
+				header('Location:WelcomeController.php', true, 302);
+			}else{
+				header('Location:HomeController.php', true, 302);
+			}   
+			
 		}
 		catch (Exception $e) {
 			$errorMessage = true;
 			include '../view/index.php';
 		}  
 	}
+	
+	//include '../view/index.php';
 ?>

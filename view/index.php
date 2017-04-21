@@ -27,10 +27,17 @@
             <span class="error" id="error-authentication_failure_invalid_credentials">Sorry, we didn&#x27;t recognize that username and password combination. Please double-check and try again.</span>
         </div>
         <?php }?>
+        
+        <?php if(isset($successMessage) && $successMessage){?>
+        <div class="aui-message error">
+            <span class="aui-icon icon-error"></span>
+            <span class="success" id="error-authentication_failure_invalid_credentials">Successfully registered</span>
+        </div>
+        <?php }?>
         <div class="login-body">
            <h2 class="login-heading">Use your <strong>JIRA</strong> account</h2>
 
-           <form id="registrationForm" action="../controller/LoginController.php" method="post">
+           <form id="jira-setup-account" action="../controller/LoginController.php" method="post">
               <div class="form-group">
                  <label for="username">Username</label>
                  <input type="text" class="form-control" id="username" name="username" placeholder="Username" onblur="checkUserName()" required="required">

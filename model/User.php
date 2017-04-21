@@ -6,8 +6,9 @@ class User implements JsonSerializable {
 	private $firstname;
 	private $lastname;
 	private $email;
+	private $firstLogin;
 	
-	function __construct($username, $password, $firstname = null, $lastname = null, $email = null,  $id = null) {
+	function __construct($username, $password, $firstname = null, $lastname = null, $email = null, $firstlogin = null,  $id = null) {
 		if (empty($username)) {
 			throw new Exception ( 'Empty username' );
 		}
@@ -22,6 +23,7 @@ class User implements JsonSerializable {
 		$this->firstname = $firstname;
 		$this->lastname = $lastname;
 		$this->email = $email;
+		$this->firstLogin= $firstlogin;
 	}
 	
 	

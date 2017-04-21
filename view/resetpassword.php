@@ -26,11 +26,17 @@
         </div>
         <hr>
          <?php if(isset($successMessage) && $successMessage){?>
-        <div class="aui-message error">
-            <span class="aui-icon icon-error"></span>
-            <span class="success" id="error-authentication_failure_invalid_credentials">Your password was reset successfully.</span>
-        </div>
-        <?php }?>
+	        <div class="aui-message error">
+	            <span class="aui-icon icon-error"></span>
+	            <span class="success" id="error-authentication_failure_invalid_credentials">Your password was reset successfully.</span>
+	        </div>
+        <?php }
+        if(isset($successMessage) && !$successMessage){ ?>
+        	 <div class="aui-message error">
+	            <span class="aui-icon icon-error"></span>
+	            <span class="error" id="error-authentication_failure_invalid_credentials">Error while attempting to reset password.</span>
+	        </div>
+        <?php } ?>
         <div class="login-body">
            <form id="jira-setup-account" action="../controller/ResetController.php" method="post">
               <div class="form-group">

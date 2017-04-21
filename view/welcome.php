@@ -40,7 +40,7 @@
    <section id="content" role="main" class="container">
      <div id="register-panel">
         <div class="register-header">
-           <h2>Welcome to JIRA, USERNAME</h2>
+           <h2>Welcome to JIRA, <?= $userData['firstname']." ".$userData['lastname']." " ?></h2>
         </div>
         <hr>
         <div class="avatar-body">
@@ -49,20 +49,20 @@
 
 			<form enctype="multipart/form-data" id="jira-avatar" action="" method="post">
 
-        <div id="image-holder" class="col-md-3">
-          <img style="width: 150px;" src="/FinalProject/view/images/add-avatar_2.png" alt="avatar">
-
-        </div>
+		        <div id="image-holder" class="col-md-3">
+		          <img style="width: 150px;" src="/FinalProject/view/images/add-avatar_2.png" alt="avatar">
+		
+		        </div>
 
 				<div class="form-group col-md-9" style="height: 200px;">
 		        	<label for="image">File input</label>
 		        	<input type="file" id="image" name="image" required>
 		        	<p class="help-block">Please upload image.</p>
-		    </div>
+		   		 </div>
 				<div id="errors"></div>
 				<div class="buttons-container text-right">
 					<div class="buttons">	
-						<button type="submit" name="uplodeImage" class="btn btn-primary">Next</button>
+						<input type="submit" name="uplodeImage" class="btn btn-primary" value="Next">
 					</div>
 				</div> <!-- class="buttons-container" --> 
         

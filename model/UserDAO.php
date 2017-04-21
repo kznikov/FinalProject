@@ -13,6 +13,8 @@ require_once "../model/IUserDAO.php";
 		const UPDATE_TOKEN = "UPDATE users SET token = ? WHERE email LIKE ?";
 		const RESET_PASSWORD = "UPDATE users SET password = ? WHERE email LIKE ? AND token LIKE ?";
 		
+		const UPDATE_LOGIN = "UPDATE users SET first_login = 1 WHERE id = ?";
+		
 		
 		
 		public function loginUser(User $user) {
@@ -28,10 +30,18 @@ require_once "../model/IUserDAO.php";
 			
 			$user = $res[0];
 			
-			return new User($user['username'], 'p', $user['firstname'], $user['lastname'], $user['email'], $user['id']);
+			if(!$user['first_login']){
+				$firstlogin = true;
+				$pstmt = $db->prepare(self::UPDATE_LOGIN);
+				$pstmt->execute(array($user['id']));
+			}else{
+				$firstlogin = false;
+			}
+			
+			return new User($user['username'], 'p', $user['firstname'], $user['lastname'], $user['email'], $firstlogin, $user['id']);
 		}
 
-		public function checkUserName($username) {
+		public static function checkUserName($username) {
 			$db = DBConnection::getDb();
 			
 			$pstmt = $db->prepare(self::CHECK_IF_USER_EXIST);
@@ -47,7 +57,7 @@ require_once "../model/IUserDAO.php";
 			
 		}
 
-		public function checkEmail($email) {
+		public static function checkEmail($email) {
 			$db = DBConnection::getDb();
 			
 			$pstmt = $db->prepare(self::CHECK_IF_EMAIL_EXIST);
@@ -86,8 +96,10 @@ require_once "../model/IUserDAO.php";
 			$db = DBConnection::getDb();
 			
 			$pstmt = $db->prepare(self::UPDATE_TOKEN);
-			
-			return $pstmt->execute(array($token, $email));
+			if(!self::checkEmail($email)){
+				return $pstmt->execute(array($token, $email));
+			}
+			return false;
 		}
 		
 		
@@ -96,9 +108,13 @@ require_once "../model/IUserDAO.php";
 			
 			$pstmt = $db->prepare(self::RESET_PASSWORD);
 			
-			return $pstmt->execute(array(hash('sha256', $pass), $email, $token));
+			 $pstmt->execute(array(hash('sha256', $pass), $email, $token));
+			 return $pstmt->rowCount();
 		}
 		
 		
 	}
+	
+	
+	
 ?>
