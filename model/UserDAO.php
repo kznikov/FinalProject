@@ -15,6 +15,8 @@ require_once "../model/IUserDAO.php";
 		
 		const UPDATE_LOGIN = "UPDATE users SET first_login = 1 WHERE id = ?";
 		
+		const SAVE_IMAGE = "UPDATE `users` SET `avatar`= ? WHERE id= ?";
+		
 		
 		
 		public function loginUser(User $user) {
