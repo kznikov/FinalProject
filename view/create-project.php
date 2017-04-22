@@ -2,7 +2,7 @@
   $pageTitle="Welcome to JIRA";
   include "inc/header.php"; 
   
-  
+  $userData = json_decode($_SESSION['user'], true);
 //session_start();
   if(!isset($_SESSION['user'])){
   	header('Location:../view/index.php');
@@ -24,7 +24,7 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
 			<li class="dropdown">
-			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User name <span class="caret"></span></a>
+			      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?= $userData['lastname'].", ".$userData['firstname']." " ?><span class="caret"></span></a>
 			<ul class="dropdown-menu">
 				<li><a href="/FinalProject/controller/LogoutController.php">Logout</a></li>
 			</ul>
@@ -51,7 +51,7 @@
           <div class="col-xs-12 col-md-8">   
               <h2>See the projects</h2>
               <p>Go to the dahboard and explore a project.</p>
-              <button type="button" onclick="location.href = '../view/homepage.php';" class="btn btn-primary">Go to the dahboard</button>
+              <button type="button" onclick="location.href = '../controller/HomeController.php';" class="btn btn-primary">Go to the dahboard</button>
           </div>
         </div>
         <div class="nextstep col-xs-12 col-md-6">
