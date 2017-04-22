@@ -46,8 +46,17 @@
         <div class="avatar-body">
 
         	<p>Let's get started! You'll need an avatar to help other users identify you in JIRA.</p>
+           <?php if (isset($result) && $result) { ?>
+              <ul class="result">
+                  <?php
+                  foreach ($result as $message) {
+                      echo "<li>$message</li>";
+                  }
+                  ?>
+              </ul>
+          <?php } ?>
 
-			<form enctype="multipart/form-data" id="jira-avatar" action="" method="post">
+			<form enctype="multipart/form-data" id="jira-avatar" action="../controller/uploadController.php" method="post">
 
 		        <div id="image-holder" class="col-md-3">
 		          <img style="width: 150px;" src="/FinalProject/view/images/add-avatar_2.png" alt="avatar">
@@ -55,6 +64,7 @@
 		        </div>
 
 				<div class="form-group col-md-9" style="height: 200px;">
+              <input type="hidden" name="MAX_FILE_SIZE" value="<?php if(isset($max)){echo $max;} ?>">
 		        	<label for="image">File input</label>
 		        	<input type="file" id="image" name="image" required>
 		        	<p class="help-block">Please upload image.</p>
@@ -63,7 +73,7 @@
 				<div id="errors"></div>
 				<div class="buttons-container text-right">
 					<div class="buttons">	
-						<input type="submit" name="uplodeImage" class="btn btn-primary" value="Next">
+						<input type="submit" name="upload" class="btn btn-primary" value="Next">
 					</div>
 				</div> <!-- class="buttons-container" --> 
         

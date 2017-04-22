@@ -104,7 +104,7 @@ $(document).ready(function() {
 
                 var size = parseFloat($("#image")[0].files[0].size / 1024).toFixed(2);
                 if (size > 5000) {
-                    error.innerHTML = "Need to reduce a photo's size.";
+                    imageError.innerHTML = "Need to reduce a photo's size.";
                     return false;
                 }
 
