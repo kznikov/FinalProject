@@ -92,6 +92,14 @@ require_once "../model/IUserDAO.php";
 			
 		}
 		
+		public function saveImage($name, $id) {
+			
+			$db = DBConnection::getDb();				
+			$pstmt = $db->prepare(self::SAVE_IMAGE);
+			$pstmt->execute(array($name, $id));
+				
+		}
+		
 		
 		
 		public static function forgotPassword($email, $token) {

@@ -63,6 +63,7 @@ h6 {
 .error, 
 #error, #erroremail {
   color: red;
+  font-weight: bold;
 }
 
 .success {
@@ -242,3 +243,17 @@ form#create-user input {
 #notFound{
 	margin: 150px 40%;
 }
+
+
+
+.roles_td{
+	font-size: 0.8em;
+	font-weight: bold;
+}
+
+
+#roles_td_role{
+	vertical-align: middle;
+	font-weight: bold;
+}
+

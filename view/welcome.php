@@ -66,7 +66,7 @@
 				<div class="form-group col-md-9" style="height: 200px;">
               <input type="hidden" name="MAX_FILE_SIZE" value="<?php if(isset($max)){echo $max;} ?>">
 		        	<label for="image">File input</label>
-		        	<input type="file" id="image" name="image" required>
+		        	<input type="file" id="image" name="image">
 		        	<p class="help-block">Please upload image.</p>
 		   		 </div>
 		   		 
