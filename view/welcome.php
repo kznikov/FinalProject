@@ -71,9 +71,18 @@
 		   		 </div>
 		   		 
 				<div id="errors"></div>
-				<div class="buttons-container text-left">
-					<div class="buttons">	
-						<input type="submit" name="upload" class="btn btn-primary" value="Upload">
+				<div class="buttons-container">
+				<div class="row">
+					<div class="col-md-6 text-left">
+						<div class="buttons">	
+							<input type="submit" name="upload" class="btn btn-primary" value="Upload">
+						</div>
+					</div>
+					<div class="col-md-6 text-right">
+						<div class="buttons">	
+							<input type="submit"  onclick="location.href = '../view/create-project.php';" class="btn btn-primary" value="Next">
+						</div>
+					</div>
 					</div>
 				</div> <!-- class="buttons-container" --> 
         
