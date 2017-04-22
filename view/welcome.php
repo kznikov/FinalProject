@@ -79,15 +79,15 @@
 						</div>
 					</div>
 					<div class="col-md-6 text-right">
-						<div class="buttons">	
-							<input type="submit"  onclick="location.href = '../view/create-project.php';" class="btn btn-primary" value="Next">
+						<div class="buttons">
+						<button type="button" onclick="location.href = '../controller/nextController.php';" class="btn btn-primary">Next</button>
 						</div>
 					</div>
 					</div>
 				</div> <!-- class="buttons-container" --> 
         
 			</form>
-		
+
 
         </div> <!-- class="register-body" -->
      </div> <!-- id="register-panel" -->
