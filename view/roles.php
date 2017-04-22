@@ -59,9 +59,9 @@
                <div id="role-result">
                <?php foreach ($r as $elem){?>
                   <tr>
-                     <td style="vertical-align: middle;"><?= $elem->__get('name')?></td>
-                     <td></td>
-                     <td>
+                     <td id="roles_td_role"><?= $elem->__get('name')?></td>
+                     <td class="roles_td"></td>
+                     <td class="roles_td">
                      	<ul style="list-style:none; padding:0px;">
                      	<?php foreach ($elem->__get('permissions') as $key=>$perm){?>
                      		<li><?php echo $key.":".($perm == 1 ? " Yes" : " No") ?></li>

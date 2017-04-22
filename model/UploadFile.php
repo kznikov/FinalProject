@@ -86,8 +86,9 @@ class UploadFile {
         $this->renameDuplicates = $renameDuplicates;
         $uploaded = current($_FILES);
         if ($this->checkFile($uploaded)) {
-            $this->moveFile($uploaded);
+        	return $this->moveFile($uploaded);
         }
+        
     }
 
     public function getMessages() {
@@ -195,6 +196,7 @@ class UploadFile {
         } else {
             $this->messages[] = 'Could not upload ' . $file['name'];
         }
+        return $filename;
     }
 
 }

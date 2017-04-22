@@ -16,8 +16,10 @@ if (isset($_POST['upload'])) {
         $upload = new UploadFile($destination);
         $upload->setMaxSize($max);
         //$upload->allowAllTypes('jira');
-        $upload->upload();
+        $a = $upload->upload();
         $result= $upload->getMessages();
+        echo "<br/><br/><br/><br/><br/>";
+        var_dump($a);
         include '../view/welcome.php';
 
         //return $result;
