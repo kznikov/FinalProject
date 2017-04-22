@@ -71,9 +71,9 @@
 		   		 </div>
 		   		 
 				<div id="errors"></div>
-				<div class="buttons-container text-right">
+				<div class="buttons-container text-left">
 					<div class="buttons">	
-						<input type="submit" name="upload" class="btn btn-primary" value="Next">
+						<input type="submit" name="upload" class="btn btn-primary" value="Upload">
 					</div>
 				</div> <!-- class="buttons-container" --> 
         

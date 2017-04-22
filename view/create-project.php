@@ -3,7 +3,7 @@
   include "inc/header.php"; 
   
   
-//   session_start();
+//session_start();
   if(!isset($_SESSION['user'])){
   	header('Location:../view/index.php');
   }
@@ -19,14 +19,14 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#"><img src="images/aui-header-logo-jira.png" alt=""></a>
+          <a class="navbar-brand" href="#"><img src="/FinalProject/view/images/aui-header-logo-jira.png" alt=""></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
 			<li class="dropdown">
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User name <span class="caret"></span></a>
 			<ul class="dropdown-menu">
-				<li><a href="#">Logout</a></li>
+				<li><a href="/FinalProject/controller/LogoutController.php">Logout</a></li>
 			</ul>
 			</li>
           </ul>
@@ -51,7 +51,7 @@
           <div class="col-xs-12 col-md-8">   
               <h2>See the projects</h2>
               <p>Go to the dahboard and explore a project.</p>
-              <button type="button" onclick="location.href = 'homepage.php';" class="btn btn-primary">Go to the dahboard</button>
+              <button type="button" onclick="location.href = '../view/homepage.php';" class="btn btn-primary">Go to the dahboard</button>
           </div>
         </div>
         <div class="nextstep col-xs-12 col-md-6">

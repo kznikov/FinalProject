@@ -21,22 +21,17 @@ if ($_SESSION['user']){
 			$upload->setMaxSize($max);
 			//$upload->allowAllTypes('jira');
 			$imageName = $upload->upload();
-			
+			$result= $upload->getMessages();
 			$saveImage = new UserDAO();
 			$saveImage->saveImage($imageName, $user_id);
+			include '../view/welcome.php';
 			
-			$result= $upload->getMessages();
-			///var_dump($a);
-			include '../view/create-project.php';
-	
-			//return $result;
-			//header('Location:../views/form.php', true, 302);
 		} catch (Exception $e) {
 			$result[] = $e->getMessage();
 			include '../view/welcome.php';
 			//header('Location:../views/form.php', true, 302);
 		}
-	}
+	} 
 }
 
 
