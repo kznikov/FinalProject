@@ -22,17 +22,12 @@
            <h1>Log in</h1>
         </div>
         <?php if(isset($errorMessage) && $errorMessage){?>
-        <div class="aui-message error">
-            <span class="aui-icon icon-error"></span>
-            <span class="error" id="error-authentication_failure_invalid_credentials">Sorry, we didn&#x27;t recognize that username and password combination. Please double-check and try again.</span>
-        </div>
+        <div  class="flash_login_error" >Sorry, we didn&#x27;t recognize that username and password combination. Please double-check and try again.</div>
+    
         <?php }?>
         
-        <?php if(isset($successMessage) && $successMessage){?>
-        <div class="aui-message error">
-            <span class="aui-icon icon-error"></span>
-            <span class="success" id="error-authentication_failure_invalid_credentials">Successfully registered</span>
-        </div>
+        <?php if(isset($message)){?>
+                <div  class="<?= $class?> ?>" ><?=$message ?></div>
         <?php }?>
         <div class="login-body">
            <h2 class="login-heading">Use your <strong>JIRA</strong> account</h2>

@@ -16,7 +16,6 @@ class Role implements JsonSerializable {
 	
 	public function jsonSerialize() {
 		$result = get_object_vars($this);
-		unset($result['password']);
 		return $result;
 	}
 	

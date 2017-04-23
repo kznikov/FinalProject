@@ -30,7 +30,7 @@
           <thead style="background-color: #205081; color: #fff;">
             <tr>
               <th>Name</th>
-              <th>Project lead</th>
+              <th>Admin</th>
               <th>Open tasks</th>
               <th>All tasks</th>
               <th>Client</th>

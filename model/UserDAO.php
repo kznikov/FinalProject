@@ -76,18 +76,23 @@ require_once "../model/IUserDAO.php";
 		}
 		
 		public function registerUser(User $user) {
-			$db = DBConnection::getDb();
-			
-			$pstmt = $db->prepare(self::REGISTER_NEW_USER_SQL);
-
-			
-			if ( $pstmt->execute(array($user->username, hash('sha256',$user->password),
-													$user->firstname, $user->lastname, $user->email))){
-				$user->__set('id', $db->lastInsertId());
-				return $user;
+			try{
+				$db = DBConnection::getDb();
 				
-			}else{
+				$pstmt = $db->prepare(self::REGISTER_NEW_USER_SQL);
+	
+				
+				if ( $pstmt->execute(array($user->username, hash('sha256',$user->password),
+														$user->firstname, $user->lastname, $user->email))){
+					$user->__set('id', $db->lastInsertId());
+					return $user;
+					
+				}else{
+					throw new Exception("Unsuccessful registration!");
+				}
+			}catch (Exception $e){
 				throw new Exception("Unsuccessful registration!");
+				//echo $e->getMessage();
 			}
 			
 		}
@@ -97,7 +102,6 @@ require_once "../model/IUserDAO.php";
 			$db = DBConnection::getDb();				
 			$pstmt = $db->prepare(self::SAVE_IMAGE);
 			$pstmt->execute(array($name, $id));
-				
 		}
 		
 		
