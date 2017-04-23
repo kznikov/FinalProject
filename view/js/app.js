@@ -199,7 +199,7 @@ var xhttp = new XMLHttpRequest();
 }
 
 
-// update registration form 
+// ckeck update registration form 
 $(function() {
   
   $("form[name='edit-account']").validate({
@@ -233,3 +233,76 @@ $(function() {
     }
   });
 });
+
+
+// chek create project form 
+$(function() {
+  
+  $("form[name='create-project']").validate({
+
+    rules: {
+      project_name: "required",
+      prefix: {
+        required: true,
+        maxlength: 5
+      }
+    },
+    messages: {
+      project_name: "Please enter a project name",
+      prefix: {
+        required: "Please enter unique prefix",
+        maxlength: "The prefix must not be more than 5 characters long"
+      }
+    },
+    submitHandler: function(form) {
+      form.submit();
+    }
+  });
+});
+
+function checkProjectName() {
+var project = document.getElementById("projectname");
+var projectValue = project.value;
+console.log(projectValue);
+
+var xhttp = new XMLHttpRequest();
+ xhttp.onreadystatechange = function() {
+   if (this.readyState == 4 && this.status == 200) {
+
+    document.getElementById("errorname").innerHTML =
+    this.responseText;
+    if (this.responseText) {
+       document.getElementById("createProject").disabled = true;
+    } else {
+       document.getElementById("createProject").disabled = false;
+    }
+
+   }
+ };
+ xhttp.open("GET", "../controller/ValidateController.php?project=" + projectValue, true);
+ xhttp.send();
+}
+
+
+function checkPrefixName() {
+var prefix = document.getElementById("prefix");
+var prefixValue = prefix.value;
+console.log(prefixValue);
+
+var xhttp = new XMLHttpRequest();
+ xhttp.onreadystatechange = function() {
+   if (this.readyState == 4 && this.status == 200) {
+
+    document.getElementById("errorprefix").innerHTML =
+    this.responseText;
+    if (this.responseText) {
+       document.getElementById("createProject").disabled = true;
+    } else {
+       document.getElementById("createProject").disabled = false;
+    }
+
+   }
+ };
+ xhttp.open("GET", "../controller/ValidateController.php?prefix=" + prefixValue, true);
+ xhttp.send();
+}

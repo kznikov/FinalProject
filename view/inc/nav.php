@@ -1,7 +1,8 @@
 <?php 
+  
+  $userData = json_decode($_SESSION['user'], true);
 
-	$userData = json_decode($_SESSION['user'], true);
-	
+ 
 ?>
 
  <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -13,7 +14,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#"><img src="	" alt=""></a>
+          <a class="navbar-brand" href="#"><img src="../view/images/aui-header-logo-jira.png" alt=""></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -74,7 +75,27 @@
           <ul class="nav navbar-nav navbar-right">
    
       <li class="dropdown">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?= $userData['lastname'].", ".$userData['firstname']." " ?><span class="caret"></span></a>
+
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+      <?php 
+        if (isset($_SESSION['minavatar'])) {
+            $image = $_SESSION['minavatar'];
+        }
+      
+          if ($image['avatar'] != NULL) {
+           ?>
+             <img id="avatar" style="width: 50px;" src="../view/uploaded/<?php echo $image['avatar']; ?>">
+           <?php  
+           } else {
+
+            ?>
+               <img id="avatar" style="width: 50px;" src="../view/images/add-avatar_2.png" alt="avatar">
+           <?php 
+           } 
+
+      ?>
+   
+      <?= $userData['lastname'].", ".$userData['firstname']." " ?><span class="caret"></span></a>
       <ul class="dropdown-menu">
         <li><a href="../controller/MyProfileController.php">My profile</a></li>
         <li><a href="../controller/editProfileController.php">Edit profile</a></li>

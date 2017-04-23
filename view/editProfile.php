@@ -115,6 +115,8 @@
                     <input type="file" id="image" name="image">
                     <p class="help-block">Please upload image.</p>
               </div>
+
+              
             </div>
             <div role="tabpanel" class="tab-pane" id="notifications">
 
