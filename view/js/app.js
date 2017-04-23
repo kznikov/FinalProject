@@ -199,7 +199,7 @@ var xhttp = new XMLHttpRequest();
 }
 
 
-// update registration form 
+// ckeck update registration form 
 $(function() {
   
   $("form[name='edit-account']").validate({
@@ -225,6 +225,29 @@ $(function() {
         },repassword1: {
         minlength: "Your password must be at least 5 characters long",
         equalTo: "Please enter the same password as above"
+    },
+    // Make sure the form is submitted to the destination defined
+    // in the "action" attribute of the form when valid
+    submitHandler: function(form) {
+      form.submit();
+    }
+  });
+});
+
+
+// chek create project form 
+$(function() {
+  
+  $("form[name='create-project']").validate({
+
+    rules: {
+      project_name: "required",
+      prefix: "required"
+    },
+    // Specify validation error messages
+    messages: {
+      project_name: "Please enter a project name",
+      prefix: "Please enter unique prefix"
     },
     // Make sure the form is submitted to the destination defined
     // in the "action" attribute of the form when valid
