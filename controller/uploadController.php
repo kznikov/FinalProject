@@ -21,9 +21,15 @@ if ($_SESSION['user']){
 			$upload->setMaxSize($max);
 			//$upload->allowAllTypes('jira');
 			$imageName = $upload->upload();
-			$result= $upload->getMessages();
+			
 			$saveImage = new UserDAO();
 			$saveImage->saveImage($imageName, $user_id);
+
+			$userData = new UserDAO();
+			$result = $userData->getImage($user_id);
+			$image = $result['avatar'];
+			
+			$result= $upload->getMessages();
 			include '../view/welcome.php';
 			
 		} catch (Exception $e) {

@@ -87,6 +87,13 @@ h6 {
   display: none;
 }
 
+.form-group {
+  overflow: hidden;
+}
+
+.tab-pane {
+  padding: 20px 5px;
+}
 
 /*HEADER*/
 

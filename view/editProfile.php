@@ -17,7 +17,7 @@
         </div>
 
     
-      <form id="jira-setup-account" action="../controller/UpdateProfileController.php" method="post" enctype="multipart/form-data">
+      <form id="edit-account" name= "edit-account" action="../controller/UpdateProfileController.php" method="post" enctype="multipart/form-data">
         <div class="tab">
           <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active"><a href="#main" aria-controls="main" role="tab" data-toggle="tab">Main</a></li>

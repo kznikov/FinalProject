@@ -197,3 +197,39 @@ var xhttp = new XMLHttpRequest();
  xhttp.open("GET", "../controller/ValidateController.php?name=" + nameValue, true);
  xhttp.send();
 }
+
+
+// update registration form 
+$(function() {
+  
+  $("form[name='edit-account']").validate({
+
+    rules: {
+        email: {
+        email: true
+    },
+        password: {
+        minlength: 5
+    },
+        repassword: {
+        minlength: 5,
+        equalTo: "#jira-setup-account-field-password"
+    }
+    },
+    // Specify validation error messages
+    messages: {
+        password: {
+        minlength: "Your password must be at least 5 characters long"
+        },
+        email: "Please enter a valid email address"
+        },repassword1: {
+        minlength: "Your password must be at least 5 characters long",
+        equalTo: "Please enter the same password as above"
+    },
+    // Make sure the form is submitted to the destination defined
+    // in the "action" attribute of the form when valid
+    submitHandler: function(form) {
+      form.submit();
+    }
+  });
+});
