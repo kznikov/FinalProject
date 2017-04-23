@@ -98,7 +98,7 @@
                 
                 <div class="form-group">
                   <label for="description">Description</label>
-                  <textarea id="description"  class="form-control" name="description" maxlength="3" placeholder="Enter description"></textarea>
+                  <textarea id="description" rows="3"  class="form-control" name="description"  placeholder="Enter description"></textarea>
                 </div>
 
                 <div class="form-group"> 
@@ -114,11 +114,6 @@
                   </select>
                 </div>
                 
-                <div class="form-group">
-                  <label for="progress">Progress</label>
-                  <input id="progress" name="progress" class="form-control" size="5" min="0" max="100" step="5" name="progress" type="number">
-                </div>
-                
 
                 <hr>
 
@@ -131,7 +126,8 @@
                 <div class="form-group">
                    <div class='input-group date'>
                       <label for="enddate">End Date</label>
-                      <input id="enddate" name="end_date" type="date" class="form-control" />
+                      
+                      <input id="enddate" name="end_date" type="date"  class="form-control" />
                     </div>
                 </div>
 
