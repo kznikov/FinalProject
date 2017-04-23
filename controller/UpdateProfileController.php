@@ -66,7 +66,9 @@
 		//include '../controller/editProfileController.php';
 		header("Location: MyProfileController.php");
 
-} 
+	}
+
+	
 
 
 

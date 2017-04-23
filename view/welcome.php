@@ -61,44 +61,44 @@
 
       <form enctype="multipart/form-data" id="jira-avatar" action="../controller/uploadController.php" method="post">
 
-            <div id="image-holder" class="col-md-3">
-              <?php if (isset($image) && $image) {
-              ?>
-               <img id="avatar" class="img-thumbnail" style="width: 150px;" src="../view/uploaded/<?php echo $image; ?>" alt="avatar">
-              <?php  
-              } else {
+        <div id="image-holder" class="col-md-3">
+        <?php if (isset($image) && $image) {
+          ?>
+            <img id="avatar" class="img-thumbnail" style="width: 150px;" src="../view/uploaded/<?php echo $image; ?>" alt="avatar">
+          <?php  
+          } else {
 
-               ?>
-                <img id="avatar" style="width: 150px;" src="/FinalProject/view/images/add-avatar_2.png" alt="avatar">
-              <?php 
-              } 
+           ?>
+            <img id="avatar" style="width: 150px;" src="/FinalProject/view/images/add-avatar_2.png" alt="avatar">
+          <?php 
+          } 
 
-              ?>
-            </div>
+        ?>
+        </div>
 
         <div class="form-group col-md-9" style="height: 200px;">
-              <input type="hidden" name="MAX_FILE_SIZE" value="<?php if(isset($max)){echo $max;} ?>">
-              <label for="image">File input</label>
-              <input type="file" id="image" name="image">
-              <p class="help-block">Please upload image.</p>
+        <input type="hidden" name="MAX_FILE_SIZE" value="<?php if(isset($max)){echo $max;} ?>">
+        <label for="image">File input</label>
+        <input type="file" id="image" name="image">
+        <p class="help-block">Please upload image.</p>
         </div>
 
         <div id="errors"></div>
         <div class="buttons-container">
         <div class="row">
-          <div class="col-md-6 text-left">
-            <div class="buttons"> 
-              <input type="submit" name="upload"  class="btn btn-primary" value="Upload">
-            </div>
-          </div>
-          <div class="col-md-6 text-right">
-            <div class="buttons">
-            <button type="button" onclick="location.href = '../controller/nextController.php';" class="btn btn-primary">Next</button>
-            </div>
-          </div>
-          </div>
+        <div class="col-md-6 text-left">
+        <div class="buttons"> 
+        <input type="submit" name="upload" class="btn btn-primary" value="Upload">
+        </div>
+        </div>
+        <div class="col-md-6 text-right">
+        <div class="buttons">
+        <button type="button" onclick="location.href = '../controller/nextController.php';" class="btn btn-primary">Next</button>
+        </div>
+        </div>
+        </div>
         </div> <!-- class="buttons-container" --> 
-        
+
       </form>
 
 
