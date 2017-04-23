@@ -15,7 +15,7 @@
 
 
 	if (isset($_POST['submit'])) {
-
+		
 		if (isset($_POST['username']) && $_POST['username'] != '') {
 			$username = htmlentities(trim($_POST['username']));
 		} else {
@@ -23,7 +23,7 @@
 		}
 
 		if (isset($_POST['password']) && $_POST['password'] != '') {
-			$password = htmlentities(trim($_POST['password']));	
+			$password = hash('sha256', htmlentities(trim($_POST['password'])));	
 		} else {
 			$password = $userInfo['password'];
 		}
@@ -57,11 +57,30 @@
 		} else {
 			$mobile = $userInfo['mobile'];
 		}
-
+		
+		if(!empty($_FILES)){
+			
+			$max = 500 * 1024;
+			$destination ='../view/uploaded/';
+			$upload = new UploadFile($destination);
+			$upload->setMaxSize($max);
+			//$upload->allowAllTypes('jira');
+			$imageName = $upload->upload();
+			
+			$saveImage = new UserDAO();
+			$saveImage->saveImage($imageName, $user_id);
+			
+			/* $userData = new UserDAO();
+			$result = $userData->getImage($user_id);
+			$image = $result['avatar']; */
+		}
+		
 		$updateUser = new UserDAO;
-
-		$updateUser->updateUser($username, $password, $firstname, $lastname, $email, $phone, $mobile, $user_id );
-
+		
+		//,$phone, $mobile,
+		$user = new User($username, $password, $firstname, $lastname, $email, $userInfo['first_login'], $user_id);
+		$updateUser->updateUser($user, $phone, $mobile);
+		
 		$_SESSION['success_update'] = true;
 
 
