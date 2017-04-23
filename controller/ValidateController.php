@@ -45,5 +45,19 @@
 
 	}
 
+	if (isset($_GET['prefix'])) {
+
+		$prefix = htmlentities(trim($_GET['prefix']));
+
+		$projectData = new ProjectDAO();
+
+		$checkPrefix = $projectData->checkPrefixName($prefix);
+
+		if ($checkPrefix == false) {
+			echo "<p class=\"error\"> This prefix already exist. </p>";
+		} 
+
+	}
+
 
 ?>

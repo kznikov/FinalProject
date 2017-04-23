@@ -242,15 +242,18 @@ $(function() {
 
     rules: {
       project_name: "required",
-      prefix: "required"
+      prefix: {
+        required: true,
+        maxlength: 5
+      }
     },
-    // Specify validation error messages
     messages: {
       project_name: "Please enter a project name",
-      prefix: "Please enter unique prefix"
+      prefix: {
+        required: "Please enter unique prefix",
+        maxlength: "The prefix must not be more than 5 characters long"
+      }
     },
-    // Make sure the form is submitted to the destination defined
-    // in the "action" attribute of the form when valid
     submitHandler: function(form) {
       form.submit();
     }
@@ -277,5 +280,29 @@ var xhttp = new XMLHttpRequest();
    }
  };
  xhttp.open("GET", "../controller/ValidateController.php?project=" + projectValue, true);
+ xhttp.send();
+}
+
+
+function checkPrefixName() {
+var prefix = document.getElementById("prefix");
+var prefixValue = prefix.value;
+console.log(prefixValue);
+
+var xhttp = new XMLHttpRequest();
+ xhttp.onreadystatechange = function() {
+   if (this.readyState == 4 && this.status == 200) {
+
+    document.getElementById("errorprefix").innerHTML =
+    this.responseText;
+    if (this.responseText) {
+       document.getElementById("createProject").disabled = true;
+    } else {
+       document.getElementById("createProject").disabled = false;
+    }
+
+   }
+ };
+ xhttp.open("GET", "../controller/ValidateController.php?prefix=" + prefixValue, true);
  xhttp.send();
 }

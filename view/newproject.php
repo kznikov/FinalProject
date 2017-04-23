@@ -44,7 +44,8 @@
     <div class="col-md-4">
         <div class="form-group">
           <label for="prefix">Prefix</label>
-          <input type="text" id="prefix" name="prefix" style='text-transform:uppercase' class="form-control" maxlength="3" placeholder="Enter prefix">
+          <input type="text" id="prefix" name="prefix" style='text-transform:uppercase' class="form-control" maxlength="5" placeholder="Enter prefix" onblur="checkPrefixName()">
+          <div id="errorprefix"></div>
         </div>
 
       <div class="form-group"> 
