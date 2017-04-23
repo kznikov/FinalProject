@@ -16,6 +16,12 @@ require_once "../model/IUserDAO.php";
 		const UPDATE_LOGIN = "UPDATE users SET first_login = 1 WHERE id = ?";
 		
 		const SAVE_IMAGE = "UPDATE `users` SET `avatar`= ? WHERE id= ?";
+
+		const GET_IMAGE = "SELECT avatar FROM users WHERE id = ?";
+
+		const GET_INFO_USER = "SELECT * FROM users WHERE id = ?";
+
+		const UPDATE_INFO_USER = "UPDATE users SET username = ?, password = ?, firstname = ?, lastname = ?, email = ?, phone = ?, mobile = ?, last_upd =  NOW() WHERE id = ?";
 		
 		
 		
@@ -76,18 +82,23 @@ require_once "../model/IUserDAO.php";
 		}
 		
 		public function registerUser(User $user) {
-			$db = DBConnection::getDb();
-			
-			$pstmt = $db->prepare(self::REGISTER_NEW_USER_SQL);
-
-			
-			if ( $pstmt->execute(array($user->username, hash('sha256',$user->password),
-													$user->firstname, $user->lastname, $user->email))){
-				$user->__set('id', $db->lastInsertId());
-				return $user;
+			try{
+				$db = DBConnection::getDb();
 				
-			}else{
+				$pstmt = $db->prepare(self::REGISTER_NEW_USER_SQL);
+	
+				
+				if ( $pstmt->execute(array($user->username, hash('sha256',$user->password),
+														$user->firstname, $user->lastname, $user->email))){
+					$user->__set('id', $db->lastInsertId());
+					return $user;
+					
+				}else{
+					throw new Exception("Unsuccessful registration!");
+				}
+			}catch (Exception $e){
 				throw new Exception("Unsuccessful registration!");
+				//echo $e->getMessage();
 			}
 			
 		}
@@ -98,6 +109,38 @@ require_once "../model/IUserDAO.php";
 			$pstmt = $db->prepare(self::SAVE_IMAGE);
 			$pstmt->execute(array($name, $id));
 				
+		}
+
+		public function updateUser($username, $password, $firstname, $lastname, $email, $phone, $mobile, $id ) {
+
+		$db = DBConnection::getDb();		
+		$pstmt = $db->prepare(self::UPDATE_INFO_USER);
+		$pstmt->execute(array($username, hash('sha256',$password), $firstname, $lastname, $email, $phone, $mobile, $id ));			
+		}
+
+		public static function getImage($id) {
+			$db = DBConnection::getDb();
+			
+			$pstmt = $db->prepare(self::GET_IMAGE);
+			$pstmt->execute(array($id));
+			
+			$res = $pstmt->fetchAll(PDO::FETCH_ASSOC);
+
+			return $result = $res[0];
+			
+		}
+
+		public static function getInfoUser($id) {
+			$db = DBConnection::getDb();
+			
+			$pstmt = $db->prepare(self::GET_INFO_USER);
+			$pstmt->execute(array($id));
+			
+			$res = $pstmt->fetchAll(PDO::FETCH_ASSOC);
+			$infoUser = $res[0];
+
+			return $infoUser;
+			
 		}
 		
 		

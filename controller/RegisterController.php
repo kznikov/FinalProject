@@ -11,12 +11,14 @@
 		$password = htmlentities(trim($_POST['password']));
 		$repassword = htmlentities(trim($_POST['repassword']));
 		
-		if(!empty($firstname) && !empty($lastname) && !empty($email) && filter_var($email, FILTER_VALIDATE_EMAIL) && !empty($username) 
+		$userData = new UserDAO();
+		
+		if(!empty($firstname) && $userData->checkUserName($username) && $userData->checkEmail($email) && !empty($lastname) && !empty($email) && filter_var($email, FILTER_VALIDATE_EMAIL) && !empty($username) 
 				&& !empty($password) && $password === $repassword && UserDAO::checkEmail($email) && UserDAO::checkUserName($username)){
 			try {
 				$user = new User($username, $password, $firstname, $lastname, $email);
 		
-				$userData = new UserDAO();
+				
 				
 				$registerUser = $userData->registerUser($user);
 				
@@ -25,13 +27,20 @@
 				session_start();
 				$_SESSION['user'] = json_encode($registerUser);
 				//var_dump($_SESSION['user']);
-				$successMessage = true;
+				$message = "Successfully registered";
+				$class = "flash_register_success";
 				include '../view/index.php';
 				//header('Location: WelcomeController.php', true, 302);
 			 }
 			catch (Exception $e) {
-				$errorMessage = true;
+				$message = $e->getMessage();
+				$class = "flash_register_error";
+				include '../view/index.php';
 			} 
+		}else{
+			$message = "Unsuccessful registration!";
+			$class = "flash_register_error";
+			include '../view/index.php';
 		}
 	}
 	//include '../view/register.php';

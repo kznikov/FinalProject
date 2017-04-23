@@ -3,7 +3,7 @@
   include "inc/header.php"; 
   
   $userData = json_decode($_SESSION['user'], true);
-//session_start();
+	session_start();
   if(!isset($_SESSION['user'])){
   	header('Location:../view/index.php');
   }
@@ -77,77 +77,65 @@
             </div>
             <div class="modal-body">
               
-            <form id="create-project" action="" method="">
+            <form  id="create-project" action="../controller/ProjectController.php" method="post">
               <fieldset>
+              
                 <div class="form-group">
                   <label for="projectname">Name</label>
-                  <input type="text" id="projectname" class="form-control" placeholder="Project name">
+                  <input type="text" name="project_name" id="projectname" class="form-control" placeholder="Project name">
                 </div>
-                <div class="form-group"> 
-                  <label for="selectlead">Project lead</label>
-
-                  <!-- взима данни от таблицата за регистрирани потребители -->
-                  <select id="selectlead" class="form-control">
-                    <option>Choose</option> 
-                    <option>Name1</option>
-                    <option>Name2</option>
-                  </select>
-                </div>
+               
                 <div class="form-group">
                   <label for="clientname">Client</label>
-                  <input type="text" id="clientname" class="form-control" placeholder="Client name">
+                  <input type="text" id="clientname" name="client_name" class="form-control" placeholder="Client name">
                 </div>
-                <div class="form-group"> 
-                  <label for="selectusers">Users</label>
-
-                  <!-- взима данни от таблицата за регистрирани потребители -->
-                  <select id="selectusers" class="form-control">
-                    <option>Choose</option> 
-                    <option>Name1</option>
-                    <option>Name2</option>
-                  </select>
-                </div>
+               
                 <hr>
                 <div class="form-group">
                   <label for="prefix">Prefix</label>
-                  <input type="text" id="prefix" style='text-transform:uppercase' class="form-control" maxlength="3" placeholder="Enter prefix">
+                  <input type="text" id="prefix" style='text-transform:uppercase' name="prefix" class="form-control" maxlength="3" placeholder="Enter prefix">
+                </div>
+                
+                <div class="form-group">
+                  <label for="description">Description</label>
+                  <textarea id="description"  class="form-control" name="description" maxlength="3" placeholder="Enter description"></textarea>
                 </div>
 
                 <div class="form-group"> 
                   <label for="status">Status</label>
 
                   <!-- взима данни от таблицата за регистрирани потребители -->
-                  <select id="status" class="form-control">
-                    <option>Choose</option> 
-                    <option>Suspended</option>
-                    <option>Closed</option>
-                    <option>Deleted</option>
-                    <option>Chardge item</option>
+                  <select id="status" name="status"class="form-control">
+                    <option value="1">Open</option> 
+                    <option value="2">Suspended</option>
+                    <option value="3">Closed</option>
+                    <option value="4">Deleted</option>
+                    <option value="5">Chardge item</option>
                   </select>
                 </div>
-
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox"> Chargeable
-                  </label>
+                
+                <div class="form-group">
+                  <label for="progress">Progress</label>
+                  <input id="progress" name="progress" class="form-control" size="5" min="0" max="100" step="5" name="progress" type="number">
                 </div>
+                
 
                 <hr>
 
                 <div class="form-group">
                    <div class='input-group date'>
                       <label for="startdate">Start Date</label>
-                      <input it="startdate" type="date" class="form-control" />
+                      <input id="startdate" name="start_date" type="date" class="form-control" />
                     </div>
                 </div>
                 <div class="form-group">
                    <div class='input-group date'>
                       <label for="enddate">End Date</label>
-                      <input it="enddate" type="date" class="form-control" />
+                      <input id="enddate" name="end_date" type="date" class="form-control" />
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <input type="submit" name="submit" class="btn btn-primary" value="Submit">
               </fieldset>
             </form>
 

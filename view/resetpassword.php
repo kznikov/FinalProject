@@ -47,8 +47,8 @@
                  <label for="email">Re-type password</label>
                  <input id="jira-setup-account-field-retype-password" type="password" class="form-control"  name="repassword" placeholder="Re-type password" required="required">
               </div>
-              <input type="hidden" name='e' value="<?=$_GET['e'] ?>">
-              <input type="hidden" name='t' value="<?=$_GET['t'] ?>">
+              <input type="hidden" name='e' value="<?php if(isset($_GET['e'])) {echo $_GET['e'];} ?>">
+              <input type="hidden" name='t' value="<?php if(isset($_GET['t'])) {echo $_GET['t'];} ?>">
               <input type="submit" class="btn btn-primary" name="submit" value="Reset">
            </form>
            <hr>
