@@ -19,8 +19,9 @@
 		 	$status =  htmlentities(trim($_POST['status']));
 		 	
 		 	if(!empty($projectName) && !empty($prefix) && !empty($status)){
-		 	$project = new Project($projectName,$prefix, $userId, null, $description, $client, $progress, $startDate,$endDate, $status);
-		 	
+
+			 	$project = new Project($projectName,$prefix, $userId, null, $description, $client, $progress, $startDate,$endDate, $status);
+
 			 	//var_dump($project);
 				$projectData = new ProjectDAO();
 				
@@ -33,10 +34,11 @@
 					$class = "flash_success";
 					include '../view/homepage.php';
 				}
-		 	}
+			}
 			
-		}
-		catch (Exception $e) {
+			
+		}catch (Exception $e) {
+
 			$message = $e->getMessage();
 			//$row = $e->getLine(); 
 			$class = "flash_error";

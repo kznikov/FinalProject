@@ -5,7 +5,11 @@ class ProjectDAO implements IProjectDAO {
 	const INSERT_NEW_PROJECT = "INSERT INTO projects (id, name, description, prefix, create_date, admin_id, client, progress, start_date, end_date, project_status_id) 
 						VALUES (null, ?, ?, ?, now(), ?, ?, ?, ?, ?, ?)";
 	
+
 	const GET_ADMIN_PROJECTS = "SELECT * FROM projects WHERE admin_id = ";
+
+	
+	
 	
 	
 	public function createProject(Project $project) {
@@ -41,6 +45,7 @@ class ProjectDAO implements IProjectDAO {
 		}
 	}
 	
+
 }
 
 ?>

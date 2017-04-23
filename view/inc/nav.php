@@ -17,7 +17,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="/FinalProject/view/homepage.php">Home</a></li>
+            <li class="active"><a href="../controller/HomeController.php">Home</a></li>
             <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Projects <span class="caret"></span></a>
         <ul class="dropdown-menu">
@@ -76,8 +76,8 @@
       <li class="dropdown">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?= $userData['lastname'].", ".$userData['firstname']." " ?><span class="caret"></span></a>
       <ul class="dropdown-menu">
-        <li><a href="#">My profile</a></li>
-        <li><a href="/FinalProject/view/editProfile.php">Edit profile</a></li>
+        <li><a href="../controller/MyProfileController.php">My profile</a></li>
+        <li><a href="../controller/editProfileController.php">Edit profile</a></li>
         <li role="separator" class="divider"></li>
 
         <li><a href="/FinalProject/controller/LogoutController.php">Logout</a></li>
