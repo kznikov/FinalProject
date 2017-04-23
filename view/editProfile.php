@@ -17,7 +17,7 @@
         </div>
 
     
-      <form id="create-user" action="../controller/UpdateProfileController.php" method="post" enctype="multipart/form-data">
+      <form id="jira-setup-account" action="../controller/UpdateProfileController.php" method="post" enctype="multipart/form-data">
         <div class="tab">
           <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active"><a href="#main" aria-controls="main" role="tab" data-toggle="tab">Main</a></li>
@@ -34,14 +34,24 @@
                   <input class="form-control" type="text" name="username" id="jira-setup-account-field-username" value=" <?php echo $result['username']; ?> ">
                 </div>
               </div>
-                <div class="form-group">
-                  <div class="col-xs-12 col-md-2">
-                    <label for="jira-setup-account-field-password">Password</label>
-                  </div>
-                  <div class="col-xs-12 col-md-10">
-                      <input class="form-control" type="password" name="password" id="jira-setup-account-field-password" placeholder="Enter a password">
-                    </div>
+              <div class="form-group">
+                <div class="col-xs-12 col-md-2">
+                  <label for="jira-setup-account-field-password">Password</label>
                 </div>
+                <div class="col-xs-12 col-md-10">
+                    <input class="form-control" type="password" name="password" id="jira-setup-account-field-password" placeholder="Enter a password">
+                  </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-xs-12 col-md-2">
+                  <label class="control-label" for="jira-setup-account-field-retype-password">Re-type password</label>
+                </div>
+                <div class="col-xs-12 col-md-10">
+                    <input class="form-control" type="password" name="repassword" id="jira-setup-account-field-retype-password" placeholder="Re-type password">
+                  </div>
+              </div>
+
               <div class="form-group">
                 <div class="col-xs-12 col-md-2">
                   <label for="jira-setup-account-field-email">Email</label>
@@ -73,7 +83,7 @@
                   <label for="jira-setup-account-field-phone">Phone</label>
                 </div>
                 <div class="col-xs-12 col-md-10">
-                   <input class="form-control" type="text" name="phone" id="jira-setup-account-field-phone" placeholder="Enter a phone">
+                   <input class="form-control" type="text" name="phone" id="jira-setup-account-field-phone" value="<?php echo $result['phone']; ?>">
                 </div>
               </div>
               <div class="form-group">
@@ -81,7 +91,7 @@
                   <label for="jira-setup-account-field-mobile">Mobile</label>
                 </div>
                 <div class="col-xs-12 col-md-10">
-                  <input class="form-control" type="text" name="mobile" id="jira-setup-account-field-mobile" placeholder="Enter a mobile">
+                  <input class="form-control" type="text" name="mobile" id="jira-setup-account-field-mobile" value="<?php echo $result['mobile']; ?>" >
                 </div>
               </div>
 
