@@ -256,3 +256,26 @@ $(function() {
     }
   });
 });
+
+function checkProjectName() {
+var project = document.getElementById("projectname");
+var projectValue = project.value;
+console.log(projectValue);
+
+var xhttp = new XMLHttpRequest();
+ xhttp.onreadystatechange = function() {
+   if (this.readyState == 4 && this.status == 200) {
+
+    document.getElementById("errorname").innerHTML =
+    this.responseText;
+    if (this.responseText) {
+       document.getElementById("createProject").disabled = true;
+    } else {
+       document.getElementById("createProject").disabled = false;
+    }
+
+   }
+ };
+ xhttp.open("GET", "../controller/ValidateController.php?project=" + projectValue, true);
+ xhttp.send();
+}

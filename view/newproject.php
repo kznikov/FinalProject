@@ -25,7 +25,8 @@
 
         <div class="form-group">
           <label for="projectname">Name</label>
-          <input type="text" name="project_name" id="projectname" class="form-control" placeholder="Project name">
+          <input type="text" name="project_name" id="projectname" class="form-control" onblur="checkProjectName()" placeholder="Project name">
+          <div id="errorname"></div>
         </div>
 
         <div class="form-group">
@@ -74,7 +75,7 @@
         </div>
       </div>
       <div class="text-right">
-        <input type="submit" name="submit" class="btn btn-primary" value="Submit">
+        <input type="submit" name="submit" id="createProject" class="btn btn-primary" value="Submit">
       </div>
     </div><!-- < class="col-md-4"> -->
     </fieldset>

@@ -31,5 +31,19 @@
 
 	}
 
+	if (isset($_GET['project'])) {
+
+		$project = htmlentities(trim($_GET['project']));
+
+		$projectData = new ProjectDAO();
+
+		$checkName = $projectData->checkProjectName($project);
+
+		if ($checkName == false) {
+			echo "<p class=\"error\"> This project already exist. </p>";
+		} 
+
+	}
+
 
 ?>

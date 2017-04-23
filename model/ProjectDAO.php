@@ -7,8 +7,7 @@ class ProjectDAO implements IProjectDAO {
 
 	const GET_ADMIN_PROJECTS = "SELECT * FROM projects WHERE admin_id = ";
 
-	
-	
+	const CHECK_IF_PROJECTNAME_EXIST = "SELECT name FROM projects WHERE name = ?";
 	
 	
 	public function createProject(Project $project) {
@@ -42,6 +41,22 @@ class ProjectDAO implements IProjectDAO {
 		}catch(Exception $e){
 			throw new Exception("Failed to create new project!");
 		}
+	}
+
+	public static function checkProjectName($name) {
+		$db = DBConnection::getDb();
+		
+		$pstmt = $db->prepare(self::CHECK_IF_PROJECTNAME_EXIST);
+		$pstmt->execute(array($name));
+		
+		$res = $pstmt->fetchAll(PDO::FETCH_ASSOC);
+
+		if (count($res) === 0) {
+			return true;
+		} else {
+			return false;
+		}
+		
 	}
 	
 
