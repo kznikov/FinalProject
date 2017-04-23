@@ -27,7 +27,7 @@
 				session_start();
 				$_SESSION['user'] = json_encode($registerUser);
 				//var_dump($_SESSION['user']);
-				$message = "Successfully registered";
+				$message = "Successfully registered!";
 				$class = "flash_register_success";
 				include '../view/index.php';
 				//header('Location: WelcomeController.php', true, 302);

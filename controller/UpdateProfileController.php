@@ -61,6 +61,7 @@
 		$updateUser = new UserDAO;
 
 		$updateUser->updateUser($username, $password, $firstname, $lastname, $email, $phone, $mobile, $user_id );
+		$_SESSION['success_update'] = true;
 		//include '../controller/editProfileController.php';
 		header("Location: MyProfileController.php");
 

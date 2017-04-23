@@ -35,7 +35,7 @@
                   
                    <div class="form-group">
                   <label for="description">Description</label>
-                  <textarea id="description" rows="9" name="description"  class="form-control" maxlength="3" placeholder="Enter description"></textarea>
+                  <textarea id="description" rows="7" name="description"  class="form-control" placeholder="Enter description"></textarea>
                 </div>
                  
 
@@ -63,12 +63,6 @@
                     <option value="5">Chardge item</option>
                   </select>
                	 </div>
-
-				 <div class="form-group">
-                  <label for="progress">Progress</label>
-                  <input id="progress" name="progress" class="form-control" size="5" min="0" max="100" step="5" name="progress" type="number">
-                 </div>
-                 
 
                   <hr>
 

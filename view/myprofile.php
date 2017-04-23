@@ -8,7 +8,9 @@ include "inc/header.php";
 <body>
    
    <?php include "inc/nav.php";  ?>
-
+   <?php if(isset($successMessage)){?>
+   <div style="margin-top:80px;"  class="flash_success" ><?=$successMessage?></div>
+   <?php } ?>
    <section id="content" role="main" class="container">
     <div id="homepage-panel">
       <div class="row">          
@@ -23,7 +25,7 @@ include "inc/header.php";
         </div>
 
         <?php //var_dump($result); ?>
-
+		
 			<table class="table table-striped">
 				<thead>
 					<tr>

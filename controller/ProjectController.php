@@ -13,14 +13,13 @@
 		 	$prefix = htmlentities(trim($_POST['prefix']));
 		 	$description = htmlentities(trim($_POST['description']));
 		 	$client = htmlentities(trim($_POST['client_name']));
-		 	$progress = htmlentities(trim($_POST['progress']));
 		 	$startDate = htmlentities(trim($_POST['start_date']));
 		 	$endDate = htmlentities(trim($_POST['end_date']));
 		 	$status =  htmlentities(trim($_POST['status']));
 		 	
 		 	if(!empty($projectName) && !empty($prefix) && !empty($status)){
 
-			 	$project = new Project($projectName,$prefix, $userId, null, $description, $client, $progress, $startDate,$endDate, $status);
+			 	$project = new Project($projectName,$prefix, $userId, null, $description, $client, $startDate,$endDate, $status);
 
 			 	//var_dump($project);
 				$projectData = new ProjectDAO();
