@@ -1,7 +1,7 @@
 	<footer id="footer" role="contentinfo">
 		<div class="footer-body">
 			<div class="footer-logo text-center">
-				<img src="/FinalProject/view/images/atlassian-logo-grey.svg" alt="">
+				<img style="width: 150px;" src="/FinalProject/view/images/pmc-logo.svg" alt="pmc">
 
 			</div>
 		</div>

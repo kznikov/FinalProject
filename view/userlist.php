@@ -2,7 +2,7 @@
   $pageTitle="Users";
   include "inc/header.php";
   
-  session_start();
+  //session_start();
   if(!isset($_SESSION['user'])){
   	header('Location:../view/index.php');
   }
@@ -39,7 +39,20 @@
           </thead>
           <tbody>
             <tr>
-              <td class="text-center"><img style="width: 150px;" src="images/add-avatar_2.png" alt="avatar"></td>
+              <td class="text-center">
+                  <?php if ($result['avatar'] != NULL) {
+                    ?>
+                     <img id="avatar" class="img-thumbnail" style="width: 190px;" src="../view/uploaded/<?php echo $result['avatar']; ?>" alt="avatar">
+                    <?php  
+                    } else {
+
+                     ?>
+                      <img id="avatar" style="width: 150px;" src="../view/images/add-avatar_2.png" alt="avatar">
+                    <?php 
+                    } 
+
+                  ?>
+              </td>
               <td></td>
               <td></td>
               <td></td>

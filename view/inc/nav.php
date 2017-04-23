@@ -14,7 +14,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#"><img src="../view/images/aui-header-logo-jira.png" alt=""></a>
+          <a class="navbar-brand" href="#"><img src="../view/images/pmc-logo.svg" alt=""></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -84,12 +84,12 @@
       
           if ($image['avatar'] != NULL) {
            ?>
-             <img id="avatar" style="width: 50px;" src="../view/uploaded/<?php echo $image['avatar']; ?>">
+             <img id="avatar" style="width: 30px; height: 20px; " src="../view/uploaded/<?php echo $image['avatar']; ?>">
            <?php  
            } else {
 
             ?>
-               <img id="avatar" style="width: 50px;" src="../view/images/add-avatar_2.png" alt="avatar">
+               <img id="avatar" style="width: 30px; height: 20px; " src="../view/images/add-avatar_2.png" alt="avatar">
            <?php 
            } 
 
