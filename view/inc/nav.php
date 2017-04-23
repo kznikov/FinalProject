@@ -1,6 +1,7 @@
 <?php 
   
   $userData = json_decode($_SESSION['user'], true);
+
  
 ?>
 
@@ -77,12 +78,10 @@
 
       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
       <?php 
-        require_once "../model/UserDAO.php";
+        if (isset($_SESSION['minavatar'])) {
+            $image = $_SESSION['minavatar'];
+        }
       
-        $user_id = $userData['id'];
-        $userImage = new UserDAO();
-        $image = $userImage->getImage($user_id);
-
           if ($image['avatar'] != NULL) {
            ?>
              <img id="avatar" style="width: 50px;" src="../view/uploaded/<?php echo $image['avatar']; ?>">
