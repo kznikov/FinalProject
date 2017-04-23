@@ -14,7 +14,8 @@
 			
 			session_start();
 			$_SESSION['user'] = json_encode($loggedUser);
-			
+
+
 			//var_dump($loggedUser);
 			//var_dump($_SESSION['user']);
 			 $sessionVars = json_decode($_SESSION['user'], true);

@@ -19,8 +19,9 @@
 		 	$status =  htmlentities(trim($_POST['status']));
 		 	
 		 	if(!empty($projectName) && !empty($prefix) && !empty($status)){
+
 			 	$project = new Project($projectName,$prefix, $userId, null, $description, $client, $progress, $startDate,$endDate, $status);
-			 	
+
 			 	//var_dump($project);
 				$projectData = new ProjectDAO();
 				
@@ -37,6 +38,7 @@
 			
 			
 		}catch (Exception $e) {
+
 			$message = $e->getMessage();
 			//$row = $e->getLine(); 
 			$class = "flash_error";

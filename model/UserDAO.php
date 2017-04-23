@@ -108,7 +108,6 @@ require_once "../model/IUserDAO.php";
 			$db = DBConnection::getDb();				
 			$pstmt = $db->prepare(self::SAVE_IMAGE);
 			$pstmt->execute(array($name, $id));
-				
 		}
 
 		public function updateUser($username, $password, $firstname, $lastname, $email, $phone, $mobile, $id ) {
