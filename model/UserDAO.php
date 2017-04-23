@@ -110,11 +110,11 @@ require_once "../model/IUserDAO.php";
 			$pstmt->execute(array($name, $id));
 		}
 
-		public function updateUser($username, $password, $firstname, $lastname, $email, $phone, $mobile, $id ) {
-
-		$db = DBConnection::getDb();		
-		$pstmt = $db->prepare(self::UPDATE_INFO_USER);
-		$pstmt->execute(array($username, hash('sha256',$password), $firstname, $lastname, $email, $phone, $mobile, $id ));			
+		public function updateUser(User $user, $phone, $mobile) {
+			
+			$db = DBConnection::getDb();		
+			$pstmt = $db->prepare(self::UPDATE_INFO_USER);
+			$pstmt->execute(array($user->username, $user->password, $user->firstname, $user->lastname, $user->email, $phone, $mobile, $user->id ));			
 		}
 
 		public static function getImage($id) {
