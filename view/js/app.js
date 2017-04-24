@@ -330,3 +330,8 @@ function deleteUser(taskId) {
   }
   return false;
 }
+
+function viewUser(userId)
+{
+   window.location = '../controller/ViewUserController.php?user=' + userId;
+}

@@ -40,10 +40,6 @@
           <tbody>
 
           <?php foreach ($result as $value): ?>
-            
-                     
-                    
-
             <tr>
               <td class="text-center">
                        
@@ -69,11 +65,15 @@
                 <p>Developer</p>
                 <p>Project Manager</p>
               </td>
-              <td class="text-center">
-                <a href="#"><span class="glyphicon glyphicon-eye-open" title="View"></span></a>
+              <td class="text-center"> 
+                
+                <a href="#"><span class="glyphicon glyphicon-eye-open" title="View" onclick="viewUser(<?php echo $value['id']; ?>)"></span>
+                </a>
+
                 <a href="#"><span class="glyphicon glyphicon-cog" title="Edit"></span></a>
                 <a href="#"><span class="glyphicon glyphicon-trash" title="Delete"  onclick="deleteUser(<?php echo $value['id'] ?>)"></span></a>
               </td>
+
             </tr>
             
           <?php endforeach ?>
