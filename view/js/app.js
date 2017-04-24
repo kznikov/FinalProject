@@ -306,3 +306,27 @@ var xhttp = new XMLHttpRequest();
  xhttp.open("GET", "../controller/ValidateController.php?prefix=" + prefixValue, true);
  xhttp.send();
 }
+
+
+//delete user
+function deleteUser(taskId) {
+
+  var id = taskId;
+  console.log(id);
+
+  if (confirm("Do you realy want to delete this user?")) {
+
+    $.ajax({
+      url: '../controller/ValidateController.php',
+      method: 'POST',
+      data: {id:taskId},
+      success: function (data) {
+        console.log(data);
+        $('#ajax_msg').css('display', 'block').delay(5000).slideUp(300).html(data);
+         location.reload();
+      }
+    });
+   
+  }
+  return false;
+}

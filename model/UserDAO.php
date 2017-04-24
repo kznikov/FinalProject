@@ -24,6 +24,8 @@ require_once "../model/IUserDAO.php";
 		const UPDATE_INFO_USER = "UPDATE users SET username = ?, password = ?, firstname = ?, lastname = ?, email = ?, phone = ?, mobile = ?, last_upd =  NOW() WHERE id = ?";
 
 		const SELECT_ALL =  "SELECT * FROM `users`";
+
+		const DELETE_USER = "DELETE FROM users WHERE id=:id";
 		
 		
 		
@@ -151,6 +153,17 @@ require_once "../model/IUserDAO.php";
 			$res = $pstmt->fetchAll(PDO::FETCH_ASSOC);
 			return $res;
 		}
+
+		public static function deleteUser($id) {
+
+			$db = DBConnection::getDb();
+			$pstmt = $db->prepare(self::DELETE_USER);
+			$pstmt->execute(array(":id"=>$id));
+			
+		}
+
+
+
 		
 		
 		

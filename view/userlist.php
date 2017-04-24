@@ -9,6 +9,7 @@
 ?>
 
 <body>
+  <div id="ajax_msg" class="alert alert-success"></div>
    
    <?php include "inc/nav.php";  ?>
 
@@ -71,7 +72,7 @@
               <td class="text-center">
                 <a href="#"><span class="glyphicon glyphicon-eye-open" title="View"></span></a>
                 <a href="#"><span class="glyphicon glyphicon-cog" title="Edit"></span></a>
-                <a href="#"><span class="glyphicon glyphicon-trash" title="Delete"></span></a>
+                <a href="#"><span class="glyphicon glyphicon-trash" title="Delete"  onclick="deleteUser(<?php echo $value['id'] ?>)"></span></a>
               </td>
             </tr>
             

@@ -60,4 +60,19 @@
 	}
 
 
+	if (isset($_POST['id'])) {
+
+		$id = $_POST['id'];
+
+		$delete = new UserDAO();
+
+		$delete->deleteUser($id);
+
+		if ($delete) {
+			echo "Record deleted";
+		}
+		
+	}
+
+
 ?>
