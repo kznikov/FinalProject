@@ -310,7 +310,6 @@ var xhttp = new XMLHttpRequest();
 
 
 
-
 $('.progress-wrap').each(function(){
     percent = $(this);
     bar = $(this).children('.progress-bar');
@@ -339,3 +338,33 @@ $('.progress-wrap').each(function(){
           left: progressTotal
       }, animationLength);
   }
+
+  
+  
+//delete user
+function deleteUser(taskId) {
+
+  var id = taskId;
+  console.log(id);
+
+  if (confirm("Do you realy want to delete this user?")) {
+
+    $.ajax({
+      url: '../controller/ValidateController.php',
+      method: 'POST',
+      data: {id:taskId},
+      success: function (data) {
+        console.log(data);
+        $('#ajax_msg').css('display', 'block').delay(5000).slideUp(300).html(data);
+         location.reload();
+      }
+    });
+   
+  }
+  return false;
+}
+
+function viewUser(userId)
+{
+   window.location = '../controller/ViewUserController.php?user=' + userId;
+}

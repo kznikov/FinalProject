@@ -13,15 +13,10 @@
 	$sessionVars = json_decode($_SESSION['user'], true);
 	$user_id = $sessionVars['id'];
 
-	$editUser = new UserDAO;
+	$infoUser = new UserDAO;
 
-	$result = $editUser->getInfoUser($user_id);
-	
-	if(isset($_SESSION['success_update'])){
-		$successMessage = "Saved successfully!";
-		unset($_SESSION['success_update']);
-	}
-	
+	$result = $infoUser->selectUser();
+
 	include '../view/userlist.php';
 
 	

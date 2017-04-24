@@ -9,6 +9,7 @@
 ?>
 
 <body>
+  <div id="ajax_msg" class="alert alert-success"></div>
    
    <?php include "inc/nav.php";  ?>
 
@@ -33,41 +34,53 @@
               <th>Username</th>
               <th>Email</th>
               <th>Role</th>
-              <th>Active</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
+
+          <?php foreach ($result as $value): ?>
             <tr>
               <td class="text-center">
-                  <?php if ($result['avatar'] != NULL) {
-                    ?>
-                     <img id="avatar" class="img-thumbnail" style="width: 190px;" src="../view/uploaded/<?php echo $result['avatar']; ?>" alt="avatar">
-                    <?php  
-                    } else {
+                       
+                        <?php if ($value['avatar'] != NULL) {
+                        ?>
+                         <img id="avatar" class="img-thumbnail" style="width: 190px;" src="../view/uploaded/<?php echo $value['avatar']; ?>" alt="avatar">
+                        <?php  
+                        } else {
 
-                     ?>
-                      <img id="avatar" style="width: 150px;" src="../view/images/add-avatar_2.png" alt="avatar">
-                    <?php 
-                    } 
+                         ?>
+                          <img id="avatar" style="width: 150px;" src="../view/images/add-avatar_2.png" alt="avatar">
+                        <?php 
+                        } 
 
-                  ?>
+                      ?>    
+             
               </td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td><?php echo $value['firstname'] . " " .  $value['lastname'];  ?></td>
+              <td><?php echo $value['username'] ;  ?></td>
+              <td><?php echo $value['email'] ;  ?></td>
               <td>
                 <p>Application Manager</p>
                 <p>Developer</p>
                 <p>Project Manager</p>
               </td>
-              <td></td>
-              <td class="text-center">
-                <a href="#"><span class="glyphicon glyphicon-eye-open" title="View"></span></a>
+              <td class="text-center"> 
+                
+                <a href="#"><span class="glyphicon glyphicon-eye-open" title="View" onclick="viewUser(<?php echo $value['id']; ?>)"></span>
+                </a>
+
                 <a href="#"><span class="glyphicon glyphicon-cog" title="Edit"></span></a>
-                <a href="#"><span class="glyphicon glyphicon-trash" title="Delete"></span></a>
+                <a href="#"><span class="glyphicon glyphicon-trash" title="Delete"  onclick="deleteUser(<?php echo $value['id'] ?>)"></span></a>
               </td>
+
             </tr>
+            
+          <?php endforeach ?>
+
+
+
+
           </tbody>
         </table>
         <div class="bg-success">
