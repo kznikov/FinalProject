@@ -22,7 +22,7 @@
 
           </div>
           <div class="myproject-button col-xs-12 col-md-2">
-             <button onclick="location.href = 'newproject.php';" class="btn btn-primary">Create  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+             <button onclick="location.href = '/FinalProject/view/newproject.php';" class="btn btn-primary">Create  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
           </div>
         </div>
 
@@ -41,23 +41,41 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td></td>
-              <td></td>
-              <td>Брой задачи</td>
-              <td>Брой задачи</td>
-              <td></td>
-              <td></td>
-			  <td></td>
-              <td class="text-center">
-                <a href="#"><span class="glyphicon glyphicon-eye-open" title="View"></span></a>
-                <a href="#"><span class="glyphicon glyphicon-cog" title="Edit"></span></a>
-                <a href="#"><span class="glyphicon glyphicon-trash" title="Delete"></span></a>
-              </td>
-              <td lass="text-center">
-                <a href="mailto:joe@example.com"><span class="glyphicon glyphicon-envelope"></span></a>
-              </td>
-            </tr>
+             <?php if(isset($allProjects) && $allProjects){
+             	foreach ($allProjects as $project){ ?>
+			            <tr>
+			              <td><?= $project['name']?></td>
+			              <td><a href="#"><span onclick="viewUser(<?= $project['admin_id']?>)"><?= $project['username']?></span></a></td>
+			              <td><?= $project['open_tasks']?></td>
+			              <td><?= $project['all_tasks']?></td>
+			              <td><?= ($project['client'] == null ? "" : $project['client'])?></td>
+			              <td><?= $project['status']?></td>
+			              <td><?php if($project['avg_tasks_progress'] == null){
+			              				echo "<em>No tasks found.</em>";
+			              			}else{?>
+			              			
+			              			<div class="progress-wrap progress" data-progress-percent="<?= $project['avg_tasks_progress']+3?>">
+									  <div class="progress-bar progress"></div>
+									  
+									</div>
+									<p class="progress_perc" ><?=$project['avg_tasks_progress']?>%</p>
+			             			<?php }?>
+			              </td>
+			              <td class="text-center">
+			                <a href="#"><span class="glyphicon glyphicon-eye-open" title="View"></span></a>
+			                <a href="#"><span class="glyphicon glyphicon-cog" title="Edit"></span></a>
+			                <a href="#"><span class="glyphicon glyphicon-trash" title="Delete"></span></a>
+			              </td>
+			              <td lass="text-center">
+			                <a href="mailto:<?=$project['email']?>"><span class="glyphicon glyphicon-envelope"></span></a>
+			              </td>
+			            </tr>
+			      <?php }
+          	}else{ ?>
+			      	<tr>
+			      	<td colspan="9" style="text-align: center;"><em><strong>No results found.</strong></em></td>
+			      	</tr>
+			<?php }?>
           </tbody>
         </table>
         <div class="bg-success">

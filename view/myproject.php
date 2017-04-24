@@ -25,7 +25,7 @@
 
           </div>
           <div class="myproject-button col-xs-12 col-md-2">
-             <button onclick="location.href = 'newproject.php';" class="btn btn-primary">Create  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+             <button onclick="location.href = '/FinalProject/view/newproject.php';" class="btn btn-primary">Create  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
           </div>
         </div>
 
@@ -48,7 +48,7 @@
           			foreach ($adminProjects as $project){ ?>
 			            <tr>
 			              <td><?= $project['name']?></td>
-			              <td><?= $project['username']?></td>
+			              <td><a href="#"><span onclick="viewUser(<?= $project['user_id']?>)"><?= $project['username']?></span></a></td>
 			              <td><?= $project['open_tasks']?></td>
 			              <td><?= $project['all_tasks']?></td>
 			              <td><?= ($project['client'] == null ? "" : $project['client'])?></td>
@@ -57,7 +57,7 @@
 			              				echo "<em>No tasks found.</em>";
 			              			}else{?>
 			              			
-			              			<div class="progress-wrap progress" data-progress-percent="<?= $project['avg_tasks_progress']+4	?>">
+			              			<div class="progress-wrap progress" data-progress-percent="<?= $project['avg_tasks_progress']+3	?>">
 									  <div class="progress-bar progress"></div>
 									  
 									</div>
@@ -70,7 +70,7 @@
 			                <a href="#"><span class="glyphicon glyphicon-trash" title="Delete"></span></a>
 			              </td>
 			              <td lass="text-center">
-			                <a href="mailto:joe@example.com"><span class="glyphicon glyphicon-envelope"></span></a>
+			                <a href="mailto:<?=$user_email?>"><span class="glyphicon glyphicon-envelope"></span></a>
 			              </td>
 			            </tr>
 			      <?php }
