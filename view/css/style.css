@@ -321,3 +321,31 @@ div.flash_register_error{
 }
 
 
+
+.progress {
+  width: 100%;
+  height: 11px;
+}
+.progress-wrap {
+  background: #29ce4d;
+  margin: 10px 0 0px 0;
+  overflow: hidden;
+  position: relative;
+  
+}
+
+.progress-bar {
+   border-radius:0%;
+   background: #ddd;
+   left: 0;
+   position: absolute;
+   top: 0;
+}
+ 
+ 
+.progress_perc{
+	font-size: 0.8em;
+	margin: 0px ;
+	 text-align:center; 
+}
+

@@ -35,6 +35,7 @@
               <th>All tasks</th>
               <th>Client</th>
               <th>Status</th>
+              <th>Progress</th>
               <th>Action</th>
               <th>Email</th>
             </tr>
@@ -47,6 +48,7 @@
               <td>Брой задачи</td>
               <td></td>
               <td></td>
+			  <td></td>
               <td class="text-center">
                 <a href="#"><span class="glyphicon glyphicon-eye-open" title="View"></span></a>
                 <a href="#"><span class="glyphicon glyphicon-cog" title="Edit"></span></a>

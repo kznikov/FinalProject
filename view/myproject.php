@@ -11,7 +11,11 @@
 <body>
    
    <?php include "inc/nav.php";  ?>
-
+	<?php if(isset($message)){
+		echo "<p style='margin-top: 70px;'>". $message."</p>";
+		//die();
+	}?>
+	
    <section id="content" role="main" class="container">
     <div id="homepage-panel">
       <div class="row">          
@@ -34,27 +38,47 @@
               <th>All tasks</th>
               <th>Client</th>
               <th>Status</th>
+              <th>Progress</th>
               <th>Action</th>
               <th>Email</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td></td>
-              <td></td>
-              <td>Брой задачи</td>
-              <td>Брой задачи</td>
-              <td></td>
-              <td></td>
-              <td class="text-center">
-                <a href="#"><span class="glyphicon glyphicon-eye-open" title="View"></span></a>
-                <a href="#"><span class="glyphicon glyphicon-cog" title="Edit"></span></a>
-                <a href="#"><span class="glyphicon glyphicon-trash" title="Delete"></span></a>
-              </td>
-              <td lass="text-center">
-                <a href="mailto:joe@example.com"><span class="glyphicon glyphicon-envelope"></span></a>
-              </td>
-            </tr>
+          <?php if(isset($adminProjects) && $adminProjects){
+          			foreach ($adminProjects as $project){ ?>
+			            <tr>
+			              <td><?= $project['name']?></td>
+			              <td><?= $project['username']?></td>
+			              <td><?= $project['open_tasks']?></td>
+			              <td><?= $project['all_tasks']?></td>
+			              <td><?= ($project['client'] == null ? "" : $project['client'])?></td>
+			              <td><?= $project['status']?></td>
+			              <td><?php if($project['avg_tasks_progress'] == null){
+			              				echo "<em>No tasks found.</em>";
+			              			}else{?>
+			              			
+			              			<div class="progress-wrap progress" data-progress-percent="<?= $project['avg_tasks_progress']+4	?>">
+									  <div class="progress-bar progress"></div>
+									  
+									</div>
+									<p class="progress_perc" ><?=$project['avg_tasks_progress']?>%</p>
+			             			<?php }?>
+			              </td>
+			              <td class="text-center">
+			                <a href="#"><span class="glyphicon glyphicon-eye-open" title="View"></span></a>
+			                <a href="#"><span class="glyphicon glyphicon-cog" title="Edit"></span></a>
+			                <a href="#"><span class="glyphicon glyphicon-trash" title="Delete"></span></a>
+			              </td>
+			              <td lass="text-center">
+			                <a href="mailto:joe@example.com"><span class="glyphicon glyphicon-envelope"></span></a>
+			              </td>
+			            </tr>
+			      <?php }
+          	}else{ ?>
+			      	<tr>
+			      	<td colspan="9" style="text-align: center;"><em><strong>No results found.</strong></em></td>
+			      	</tr>
+			<?php }?>
           </tbody>
         </table>
         <div class="bg-success">

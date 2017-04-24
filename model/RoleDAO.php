@@ -28,7 +28,7 @@ class RoleDAO implements IRoleDAO {
 
 		$res = $db->query(self::GET_ALL_ROLES);
 		$permissions = $db->query(self::GET_ALL_PERMISSIONS);
-		echo "<br/><br/><br/>";
+		//echo "<br/><br/><br/>";
 		//var_dump(self::permissionsArray(14, $permissions)); 
 		  $roles = array();
 		 
