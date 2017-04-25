@@ -2,7 +2,6 @@
   $pageTitle="My projects";
   include "inc/header.php"; 
   
-  session_start();
   if(!isset($_SESSION['user'])){
   	header('Location:../view/index.php');
   }
@@ -28,8 +27,13 @@
              <button onclick="location.href = '/FinalProject/view/newproject.php';" class="btn btn-primary">Create  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
           </div>
         </div>
+      </div>
+       <div class="row">  
+        <div class="search-input">
+          <input type="text" id="search-project" class="form-control" placeholder="Type to search">
+        </div>
 
-        <table class=" myproject-table table table-responsive table-bordered">
+        <table id="myproject-table" class="myproject-table table table-responsive table-bordered">
           <thead style="background-color: #205081; color: #fff;">
             <tr>
               <th>Name</th>

@@ -389,6 +389,10 @@ div.flash_register_error {
     border-color: #ebccd1;
 }
 
+
+
+/*PROJECT PAGE*/
+
 .progress {
   width: 100%;
   height: 11px;
@@ -416,3 +420,6 @@ div.flash_register_error {
 	 text-align:center; 
 }
 
+input#search-project {
+    margin-top: 30px;
+}

@@ -2,8 +2,7 @@
   $pageTitle="All projects";
   include "inc/header.php"; 
   
-  
-  session_start();
+
   if(!isset($_SESSION['user'])){
   	header('Location:../view/index.php');
   }
