@@ -58,7 +58,8 @@ class ProjectDAO implements IProjectDAO {
 			
 			$projectProgress =  $db->query(self::GET_PROJECT_PROGRESS.$id." GROUP BY p.id");
 			$projectProgress = $projectProgress->fetchAll(PDO::FETCH_ASSOC);
-			
+			$tmp = array();
+			$result = array();
 			for($index = 0;$index <= count($res)-1;$index++){
 				$tmp[] = array_merge($res[$index], $openTasks[$index]);
 			}
@@ -84,7 +85,8 @@ class ProjectDAO implements IProjectDAO {
 			$assocProjects= $assocProjects->fetchAll(PDO::FETCH_ASSOC);
 			 $openTasks = $db->query(self::GET_USER_ASSOC_PROJECTS_OPEN_TASKS_CNT.$id." GROUP BY p.id");
 			$openTasks = $openTasks->fetchAll(PDO::FETCH_ASSOC);
-			
+			$tmp = array();
+			$result = array();
 			$projectProgress =  $db->query(self::GET_ASSOC_PROJECTS_PROGRESS.$id." GROUP BY p.id");
 			$projectProgress = $projectProgress->fetchAll(PDO::FETCH_ASSOC);
 			

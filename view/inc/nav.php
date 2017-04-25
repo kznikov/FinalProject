@@ -31,7 +31,7 @@
             <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tasks <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="../controller/MyTaskController.php">My tasks</a></li>
+          <li><a href="../controller/UserAssignTasksController.php">My tasks</a></li>
           <li><a href="../controller/AllTaskController.php">All tasks</a></li>
           <li role="separator" class="divider"></li>
           <li><a href="../controller/CreateTaskController.php">Create task</a></li>

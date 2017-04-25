@@ -370,6 +370,7 @@ function viewUser(userId)
 }
 
 
+
 function editUser(userId)
 {
    window.location = '../controller/editProfileController.php?user=' + userId;

@@ -8,6 +8,7 @@
 ?>
 
 <body>
+
   <?php include "inc/nav.php";  ?>
    <section id="content" role="main" class="container">
      <div id="homepage-panel">
@@ -17,7 +18,7 @@
         </div>
         <hr>
         <div class="row">               
-              <form id="create-project" action="" method="">
+              <form id="create-project" action="/FinalProject/controller/TaskController.php" method="post">
                 <fieldset> 
                 <div class="col-md-8">
 
@@ -25,81 +26,87 @@
                      <label for="selectproject">Project name</label>
 
                     <!-- взима данни от таблицата за регистрирани потребители -->
-                    <select id="selectproject" class="form-control">
-                      <option>Choose</option> 
-                      <option>Name1</option>
+                    <select name="project" id="selectproject" class="form-control">
+                      <option value="48">Choose</option> 
+                      <option value="2">Name1</option>
                       <option>Name2</option>
                     </select>
                   </div>
                   <div class="form-group">
                     <label for="tasktitle">Title</label>
-                    <input type="text" id="tasktitle" class="form-control" placeholder="Task title">
+                    <input type="text" name="title" id="tasktitle" class="form-control" placeholder="Task title">
                   </div>
                   <div class="form-group"> 
-                    <label for="selectusers">Users</label>
+                    <label for="selectusers">Assign to</label>
 
                     <!-- взима данни от таблицата за регистрирани потребители -->
-                    <select id="selectusers" class="form-control">
-                      <option>Choose</option> 
-                      <option>Name1</option>
+                    <select name="owner" id="selectusers" class="form-control">
+                      <option value="1">Choose</option> 
+                      <option value="2">Name1</option>
                       <option>Name2</option>
                     </select>
                   </div>
 
-                  <textarea class="form-control" rows="10"></textarea>
+				   <div class="form-group">
+                    <label for="description">Description</label>
+                     <textarea class="form-control" name="description" rows="9" placeholder="Task description"></textarea>
+                  </div>
+                 
 
                   </div> <!-- class="col-md-8" -->
-
+					
                   <div class="col-md-4">
-                  <div class="form-group">
+                 	 <div class="form-group"> 
                     <label for="type">Type</label>
-                    <select id="type" class="form-control">
-                      <option>Task</option> 
-                      <option>Bug</option>
-                      <option>Enhancement</option>
+                    <select id="type" name="type" class="form-control">
+                      <option value="3">Task</option> 
+                      <option value="1">Bug</option>
+                      <option value="2">Enhancement</option>
                     </select>
                   </div>
-                  <div class="form-group">
+                  
+                  
+                   <div class="form-group"> 
                     <label for="priority">Priority</label>
-                    <select id="priority" class="form-control">
-                      <option>Low</option> 
-                      <option>Medium</option>
-                      <option>High</option>
-                       <option>Escalated</option>
+                    <select id="priority" name="priority" class="form-control">
+                      <option value="1">Low</option> 
+                      <option value="2">Medium</option>
+                      <option value="5">High</option>
+                      <option value="6">Escalated</option>
                     </select>
                   </div>
                   <div class="form-group"> 
                     <label for="status">Status</label>
-                    <select id="status" class="form-control">
-                      <option>Choose</option> 
-                      <option>Suspended</option>
-                      <option>Closed</option>
-                      <option>Deleted</option>
-                      <option>Chardge item</option>
+                    <select id="status" name="status" class="form-control">
+                      <option value="1">Open</option> 
+                      <option value="2">Working on</option>
+                      <option value="3">Suspended</option>
+                      <option value="4">Closed</option>
+                      <option value="5">Cancelled</option>
                     </select>
                   </div>
 
                   <div class="form-group">
                      <div class='input-group'>
                         <label for="progress">Progress</label>
-                        <input type="number" min="0" max="100" step="5" class="form-control" />
+                        <input type="number" name="progress" min="0" max="100" step="5" class="form-control" />
                       </div>
                   </div>
 
                   <div class="form-group">
                      <div class='input-group date'>
                         <label for="startdate">Start Date</label>
-                        <input id="startdate" type="date" class="form-control" />
+                        <input id="startdate" name="start_date" type="date" class="form-control" />
                       </div>
                   </div>
                   <div class="form-group">
                      <div class='input-group date'>
                         <label for="enddate">End Date</label>
-                        <input id="enddate" type="date" class="form-control" />
+                        <input id="enddate" type="date" name="end_date" class="form-control" />
                       </div>
                   </div>
                   <div class="text-right">
-                     <button type="submit" class="btn btn-primary">Create</button>
+                     <input type="submit" name="submit" class="btn btn-primary" value="Create">
                   </div>
                  
                   </div><!-- < class="col-md-4"> -->

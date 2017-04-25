@@ -10,7 +10,7 @@
 	if (isset($_POST['submit'])) {
 		 try {
 		 	$projectName = htmlentities(trim($_POST['project_name']));
-		 	$prefix = htmlentities(trim($_POST['prefix']));
+		 	$prefix = strtoupper(str_replace(' ', '', htmlentities(trim($_POST['prefix']))));
 		 	$description = htmlentities(trim($_POST['description']));
 		 	$client = htmlentities(trim($_POST['client_name']));
 		 	$startDate = htmlentities(trim($_POST['start_date']));
