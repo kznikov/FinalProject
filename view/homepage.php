@@ -46,17 +46,30 @@
 								</tr>
 							</thead>
 							<tbody>
+				             <?php if(isset($openTasks) && $openTasks){
+				             	foreach ($openTasks as $task){ ?>
 								<tr>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
+									<td><?=$task['task_id']?></td>
+									<td><?=$task['title']?></td>
+									<td><?=$task['type']?></td>
+									<td><?=$task['priority']?></td>
+									<td><?=(empty($task['start_date']) ? "<em style='color:red;'>Not set</em>" : $task['start_date'])?></td>
+			              			<td><?=(empty($task['end_date']) ? "<em style='color:red;'>Not set</em>" : $task['end_date'])?></td>
+									<td>
+										<div class="progress-wrap progress" style="background-color:orange;" data-progress-percent="<?= $task['progress']?>">
+										<div class="progress-bar progress"></div>	  
+										</div>
+										<p class="progress_perc" ><?=$task['progress']?>%</p>
+					                </td>
+									<td><?=$task['project']?></td>
 								</tr>
-							</tbody>
+								 <?php }
+					          	}else{ ?>
+								      	<tr>
+								      	<td colspan="9" style="text-align: center;"><em><strong>No results found.</strong></em></td>
+								      	</tr>
+								<?php }?>
+					          </tbody>
 						</table>
 
 						<h3>My Working On Tasks</h3>
@@ -74,17 +87,30 @@
 								</tr>
 							</thead>
 							<tbody>
+				             <?php if(isset($workingOnTasks) && $workingOnTasks){
+				             	foreach ($workingOnTasks as $task){ ?>
 								<tr>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
+									<td><?=$task['task_id']?></td>
+									<td><?=$task['title']?></td>
+									<td><?=$task['type']?></td>
+									<td><?=$task['priority']?></td>
+									<td><?=(empty($task['start_date']) ? "<em style='color:red;'>Not set</em>" : $task['start_date'])?></td>
+			              			<td><?=(empty($task['end_date']) ? "<em style='color:red;'>Not set</em>" : $task['end_date'])?></td>
+									<td>
+										<div class="progress-wrap progress" style="background-color:orange;" data-progress-percent="<?= $task['progress']?>">
+										<div class="progress-bar progress"></div>	  
+										</div>
+										<p class="progress_perc" ><?=$task['progress']?>%</p>
+					                </td>
+									<td><?=$task['project']?></td>
 								</tr>
-							</tbody>
+								 <?php }
+					          	}else{ ?>
+								      	<tr>
+								      	<td colspan="9" style="text-align: center;"><em><strong>No results found.</strong></em></td>
+								      	</tr>
+								<?php }?>
+					          </tbody>
 						</table>
 
 

@@ -41,6 +41,7 @@
           </thead>
           <tbody>
              <?php if(isset($allProjects) && $allProjects){
+             	
              	foreach ($allProjects as $project){ ?>
 			            <tr>
 			              <td><?= $project['name']?></td>
@@ -66,9 +67,10 @@
 			                <a href="#"><span class="glyphicon glyphicon-trash" title="Delete"></span></a>
 			              </td>
 			              <td lass="text-center">
-			                <a href="mailto:
 
+			                <a href="mailto:
                       <?php if (isset($project['user_email'])) {echo $project['user_email'];} ?>"><span class="glyphicon glyphicon-envelope"></span></a>
+
 			              </td>
 			            </tr>
 			      <?php }
