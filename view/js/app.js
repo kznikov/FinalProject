@@ -335,3 +335,77 @@ function viewUser(userId)
 {
    window.location = '../controller/ViewUserController.php?user=' + userId;
 }
+
+function editUser(userId)
+{
+   window.location = '../controller/editProfileController.php?user=' + userId;
+}
+
+
+//sort table
+
+function sortTable(f,n){
+  var rows = $('#userlist tbody  tr').get();
+
+  rows.sort(function(a, b) {
+
+    var A = getVal(a);
+    var B = getVal(b);
+
+    if(A < B) {
+      return -1*f;
+    }
+    if(A > B) {
+      return 1*f;
+    }
+    return 0;
+
+  });
+
+  function getVal(elm){
+    var v = $(elm).children('td').eq(n).text().toUpperCase();
+    if($.isNumeric(v)){
+      v = parseInt(v,10);
+    }
+    return v;
+  }
+
+  $.each(rows, function(index, row) {
+      $('#userlist').children('tbody').append(row);
+    });
+  }
+
+var f_name = 1;
+var f_email = 1;
+var f_username = 1;
+
+$("#name").click(function(){
+    f_name *= -1;
+    var n = $(this).prevAll().length;
+    sortTable(f_name,n);
+});
+
+$("#email").click(function(){
+    f_email *= -1;
+    var n = $(this).prevAll().length;
+    sortTable(f_email,n);
+});
+
+$("#username").click(function(){
+    f_username *= -1;
+    var n = $(this).prevAll().length;
+    sortTable(f_username,n);
+});
+
+
+//search in table
+
+var $rows = $('#userlist tr');
+$('#search').keyup(function() {
+    var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+    
+    $rows.show().filter(function() {
+        var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+        return !~text.indexOf(val);
+    }).hide();
+});

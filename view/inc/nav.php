@@ -42,7 +42,7 @@
         <ul class="dropdown-menu">
           <li><a href="../controller/UserListController.php">List</a></li>
           <li role="separator" class="divider"></li>
-          <li><a href="/FinalProject/view/createuser.php">Create</a></li>
+          <li><a href="../controller/CreateUserController.php">Create</a></li>
         </ul>
       </li>
       <li class="dropdown">

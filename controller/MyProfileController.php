@@ -18,11 +18,10 @@
 	$result = $editUser->getInfoUser($user_id);
 	
 	if(isset($_SESSION['success_update'])){
-		$successMessage = "Saved successfully!";
+		$successMessage = "Updated successfully!";
 		unset($_SESSION['success_update']);
 	}
 	
 	include '../view/myprofile.php';
-
 	
 ?>

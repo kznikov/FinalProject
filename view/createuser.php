@@ -1,8 +1,7 @@
 <?php 
-  $pageTitle="Users";
+  $pageTitle="Create user";
   include "inc/header.php"; 
   
-  session_start();
   if(!isset($_SESSION['user'])){
   	header('Location:../view/index.php');
   }

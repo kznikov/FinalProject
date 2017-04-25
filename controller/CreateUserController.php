@@ -12,17 +12,6 @@ if(!isset($_SESSION['user'])){
 
 $sessionVars = json_decode($_SESSION['user'], true);
 
-if (isset($_GET['user'])) {
-	
-	$user_id =  $_GET['user'];
-
-	$editUser = new UserDAO;
-
-	$result = $editUser->getInfoUser($user_id);
-
-
-	include '../view/createuser.php';
-}
-
+include '../view/createuser.php';
 
 ?>
