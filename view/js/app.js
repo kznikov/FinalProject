@@ -368,3 +368,12 @@ function viewUser(userId)
 {
    window.location = '../controller/ViewUserController.php?user=' + userId;
 }
+
+
+
+
+
+
+
+
+
