@@ -7,7 +7,8 @@
 
 	session_start();
 	$sessionVars = json_decode($_SESSION['user'], true);
-	$user_id = $sessionVars['id'];
+
+	$user_id = $_SESSION['userId'];
 
 	$editUser = new UserDAO;
 
@@ -85,7 +86,12 @@
 
 
 		//include '../controller/editProfileController.php';
-		header("Location: MyProfileController.php");
+		if ($sessionVars['id'] == $user_id ) {
+			header("Location: MyProfileController.php");	
+		} else {
+			header("Location: UserListController.php");	
+		}
+		
 
 	}
 

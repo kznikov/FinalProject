@@ -8,15 +8,20 @@ include "inc/header.php";
 <body>
    
    <?php include "inc/nav.php";  ?>
-   <?php if(isset($successMessage)){?>
-   <div style="margin-top:80px;"  class="flash_success" ><?=$successMessage?></div>
-   <?php } ?>
+	  
    <section id="content" role="main" class="container">
-    <div id="homepage-panel">
-      <div class="row">          
+
+   
+    <div id="homepage-panel"> 
+	   <div class="row">
+	   	<?php if(isset($successMessage)){?>
+	   		<div class="flash_success" ><?=$successMessage?></div>
+	   	<?php } ?>
+	   </div>
+      <div class="row">  
         <div class="myproject-header">
           <div class="myproject-title col-xs-12 col-md-10">
-            <h2>My profile</h2>
+            <h2><?= $result['username'] ?> profile</h2>
 
           </div>
           <div class="myproject-button col-xs-12 col-md-2">

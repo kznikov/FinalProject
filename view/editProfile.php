@@ -12,7 +12,7 @@
       <div class="row">          
         <div class="myproject-header">
           <div class="myproject-title">
-            <h2>Update User <?= $userData['username'] ?></h2>
+            <h2>Update User <?= $result['username'] ?></h2>
           </div>
         </div>
 
