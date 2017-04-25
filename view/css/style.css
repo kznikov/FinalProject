@@ -432,3 +432,8 @@ table#userlist td.myproject-name:hover {
     background: #337ab7;
     color: #fff;
 }
+
+
+table td{
+	font-weight: bold;
+}

@@ -54,7 +54,7 @@
 			              				echo "<em>No tasks found.</em>";
 			              			}else{?>
 			              			
-			              			<div class="progress-wrap progress" data-progress-percent="<?= $project['avg_tasks_progress']+3?>">
+			              			<div class="progress-wrap progress" data-progress-percent="<?= $project['avg_tasks_progress']?>">
 									  <div class="progress-bar progress"></div>
 									  
 									</div>

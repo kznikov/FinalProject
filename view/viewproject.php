@@ -17,7 +17,6 @@
         <div class="myproject-header">
           <div class="myproject-title col-xs-12 col-md-10">
             <h2>Project: <?php echo $infoProject['name']; ?></h2>
-
           </div>
           <div class="myproject-button col-xs-12 col-md-2">
              <button onclick="location.href = '../controller/MyProjectsController.php';" class="btn btn-primary">Back</button>
@@ -28,13 +27,13 @@
         <table id="userlist" class="myproject-table table table-responsive table-bordered">
           <thead style="background-color: #205081; color: #fff;">
             <tr>
-              <th>Name</th>
-              <th>Admin</th>
-              <th>Client</th>
-              <th>Status</th>
-              <th>All tasks</th>
-              <th>Progress</th>
-              <th>Email</th>
+              <th scope=row>Name</th>
+              <th scope="row">Admin</th>
+              <th scope="row">Client</th>
+              <th scope="row">Status</th>
+              <th scope="row">All tasks</th>
+              <th scope="row">Progress</th>
+              <th scope="row">Email</th>
             </tr>
           </thead>
           <tbody>
