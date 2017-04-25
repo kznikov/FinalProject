@@ -296,7 +296,7 @@ table#userlist {
  margin-top:10px;
 }
 
-.userlist-header {
+.userlist-header, .myproject-header {
     overflow: hidden;
     padding-bottom: 30px;
     box-sizing: border-box;
@@ -388,10 +388,6 @@ div.flash_register_error {
     color: #a94442;
     border-color: #ebccd1;
 }
-<<<<<<< HEAD
-=======
-
-
 
 .progress {
   width: 100%;
@@ -419,5 +415,3 @@ div.flash_register_error {
 	margin: 0px ;
 	 text-align:center; 
 }
-
->>>>>>> ee6ec16ce14e65c828fd2d07b0913017b138e541

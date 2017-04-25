@@ -31,10 +31,10 @@
             <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tasks <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="/FinalProject/view/mytasks.php">My tasks</a></li>
-          <li><a href="/FinalProject/view/alltasks.php">All tasks</a></li>
+          <li><a href="../controller/MyTaskController.php">My tasks</a></li>
+          <li><a href="../controller/AllTaskController.php">All tasks</a></li>
           <li role="separator" class="divider"></li>
-          <li><a href="/FinalProject/view/createtask.php">Create task</a></li>
+          <li><a href="../controller/CreateTaskController.php">Create task</a></li>
         </ul>
       </li>
       <li class="dropdown">
@@ -57,9 +57,9 @@
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Roles <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="/FinalProject/controller/RoleController.php">List</a></li>
+          <li><a href="../controller/RoleController.php">List</a></li>
           <li role="separator" class="divider"></li>
-          <li><a href="/FinalProject/view/createrole.php">Create</a></li>
+          <li><a href="../controller/CreateRoleController.php">Create</a></li>
         </ul>
       </li>
             <li class="dropdown">
