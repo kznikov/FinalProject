@@ -22,8 +22,8 @@
             <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Projects <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="/FinalProject/view/myproject.php">My projects</a></li>
-          <li><a href="/FinalProject/view/allprojects.php">All projects</a></li>
+          <li><a href="/FinalProject/controller/MyProjectsController.php">My projects</a></li>
+          <li><a href="/FinalProject/controller/AllProjectsController.php">All projects</a></li>
           <li role="separator" class="divider"></li>
           <li><a href="/FinalProject/view/newproject.php">Create project</a></li>
         </ul>
