@@ -44,7 +44,7 @@
               <td><?php echo $infoProject['client']; ?></td>
               <td><?php echo $infoProject['status']; ?></td>
               <td><?php echo $infoProject['all_tasks']; ?></td>
-              <td><?php echo $infoProject['progress']; ?></td>
+              <td><?php echo $infoProject['progress']; ?></td>  
               <td class="text-center">
                  <a href="mailto:<?=$infoProject['user_email'];?>"><span class="glyphicon glyphicon-envelope"></span></a>
               </td>

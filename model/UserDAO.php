@@ -161,11 +161,6 @@ require_once "../model/IUserDAO.php";
 			$pstmt->execute(array(":id"=>$id));
 			
 		}
-
-
-
-		
-		
 		
 		public static function forgotPassword($email, $token) {
 			$db = DBConnection::getDb();

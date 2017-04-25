@@ -6,6 +6,7 @@ class RoleDAO implements IRoleDAO {
 	const GET_ALL_ROLES = "SELECT * FROM roles";
 	const GET_ALL_PERMISSIONS = "SELECT * FROM permissions";
 	const GET_ROLE_PERMISSIONS = "SELECT p.name from roles r JOIN role_permissions rp JOIN permissions p on r.id = rp.role_id and rp.permission_id = p.id where r.id = ";
+	const GET_NAMES = "SELECT name FROM roles";
 	
 	
 	public function permissionsArray($id, $permissions){
@@ -37,6 +38,13 @@ class RoleDAO implements IRoleDAO {
 			$roles[] = new Role($role['name'], self::permissionsArray($role['id'], $permissions));
 		}
 		//var_dump($roles);
+		return $roles; 
+	}
+
+	public function getRoles() {
+		$db = DBConnection::getDb();
+		$res = $db->query(self::GET_NAMES);
+		$roles = $res->fetchAll(PDO::FETCH_ASSOC);
 		return $roles; 
 	}
 	
