@@ -14,7 +14,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#"><img src="../view/images/pmc-logo.svg" alt=""></a>
+          <a class="navbar-brand" href="../controller/HomeController.php"><img src="../view/images/pmc-logo.svg" alt=""></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -22,8 +22,8 @@
             <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Projects <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="/FinalProject/controller/MyProjectsController.php">My projects</a></li>
-          <li><a href="/FinalProject/controller/AllProjectsController.php">All projects</a></li>
+          <li><a href="../controller/MyProjectsController.php">My projects</a></li>
+          <li><a href="../controller/AllProjectsController.php">All projects</a></li>
           <li role="separator" class="divider"></li>
           <li><a href="/FinalProject/view/newproject.php">Create project</a></li>
         </ul>
@@ -101,7 +101,7 @@
         <li><a href="../controller/editProfileController.php">Edit profile</a></li>
         <li role="separator" class="divider"></li>
 
-        <li><a href="/FinalProject/controller/LogoutController.php">Logout</a></li>
+        <li><a href="../controller/LogoutController.php">Logout</a></li>
 
       </ul>
       </li>
