@@ -66,7 +66,9 @@
 			                <a href="#"><span class="glyphicon glyphicon-trash" title="Delete"></span></a>
 			              </td>
 			              <td lass="text-center">
-			                <a href="mailto:<?=$project['email']?>"><span class="glyphicon glyphicon-envelope"></span></a>
+			                <a href="mailto:
+
+                      <?php if (isset($project['user_email'])) {echo $project['user_email'];} ?>"><span class="glyphicon glyphicon-envelope"></span></a>
 			              </td>
 			            </tr>
 			      <?php }
