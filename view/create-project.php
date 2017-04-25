@@ -93,7 +93,7 @@
                 <hr>
                 <div class="form-group">
                   <label for="prefix">Prefix</label>
-                  <input type="text" id="prefix" style='text-transform:uppercase' name="prefix" class="form-control" maxlength="3" placeholder="Enter prefix">
+                  <input type="text" id="prefix" style='text-transform:uppercase' name="prefix" class="form-control" maxlength="5" placeholder="Enter prefix">
                 </div>
                 
                 <div class="form-group">

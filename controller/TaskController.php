@@ -6,36 +6,40 @@
 	
 	session_start();
 	$userId = json_decode($_SESSION['user'],true)['id'];
-		
-	if (isset($_POST['submit'])) {
+	$userId = (int)($userId);
+	
+	 if (isset($_POST['submit'])) {
 		 try {
-		 	$project = htmlentities(trim($_POST['project']));
+
+		 	$projectId = htmlentities(trim($_POST['project']));
 		 	$title = htmlentities(trim($_POST['title']));
 		 	$owner = htmlentities(trim($_POST['owner']));
 		 	$description = htmlentities(trim($_POST['description']));
 		 	$type = htmlentities(trim($_POST['type']));
 		 	$priority = htmlentities(trim($_POST['priority']));
-		 	$title = htmlentities(trim($_POST['status']));
-		 	$porgress =  htmlentities(trim($_POST['progress']));
-		 	$startdate = htmlentities(trim($_POST['start_date']));
+		 	$status = htmlentities(trim($_POST['status']));
+		 	$progress =  htmlentities(trim($_POST['progress']));
+		 	$startDate = htmlentities(trim($_POST['start_date']));
 		 	$endDate = htmlentities(trim($_POST['end_date']));
 		 	
-		 	if(!empty($project) && !empty($title) && !empty($owner)){
-
-			 	$project = new Project($projectName,$prefix, $userId, null, $description, $client, $startDate,$endDate, $status);
-
-			 	//var_dump($project);
-				$projectData = new ProjectDAO();
+		 	if(!empty($projectId) && !empty($title) && !empty($owner)){
 				
-				$result = $projectData->createProject($project);
+		 		$task = new Task($title, $projectId, $userId, $owner, $type, $priority, $status, $progress, $description, $startDate, $endDate, $id = null);
+
+			 	//var_dump($task);
+				$taskData = new TaskDAO();
 				
-				if(!$result){
-					throw new Exception("Failed to create new project!");
+				$result = $taskData->createTask($task);
+				
+				 if(!$result){
+					throw new Exception("Failed to create new task!");
 				}else{
-					$message = "Project $projectName successfully created.";
+					$message = "Task $title successfully created.";
 					$class = "flash_success";
-					include '../view/homepage.php';
-				}
+					include '../view/alltasks.php';
+				} 
+			}else{
+				throw new Exception("Failed to create new task!");
 			}
 			
 			
@@ -44,12 +48,12 @@
 			$message = $e->getMessage();
 			//$row = $e->getLine(); 
 			$class = "flash_error";
-			include '../view/homepage.php';
+			include '../view/alltasks.php';
 		}
 	}else{
 		$message = "Failed to create new project!";
 		$class = "flash_error";
-		include '../view/homepage.php';
+		include '../view/alltasks.php';
 	}
 	
 	//include '../view/index.php';

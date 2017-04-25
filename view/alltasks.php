@@ -8,6 +8,11 @@
 ?>
 
 <body>
+   <?php if(isset($message)){?>
+	
+	<div  class="<?=$class ?>" style="margin-top:60px;"><?=$message ?></div>
+	
+	<?php }?>
    
    <?php include "inc/nav.php";  ?>
 
@@ -20,7 +25,7 @@
 
           </div>
           <div class="myproject-button col-xs-12 col-md-2">
-             <button onclick="location.href = 'createtask.php';" class="btn btn-primary">Create  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+             <button onclick="location.href = '/FinalProject/controller/CreateTaskController.php';" class="btn btn-primary">Create  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
           </div>
         </div>
 

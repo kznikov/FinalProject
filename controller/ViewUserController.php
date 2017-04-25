@@ -21,7 +21,7 @@ if (isset($_GET['user'])) {
 	$result = $editUser->getInfoUser($user_id);
 
 
-	include '../view/createuser.php';
+	include '../view/userprofile.php';
 }
 
 

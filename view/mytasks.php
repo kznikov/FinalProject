@@ -8,9 +8,7 @@
 ?>
 
 <body>
-   
-   <?php include "inc/nav.php";  ?>
-
+    <?php include "inc/nav.php";  ?>
    <section id="content" role="main" class="container">
     <div id="homepage-panel">
       <div class="row">          
@@ -20,7 +18,7 @@
 
           </div>
           <div class="myproject-button col-xs-12 col-md-2">
-             <button onclick="location.href = 'createtask.php';" class="btn btn-primary">Create  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+             <button onclick="location.href = '/FinalProject/controller/CreateTaskController.php';" class="btn btn-primary">Create  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
           </div>
         </div>
 
@@ -34,28 +32,42 @@
               <th>Start date</th>
               <th>End date</th>
               <th>Status</th>
-              <th>Progress</th>
+              <th>Priority</th>
+              <th style="width: 190px;">Progress</th>
               <th>Project</th>
               <th>Action</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td class="text-center">
-                <a href="#"><span class="glyphicon glyphicon-eye-open" title="View"></span></a>
-                <a href="#"><span class="glyphicon glyphicon-cog" title="Edit"></span></a>
-                <a href="#"><span class="glyphicon glyphicon-trash" title="Delete"></span></a>
-              </td>
-            </tr>
+          
+          <?php if(isset($assignTasks) && $assignTasks){
+          		foreach ($assignTasks as $task){ ?>
+			            <tr>
+			              <td><?=$task['task_id'] ?></td>
+			              <td><?=$task['title'] ?></td>
+			              <td><?=$task['username'] ?></td>
+			              <td><?=$task['type'] ?></td>
+			              <td><?=(empty($task['start_date']) ? "<em style='color:red;'>Not set</em>" : $task['start_date'])?></td>
+			              <td><?=(empty($task['end_date']) ? "<em style='color:red;'>Not set</em>" : $task['end_date'])?></td>
+			              <td><?=$task['status'] ?></td>
+			              <td><?=$task['priority']?></td>
+			              <td><div class="progress-wrap progress" style="background-color:orange;" data-progress-percent="<?= $task['progress']?>">
+								<div class="progress-bar progress"></div>	  
+							</div>
+								<p class="progress_perc" ><?=$task['progress']?>%</p>
+			              </td>
+			              <td><?=$task['project'] ?></td>
+			              <td class="text-center">
+			                <a href="#"><span class="glyphicon glyphicon-eye-open" title="View"></span></a>
+			                <a href="#"><span class="glyphicon glyphicon-cog" title="Edit"></span></a>
+			                <a href="#"><span class="glyphicon glyphicon-trash" title="Delete"></span></a>
+			              </td>
+			            </tr>
+			 <?php }
+          	}else{ ?>
+			      	<tr>
+			      	<td colspan="10" style="text-align: center;"><em><strong>No results found.</strong></em></td>
+			      	</tr>
+			<?php }?>
           </tbody>
         </table>
         <div class="bg-success">

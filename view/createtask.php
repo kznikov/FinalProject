@@ -18,7 +18,7 @@
         </div>
         <hr>
         <div class="row">               
-              <form id="create-project" action="/FinalPorject/controller/TaskController.php" method="post">
+              <form id="create-project" action="/FinalProject/controller/TaskController.php" method="post">
                 <fieldset> 
                 <div class="col-md-8">
 
@@ -27,8 +27,8 @@
 
                     <!-- взима данни от таблицата за регистрирани потребители -->
                     <select name="project" id="selectproject" class="form-control">
-                      <option>Choose</option> 
-                      <option>Name1</option>
+                      <option value="48">Choose</option> 
+                      <option value="2">Name1</option>
                       <option>Name2</option>
                     </select>
                   </div>
@@ -41,15 +41,15 @@
 
                     <!-- взима данни от таблицата за регистрирани потребители -->
                     <select name="owner" id="selectusers" class="form-control">
-                      <option>Choose</option> 
-                      <option>Name1</option>
+                      <option value="1">Choose</option> 
+                      <option value="2">Name1</option>
                       <option>Name2</option>
                     </select>
                   </div>
 
 				   <div class="form-group">
-                    <label for="tasktitle">Description</label>
-                     <textarea class="form-control" rows="9" placeholder="Task description"></textarea>
+                    <label for="description">Description</label>
+                     <textarea class="form-control" name="description" rows="9" placeholder="Task description"></textarea>
                   </div>
                  
 
