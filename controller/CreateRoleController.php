@@ -6,10 +6,14 @@
 	session_start();
 	
 	$roles = new RoleDAO();
-	$r = $roles->getAllRoles();
-	//var_dump($r);
+	$result = $roles->getRoles();
+
+	$users = new UserDAO();
+	$getuser = $users->selectUser();
+
+	$project = new ProjectDAO();
+	$getproject = $project->selectNameProject();
+
 	include '../view/createrole.php';
-
-
 
 ?>

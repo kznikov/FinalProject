@@ -31,6 +31,8 @@ class ProjectDAO implements IProjectDAO {
     const GET_INFO_PROJECT = "SELECT p.*, u.id as user_id, u.email as user_email, u.username, ps.name as status, COUNT(t.id) as all_tasks FROM projects p JOIN user_projects up JOIN users u JOIN project_status ps LEFT JOIN tasks t
 							 ON p.id = t.projects_id WHERE p.name = ?";
 
+	const SELECT_NAME = "SELECT name FROM projects";							 
+
 	
 	public function createProject(Project $project) {
 
@@ -158,6 +160,13 @@ class ProjectDAO implements IProjectDAO {
 			throw new Exception("Failed to get information from DB!");
 		}
 		
+	}
+
+	public static function selectNameProject() {
+		$db = DBConnection::getDb();
+		$pstmt = $db->query(self::SELECT_NAME);
+		$res = $pstmt->fetchAll(PDO::FETCH_ASSOC);
+		return $res;
 	}
 
 
