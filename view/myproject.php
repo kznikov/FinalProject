@@ -2,7 +2,6 @@
   $pageTitle="My projects";
   include "inc/header.php"; 
   
-  session_start();
   if(!isset($_SESSION['user'])){
   	header('Location:../view/index.php');
   }
@@ -28,8 +27,13 @@
              <button onclick="location.href = '/FinalProject/view/newproject.php';" class="btn btn-primary">Create  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
           </div>
         </div>
+      </div>
+       <div class="row">  
+        <div class="search-input">
+          <input type="text" id="search" class="form-control" placeholder="Type to search">
+        </div>
 
-        <table class=" myproject-table table table-responsive table-bordered">
+        <table id="userlist" class="myproject-table table table-responsive table-bordered">
           <thead style="background-color: #205081; color: #fff;">
             <tr>
               <th>Name</th>
@@ -47,8 +51,10 @@
           <?php if(isset($adminProjects) && $adminProjects){
           			foreach ($adminProjects as $project){ ?>
 			            <tr>
-			              <td><?= $project['name']?></td>
-			              <td><a href="#"><span onclick="viewUser(<?= $project['user_id']?>)"><?= $project['username']?></span></a></td>
+			              <td class="myproject-name" onclick="location.href = '../controller/ViewProjectController.php?project=<?= $project['name']?> ';">
+                     <?= $project['name']?>
+                     </td>
+			              <td><a href="#" title="<?= $project['username']?>"><span onclick="viewUser(<?= $project['user_id']?>)"><?= $project['username']?></span></a></td>
 			              <td><?= $project['open_tasks']?></td>
 			              <td><?= $project['all_tasks']?></td>
 			              <td><?= ($project['client'] == null ? "" : $project['client'])?></td>
@@ -69,7 +75,7 @@
 			                <a href="#"><span class="glyphicon glyphicon-cog" title="Edit"></span></a>
 			                <a href="#"><span class="glyphicon glyphicon-trash" title="Delete"></span></a>
 			              </td>
-			              <td lass="text-center">
+			              <td class="text-center">
 			                <a href="mailto:<?=$user_email?>"><span class="glyphicon glyphicon-envelope"></span></a>
 			              </td>
 			            </tr>
