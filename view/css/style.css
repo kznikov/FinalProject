@@ -423,3 +423,12 @@ div.flash_register_error {
 input#search-project {
     margin-top: 30px;
 }
+
+table#userlist td.myproject-name {
+    cursor: pointer;
+}
+
+table#userlist td.myproject-name:hover {
+    background: #337ab7;
+    color: #fff;
+}

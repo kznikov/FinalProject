@@ -51,8 +51,10 @@
           <?php if(isset($adminProjects) && $adminProjects){
           			foreach ($adminProjects as $project){ ?>
 			            <tr>
-			              <td><?= $project['name']?></td>
-			              <td><a href="#"><span onclick="viewUser(<?= $project['user_id']?>)"><?= $project['username']?></span></a></td>
+			              <td class="myproject-name" onclick="location.href = '../controller/ViewProjectController.php?project=<?= $project['name']?> ';">
+                     <?= $project['name']?>
+                     </td>
+			              <td><a href="#" title="<?= $project['username']?>"><span onclick="viewUser(<?= $project['user_id']?>)"><?= $project['username']?></span></a></td>
 			              <td><?= $project['open_tasks']?></td>
 			              <td><?= $project['all_tasks']?></td>
 			              <td><?= ($project['client'] == null ? "" : $project['client'])?></td>
@@ -73,7 +75,7 @@
 			                <a href="#"><span class="glyphicon glyphicon-cog" title="Edit"></span></a>
 			                <a href="#"><span class="glyphicon glyphicon-trash" title="Delete"></span></a>
 			              </td>
-			              <td lass="text-center">
+			              <td class="text-center">
 			                <a href="mailto:<?=$user_email?>"><span class="glyphicon glyphicon-envelope"></span></a>
 			              </td>
 			            </tr>
