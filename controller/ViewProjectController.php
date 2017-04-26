@@ -29,6 +29,12 @@
 			$result = $infoUser->getInfoUser($user_id);
 			
 			$users = ProjectDAO::getProjectAssocUsers($name);
+			
+			$projectTasks = TaskDAO::getProjectTasks($name);
+			
+			$toDoTasks = $projectTasks[0];
+			$workingOnTasks = $projectTasks[1];
+			$doneTasks = $projectTasks[2];
 
 		}catch (Exception $e){
 			$message =  $e->getMessage();
