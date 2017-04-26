@@ -25,7 +25,7 @@
           <li><a href="../controller/MyProjectsController.php">My projects</a></li>
           <li><a href="../controller/AllProjectsController.php">All projects</a></li>
           <li role="separator" class="divider"></li>
-          <li><a href="/FinalProject/view/newproject.php">Create project</a></li>
+          <li><a href="../controller/NewProjectController.php">Create project</a></li>
         </ul>
       </li>
             <li class="dropdown">

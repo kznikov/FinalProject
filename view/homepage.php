@@ -48,11 +48,34 @@
 							<tbody>
 				             <?php if(isset($openTasks) && $openTasks){
 				             	foreach ($openTasks as $task){ ?>
+
+				             	<?php //var_dump($task); ?>
 								<tr>
 									<td><?=$task['task_id']?></td>
 									<td><?=$task['title']?></td>
-									<td><?=$task['type']?></td>
-									<td><?=$task['priority']?></td>
+									<td>
+										<?php if ($task['type'] == "Bug"): ?>
+											<img src="../view/images/bug.png" alt="Bug">
+										<?php endif ?>
+										<?php if ($task['type'] == "Enhancement"): ?>
+											<img src="../view/images/epic.png" alt="Enhancement">
+										<?php endif ?>
+										<?php if ($task['type'] == "Task"): ?>
+											<img src="../view/images/task.png" alt="Task">
+										<?php endif ?>
+										<?=$task['type']?>
+									</td>
+									<td><?php echo $task['priority']?>
+										<?php if ($task['priority'] == "Low"): ?>
+											<img src="../view/images/low.png" alt="Low">
+										<?php endif ?>
+										<?php if ($task['priority'] == "Medium"): ?>
+											<img src="../view/images/medium.png" alt="Medium">
+										<?php endif ?>
+										<?php if ($task['priority'] == "High"): ?>
+											<img src="../view/images/high.png" alt="High">
+										<?php endif ?>
+									</td>
 									<td><?=(empty($task['start_date']) ? "<em style='color:red;'>Not set</em>" : $task['start_date'])?></td>
 			              			<td><?=(empty($task['end_date']) ? "<em style='color:red;'>Not set</em>" : $task['end_date'])?></td>
 									<td>
@@ -92,8 +115,30 @@
 								<tr>
 									<td><?=$task['task_id']?></td>
 									<td><?=$task['title']?></td>
-									<td><?=$task['type']?></td>
-									<td><?=$task['priority']?></td>
+									<td>
+										<?php if ($task['type'] == "Bug"): ?>
+											<img src="../view/images/bug.png" alt="Bug">
+										<?php endif ?>
+										<?php if ($task['type'] == "Enhancement"): ?>
+											<img src="../view/images/epic.png" alt="Enhancement">
+										<?php endif ?>
+										<?php if ($task['type'] == "Task"): ?>
+											<img src="../view/images/task.png" alt="Task">
+										<?php endif ?>
+
+										<?=$task['type']?>
+									</td>
+									<td><?=$task['priority']?>
+										<?php if ($task['priority'] == "Low"): ?>
+											<img src="../view/images/low.png" alt="Low">
+										<?php endif ?>
+										<?php if ($task['priority'] == "Medium"): ?>
+											<img src="../view/images/medium.png" alt="Medium">
+										<?php endif ?>
+										<?php if ($task['priority'] == "High"): ?>
+											<img src="../view/images/high.png" alt="High">
+										<?php endif ?>
+									</td>
 									<td><?=(empty($task['start_date']) ? "<em style='color:red;'>Not set</em>" : $task['start_date'])?></td>
 			              			<td><?=(empty($task['end_date']) ? "<em style='color:red;'>Not set</em>" : $task['end_date'])?></td>
 									<td>

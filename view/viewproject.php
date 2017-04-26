@@ -16,7 +16,7 @@
       <div class="row">          
         <div class="myproject-header">
           <div class="myproject-title col-xs-12 col-md-10">
-            <h2>Project: <?php echo $infoProject['name']; ?></h2>
+            <h2><img style="width: 20px;" src="../view/images/bug.png" alt="<?php echo $infoProject['name']; ?>"> Project: <?php echo $infoProject['name']; ?></h2>
           </div>
           <div class="myproject-button col-xs-12 col-md-2">
              <button onclick="location.href = '../controller/MyProjectsController.php';" class="btn btn-primary">Back</button>
@@ -74,7 +74,7 @@
             <tr>
               <th>Email</th>
              <td>
-                 <a href="mailto:<?=$infoProject['user_email'];?>"><span class="glyphicon glyphicon-envelope"></span></a>
+                 <a href="mailto:<?php if(isset($infoProject['user_email'])){$infoProject['user_email'];}?>"><span class="glyphicon glyphicon-envelope"></span></a>
               </td>
             </tr>
         </table>
