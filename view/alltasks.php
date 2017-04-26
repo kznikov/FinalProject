@@ -29,7 +29,11 @@
           </div>
         </div>
 
-        <table class=" myproject-table table table-responsive table-bordered">
+        <div class="search-input">
+          <input type="text" id="search" class="form-control" placeholder="Type to search">
+        </div>
+
+        <table id="userlist" class="myproject-table table table-responsive table-bordered">
           <thead style="background-color: #205081; color: #fff;">
             <tr>
               <th>id</th>
