@@ -169,12 +169,9 @@
 							<ul>
 				             <?php if(isset($workingOnTasks) && $workingOnTasks) 
 				             	foreach ($workingOnTasks as $task): ?>
-							  <li onclick="viewProject(<?=$task['project']?>)"><a href="#"><?=$task['project']?></a></li>
+							  <li onclick="location.href = '../controller/ViewProjectController.php?project=<?= $task['project']?> ';"><a href="#"><?=$task['project']?></a></li>
 							<?php endforeach ?>
 							</ul>
-
-							
-
 						</div>
 						<div class="bg-info">
 							<h3 class="text-center">Users</h3>
