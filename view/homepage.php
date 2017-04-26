@@ -32,7 +32,10 @@
 
 					<div class="col-md-10">
 						<h3>My Open Tasks</h3>
-						<table class="table table-responsive table-bordered">
+						 <div class="search-input">
+				          <input type="text" id="search" class="form-control" placeholder="Type to search">
+				        </div>
+						<table id="userlist" class="table table-responsive table-bordered">
 							<thead style="background-color: #205081; color: #fff;">
 								<tr>
 									<th>id</th>
@@ -75,7 +78,7 @@
 						</table>
 
 						<h3>My Working On Tasks</h3>
-							<table class="table table-responsive table-bordered">
+							<table id="userlist" class="table table-responsive table-bordered">
 							<thead style="background-color: #205081; color: #fff;">
 								<tr>
 									<th>id</th>

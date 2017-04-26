@@ -9,8 +9,6 @@ class TaskDAO implements ITaskDAO {
 								 FROM tasks t JOIN task_priority tp JOIN task_status ts JOIN task_type tt JOIN users u JOIN projects p 
 								ON p.id = t.projects_id WHERE t.task_type_id = tt.id AND t.task_status_id = ts.id AND t.task_priority_id = tp.id AND u.id = t.assign_to AND t.assign_to = ";
 
-	const GET_PROJECT_DONE_TASKS = ""
-
 	const GET_PROJECT_OPEN_TASKS = "SELECT * FROM tasks t JOIN projects p ON t.projects_id = p.id JOIN task_priority tp ON t.task_priority_id = tp.id JOIN  task_status ts ON  t.task_status_id = ts.id JOIN task_type  tt ON t.task_type_id = tt.id 
 											WHERE t.task_status_id = 1 AND p.name LIKE ";
 
