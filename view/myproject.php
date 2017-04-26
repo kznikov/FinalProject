@@ -51,7 +51,7 @@
           <?php if(isset($adminProjects) && $adminProjects){
           			foreach ($adminProjects as $project){ ?>
 			            <tr>
-			              <td class="myproject-name" onclick="location.href = '../controller/ViewProjectController.php?project=<?= $project['name']?> ';"><img style="width: 20px; margin-right: 5px;" src="../view/images/.png"><?= $project['name']?>
+			              <td class="myproject-name" onclick="location.href = '../controller/ViewProjectController.php?project=<?= $project['name']?> ';"><img style="width: 20px; margin-right: 5px;" src="../view/images/task.png"><?= $project['name']?>
                      </td>
 			              <td> <a href="#" title="<?= $project['username']?>"><span onclick="viewUser(<?= $project['user_id']?>)"><?= $project['username']?></span></a></td>
 			              <td><?= $project['open_tasks']?></td>
