@@ -424,11 +424,12 @@ input#search-project {
     margin-top: 30px;
 }
 
-table#userlist td.myproject-name {
+table#userlist tr.myproject-name,
+table#userlist th {
     cursor: pointer;
 }
 
-table#userlist td.myproject-name:hover {
+table#userlist tr.myproject-name:hover {
     background: #337ab7;
     color: #fff;
 }
@@ -456,7 +457,7 @@ table td{
 }
 
 
-
+/*TASK PAGES*/
 
 .taks_boars{
 	list-style: none;
@@ -474,4 +475,11 @@ table td{
 	border:1px solid black;
 }
 
+.myproject-header ul.nav.nav-pills {
+    padding: 28px 0 0 133px;
+}
+
+#jira-file {
+    padding-top: 100px;
+}
 

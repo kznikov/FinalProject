@@ -10,16 +10,15 @@
 	
 	$sessionVars = json_decode($_SESSION['user'], true);
 	$user_id = $sessionVars['id'];
-	
-	try {
 
-		$assignTasks = TaskDAO::getUserAssignTasks($user_id);
-		//var_dump($assignTasks);
+	if (isset($_GET['name'])) {
 
-	} catch ( Exception $e ) {
-		$message = $e->getMessage ();
+		$name = $_GET['name'];
+
+		$task = TaskDAO::getTask($name);
+		//var_dump($task);
+		
+		include '../view/viewtask.php';
 	}
 	
-	//var_dump($assignTasks);
-	include '../view/mytasks.php';
 ?>
