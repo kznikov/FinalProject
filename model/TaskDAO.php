@@ -8,9 +8,17 @@ class TaskDAO implements ITaskDAO {
 	const GET_USER_ASSIGN_TASKS = "SELECT CONCAT(p.prefix, t.id) as task_id, p.name as project, t.*, u.username, tt.name as type, ts.name as status, tp.name as priority
 								 FROM tasks t JOIN task_priority tp JOIN task_status ts JOIN task_type tt JOIN users u JOIN projects p 
 								ON p.id = t.projects_id WHERE t.task_type_id = tt.id AND t.task_status_id = ts.id AND t.task_priority_id = tp.id AND u.id = t.assign_to AND t.assign_to = ";
+
+	const GET_PROJECT_DONE_TASKS = ""
+
+	const GET_PROJECT_OPEN_TASKS = "SELECT * FROM tasks t JOIN projects p ON t.projects_id = p.id JOIN task_priority tp ON t.task_priority_id = tp.id JOIN  task_status ts ON  t.task_status_id = ts.id JOIN task_type  tt ON t.task_type_id = tt.id 
+											WHERE t.task_status_id = 1 AND p.name LIKE ";
+
+	const GET_PROJECT_WORKINGON_TASKS = "SELECT * FROM tasks t JOIN projects p ON t.projects_id = p.id JOIN task_priority tp ON t.task_priority_id = tp.id JOIN  task_status ts ON  t.task_status_id = ts.id JOIN task_type  tt ON t.task_type_id = tt.id
+												 WHERE t.task_status_id IN (2,3) AND p.name LIKE ";
 	
-	const GET_PROJECT_DONE_TASKS = "";
-	
+	const GET_PROJECT_DONE_TASKS = "SELECT * FROM tasks t JOIN projects p ON t.projects_id = p.id JOIN task_priority tp ON t.task_priority_id = tp.id JOIN  task_status ts ON  t.task_status_id = ts.id JOIN task_type  tt ON t.task_type_id = tt.id
+														 WHERE t.task_status_id IN (4,5) AND p.name LIKE ";
 	
 	public function createTask(Task $task) {
 		
@@ -71,6 +79,33 @@ class TaskDAO implements ITaskDAO {
 			throw new Exception("Failed to get information from DB!");
 		}
 	}
+	
+	
+	
+	public static function getProjectTasks($project_name){
+		try{
+			$db = DBConnection::getDb();
+			
+			$toDoTasks =  $db->query(self::GET_PROJECT_OPEN_TASKS.$project_name);
+			$toDoTasks= $toDoTasks->fetchAll(PDO::FETCH_ASSOC);
+			
+			$workingOnTasks = $db->query(self::GET_PROJECT_WORKINGON_TASKS.$project_name);
+			$workingOnTasks = $workingOnTasks->fetchAll(PDO::FETCH_ASSOC);
+			
+			$doneTasks = $db->query(self::GET_PROJECT_DONE_TASKS.$project_name);
+			$doneTasks = $doneTasks->fetchAll(PDO::FETCH_ASSOC);
+			
+			$projectTasks [] = $toDoTasks;
+			$projectTasks [] = $workingOnTasks;
+			$projectTasks [] = $doneTasks;
+			
+			return $projectTasks;
+			
+		}catch(Exception $e){
+			throw new Exception("Failed to get information from DB!");
+		}
+	}
+	
 	
 }
 

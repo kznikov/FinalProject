@@ -145,6 +145,24 @@
           </tbody>
         
         </table>
+        <ul class="taks_boars">
+        	<li>To Do</li>
+        	<li>123</li>
+        	<li>123</li>
+        	<li>123</li>
+        </ul>
+        <ul class="taks_boars">
+        	<li>Working On</li>
+        	<li>123</li>
+        	<li>123</li>
+        	<li>123</li>
+        </ul>
+        <ul class="taks_boars">
+        	<li>Done</li>
+        	<li>123</li>
+        	<li>123</li>
+        	<li>123</li>
+        </ul>
          </div>  
         <div class="bg-success">
           <p>Export as word, exel, pdf</p>

@@ -454,3 +454,24 @@ table td{
 #assoc_userlist th{
 	font-size: 0.9em;
 }
+
+
+
+
+.taks_boars{
+	list-style: none;
+	float: left;
+	width: 33%;
+}
+
+
+#row ul:frst-child{
+	clear: both;
+}
+
+
+.taks_boars li{
+	border:1px solid black;
+}
+
+
