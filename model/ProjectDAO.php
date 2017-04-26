@@ -31,7 +31,12 @@ class ProjectDAO implements IProjectDAO {
     const GET_INFO_PROJECT = "SELECT p.*, u.*, ps.name as status, COUNT(t.id) as 'all_tasks',ROUND(AVG(t.progress)) as 'avg_tasks_progress' FROM projects p JOIN users u JOIN project_status ps left JOIN tasks t
 									 ON p.id = t.projects_id WHERE p.project_status_id = ps.id AND p.admin_id=u.id AND p.name LIKE ?";
 
-	const SELECT_NAME = "SELECT name FROM projects";							 
+	const SELECT_NAME = "SELECT name FROM projects";
+	
+	
+	const GET_PROJECT_ASSOC_USERS = "SELECT * from (SELECT u.* FROM users u JOIN user_projects up 
+							ON u.id = up.user_id JOIN projects p ON up.project_id = p.id WHERE p.name LIKE ?) as users 
+												union (SELECT u.* FROM users u JOIN projects p ON p.admin_id = u.id WHERE p.name LIKE ?)";
 
 	
 	public function createProject(Project $project) {
@@ -146,15 +151,15 @@ class ProjectDAO implements IProjectDAO {
 
 		try{
 
-		$db = DBConnection::getDb();
-		
-		$pstmt = $db->prepare(self::GET_INFO_PROJECT);
-		$pstmt->execute(array($name));
-		
-		$res = $pstmt->fetchAll(PDO::FETCH_ASSOC);
-		$infoProject = $res[0];
+			$db = DBConnection::getDb();
+			
+			$pstmt = $db->prepare(self::GET_INFO_PROJECT);
+			$pstmt->execute(array($name));
+			
+			$res = $pstmt->fetchAll(PDO::FETCH_ASSOC);
+			$infoProject = $res[0];
 
-		return $infoProject;
+			return $infoProject;
 
 		} catch(Exception $e){
 			throw new Exception("Failed to get information from DB!");
@@ -169,7 +174,25 @@ class ProjectDAO implements IProjectDAO {
 		return $res;
 	}
 
-
+	
+	
+	public static function getProjectAssocUsers($projectName) {
+		
+		try{
+			
+			$db = DBConnection::getDb();
+			
+			$pstmt = $db->prepare(self::GET_PROJECT_ASSOC_USERS);
+			$pstmt->execute(array($projectName, $projectName));
+			
+			$users = $pstmt->fetchAll(PDO::FETCH_ASSOC);
+			
+			return $users;
+			
+		} catch(Exception $e){
+			throw new Exception("Failed to get information from DB!");
+		}
+	}
 
 
 	

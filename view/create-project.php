@@ -110,7 +110,6 @@
                     <option value="2">Suspended</option>
                     <option value="3">Closed</option>
                     <option value="4">Deleted</option>
-                    <option value="5">Chardge item</option>
                   </select>
                 </div>
                 

@@ -49,7 +49,7 @@
 			              <td><?= $project['open_tasks']?></td>
 			              <td><?= $project['all_tasks']?></td>
 			              <td><?= ($project['client'] == null ? "" : $project['client'])?></td>
-			              <td><?= $project['status']?></td>
+						  <td><img style="width: 20px; margin-right: 5px;" src="../view/images/project_status_<?=$project['project_status_id']?>.png"><?=$project['status']?></td>
 			              <td><?php if($project['avg_tasks_progress'] == null){
 			              				echo "<em>No tasks found.</em>";
 			              			}else{?>

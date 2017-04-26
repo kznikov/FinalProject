@@ -377,63 +377,121 @@ function editUser(userId)
 }
 
 
+
+
+function sortAssocUselistTable(f,n){
+	  var rows = $('#assoc_userlist tbody  tr').get();
+
+	  rows.sort(function(a, b) {
+
+	    var A = getVal(a);
+	    var B = getVal(b);
+
+	    if(A < B) {
+	      return -1*f;
+	    }
+	    if(A > B) {
+	      return 1*f;
+	    }
+	    return 0;
+
+	  });
+
+	  function getVal(elm){
+	    var v = $(elm).children('td').eq(n).text().toUpperCase();
+	    if($.isNumeric(v)){
+	      v = parseInt(v,10);
+	    }
+	    return v;
+	  }
+
+	  $.each(rows, function(index, row) {
+	      $('#assoc_userlist').children('tbody').append(row);
+	    });
+	  }
+
+
 //sort table
 
 function sortTable(f,n){
-  var rows = $('#userlist tbody  tr').get();
+	  var rows = $('#userlist tbody  tr').get();
 
-  rows.sort(function(a, b) {
+	  rows.sort(function(a, b) {
 
-    var A = getVal(a);
-    var B = getVal(b);
+	    var A = getVal(a);
+	    var B = getVal(b);
 
-    if(A < B) {
-      return -1*f;
-    }
-    if(A > B) {
-      return 1*f;
-    }
-    return 0;
+	    if(A < B) {
+	      return -1*f;
+	    }
+	    if(A > B) {
+	      return 1*f;
+	    }
+	    return 0;
 
-  });
+	  });
 
-  function getVal(elm){
-    var v = $(elm).children('td').eq(n).text().toUpperCase();
-    if($.isNumeric(v)){
-      v = parseInt(v,10);
-    }
-    return v;
-  }
+	  function getVal(elm){
+	    var v = $(elm).children('td').eq(n).text().toUpperCase();
+	    if($.isNumeric(v)){
+	      v = parseInt(v,10);
+	    }
+	    return v;
+	  }
 
-  $.each(rows, function(index, row) {
-      $('#userlist').children('tbody').append(row);
-    });
-  }
+	  $.each(rows, function(index, row) {
+	      $('#userlist').children('tbody').append(row);
+	    });
+	  }
+
+
 
 var f_name = 1;
 var f_email = 1;
 var f_username = 1;
 
-$("#name").click(function(){
+$(".name").click(function(){
     f_name *= -1;
     var n = $(this).prevAll().length;
     sortTable(f_name,n);
 });
 
-$("#email").click(function(){
+$(".email").click(function(){
     f_email *= -1;
     var n = $(this).prevAll().length;
     sortTable(f_email,n);
 });
 
-$("#username").click(function(){
+$(".username").click(function(){
     f_username *= -1;
     var n = $(this).prevAll().length;
     sortTable(f_username,n);
 });
 
 
-//search in table
+var f_name = 1;
+var f_email = 1;
+var f_username = 1;
+
+$(".name_assoc_userlist").click(function(){
+    f_name *= -1;
+    var n = $(this).prevAll().length;
+    sortAssocUselistTable(f_name,n);
+});
+
+$(".email_assoc_userlist").click(function(){
+    f_email *= -1;
+    var n = $(this).prevAll().length;
+    sortAssocUselistTable(f_email,n);
+});
+
+$(".username_assoc_userlist").click(function(){
+    f_username *= -1;
+    var n = $(this).prevAll().length;
+    sortAssocUselistTable(f_username,n);
+});
+
+
 
 var $rows = $('#userlist tr');
 $('#search').keyup(function() {

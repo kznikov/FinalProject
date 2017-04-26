@@ -38,9 +38,9 @@
           <thead style="background-color: #205081; color: #fff;">
             <tr>
               <th>Avatar</th>
-              <th id="name">Name <span class="glyphicon glyphicon-resize-vertical"></span></th>
-              <th id="username">Username  <span class="glyphicon glyphicon-resize-vertical"></th>
-              <th id="email">Email <span class="glyphicon glyphicon-resize-vertical"></span></th>
+              <th class="name">Name <span class="glyphicon glyphicon-resize-vertical"></span></th>
+              <th class="username">Username  <span class="glyphicon glyphicon-resize-vertical"></th>
+              <th class="email">Email <span class="glyphicon glyphicon-resize-vertical"></span></th>
               <th>Role</th>
               <th>Action</th> 
             </tr>

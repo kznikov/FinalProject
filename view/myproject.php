@@ -51,13 +51,13 @@
           <?php if(isset($adminProjects) && $adminProjects){
           			foreach ($adminProjects as $project){ ?>
 			            <tr>
-			              <td class="myproject-name" onclick="location.href = '../controller/ViewProjectController.php?project=<?= $project['name']?> ';"><img style="width: 20px; margin-right: 5px;" src="../view/images/task.png"><?= $project['name']?>
+			              <td class="myproject-name" onclick="location.href = '../controller/ViewProjectController.php?project=<?= $project['name']?> ';"><?= $project['name']?>
                      </td>
 			              <td> <a href="#" title="<?= $project['username']?>"><span onclick="viewUser(<?= $project['user_id']?>)"><?= $project['username']?></span></a></td>
 			              <td><?= $project['open_tasks']?></td>
 			              <td><?= $project['all_tasks']?></td>
 			              <td><?= ($project['client'] == null ? "" : $project['client'])?></td>
-			              <td><?= $project['status']?></td>
+			              <td><img style="width: 20px; margin-right: 5px;" src="../view/images/project_status_<?=$project['project_status_id']?>.png"><?=$project['status']?></td>
 			              <td><?php if($project['avg_tasks_progress'] == null){
 			              				echo "<em>No tasks found.</em>";
 			              			}else{?>

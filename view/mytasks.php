@@ -45,11 +45,11 @@
 			              <td><?=$task['task_id'] ?></td>
 			              <td><?=$task['title'] ?></td>
 			              <td><?=$task['username'] ?></td>
-			              <td><?=$task['type'] ?></td>
+			              <td><img style="width: 20px; margin-right: 5px;" src="../view/images/type_<?=$task['task_type_id']?>.png"><?=$task['type'] ?></td>
 			              <td><?=(empty($task['start_date']) ? "<em style='color:red;'>Not set</em>" : $task['start_date'])?></td>
 			              <td><?=(empty($task['end_date']) ? "<em style='color:red;'>Not set</em>" : $task['end_date'])?></td>
 			              <td><?=$task['status'] ?></td>
-			              <td><?=$task['priority']?></td>
+			              <td><?=$task['priority']?><img style="width: 30px; margin-left: 0px;" src="../view/images/priority_<?=$task['task_priority_id']?>.png"></td>
 			              <td><div class="progress-wrap progress" style="background-color:orange;" data-progress-percent="<?= $task['progress']?>">
 								<div class="progress-bar progress"></div>	  
 							</div>
@@ -65,7 +65,7 @@
 			 <?php }
           	}else{ ?>
 			      	<tr>
-			      	<td colspan="10" style="text-align: center;"><em><strong>No results found.</strong></em></td>
+			      	<td colspan="11" style="text-align: center;"><em><strong>No results found.</strong></em></td>
 			      	</tr>
 			<?php }?>
           </tbody>
