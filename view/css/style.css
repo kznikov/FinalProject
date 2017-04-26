@@ -456,22 +456,74 @@ table td{
 }
 
 
+#board{
+	clear:both;
+	margin-left: 12px;
+}
 
-
-.taks_boars{
+.taks_board{
 	list-style: none;
 	float: left;
 	width: 33%;
+	padding: 0px;
 }
 
 
-#row ul:frst-child{
-	clear: both;
-}
 
-
-.taks_boars li{
+.taks_board>li{
 	border:1px solid black;
+
 }
 
+
+.taks_board>li:FIRST-CHILD {
+	background-color: #205081;
+	font-size: 1.4em;
+	color: white;
+	text-align: center;
+}
+
+.board_note{
+	display: inline-block;
+	width: 100%;
+	font-size: 1em;
+	font-weight: bold;
+	 -o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+    -webkit-transition:.2s;
+	
+}
+
+.board_note:HOVER{
+	 transform: scale(1.03);
+	 cursor: pointer;
+}
+
+
+.board_note>ul{
+	list-style: none;
+	float: left;
+	width: 50%;
+	padding-left: 10px;
+}
+
+
+#priority{
+	clear: both;
+	width: 30%;
+	margin-left:80px;
+	padding-right:0px;
+	margin-bottom: 20px;
+}
+
+#priority td{
+	width: 40px;
+}
+
+
+.priority{
+	width: 20px;
+	height: 20px;
+}
 
