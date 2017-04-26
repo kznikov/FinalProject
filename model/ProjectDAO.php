@@ -28,8 +28,8 @@ class ProjectDAO implements IProjectDAO {
 	const GET_ASSOC_PROJECTS_PROGRESS = "SELECT p.id, ROUND(AVG(t.progress)) as 'avg_tasks_progress' FROM projects p JOIN user_projects up LEFT JOIN tasks t
 											ON p.id = t.projects_id WHERE p.id = up.project_id and up.user_id = ";
 
-    const GET_INFO_PROJECT = "SELECT p.*, u.id as user_id, u.email as user_email, u.username, ps.name as status, COUNT(t.id) as all_tasks FROM projects p JOIN user_projects up JOIN users u JOIN project_status ps LEFT JOIN tasks t
-							 ON p.id = t.projects_id WHERE p.name = ?";
+    const GET_INFO_PROJECT = "SELECT p.*, u.*, ps.name as status, COUNT(t.id) as 'all_tasks',ROUND(AVG(t.progress)) as 'avg_tasks_progress' FROM projects p JOIN users u JOIN project_status ps left JOIN tasks t
+									 ON p.id = t.projects_id WHERE p.project_status_id = ps.id AND p.admin_id=u.id AND p.name LIKE ?";
 
 	const SELECT_NAME = "SELECT name FROM projects";							 
 

@@ -41,19 +41,7 @@ class TaskDAO implements ITaskDAO {
 		}
 	}
 	
-	
-	public static function getUserOpenTasks($user_id){
-		try{
-			$db = DBConnection::getDb();
-			
-			$tasks = $db->query(self::GET_USER_ASSIGN_TASKS.$user_id);
-			$tasks = $tasks->fetchAll(PDO::FETCH_ASSOC);
-			
-			return $tasks;
-		}catch(Exception $e){
-			throw new Exception("Failed to get information from DB!");
-		}
-	}
+
 	
 	
 	 public static function getUserAssignOpenTasks($user_id){

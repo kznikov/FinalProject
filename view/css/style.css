@@ -437,3 +437,18 @@ table#userlist td.myproject-name:hover {
 table td{
 	font-weight: bold;
 }
+
+
+#viewproject th{
+	width: 140px;
+	text-align: right;
+}
+
+
+#viewproject th{
+	background-color: #205081; 
+	color: #fff;
+}
+
+
+

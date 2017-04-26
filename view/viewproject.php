@@ -24,31 +24,59 @@
         </div>
       </div>
        <div class="row">  
-        <table id="userlist" class="myproject-table table table-responsive table-bordered">
-          <thead style="background-color: #205081; color: #fff;">
+        <table id="viewproject" style="width: 80%;" class="myproject-table table table-responsive table-bordered">
             <tr>
-              <th scope=row>Name</th>
-              <th scope="row">Admin</th>
-              <th scope="row">Client</th>
-              <th scope="row">Status</th>
-              <th scope="row">All tasks</th>
-              <th scope="row">Progress</th>
-              <th scope="row">Email</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
+              <th>Name</th>
               <td><?php echo $infoProject['name']; ?></td>
-              <td><?php echo $result['firstname'] . " " . $result['lastname']; ?></td>
+            </tr>
+            <tr>
+              <th >Prefix</th>
+              <td><?php echo $infoProject['prefix']; ?></td>
+            </tr>
+            <tr>
+              <th>Admin</th>
+              <td><?php echo $infoProject['username']; ?></td>
+            </tr>
+             <tr>
+              <th>Client</th>
               <td><?php echo $infoProject['client']; ?></td>
+            </tr>
+             <tr>
+              <th>Status</th>
               <td><?php echo $infoProject['status']; ?></td>
+            </tr>
+             <tr>
+              <th>All tasks</th>
               <td><?php echo $infoProject['all_tasks']; ?></td>
-              <td><?php echo $infoProject['progress']; ?></td>  
-              <td class="text-center">
+            </tr>
+            <tr>
+              <th>Progress</th>
+              <td><?php if($infoProject['avg_tasks_progress'] == null){
+              				echo "<em>No tasks found.</em>";
+              			}else{?>
+              			
+              	  <div class="progress-wrap progress" data-progress-percent="<?= $infoProject['avg_tasks_progress']?>">
+				  <div class="progress-bar progress"></div>
+				  
+				</div>
+				<p class="progress_perc" ><?=$infoProject['avg_tasks_progress']?>%</p>
+             			<?php }?>
+              </td>
+            </tr>
+             <tr>
+              <th>Start Date</th>
+              <td><?=($infoProject['start_date'] == '0000-00-00' ? "<em style='color:red;'>Not set</em>" : $infoProject['start_date'])?></td>
+            </tr>
+             <tr>
+              <th>End Date</th>
+			  <td><?=($infoProject['end_date'] == '0000-00-00'? "<em style='color:red;'>Not set</em>" : $infoProject['end_date'])?></td>
+            </tr>
+            <tr>
+              <th>Email</th>
+             <td>
                  <a href="mailto:<?=$infoProject['user_email'];?>"><span class="glyphicon glyphicon-envelope"></span></a>
               </td>
             </tr>
-          </tbody>
         </table>
         <div class="bg-success">
           <p>Export as word, exel, pdf</p>
