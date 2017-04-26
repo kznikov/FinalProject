@@ -21,6 +21,8 @@
 			$projects = new ProjectDAO();
 			$infoProject = $projects->getInfoProject($name);
 
+			//var_dump($infoProject);
+
 			$user_id = $infoProject['admin_id'];
 
 			$infoUser = new UserDAO;

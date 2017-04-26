@@ -377,6 +377,13 @@ function editUser(userId)
 }
 
 
+
+function viewProject(id)
+{
+   window.location = '../controller/ViewProjectController.php?project=' + id;
+}
+
+
 //sort table
 
 function sortTable(f,n){

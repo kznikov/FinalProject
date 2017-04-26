@@ -112,6 +112,8 @@
 							<tbody>
 				             <?php if(isset($workingOnTasks) && $workingOnTasks){
 				             	foreach ($workingOnTasks as $task){ ?>
+
+				             	<?php //var_dump($task); ?>
 								<tr>
 									<td><?=$task['task_id']?></td>
 									<td><?=$task['title']?></td>
@@ -163,11 +165,19 @@
 
 					<aside class="col-md-2 sidebar">
 						<div class="bg-info">
-							<h3>My projects</h3>
+							<h3 class="text-center">My projects</h3>
+							<ul>
+				             <?php if(isset($workingOnTasks) && $workingOnTasks) 
+				             	foreach ($workingOnTasks as $task): ?>
+							  <li onclick="viewProject(<?=$task['project']?>)"><a href="#"><?=$task['project']?></a></li>
+							<?php endforeach ?>
+							</ul>
+
+							
 
 						</div>
 						<div class="bg-info">
-							<h3>Users</h3>
+							<h3 class="text-center">Users</h3>
 
 						</div>
 					<aside><!-- /.blog-sidebar -->
