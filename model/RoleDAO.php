@@ -1,6 +1,7 @@
 <?php
 
 require_once "../model/IRoleDAO.php";
+
 class RoleDAO implements IRoleDAO {
 	
 	
@@ -58,7 +59,6 @@ class RoleDAO implements IRoleDAO {
 	}
 	
 }
-
 
 
 ?>

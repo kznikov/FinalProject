@@ -1,9 +1,7 @@
 <?php
-	function __autoload($className) {
-		require_once "../model/" . $className . '.php';
-	}
-	
+
 	include_once 'CheckSession.php';
+	include "../view/inc/autoload.php";
 	
 	$sessionVars = json_decode($_SESSION['user'], true);
 	$user_id = $sessionVars['id'];
@@ -20,4 +18,5 @@
 	
 	//var_dump($assignTasks);
 	include '../view/mytasks.php';
+
 ?>

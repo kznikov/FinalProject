@@ -1,6 +1,8 @@
 <?php
+
 interface IProjectDAO {
-	public function createProject(Project $project) ;
-	
+
+    public function createProject(Project $project);
 }
+
 ?>

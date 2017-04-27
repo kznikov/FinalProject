@@ -1,7 +1,8 @@
 <?php
+
 require_once "../model/IProjectDAO.php";
+
 class TaskDAO implements ITaskDAO {
-	
 	
 	private $db;
 	
@@ -13,15 +14,10 @@ class TaskDAO implements ITaskDAO {
 
 	const GET_PROJECT_OPEN_TASKS = "SELECT t.*, ts.name as status, tt.name as type, tp.name as priority FROM tasks t JOIN projects p ON t.projects_id = p.id JOIN task_priority tp ON t.task_priority_id = tp.id JOIN  task_status ts ON  t.task_status_id = ts.id JOIN task_type  tt ON t.task_type_id = tt.id 
 											WHERE t.task_status_id = 1 AND p.name LIKE ?";
-
-	const GET_PROJECT_WORKINGON_TASKS = "SELECT t.*, ts.name as status, tt.name as type, tp.name as priority FROM tasks t JOIN projects p ON t.projects_id = p.id JOIN task_priority tp ON t.task_priority_id = tp.id JOIN  task_status ts ON  t.task_status_id = ts.id JOIN task_type  tt ON t.task_type_id = tt.id
+    const GET_PROJECT_WORKINGON_TASKS = "SELECT t.*, ts.name as status, tt.name as type, tp.name as priority FROM tasks t JOIN projects p ON t.projects_id = p.id JOIN task_priority tp ON t.task_priority_id = tp.id JOIN  task_status ts ON  t.task_status_id = ts.id JOIN task_type  tt ON t.task_type_id = tt.id
 												 WHERE t.task_status_id IN (2,3) AND p.name LIKE ?";
-	
-
-	const GET_PROJECT_DONE_TASKS = "SELECT t.*, ts.name as status, tt.name as type, tp.name as priority FROM tasks t JOIN projects p ON t.projects_id = p.id JOIN task_priority tp ON t.task_priority_id = tp.id JOIN  task_status ts ON  t.task_status_id = ts.id JOIN task_type  tt ON t.task_type_id = tt.id
+    const GET_PROJECT_DONE_TASKS = "SELECT t.*, ts.name as status, tt.name as type, tp.name as priority FROM tasks t JOIN projects p ON t.projects_id = p.id JOIN task_priority tp ON t.task_priority_id = tp.id JOIN  task_status ts ON  t.task_status_id = ts.id JOIN task_type  tt ON t.task_type_id = tt.id
 														 WHERE t.task_status_id IN (4,5) AND p.name LIKE ?";
-
-
     const GET_TASKS = "SELECT CONCAT(p.prefix, t.id) as task_id, p.name as project, t.*, u.username, tt.name as type, ts.name as status, tp.name as priority FROM tasks t JOIN task_priority tp ON t.task_priority_id = tp.id JOIN task_status ts ON t.task_status_id = ts.id JOIN task_type tt 
 								ON t.task_type_id = tt.id JOIN users u ON u.id = t.assign_to JOIN projects p ON p.id = t.projects_id WHERE t.id = ?";
 
@@ -155,8 +151,7 @@ class TaskDAO implements ITaskDAO {
 			throw new Exception("Failed to get information from DB!");
 		}
 	}
-	
-	
 }
+	
 
 ?>

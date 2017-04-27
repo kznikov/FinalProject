@@ -1,12 +1,5 @@
 <?php
 
-	
-	
-/* 	function __autoload($className) {
-		require_once "../model/" . $className . '.php';
-		
-	} */
-	
 	require_once "../model/UserDAO.php";
 	require_once "../model/IUserDAO.php";
 	require_once "../model/DBConnection.php";
@@ -44,5 +37,4 @@
 		include '../view/forgot.php';
 		
 	}
-	
 ?>

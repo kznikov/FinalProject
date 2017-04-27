@@ -1,8 +1,9 @@
 <?php
+
 require_once "../model/IProjectDAO.php";
+
 class ProjectDAO implements IProjectDAO {
-	
-	
+
 	private $db;
 	
 	
@@ -34,13 +35,11 @@ class ProjectDAO implements IProjectDAO {
 
     const GET_INFO_PROJECT = "SELECT p.*, u.*, ps.name as status, COUNT(t.id) as 'all_tasks',ROUND(AVG(t.progress)) as 'avg_tasks_progress' FROM projects p JOIN users u 
 						ON p.admin_id=u.id JOIN project_status ps ON p.project_status_id = ps.id left JOIN tasks t ON p.id = t.projects_id WHERE p.name LIKE ?";
-
-	const SELECT_NAME = "SELECT name FROM projects";
-	
-	
-	const GET_PROJECT_ASSOC_USERS = "SELECT * from (SELECT u.* FROM users u JOIN user_projects up 
+    const SELECT_NAME = "SELECT name FROM projects";
+    const GET_PROJECT_ASSOC_USERS = "SELECT * from (SELECT u.* FROM users u JOIN user_projects up 
 							ON u.id = up.user_id JOIN projects p ON up.project_id = p.id WHERE p.name LIKE ?) as users 
 												union (SELECT u.* FROM users u JOIN projects p ON p.admin_id = u.id WHERE p.name LIKE ?)";
+
 
 	public function __construct() {
 		$this->db = DBConnection::getDb();
@@ -198,9 +197,8 @@ class ProjectDAO implements IProjectDAO {
 		}
 	}
 
-
+}
 	
 
-}
 
 ?>

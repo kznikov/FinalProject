@@ -1,5 +1,7 @@
 <?php
+
 require_once "../model/IUserDAO.php";
+
 	class UserDAO implements IUserDAO {
 		
 		
@@ -170,6 +172,5 @@ require_once "../model/IUserDAO.php";
 		
 	}
 	
-	
-	
+
 ?>

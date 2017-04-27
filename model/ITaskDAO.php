@@ -1,6 +1,8 @@
 <?php
-	interface ITaskDAO {
-		public function createTask(Task $task) ;
-		
-	}
+
+interface ITaskDAO {
+
+    public function createTask(Task $task);
+}
+
 ?>

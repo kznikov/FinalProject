@@ -86,9 +86,8 @@ class UploadFile {
         $this->renameDuplicates = $renameDuplicates;
         $uploaded = current($_FILES);
         if ($this->checkFile($uploaded)) {
-        	return $this->moveFile($uploaded);
+            return $this->moveFile($uploaded);
         }
-        
     }
 
     public function getMessages() {

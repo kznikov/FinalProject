@@ -1,5 +1,5 @@
 <?php
-	
+
 	include_once 'CheckSession.php';
 	
 	if (isset($_SESSION['user'])){
@@ -8,7 +8,5 @@
 	}else{
 		include '../view/index.php';
 	}
-	
-	
-	
+
 ?>

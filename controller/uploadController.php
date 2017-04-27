@@ -1,10 +1,7 @@
 <?php
 
+include "../view/inc/autoload.php";
 
-
-function __autoload($className) {
-    require_once "../model/" . $className . '.php';
-}
 
 include_once 'CheckSession.php';
 
@@ -42,7 +39,5 @@ if ($_SESSION['user']){
 		}
 	} 
 }
-
-
 
 ?>
