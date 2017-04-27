@@ -1,5 +1,8 @@
 <?php
-	interface IRoleDAO{
-		public function getAllRoles() ;
-	}
+
+interface IRoleDAO {
+
+    public function getAllRoles();
+}
+
 ?>
