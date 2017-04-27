@@ -12,7 +12,10 @@
 	$user_id = $sessionVars['id'];
 	
 	try {
-		$assignTasks = TaskDAO::getUserAssignTasks( $user_id );
+
+		$assignTasks = TaskDAO::getUserAssignTasks($user_id);
+		//var_dump($assignTasks);
+
 	} catch ( Exception $e ) {
 		$message = $e->getMessage ();
 	}

@@ -23,9 +23,7 @@ if (isset($_GET['user'])) {
 	if (!empty($result)) {
 		include '../view/userprofile.php';
 	} else {
-		session_destroy();
-		unset($_SESSION['user']);
-		include '../view/index.php';
+		include '../view/pageNotFound.php';
 	}
 
 	

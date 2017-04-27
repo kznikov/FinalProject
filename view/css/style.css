@@ -424,11 +424,12 @@ input#search-project {
     margin-top: 30px;
 }
 
-table#userlist td.myproject-name {
+table#userlist tr.myproject-name,
+table#userlist th {
     cursor: pointer;
 }
 
-table#userlist td.myproject-name:hover {
+table#userlist tr.myproject-name:hover {
     background: #337ab7;
     color: #fff;
 }
@@ -456,12 +457,14 @@ table td{
 }
 
 
+
 #board{
 	clear:both;
 	margin-left: 12px;
 }
 
-.taks_board{
+
+.tasks_board{
 	list-style: none;
 	float: left;
 	width: 33%;
@@ -470,18 +473,19 @@ table td{
 
 
 
-.taks_board>li{
+.tasks_board>li{
 	border:1px solid black;
 
 }
 
 
-.taks_board>li:FIRST-CHILD {
+.tasks_board>li:FIRST-CHILD {
 	background-color: #205081;
 	font-size: 1.4em;
 	color: white;
 	text-align: center;
 }
+
 
 .board_note{
 	display: inline-block;
@@ -509,7 +513,7 @@ table td{
 }
 
 
-#priority{
+#priority_legend{
 	clear: both;
 	width: 30%;
 	margin-left:80px;
@@ -517,13 +521,21 @@ table td{
 	margin-bottom: 20px;
 }
 
-#priority td{
+#priority_legend td{
 	width: 40px;
 }
 
 
-.priority{
+.priority_legend{
 	width: 20px;
 	height: 20px;
+}
+
+.myproject-header ul.nav.nav-pills {
+    padding: 28px 0 0 133px;
+}
+
+#jira-file {
+    padding-top: 100px;
 }
 

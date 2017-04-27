@@ -21,6 +21,10 @@
 			$projects = new ProjectDAO();
 			$infoProject = $projects->getInfoProject($name);
 			
+			if(empty($infoProject['name'])){
+				include '../view/pageNotFound.php';
+				die();
+			}
 			//var_dump($infoProject);
 
 			$user_id = $infoProject['admin_id'];

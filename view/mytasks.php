@@ -45,7 +45,7 @@
           
           <?php if(isset($assignTasks) && $assignTasks){
           		foreach ($assignTasks as $task){ ?>
-			            <tr>
+			            <tr class="myproject-name" onclick="location.href = '../controller/ViewTaskController.php?name=<?= $task['id']?> ';">
 			              <td><?=$task['task_id'] ?></td>
 			              <td><?=$task['title'] ?></td>
 			              <td><?=$task['username'] ?></td>

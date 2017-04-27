@@ -33,15 +33,15 @@
           <input type="text" id="search" class="form-control" placeholder="Type to search">
         </div>
 
-        <table id="userlist" class="myproject-table table table-responsive table-bordered">
+        <table id="userlist" class="myproject-table table table-responsive table-bordered tablesorter">
           <thead style="background-color: #205081; color: #fff;">
             <tr>
-              <th>Name</th>
-              <th>Admin</th>
-              <th>Open tasks</th>
-              <th>All tasks</th>
-              <th>Client</th>
-              <th>Status</th>
+              <th class="name">Name <span class="glyphicon glyphicon-resize-vertical"></span></th>
+              <th >Admin <span class="glyphicon glyphicon-resize-vertical"></span></th>
+              <th>Open tasks <span class="glyphicon glyphicon-resize-vertical"></span></th>
+              <th>All tasks  <span class="glyphicon glyphicon-resize-vertical"></span></th>
+              <th class="username">Client <span class="glyphicon glyphicon-resize-vertical"></span></th>
+              <th>Status  <span class="glyphicon glyphicon-resize-vertical"></span></th>
               <th>Progress</th>
               <th>Action</th>
               <th>Email</th>
@@ -50,8 +50,8 @@
           <tbody>
           <?php if(isset($adminProjects) && $adminProjects){
           			foreach ($adminProjects as $project){ ?>
-			            <tr>
-			              <td class="myproject-name" onclick="location.href = '../controller/ViewProjectController.php?project=<?= $project['name']?> ';"><?= $project['name']?>
+			            <tr class="myproject-name" onclick="location.href = '../controller/ViewProjectController.php?project=<?= $project['name']?> ';">
+			              <td ><?= $project['name']?>
                      </td>
 			              <td> <a href="#" title="<?= $project['username']?>"><span onclick="viewUser(<?= $project['user_id']?>)"><?= $project['username']?></span></a></td>
 			              <td><?= $project['open_tasks']?></td>

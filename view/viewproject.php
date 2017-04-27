@@ -145,16 +145,16 @@
           </tbody>
         
         </table>
-       	<table id="priority">
+       	<table id="priority_legend">
        		<tr>
-       			<td><div class="priority" style="background-color:#53ff1a"></div>Low</td>
-       			<td><div class="priority" style="background-color:#ffff1a"></div>Medium</td>
-       			<td><div class="priority" style="background-color:#ffbf00"></div>High</td>
-       			<td><div class="priority" style="background-color:red;"></div>Escalated</td>
+       			<td><div class="priority_legend" style="background-color:#53ff1a"></div>Low</td>
+       			<td><div class="priority_legend" style="background-color:#ffff1a"></div>Medium</td>
+       			<td><div class="priority_legend" style="background-color:#ffbf00"></div>High</td>
+       			<td><div class="priority_legend" style="background-color:red;"></div>Escalated</td>
        		</tr>
        	</table>
         <div id="board">
-	        <ul class="taks_board">
+	        <ul class="tasks_board">
 	        	<li>To Do</li>
 	        	<?php if(isset($toDoTasks) && $toDoTasks){
 	        		foreach ($toDoTasks as $task){ ?>
@@ -181,7 +181,7 @@
 		          }?>
 		          
 	        </ul>
-	        <ul class="taks_board">
+	        <ul class="tasks_board">
 	        	<li>Working On</li>
 	        	<?php if(isset($workingOnTasks) && $workingOnTasks){
 	        		foreach ($workingOnTasks as $task){ ?>
@@ -208,7 +208,7 @@
 		          }?>
 		          
 	        </ul>
-	        <ul class="taks_board">
+	        <ul class="tasks_board">
 	        	<li>Done</li>
 	        	<?php if(isset($doneTasks) && $doneTasks){
 	        		foreach ($doneTasks as $task){ ?>
