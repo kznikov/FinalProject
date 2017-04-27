@@ -5,7 +5,8 @@
 		require_once "../model/" . $className . '.php';	
 	}
 
-	session_start();
+	include_once 'CheckSession.php';
+	
 	$sessionVars = json_decode($_SESSION['user'], true);
 
 	$user_id = $_SESSION['userId'];

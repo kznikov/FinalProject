@@ -4,7 +4,8 @@
 		require_once "../model/" . $className . '.php';	
 	}
 	
-	session_start();
+	include_once 'CheckSession.php';
+	
 	$userId = json_decode($_SESSION['user'],true)['id'];
 		
 	if (isset($_POST['submit'])) {

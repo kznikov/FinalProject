@@ -3,11 +3,7 @@
 		require_once "../model/" . $className . '.php';
 	}
 	
-	session_start();
-	if(!isset($_SESSION['user'])){
-		header('Location:../view/index.php');
-	}
-	
+	include_once 'CheckSession.php';
 	
 	$sessionVars = json_decode($_SESSION['user'], true);
 
@@ -25,16 +21,19 @@
 				include '../view/pageNotFound.php';
 				die();
 			}
-			//var_dump($infoProject);
-
 			$user_id = $infoProject['admin_id'];
 
 			$infoUser = new UserDAO;
 			$result = $infoUser->getInfoUser($user_id);
 			
-			$users = ProjectDAO::getProjectAssocUsers($name);
+			$projectDao = new ProjectDAO();
 			
-			$projectTasks = TaskDAO::getProjectTasks($name);
+			
+			$users = $projectDao->getProjectAssocUsers($name);
+			
+			$taskDao = new TaskDAO();
+			
+			$projectTasks = $taskDao->getProjectTasks($name);
 		
 			
 			$toDoTasks = $projectTasks[0];

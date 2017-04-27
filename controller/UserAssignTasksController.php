@@ -3,19 +3,17 @@
 		require_once "../model/" . $className . '.php';
 	}
 	
-	session_start ();
-	if (! isset ( $_SESSION ['user'] )) {
-		header ( 'Location:../view/index.php' );
-	}
+	include_once 'CheckSession.php';
 	
 	$sessionVars = json_decode($_SESSION['user'], true);
 	$user_id = $sessionVars['id'];
 	
 	try {
-
-		$assignTasks = TaskDAO::getUserAssignTasks($user_id);
-		//var_dump($assignTasks);
-
+		
+		$tasksData = new TaskDAO();
+		
+		$assignTasks = $tasksData->getUserAssignTasks($user_id);
+		
 	} catch ( Exception $e ) {
 		$message = $e->getMessage ();
 	}

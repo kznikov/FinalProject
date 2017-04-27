@@ -5,13 +5,15 @@
 	}
 
 	
-	session_start();
+	include_once 'CheckSession.php';
 	
 	if ($_SESSION['user']) {		
 		$user = json_decode($_SESSION['user'],true);
 		
-		$openTasks = TaskDAO::getUserAssignOpenTasks($user['id']);
-		$workingOnTasks = TaskDAO::getUserAssignWorkingOnTasks($user['id']);
+		$tasksData = new TaskDAO();
+		
+		$openTasks = $tasksData->getUserAssignOpenTasks($user['id']);
+		$workingOnTasks = $tasksData->getUserAssignWorkingOnTasks($user['id']);
 		
 		
 		

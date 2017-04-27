@@ -2,7 +2,8 @@
 	function __autoload($className) {
 		require_once "../model/" . $className . '.php';
 	}
-	session_start();
+	
+	include_once 'CheckSession.php';
 	
 	
 	//var_dump($r);

@@ -2,6 +2,10 @@
 require_once "../model/IUserDAO.php";
 	class UserDAO implements IUserDAO {
 		
+		
+		private $db;
+		
+		
 		const GET_AND_CHECK_USER_SQL = "SELECT * FROM users WHERE username = ? AND password = ?";
 
 		const CHECK_IF_USER_EXIST = "SELECT username, id FROM users WHERE username = ?";
@@ -28,11 +32,13 @@ require_once "../model/IUserDAO.php";
 		const DELETE_USER = "DELETE FROM users WHERE id=:id";
 		
 		
+		public function __construct() {
+			$this->db = DBConnection::getDb();
+		}
+		
 		
 		public function loginUser(User $user) {
-			$db = DBConnection::getDb();
-			
-			$pstmt = $db->prepare(self::GET_AND_CHECK_USER_SQL);
+			$pstmt = $this->db->prepare(self::GET_AND_CHECK_USER_SQL);
 			$pstmt->execute(array($user->username,  hash('sha256',$user->password)));
 			
 			$res = $pstmt->fetchAll(PDO::FETCH_ASSOC);
@@ -44,7 +50,7 @@ require_once "../model/IUserDAO.php";
 			
 			if(!$user['first_login']){
 				$firstlogin = true;
-				$pstmt = $db->prepare(self::UPDATE_LOGIN);
+				$pstmt = $this->db->prepare(self::UPDATE_LOGIN);
 				$pstmt->execute(array($user['id']));
 			}else{
 				$firstlogin = false;
@@ -53,10 +59,9 @@ require_once "../model/IUserDAO.php";
 			return new User($user['username'], 'p', $user['firstname'], $user['lastname'], $user['email'], $firstlogin, $user['id']);
 		}
 
-		public static function checkUserName($username) {
-			$db = DBConnection::getDb();
+		public function checkUserName($username) {
 			
-			$pstmt = $db->prepare(self::CHECK_IF_USER_EXIST);
+			$pstmt = $this->db->prepare(self::CHECK_IF_USER_EXIST);
 			$pstmt->execute(array($username));
 			
 			$res = $pstmt->fetchAll(PDO::FETCH_ASSOC);
@@ -69,10 +74,8 @@ require_once "../model/IUserDAO.php";
 			
 		}
 
-		public static function checkEmail($email) {
-			$db = DBConnection::getDb();
-			
-			$pstmt = $db->prepare(self::CHECK_IF_EMAIL_EXIST);
+		public function checkEmail($email) {			
+			$pstmt = $this->db->prepare(self::CHECK_IF_EMAIL_EXIST);
 			$pstmt->execute(array($email));
 			
 			$res = $pstmt->fetchAll(PDO::FETCH_ASSOC);
@@ -86,15 +89,13 @@ require_once "../model/IUserDAO.php";
 		}
 		
 		public function registerUser(User $user) {
-			try{
-				$db = DBConnection::getDb();
-				
-				$pstmt = $db->prepare(self::REGISTER_NEW_USER_SQL);
+			try{				
+				$pstmt = $this->db->prepare(self::REGISTER_NEW_USER_SQL);
 	
 				
 				if ( $pstmt->execute(array($user->username, hash('sha256',$user->password),
 														$user->firstname, $user->lastname, $user->email))){
-					$user->__set('id', $db->lastInsertId());
+					$user->__set('id', $this->db->lastInsertId());
 					return $user;
 					
 				}else{
@@ -108,23 +109,17 @@ require_once "../model/IUserDAO.php";
 		}
 		
 		public function saveImage($name, $id) {
-			
-			$db = DBConnection::getDb();				
-			$pstmt = $db->prepare(self::SAVE_IMAGE);
+			$pstmt = $this->db->prepare(self::SAVE_IMAGE);
 			$pstmt->execute(array($name, $id));
 		}
 
 		public function updateUser(User $user, $phone, $mobile) {
-			
-			$db = DBConnection::getDb();		
-			$pstmt = $db->prepare(self::UPDATE_INFO_USER);
+			$pstmt = $this->db->prepare(self::UPDATE_INFO_USER);
 			$pstmt->execute(array($user->username, $user->password, $user->firstname, $user->lastname, $user->email, $phone, $mobile, $user->id ));			
 		}
 
-		public static function getImage($id) {
-			$db = DBConnection::getDb();
-			
-			$pstmt = $db->prepare(self::GET_IMAGE);
+		public function getImage($id) {			
+			$pstmt = $this->db->prepare(self::GET_IMAGE);
 			$pstmt->execute(array($id));
 			
 			$res = $pstmt->fetchAll(PDO::FETCH_ASSOC);
@@ -133,10 +128,8 @@ require_once "../model/IUserDAO.php";
 			
 		}
 
-		public static function getInfoUser($id) {
-			$db = DBConnection::getDb();
-			
-			$pstmt = $db->prepare(self::GET_INFO_USER);
+		public function getInfoUser($id) {			
+			$pstmt = $this->db->prepare(self::GET_INFO_USER);
 			$pstmt->execute(array($id));
 			
 			$res = $pstmt->fetchAll(PDO::FETCH_ASSOC);
@@ -146,26 +139,20 @@ require_once "../model/IUserDAO.php";
 			
 		}
 
-		public static function selectUser() {
-			$db = DBConnection::getDb();
-			
-			$pstmt = $db->query(self::SELECT_ALL);
+		public function selectUser() {			
+			$pstmt = $this->db->query(self::SELECT_ALL);
 			$res = $pstmt->fetchAll(PDO::FETCH_ASSOC);
 			return $res;
 		}
 
-		public static function deleteUser($id) {
-
-			$db = DBConnection::getDb();
-			$pstmt = $db->prepare(self::DELETE_USER);
+		public function deleteUser($id) {
+			$pstmt = $this->db->prepare(self::DELETE_USER);
 			$pstmt->execute(array(":id"=>$id));
 			
 		}
 		
 		public static function forgotPassword($email, $token) {
-			$db = DBConnection::getDb();
-			
-			$pstmt = $db->prepare(self::UPDATE_TOKEN);
+			$pstmt = $this->db->prepare(self::UPDATE_TOKEN);
 			if(!self::checkEmail($email)){
 				return $pstmt->execute(array($token, $email));
 			}
@@ -173,10 +160,8 @@ require_once "../model/IUserDAO.php";
 		}
 		
 		
-		public static function resetPassword($email, $token, $pass) {
-			$db = DBConnection::getDb();
-			
-			$pstmt = $db->prepare(self::RESET_PASSWORD);
+		public static function resetPassword($email, $token, $pass) {			
+			$pstmt = $this->db->prepare(self::RESET_PASSWORD);
 			
 			 $pstmt->execute(array(hash('sha256', $pass), $email, $token));
 			 return $pstmt->rowCount();

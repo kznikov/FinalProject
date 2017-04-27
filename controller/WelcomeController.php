@@ -1,10 +1,12 @@
 <?php
 	
-	session_start();
+	include_once 'CheckSession.php';
 	
-	if ($_SESSION['user']){
+	if (isset($_SESSION['user'])){
 		$user = json_decode($_SESSION['user'], true);
 		include '../view/welcome.php';
+	}else{
+		include '../view/index.php';
 	}
 	
 	

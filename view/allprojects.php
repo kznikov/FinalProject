@@ -1,11 +1,11 @@
 <?php 
   $pageTitle="All projects";
   include "inc/header.php"; 
-  
 
   if(!isset($_SESSION['user'])){
   	header('Location:../view/index.php');
   }
+  
 ?>
 
 <body>

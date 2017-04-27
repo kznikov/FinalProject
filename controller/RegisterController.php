@@ -14,7 +14,7 @@
 		$userData = new UserDAO();
 		
 		if(!empty($firstname) && $userData->checkUserName($username) && $userData->checkEmail($email) && !empty($lastname) && !empty($email) && filter_var($email, FILTER_VALIDATE_EMAIL) && !empty($username) 
-				&& !empty($password) && $password === $repassword && UserDAO::checkEmail($email) && UserDAO::checkUserName($username)){
+				&& !empty($password) && $password === $repassword){
 			try {
 				$user = new User($username, $password, $firstname, $lastname, $email);
 		
