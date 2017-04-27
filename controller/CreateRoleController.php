@@ -1,16 +1,15 @@
 <?php
 
-	include "../view/inc/autoload.php";
-	
-	$roles = new RoleDAO();
-	$result = $roles->getRoles();
+include "../view/inc/autoload.php";
 
-	$users = new UserDAO();
-	$getuser = $users->selectUser();
+$roles = new RoleDAO();
+$result = $roles->getRoles();
 
-	$project = new ProjectDAO();
-	$getproject = $project->selectNameProject();
+$users = new UserDAO();
+$getuser = $users->selectUser();
 
-	include '../view/createrole.php';
+$project = new ProjectDAO();
+$getproject = $project->selectNameProject();
 
+include '../view/createrole.php';
 ?>

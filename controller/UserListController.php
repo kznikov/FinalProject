@@ -1,19 +1,17 @@
-<?php 
-	
-	include "../view/inc/autoload.php";
-	
-	$user_id = $sessionVars['id'];
+<?php
 
-	$infoUser = new UserDAO;
+include "../view/inc/autoload.php";
 
-	$result = $infoUser->selectUser();
+$user_id = $sessionVars['id'];
 
-	if(isset($_SESSION['success_update'])){
-		$successMessage = "Updated successfully!";
-		unset($_SESSION['success_update']);
-	}
+$infoUser = new UserDAO;
 
-	include '../view/userlist.php';
+$result = $infoUser->selectUser();
 
-	
+if (isset($_SESSION['success_update'])) {
+    $successMessage = "Updated successfully!";
+    unset($_SESSION['success_update']);
+}
+
+include '../view/userlist.php';
 ?>

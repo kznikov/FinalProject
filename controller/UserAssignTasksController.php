@@ -1,15 +1,14 @@
 <?php
 
-	include "../view/inc/autoload.php";
-	$user_id = $sessionVars['id'];
-	
-	try {
+include "../view/inc/autoload.php";
+$user_id = $sessionVars['id'];
 
-		$assignTasks = TaskDAO::getUserAssignTasks($user_id);
+try {
 
-	} catch ( Exception $e ) {
-		$message = $e->getMessage ();
-	}
-	
-	include '../view/mytasks.php';
+    $assignTasks = TaskDAO::getUserAssignTasks($user_id);
+} catch (Exception $e) {
+    $message = $e->getMessage();
+}
+
+include '../view/mytasks.php';
 ?>
