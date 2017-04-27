@@ -11,8 +11,8 @@
 
 		$checkUser = $userData->checkUserName($name);
 
-		if ($checkUser == false) {
-			echo "<p class=\"error\"> This username already exist. </p>";
+		if ($checkUser == true) {
+			echo "<p class=\"error\"> Wrong username. </p>";
 		} 
 
 	}

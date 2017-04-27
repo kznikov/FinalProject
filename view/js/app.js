@@ -183,14 +183,18 @@ function checkUserName() {
     var name = document.getElementById("username");
     var nameValue = name.value;
     console.log(nameValue);
-
+    document.getElementById("exist").innerHTML = "";
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
+
             if (this.responseText) {
-                document.getElementById("login").disabled = false;
-            } else {
+                document.getElementById("exist").innerHTML =
+                this.responseText;
                 document.getElementById("login").disabled = true;
+            } else {
+                
+                document.getElementById("login").disabled = false;
             }
         }
     };
