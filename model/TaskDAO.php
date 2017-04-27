@@ -23,6 +23,9 @@ class TaskDAO implements ITaskDAO {
 								ON t.task_type_id = tt.id JOIN users u ON u.id = t.assign_to JOIN projects p ON p.id = t.projects_id WHERE t.id = ";
 
 	
+    
+    const GET_USER_ALL_TASKS = "SELECT CONCAT(p.prefix, t.id) as task_id, p.name as project, t.*, u.username, tt.name as type, ts.name as status, tp.name as priority FROM tasks t JOIN task_priority tp ON t.task_priority_id = tp.id JOIN task_status ts ON t.task_status_id = ts.id JOIN task_type tt 
+											ON t.task_type_id = tt.id JOIN users u ON u.id = t.assign_to JOIN projects p ON p.id = t.projects_id WHERE t.created_by = ? OR t.assign_to = ?";
 	public function createTask(Task $task) {
 		
 		try{
@@ -119,6 +122,25 @@ class TaskDAO implements ITaskDAO {
 			return $projectTasks;
 			
 		}catch(Exception $e){
+			throw new Exception("Failed to get information from DB!");
+		}
+	}
+	
+	
+	
+	public static function getUserAllTasks($user_id) {
+		try{
+			
+			$db = DBConnection::getDb();
+			
+			$pstmt = $db->prepare(self::GET_USER_ALL_TASKS);
+			$pstmt->execute(array($user_id, $user_id));
+			
+			$allTasks = $pstmt->fetchAll(PDO::FETCH_ASSOC);
+			
+			return $allTasks;
+			
+		} catch(Exception $e){
 			throw new Exception("Failed to get information from DB!");
 		}
 	}
