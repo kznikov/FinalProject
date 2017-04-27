@@ -538,3 +538,8 @@ table td{
     padding-top: 100px;
 }
 
+
+
+.hide_row {
+ display: none;   
+}
