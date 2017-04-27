@@ -430,8 +430,7 @@ table#userlist th {
 }
 
 table#userlist tr.myproject-name:hover {
-    background: #337ab7;
-    color: #fff;
+    background: #eee;
 }
 
 
