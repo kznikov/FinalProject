@@ -1,12 +1,7 @@
 <?php
 
 	
-	function __autoload($className) {
-		require_once "../model/" . $className . '.php';	
-	}
-
-	session_start();
-	$sessionVars = json_decode($_SESSION['user'], true);
+	include "../view/inc/autoload.php";
 
 	$user_id = $_SESSION['userId'];
 

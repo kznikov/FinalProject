@@ -1,9 +1,6 @@
 <?php
-session_start();
 
-function __autoload($className) {
-    require_once "../model/" . $className . '.php';
-}
+include "../view/inc/autoload.php";
 
 if ($_SESSION['user']){
 	

@@ -3,7 +3,6 @@
 	function __autoload($className) {
 		require_once "../model/" . $className . '.php';
 	}
-
 	
 	session_start();
 	
@@ -12,9 +11,7 @@
 		
 		$openTasks = TaskDAO::getUserAssignOpenTasks($user['id']);
 		$workingOnTasks = TaskDAO::getUserAssignWorkingOnTasks($user['id']);
-		
-		
-		
+			
 		include '../view/homepage.php';
 	}
 	else

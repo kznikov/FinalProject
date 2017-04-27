@@ -1,9 +1,6 @@
 <?php
 
-	function __autoload($className) {
-		require_once "../model/" . $className . '.php';
-	}
-	session_start();
+	include "../view/inc/autoload.php";
 	
 	$roles = new RoleDAO();
 	$r = $roles->getAllRoles();

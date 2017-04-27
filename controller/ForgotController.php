@@ -1,12 +1,6 @@
 <?php
 
 	
-	
-/* 	function __autoload($className) {
-		require_once "../model/" . $className . '.php';
-		
-	} */
-	
 	require_once "../model/UserDAO.php";
 	require_once "../model/IUserDAO.php";
 	require_once "../model/DBConnection.php";
@@ -15,12 +9,10 @@
 	
 	if (isset($_POST['submit'])) {
 		
-		/* $userData = new UserDAO();
-		$password = $userData->forgotPassword($_POST['email']);  */
+
 		$token = hash('sha256', time());
 		if(UserDAO::forgotPassword($_POST['email'], $token)){
-			/*  echo "<br/><br/><br/>";
-			echo UserDAO::forgotPassword($_POST['email'], $token);  */
+
 			$mail = new PHPMailer;
 			$mail->isSMTP();
 			$mail->Host = 'smtp.gmail.com';

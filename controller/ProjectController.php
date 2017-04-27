@@ -1,11 +1,6 @@
 <?php
 
-	function __autoload($className) {
-		require_once "../model/" . $className . '.php';	
-	}
-	
-	session_start();
-	$userId = json_decode($_SESSION['user'],true)['id'];
+	include "../view/inc/autoload.php";
 		
 	if (isset($_POST['submit'])) {
 		 try {
@@ -39,7 +34,6 @@
 		}catch (Exception $e) {
 
 			$message = $e->getMessage();
-			//$row = $e->getLine(); 
 			$class = "flash_error";
 			include '../view/homepage.php';
 		}
@@ -49,5 +43,4 @@
 		include '../view/homepage.php';
 	}
 	
-	//include '../view/index.php';
 ?>

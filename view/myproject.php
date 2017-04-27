@@ -24,7 +24,7 @@
 
           </div>
           <div class="myproject-button col-xs-12 col-md-2">
-             <button onclick="location.href = '/FinalProject/view/newproject.php';" class="btn btn-primary">Create  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+             <button onclick="location.href = '../controller/NewProjectController.php';" class="btn btn-primary">Create  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
           </div>
         </div>
       </div>
