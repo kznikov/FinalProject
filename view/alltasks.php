@@ -81,6 +81,7 @@
 			<?php }?>
           </tbody>
         </table>
+
         <div class="bg-success">
           <p>Export as word, exel, pdf</p>
         </div>

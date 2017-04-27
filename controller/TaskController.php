@@ -51,9 +51,9 @@
 			include '../view/alltasks.php';
 		}
 	}else{
-		$message = "Failed to create new project!";
+		$message = "Failed to create new task!";
 		$class = "flash_error";
-		include '../view/alltasks.php';
+		include '../view/alltasks.php';	
 	}
 	
 	//include '../view/index.php';
