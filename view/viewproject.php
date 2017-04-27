@@ -158,7 +158,7 @@
 	        	<li>To Do</li>
 	        	<?php if(isset($toDoTasks) && $toDoTasks){
 	        		foreach ($toDoTasks as $task){ ?>
-		           <li class="board_note" style="background-color:<?=$colors[$task['priority']]?>">
+		           <li class="board_note" style="background-color:<?=$colors[$task['priority']]?>" onclick="location.href = '../controller/ViewTaskController.php?name=<?= $task['id']?> ';">
 		        		<ul>
 		        			<li style="font-size: 1.3em;"><em><?=$task['title']?></em></li>
 		        			<li><?=$task['status']?></li>
@@ -185,7 +185,7 @@
 	        	<li>Working On</li>
 	        	<?php if(isset($workingOnTasks) && $workingOnTasks){
 	        		foreach ($workingOnTasks as $task){ ?>
-		            <li class="board_note" style="background-color:<?=$colors[$task['priority']]?>">
+		            <li class="board_note" style="background-color:<?=$colors[$task['priority']]?>" onclick="location.href = '../controller/ViewTaskController.php?name=<?= $task['id']?> ';">
 		        		<ul>
 		        			<li style="font-size: 1.3em;"><em><?=$task['title']?></em></li>
 		        			<li><?=$task['status']?></li>
@@ -212,7 +212,7 @@
 	        	<li>Done</li>
 	        	<?php if(isset($doneTasks) && $doneTasks){
 	        		foreach ($doneTasks as $task){ ?>
-		            <li class="board_note" style="background-color:<?=$colors[$task['priority']]?>">
+		            <li class="board_note" style="background-color:<?=$colors[$task['priority']]?>" onclick="location.href = '../controller/ViewTaskController.php?name=<?= $task['id']?> ';">
 		        		<ul>
 		        			<li style="font-size: 1.3em;"><em><?=$task['title']?></em></li>
 		        			<li><?=$task['status']?></li>
