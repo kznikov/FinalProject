@@ -10,7 +10,7 @@
       <div class="container">
          <div class="navbar-header">
 
-            <a class="navbar-brand" href="#"><img src="/FinalProject/view/images/aui-header-logo-jira.png" alt=""></a>
+            <a class="navbar-brand" href="#"><img src="/FinalProject/view/images/pmc-logo.svg" alt=""></a>
 
          </div>
       </div>

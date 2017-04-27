@@ -145,24 +145,97 @@
           </tbody>
         
         </table>
-        <ul class="taks_boars">
-        	<li>To Do</li>
-        	<li>123</li>
-        	<li>123</li>
-        	<li>123</li>
-        </ul>
-        <ul class="taks_boars">
-        	<li>Working On</li>
-        	<li>123</li>
-        	<li>123</li>
-        	<li>123</li>
-        </ul>
-        <ul class="taks_boars">
-        	<li>Done</li>
-        	<li>123</li>
-        	<li>123</li>
-        	<li>123</li>
-        </ul>
+       	<table id="priority_legend">
+       		<tr>
+       			<td><div class="priority_legend" style="background-color:#53ff1a"></div>Low</td>
+       			<td><div class="priority_legend" style="background-color:#ffff1a"></div>Medium</td>
+       			<td><div class="priority_legend" style="background-color:#ffbf00"></div>High</td>
+       			<td><div class="priority_legend" style="background-color:red;"></div>Escalated</td>
+       		</tr>
+       	</table>
+        <div id="board">
+	        <ul class="tasks_board">
+	        	<li>To Do</li>
+	        	<?php if(isset($toDoTasks) && $toDoTasks){
+	        		foreach ($toDoTasks as $task){ ?>
+		           <li class="board_note" style="background-color:<?=$colors[$task['priority']]?>" onclick="location.href = '../controller/ViewTaskController.php?name=<?= $task['id']?> ';">
+		        		<ul>
+		        			<li style="font-size: 1.3em;"><em><?=$task['title']?></em></li>
+		        			<li><?=$task['status']?></li>
+		        		</ul>
+		        		<ul>
+		        			<li><img style="width: 20px; margin-right: 5px;" src="../view/images/type_<?=$task['task_type_id']?>.png"><?=$task['type']?></li>
+		        		</ul>
+		        		<ul style="clear: both;width: 50%">
+		        			<li>
+	        					<div class="progress-wrap progress" style="background-color:orange;" data-progress-percent="<?= $task['progress']?>">
+									<div class="progress-bar progress"></div>	  
+								</div>
+								<p class="progress_perc" ><?=$task['progress']?>%</p>
+							</li>
+		        		</ul>
+	        	</li>
+	        	<?php }
+		          }else{
+		         	 echo "<li style='text-align:center'><em><strong>No tasks found.</strong></em></li>";
+		          }?>
+		          
+	        </ul>
+	        <ul class="tasks_board">
+	        	<li>Working On</li>
+	        	<?php if(isset($workingOnTasks) && $workingOnTasks){
+	        		foreach ($workingOnTasks as $task){ ?>
+		            <li class="board_note" style="background-color:<?=$colors[$task['priority']]?>" onclick="location.href = '../controller/ViewTaskController.php?name=<?= $task['id']?> ';">
+		        		<ul>
+		        			<li style="font-size: 1.3em;"><em><?=$task['title']?></em></li>
+		        			<li><?=$task['status']?></li>
+		        		</ul>
+		        		<ul>
+		        			<li><img style="width: 20px; margin-right: 5px;" src="../view/images/type_<?=$task['task_type_id']?>.png"><?=$task['type']?></li>
+		        		</ul>
+		        		<ul style="clear: both;width: 50%">
+		        			<li>
+			        			<div class="progress-wrap progress" style="background-color:orange;" data-progress-percent="<?= $task['progress']?>">
+									<div class="progress-bar progress"></div>	  
+								</div>
+								<p class="progress_perc" ><?=$task['progress']?>%</p>
+			              </li>
+		        		</ul>
+	        	</li>
+	        	<?php }
+		          }else{
+		         	 echo "<li style='text-align:center;'><em><strong>No tasks found.</strong></em></li>";
+		          }?>
+		          
+	        </ul>
+	        <ul class="tasks_board">
+	        	<li>Done</li>
+	        	<?php if(isset($doneTasks) && $doneTasks){
+	        		foreach ($doneTasks as $task){ ?>
+		            <li class="board_note" style="background-color:<?=$colors[$task['priority']]?>" onclick="location.href = '../controller/ViewTaskController.php?name=<?= $task['id']?> ';">
+		        		<ul>
+		        			<li style="font-size: 1.3em;"><em><?=$task['title']?></em></li>
+		        			<li><?=$task['status']?></li>
+		        		</ul>
+		        		<ul>
+		        			<li><img style="width: 20px; margin-right: 5px;" src="../view/images/type_<?=$task['task_type_id']?>.png"><?=$task['type']?></li>
+		        		</ul>
+		        		<ul style="clear: both;width: 50%">
+		        			<li> 			        			
+		        				<div class="progress-wrap progress" style="background-color:orange;" data-progress-percent="<?= $task['progress']?>">
+									<div class="progress-bar progress"></div>	  
+								</div>
+								<p class="progress_perc" ><?=$task['progress']?>%</p>
+							</li>
+		        		</ul>
+	        	</li>
+	        	<?php }
+		          }else{
+		         	 echo "<li style='text-align:center;'><em><strong>No tasks found.</strong></em></li>";
+		          }?>
+		          
+	        </ul>
+	    </div>
          </div>  
         <div class="bg-success">
           <p>Export as word, exel, pdf</p>

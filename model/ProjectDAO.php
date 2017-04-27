@@ -5,8 +5,8 @@ class ProjectDAO implements IProjectDAO {
 	const INSERT_NEW_PROJECT = "INSERT INTO projects (id, name, description, prefix, create_date, admin_id, client, start_date, end_date, project_status_id) 
 						VALUES (null, ?, ?, ?, now(), ?, ?, ?, ?, ?)";
 
-	const GET_ADMIN_PROJECTS = "SELECT p.*, u.id as user_id, u.username, ps.name as status, COUNT(t.id) as 'all_tasks' FROM projects p JOIN users u JOIN project_status ps left JOIN tasks t
-					 ON p.id = t.projects_id WHERE p.project_status_id = ps.id AND p.admin_id = u.id and p.admin_id =";
+	const GET_ADMIN_PROJECTS = "SELECT p.*, u.id as user_id, u.username, ps.name as status, COUNT(t.id) as 'all_tasks' FROM projects p JOIN users u ON p.admin_id = u.id JOIN project_status ps
+								 ON p.project_status_id = ps.id left JOIN tasks t ON p.id = t.projects_id WHERE p.admin_id = ";
 	
 	const GET_ADMIN_ALL_OPEN_TASK_CNT = "SELECT p.id, count(t.id) as 'open_tasks' FROM projects p LEFT JOIN tasks t ON p.id = t.projects_id and t.task_status_id = 1 WHERE p.admin_id = ";
 
@@ -18,18 +18,18 @@ class ProjectDAO implements IProjectDAO {
 	const CHECK_IF_PREFIXNAME_EXIST = "SELECT prefix FROM projects WHERE prefix = ?";
 	
 	
-	const GET_USER_ASSOC_PROJECTS = "SELECT p.*, u.id as user_id, u.email as user_email, u.username, ps.name as status, COUNT(t.id) as all_tasks FROM projects p JOIN user_projects up JOIN users u JOIN project_status ps LEFT JOIN tasks t
-							 ON p.id = t.projects_id  where p.project_status_id = ps.id and u.id = up.user_id and p.id = up.project_id AND u.id = up.user_id  and u.id = ";
+	const GET_USER_ASSOC_PROJECTS = "SELECT p.*, u.id as user_id, u.email as user_email, u.username, ps.name as status, COUNT(t.id) as all_tasks FROM projects p JOIN user_projects up 
+					ON p.id = up.project_id JOIN users u ON u.id = up.user_id JOIN project_status ps ON p.project_status_id = ps.id LEFT JOIN tasks t ON p.id = t.projects_id where u.id = ";
 	
-	const GET_USER_ASSOC_PROJECTS_OPEN_TASKS_CNT = "SELECT p.id, count(t.id) as 'open_tasks' FROM projects p JOIN user_projects up LEFT JOIN tasks t 
-											ON p.id = t.projects_id and t.task_status_id = 1 WHERE p.id = up.project_id and up.user_id = ";
+	const GET_USER_ASSOC_PROJECTS_OPEN_TASKS_CNT = "SELECT p.id, count(t.id) as 'open_tasks' FROM projects p JOIN user_projects up ON p.id = up.project_id LEFT JOIN tasks t
+							 ON p.id = t.projects_id and t.task_status_id = 1 WHERE up.user_id = ";
 	
 	
-	const GET_ASSOC_PROJECTS_PROGRESS = "SELECT p.id, ROUND(AVG(t.progress)) as 'avg_tasks_progress' FROM projects p JOIN user_projects up LEFT JOIN tasks t
-											ON p.id = t.projects_id WHERE p.id = up.project_id and up.user_id = ";
+	const GET_ASSOC_PROJECTS_PROGRESS = "SELECT p.id, ROUND(AVG(t.progress)) as 'avg_tasks_progress' FROM projects p JOIN user_projects up ON p.id = up.project_id LEFT JOIN tasks t
+													 ON p.id = t.projects_id WHERE  up.user_id = ";
 
-    const GET_INFO_PROJECT = "SELECT p.*, u.*, ps.name as status, COUNT(t.id) as 'all_tasks',ROUND(AVG(t.progress)) as 'avg_tasks_progress' FROM projects p JOIN users u JOIN project_status ps left JOIN tasks t
-									 ON p.id = t.projects_id WHERE p.project_status_id = ps.id AND p.admin_id=u.id AND p.name LIKE ?";
+    const GET_INFO_PROJECT = "SELECT p.*, u.*, ps.name as status, COUNT(t.id) as 'all_tasks',ROUND(AVG(t.progress)) as 'avg_tasks_progress' FROM projects p JOIN users u 
+						ON p.admin_id=u.id JOIN project_status ps ON p.project_status_id = ps.id left JOIN tasks t ON p.id = t.projects_id WHERE p.name LIKE ?";
 
 	const SELECT_NAME = "SELECT name FROM projects";
 	

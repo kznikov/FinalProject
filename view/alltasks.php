@@ -33,7 +33,7 @@
           <input type="text" id="search" class="form-control" placeholder="Type to search">
         </div>
 
-        <table id="userlist" class="myproject-table table table-responsive table-bordered">
+         <table id="userlist" class="myproject-table table table-responsive table-bordered">
           <thead style="background-color: #205081; color: #fff;">
             <tr>
               <th>id</th>
@@ -43,28 +43,42 @@
               <th>Start date</th>
               <th>End date</th>
               <th>Status</th>
-              <th>Progress</th>
+              <th>Priority</th>
+              <th style="width: 190px;">Progress</th>
               <th>Project</th>
               <th>Action</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td class="text-center">
-                <a href="#"><span class="glyphicon glyphicon-eye-open" title="View"></span></a>
-                <a href="#"><span class="glyphicon glyphicon-cog" title="Edit"></span></a>
-                <a href="#"><span class="glyphicon glyphicon-trash" title="Delete"></span></a>
-              </td>
-            </tr>
+          
+          <?php if(isset($allTasks) && $allTasks){
+          			foreach ($allTasks as $task){ ?>
+			            <tr class="myproject-name" onclick="location.href = '../controller/ViewTaskController.php?name=<?= $task['id']?> ';">
+			              <td><?=$task['task_id'] ?></td>
+			              <td><?=$task['title'] ?></td>
+			              <td><?=$task['username'] ?></td>
+			              <td><img style="width: 20px; margin-right: 5px;" src="../view/images/type_<?=$task['task_type_id']?>.png"><?=$task['type'] ?></td>
+			              <td><?=(empty($task['start_date']) ? "<em style='color:red;'>Not set</em>" : $task['start_date'])?></td>
+			              <td><?=(empty($task['end_date']) ? "<em style='color:red;'>Not set</em>" : $task['end_date'])?></td>
+			              <td><?=$task['status'] ?></td>
+			              <td><?=$task['priority']?><img style="width: 30px; margin-left: 0px;" src="../view/images/priority_<?=$task['task_priority_id']?>.png"></td>
+			              <td><div class="progress-wrap progress" style="background-color:orange;" data-progress-percent="<?= $task['progress']?>">
+								<div class="progress-bar progress"></div>	  
+							</div>
+								<p class="progress_perc" ><?=$task['progress']?>%</p>
+			              </td>
+			              <td><?=$task['project'] ?></td>
+			              <td class="text-center">
+			                <a href="#"><span class="glyphicon glyphicon-eye-open" title="View"></span></a>
+			                <a href="#"><span class="glyphicon glyphicon-cog" title="Edit"></span></a>
+			                <a href="#"><span class="glyphicon glyphicon-trash" title="Delete"></span></a>
+			              </td>
+			            </tr>
+			 <?php }
+          	}else{ ?>
+			      	<tr>
+			      	<td colspan="11" style="text-align: center;"><em><strong>No results found.</strong></em></td>
+			      	</tr>
+			<?php }?>
           </tbody>
         </table>
         <div class="bg-success">
