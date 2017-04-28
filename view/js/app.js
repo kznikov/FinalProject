@@ -149,7 +149,7 @@ function checkName() {
             }
         }
     };
-    xhttp.open("GET", "../controller/ValidateController.php?name=" + nameValue, true);
+    xhttp.open("GET", "../controller/ValidateController.php?username=" + nameValue, true);
     xhttp.send();
 }
 
@@ -180,7 +180,6 @@ function checkEmail() {
 
 
 function checkUserName() {
-
     var name = document.getElementById("username");
     var nameValue = name.value;
     console.log(nameValue);
@@ -188,7 +187,6 @@ function checkUserName() {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-
             if (this.responseText) {
                 document.getElementById("exist").innerHTML =
                 this.responseText;

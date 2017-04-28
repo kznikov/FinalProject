@@ -17,6 +17,21 @@ if (isset($_GET['name'])) {
     }
 }
 
+
+if (isset($_GET['username'])) {
+
+    $username = htmlentities(trim($_GET['username']));
+
+    $userData = new UserDAO();
+
+    $checkUser = $userData->checkUserName($username);
+
+    if ($checkUser == false) {
+       echo "<p class=\"error\"> This username already exist. </p>";
+    }
+}
+
+
 if (isset($_GET['email'])) {
 
     $email = htmlentities(trim($_GET['email']));
