@@ -86,11 +86,11 @@ if (isset($_SESSION['user'])) {
 				
 				if ($userData['avatar']) {
 				    ?>
-                            <img id="avatar" style="width: 30px; height: 20px; " src="../view/uploaded/<?= $userData['avatar']?>">
+                            <img id="avatar" style="width: 25px; height: 25px; " src="../view/uploaded/<?= $userData['avatar']?>">
                             <?php
                         } else {
                             ?>
-                            <img id="avatar" style="width: 30px; height: 20px; " src="../view/images/add-avatar_2.png" alt="avatar">
+                            <img id="avatar" style="width: 25px; height: 25px; " src="../view/images/add-avatar_2.png" alt="avatar">
                             <?php
                         }
                         ?>

@@ -1,7 +1,7 @@
 <?php
 	include "../view/inc/autoload.php";
 
-	if ($_SESSION['user']) {		
+	if (isset($_SESSION['user'])) {		
 		$user = json_decode($_SESSION['user'],true);
 		
 		$tasksData = new TaskDAO();
