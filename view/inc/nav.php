@@ -1,5 +1,10 @@
 <?php
-$userData = json_decode($_SESSION['user'], true);
+
+if (isset($_SESSION['user'])) {
+	$userData = json_decode($_SESSION['user'], true);
+}
+
+
 ?>
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -77,14 +82,11 @@ $userData = json_decode($_SESSION['user'], true);
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 
 				<?php
-				if (isset($_SESSION['minavatar'])) {
-				    $image = $_SESSION['minavatar'];
-				}
 				
-				if ($image['avatar'] != NULL) {
+				
+				if ($userData['avatar'] != NULL) {
 				    ?>
-
-                            <img id="avatar" style="width: 30px; height: 20px; " src="../view/uploaded/<?php echo $image['avatar']; ?>">
+                            <img id="avatar" style="width: 30px; height: 20px; " src="../view/uploaded/<?= $userData['avatar']?>">
                             <?php
                         } else {
                             ?>

@@ -12,7 +12,7 @@ include "inc/header.php";
             <div class="row">          
                 <div class="myproject-header">
                     <div class="myproject-title">
-                        <h2>Update User <?= $result['username'] ?></h2>
+                        <h2>Update User <?= $result->username ?></h2>
                     </div>
                 </div>
 
@@ -31,7 +31,7 @@ include "inc/header.php";
                                         <label for="jira-setup-account-field-username">Username</label>
                                     </div>
                                     <div class="col-xs-12 col-md-10">
-                                        <input class="form-control" type="text" name="username" id="jira-setup-account-field-username" value=" <?php echo $result['username']; ?> ">
+                                        <input class="form-control" type="text" name="username" id="jira-setup-account-field-username" value=" <?= $result->username ?> ">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -57,7 +57,7 @@ include "inc/header.php";
                                         <label for="jira-setup-account-field-email">Email</label>
                                     </div>
                                     <div class="col-xs-12 col-md-10">
-                                        <input class="form-control" type="email" name="email" id="jira-setup-account-field-email" value="<?php echo $result['email']; ?>">
+                                        <input class="form-control" type="email" name="email" id="jira-setup-account-field-email" value="<?= $result->email ?>">
                                     </div>
                                 </div>
                             </div>
@@ -67,7 +67,7 @@ include "inc/header.php";
                                         <label for="jira-setup-account-field-firstname">Name</label>
                                     </div>
                                     <div class="col-xs-12 col-md-10">
-                                        <input class="form-control" type="text" name="firstname" id="firstname" value="<?php echo $result['firstname']; ?>">
+                                        <input class="form-control" type="text" name="firstname" id="firstname" value="<?= $result->firstname ?>">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -75,7 +75,7 @@ include "inc/header.php";
                                         <label for="jira-setup-account-field-surname">Surname</label>
                                     </div>
                                     <div class="col-xs-12 col-md-10">
-                                        <input class="form-control" type="text" name="lastname" id="lastname" value="<?php echo $result['lastname']; ?>">
+                                        <input class="form-control" type="text" name="lastname" id="lastname" value="<?= $result->lastname ?>">
                                     </div>
                                 </div>      
                                 <div class="form-group">
@@ -83,7 +83,7 @@ include "inc/header.php";
                                         <label for="jira-setup-account-field-phone">Phone</label>
                                     </div>
                                     <div class="col-xs-12 col-md-10">
-                                        <input class="form-control" type="text" name="phone" id="jira-setup-account-field-phone" value="<?php echo $result['phone']; ?>">
+                                        <input class="form-control" type="text" name="phone" id="jira-setup-account-field-phone" value="<?= $result->phone ?>">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -91,14 +91,14 @@ include "inc/header.php";
                                         <label for="jira-setup-account-field-mobile">Mobile</label>
                                     </div>
                                     <div class="col-xs-12 col-md-10">
-                                        <input class="form-control" type="text" name="mobile" id="jira-setup-account-field-mobile" value="<?php echo $result['mobile']; ?>" >
+                                        <input class="form-control" type="text" name="mobile" id="jira-setup-account-field-mobile" value="<?= $result->mobile ?>" >
                                     </div>
                                 </div>
 
                                 <div id="image-holder" class="col-md-3">
-                                    <?php if ($result['avatar'] != NULL) {
+                                    <?php if ($result->avatar != NULL) {
                                         ?>
-                                        <img id="avatar" class="img-thumbnail" style="width: 190px;" src="../view/uploaded/<?php echo $result['avatar']; ?>" alt="avatar">
+                                        <img id="avatar" class="img-thumbnail" style="width: 190px;" src="../view/uploaded/<?= $result->avatar ?>" alt="avatar">
                                         <?php
                                     } else {
                                         ?>

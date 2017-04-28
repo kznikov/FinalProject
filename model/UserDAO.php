@@ -27,7 +27,7 @@ require_once "../model/IUserDAO.php";
 
 		const GET_INFO_USER = "SELECT * FROM users WHERE id = ?";
 
-		const UPDATE_INFO_USER = "UPDATE users SET username = ?, password = ?, firstname = ?, lastname = ?, email = ?, phone = ?, mobile = ?, last_upd =  NOW() WHERE id = ?";
+		const UPDATE_INFO_USER = "UPDATE users SET username = ?, password = ?, firstname = ?, lastname = ?, email = ?, phone = ?, mobile = ?, last_upd =  NOW(), avatar = ? WHERE id = ?";
 
 		const SELECT_ALL =  "SELECT * FROM `users` ORDER BY firstname";
 
@@ -121,9 +121,10 @@ require_once "../model/IUserDAO.php";
 			$pstmt->execute(array($name, $id));
 		}
 
-		public function updateUser(User $user, $phone, $mobile) {
+		public function updateUser(User $user) {
 			$pstmt = $this->db->prepare(self::UPDATE_INFO_USER);
-			$pstmt->execute(array($user->username, $user->password, $user->firstname, $user->lastname, $user->email, $phone, $mobile, $user->id ));			
+			$pstmt->execute(array($user->username, $user->password, $user->firstname,
+												$user->lastname, $user->email, $user->phone, $user->mobile, $user->avatar, $user->id ));			
 		}
 
 		public function getImage($id) {			
@@ -137,14 +138,21 @@ require_once "../model/IUserDAO.php";
 		}
 
 		public function getInfoUser($id) {	
+			try{
+				$pstmt = $this->db->prepare(self::GET_INFO_USER);
+				$pstmt->execute(array($id));
+				
+				if($res = $pstmt->fetchAll(PDO::FETCH_ASSOC)){
+					$user = $res[0];
+				}else{
+					throw new Exception("Ne sushtestvuva takuv useer");
+				}
 	
-			$pstmt = $this->db->prepare(self::GET_INFO_USER);
-			$pstmt->execute(array($id));
-			
-			$res = $pstmt->fetchAll(PDO::FETCH_ASSOC);
-			$infoUser = $res[0];
-
-			return $infoUser;
+				return new User($user['username'], $user['password'], $user['firstname'], $user['lastname'], $user['email'],
+						$user['first_login'], $user['phone'], $user['mobile'], $user['avatar'], $user['id']);
+			}catch (Exception $e){
+				echo $e->getMessage();
+			}
 			
 		}
 

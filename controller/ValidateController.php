@@ -1,6 +1,8 @@
 <?php
 
-include "../view/inc/autoload.php";
+function __autoload($className) {
+	require_once "../model/" . $className . '.php';
+}
 
 if (isset($_GET['name'])) {
 

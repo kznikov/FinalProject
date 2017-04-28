@@ -1,6 +1,11 @@
 <?php
 $pageTitle = "Login";
 include "inc/header.php";
+
+if(isset($_SESSION['user'])){
+	header('Location: ../controller/HomeController.php', true, 302);
+}
+
 ?>
 
 <body>

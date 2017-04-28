@@ -1,8 +1,10 @@
 <?php
 
-$sessionVars = json_decode($_SESSION['user'], true);
 
 include "../view/inc/autoload.php";
+
+$sessionVars = json_decode($_SESSION['user'], true);
+
 
 if (isset($_GET['user'])) {
 

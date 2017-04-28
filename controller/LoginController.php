@@ -14,18 +14,11 @@ if (isset($_POST['submit'])) {
         $_SESSION['user'] = json_encode($loggedUser);
 
 
-        //var_dump($loggedUser);
-        //var_dump($_SESSION['user']);
         $sessionVars = json_decode($_SESSION['user'], true);
         $user_id = $sessionVars['id'];
 
-        $image = $userData->getImage($user_id);
-
-        $_SESSION['minavatar'] = $image;
 
 
-        //var_dump($sessionVars);
-        // echo $sessionVars['firstLogin'];
         if ($sessionVars['firstLogin']) {
             header('Location:WelcomeController.php', true, 302);
         } else {

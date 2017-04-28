@@ -19,7 +19,7 @@ include "inc/header.php";
             <div class="row">  
                 <div class="myproject-header">
                     <div class="myproject-title col-xs-12 col-md-10">
-                        <h2><?= $result['username'] ?> profile</h2>
+                        <h2><?= $result->username?> profile</h2>
 
                     </div>
                     <div class="myproject-button col-xs-12 col-md-2">
@@ -44,9 +44,9 @@ include "inc/header.php";
                     <tbody>
                         <tr>
                             <th scope="row" class="text-center">
-<?php if ($result['avatar'] != NULL) {
-    ?>
-                                    <img id="avatar" class="img-thumbnail" style="width: 190px;" src="../view/uploaded/<?php echo $result['avatar']; ?>" alt="avatar">
+					<?php if ($result->avatar) {
+					    ?>
+                                    <img id="avatar" class="img-thumbnail" style="width: 190px;" src="../view/uploaded/<?= $result->avatar?>" alt="avatar">
                                     <?php
                                 } else {
                                     ?>
@@ -55,12 +55,12 @@ include "inc/header.php";
                                 }
                                 ?>
                             </th>
-                            <td><?php echo $result['username']; ?></td>
-                            <td><?php echo $result['firstname']; ?></td>
-                            <td><?php echo $result['lastname']; ?></td>
-                            <td><?php echo $result['email']; ?></td>
-                            <td><?php echo $result['phone']; ?></td>
-                            <td><?php echo $result['mobile']; ?></td>
+                            <td><?= $result->username ?></td>
+                            <td><?= $result->firstname ?></td>
+                            <td><?= $result->lastname?></td>
+                            <td><?= $result->email ?></td>
+                            <td><?= $result->phone ?></td>
+                            <td><?= $result->mobile ?></td>
                         </tr>
                         <tr>
                     </tbody>
