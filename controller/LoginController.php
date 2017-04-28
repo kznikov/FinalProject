@@ -4,6 +4,12 @@ function __autoload($className) {
 	require_once "../model/" . $className . '.php';
 }
 
+session_start();
+if(isset($_SESSION['user'])){
+	header('Location: ../controller/HomeController.php', true, 302);
+	exit;
+}
+
 
 
 if (isset($_POST['submit'])) {
@@ -13,7 +19,7 @@ if (isset($_POST['submit'])) {
         $userData = new UserDAO();
 
         $loggedUser = $userData->loginUser($user);
-        session_start();
+       
         $_SESSION['user'] = json_encode($loggedUser);
 
 
@@ -27,6 +33,10 @@ if (isset($_POST['submit'])) {
         } else {
             header('Location:HomeController.php', true, 302);
         }
+    } catch (PDOException $e) {
+    	session_start();
+    	$_SESSION['error'] = $e->getMessage();
+    	header('Location:ErrorController.php', true, 302);
     } catch (Exception $e) {
         $errorMessage = true;
         include '../view/index.php';

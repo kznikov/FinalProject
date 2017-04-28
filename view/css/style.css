@@ -328,6 +328,13 @@ table#userlist th span.glyphicon {
     margin: 150px 40%;
 }
 
+#notFound img{
+	width: 100px;
+	display: block;
+	margin: 0px auto;
+}
+
+
 .roles_td {
     font-size: 0.8em;
     font-weight: bold;

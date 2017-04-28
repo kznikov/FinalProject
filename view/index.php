@@ -2,8 +2,9 @@
 $pageTitle = "Login";
 include "inc/header.php";
 session_start();
-if(isset($_SESSION['user'])){
+if(isset($_SESSION['user']) ){
 	header('Location: ../controller/HomeController.php', true, 302);
+	exit;
 }
 
 ?>

@@ -8,14 +8,15 @@
 	try {
 		
 		$tasksData = new TaskDAO();
-		
 		$assignTasks = $tasksData->getUserAssignTasks($user_id);
+		//var_dump($assignTasks);
+		include '../view/mytasks.php';
 		
-	} catch ( Exception $e ) {
-		$message = $e->getMessage ();
+	}catch (Exception $e){
+		$_SESSION['error'] = $e->getMessage();
+		header('Location:ErrorController.php', true, 302);
 	}
 	
-	//var_dump($assignTasks);
-	include '../view/mytasks.php';
+
 
 ?>

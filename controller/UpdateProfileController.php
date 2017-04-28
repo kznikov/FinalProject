@@ -1,6 +1,8 @@
 <?php
 	include "../view/inc/autoload.php";
 	
+	
+try{
 	$sessionVars = json_decode($_SESSION['user'], true);
 	
 	
@@ -94,4 +96,8 @@
 	        header("Location: UserListController.php");
 	    }
 	}
+}catch (Exception $e){
+	$_SESSION['error'] = $e->getMessage();
+	header('Location:ErrorController.php', true, 302);
+}
 ?>

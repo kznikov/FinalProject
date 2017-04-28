@@ -5,7 +5,7 @@
 	require_once "../model/DBConnection.php";
 	require_once "../model/User.php";
 	require_once'../PHPMailer/PHPMailerAutoload.php';
-	
+try{
 	if (isset($_POST['submit'])) {
 		
 		/* $userData = new UserDAO();
@@ -37,6 +37,11 @@
 		}
 		$successMessage = true;
 		include '../view/forgot.php';
-		
 	}
+}catch (Exception $e){
+	session_start();
+	$_SESSION['error'] = $e->getMessage();
+	header('Location:ErrorController.php', true, 302);
+}
+
 ?>

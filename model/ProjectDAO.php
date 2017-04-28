@@ -55,7 +55,7 @@ class ProjectDAO implements IProjectDAO {
 			
 			return true;
 		}catch(Exception $e){
-			throw new Exception("Failed to create new project!");
+			throw new Exception("Something went wrong, please try again later!");
 		}
 	}
 	
@@ -92,7 +92,7 @@ class ProjectDAO implements IProjectDAO {
 			
 			return $adminProjects;
 		}catch(Exception $e){
-			throw new Exception("Failed to get information from DB!");
+			throw new Exception("Something went wrong, please try again later!");
 		}
 	}
 	
@@ -137,36 +137,42 @@ class ProjectDAO implements IProjectDAO {
 			return $allProjects;
 			
 		}catch(Exception $e){
-			throw new Exception("Failed to get information from DB!");
+			throw new Exception("Something went wrong, please try again later!");
 		}
 	}
 
 	public function checkProjectName($name) {
-		
-		$pstmt = $this->db->prepare(self::CHECK_IF_PROJECTNAME_EXIST);
-		$pstmt->execute(array($name));
-		
-		$res = $pstmt->fetchAll(PDO::FETCH_ASSOC);
-
-		if (count($res) === 0) {
-			return true;
-		} else {
-			return false;
+		try{
+			$pstmt = $this->db->prepare(self::CHECK_IF_PROJECTNAME_EXIST);
+			$pstmt->execute(array($name));
+			
+			$res = $pstmt->fetchAll(PDO::FETCH_ASSOC);
+	
+			if (count($res) === 0) {
+				return true;
+			} else {
+				return false;
+			}
+		}catch(Exception $e){
+			throw new Exception("Something went wrong, please try again later!");
 		}
 		
 	}
 
 	public function checkPrefixName($name) {
-		
-		$pstmt = $this->db->prepare(self::CHECK_IF_PREFIXNAME_EXIST);
-		$pstmt->execute(array($name));
-		
-		$res = $pstmt->fetchAll(PDO::FETCH_ASSOC);
-
-		if (count($res) === 0) {
-			return true;
-		} else {
-			return false;
+		try{
+			$pstmt = $this->db->prepare(self::CHECK_IF_PREFIXNAME_EXIST);
+			$pstmt->execute(array($name));
+			
+			$res = $pstmt->fetchAll(PDO::FETCH_ASSOC);
+	
+			if (count($res) === 0) {
+				return true;
+			} else {
+				return false;
+			}
+		}catch(Exception $e){
+			throw new Exception("Something went wrong, please try again later!");
 		}
 	}
 
@@ -184,15 +190,20 @@ class ProjectDAO implements IProjectDAO {
 			return $projectInfo;
 
 		} catch(Exception $e){
-			throw new Exception("Failed to get information from DB!");
+			throw new Exception("Something went wrong, please try again later!");
 		}
 		
 	}
 
 	public function selectNameProject() {
-		$pstmt = $this->db->query(self::SELECT_NAME);
-		$res = $pstmt->fetchAll(PDO::FETCH_ASSOC);
-		return $res;
+		try{
+			$pstmt = $this->db->query(self::SELECT_NAME);
+			$res = $pstmt->fetchAll(PDO::FETCH_ASSOC);
+			return $res;
+		}catch(Exception $e){
+			throw new Exception("Something went wrong, please try again later!");
+		}
+		
 	}
 
 	
