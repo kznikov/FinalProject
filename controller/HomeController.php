@@ -1,10 +1,6 @@
 <?php
-	function __autoload($className) {
-		require_once "../model/" . $className . '.php';
-	}
+	include "../view/inc/autoload.php";
 
-	include_once 'CheckSession.php';
-	
 	if ($_SESSION['user']) {		
 		$user = json_decode($_SESSION['user'],true);
 		

@@ -1,7 +1,6 @@
 <?php 
 	include "../view/inc/autoload.php";
 	
-	include_once 'CheckSession.php';
 	
 	$sessionVars = json_decode($_SESSION['user'], true);
 	$user_id = $sessionVars['id'];

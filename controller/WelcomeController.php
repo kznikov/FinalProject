@@ -1,6 +1,6 @@
 <?php
 
-	include_once 'CheckSession.php';
+	include "../view/inc/autoload.php";
 	
 	if (isset($_SESSION['user'])){
 		$user = json_decode($_SESSION['user'], true);

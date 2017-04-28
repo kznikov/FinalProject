@@ -1,10 +1,10 @@
 <?php
 
-	include_once 'CheckSession.php';
+	include "../view/inc/autoload.php";
 	
 	$sessionVars = json_decode($_SESSION['user'], true);
 
-	include "../view/inc/autoload.php";
+	
 
 
 if (isset($_GET['user'])) {

@@ -1,8 +1,6 @@
 <?php
 
-function __autoload($className) {
-    require_once "../model/" . $className . '.php';
-}
+include "../view/inc/autoload.php";
 
 if (isset($_GET['name'])) {
 
@@ -13,7 +11,7 @@ if (isset($_GET['name'])) {
     $checkUser = $userData->checkUserName($name);
 
     if ($checkUser == true) {
-        echo "<p class=\"error\"> Wrong username. </p>";
+       echo "<p class=\"error\"> Wrong username. </p>";
     }
 }
 

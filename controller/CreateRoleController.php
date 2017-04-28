@@ -1,6 +1,4 @@
 <?php
-
-	include_once 'CheckSession.php';
 	include "../view/inc/autoload.php";
 
 	$roles = new RoleDAO();

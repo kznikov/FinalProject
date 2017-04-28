@@ -1,8 +1,6 @@
 <?php
 
-	function __autoload($className) {
-		require_once "../model/" . $className . '.php';
-	}
+	include "../view/inc/autoload.php";
 	
 	if (isset($_POST['submit'])) {
 		$firstname = htmlentities(trim($_POST['firstname']));

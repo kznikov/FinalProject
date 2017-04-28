@@ -75,6 +75,7 @@ $userData = json_decode($_SESSION['user'], true);
                 <li class="dropdown">
 
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+
 				<?php
 				if (isset($_SESSION['minavatar'])) {
 				    $image = $_SESSION['minavatar'];
@@ -82,6 +83,7 @@ $userData = json_decode($_SESSION['user'], true);
 				
 				if ($image['avatar'] != NULL) {
 				    ?>
+
                             <img id="avatar" style="width: 30px; height: 20px; " src="../view/uploaded/<?php echo $image['avatar']; ?>">
                             <?php
                         } else {
@@ -96,9 +98,7 @@ $userData = json_decode($_SESSION['user'], true);
                         <li><a href="../controller/MyProfileController.php">My profile</a></li>
                         <li><a href="../controller/editProfileController.php">Edit profile</a></li>
                         <li role="separator" class="divider"></li>
-
                         <li><a href="../controller/LogoutController.php">Logout</a></li>
-
                     </ul>
                 </li>
             </ul>

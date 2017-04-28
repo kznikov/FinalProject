@@ -1,6 +1,5 @@
 <?php
 
-include_once 'CheckSession.php';
 include "../view/inc/autoload.php";
 
 $user_id = $sessionVars['id'];
