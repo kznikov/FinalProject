@@ -1,6 +1,10 @@
 <?php
 
-include "../view/inc/autoload.php";
+function __autoload($className) {
+	require_once "../model/" . $className . '.php';
+}
+
+
 
 if (isset($_POST['submit'])) {
     try {
@@ -9,7 +13,6 @@ if (isset($_POST['submit'])) {
         $userData = new UserDAO();
 
         $loggedUser = $userData->loginUser($user);
-		
         session_start();
         $_SESSION['user'] = json_encode($loggedUser);
 
