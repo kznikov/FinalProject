@@ -8,7 +8,8 @@ try {
     $projects = new ProjectDAO();
     $allProjects = $projects->getUserAllProjects($user_id);
 } catch (Exception $e) {
-    $message = $e->getMessage();
+    $_SESSION['error'] = $e->getMessage();
+    header('Location:ErrorController.php', true, 302);
 }
 include '../view/allprojects.php';
 ?>

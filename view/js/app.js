@@ -87,6 +87,8 @@ $(document).ready(function() {
 });
 
 //preview image
+
+
 window.onload = function() {
     
     var fileInput = document.getElementById('image');

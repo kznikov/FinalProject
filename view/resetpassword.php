@@ -9,7 +9,7 @@ include "inc/header.php";
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#"><img src="/FinalProject/view/images/aui-header-logo-jira.png" alt=""></a>
+                <a class="navbar-brand" href="#"><img src="/FinalProject/view/images/pmc-logo.svg" alt=""></a>
             </div>
         </div>
         <!--  class="container" -->
@@ -20,14 +20,14 @@ include "inc/header.php";
                 <h2>Reset password</h2>
             </div>
             <hr>
-<?php if (isset($successMessage) && $successMessage) { ?>
+				<?php if (isset($successMessage) && $successMessage) { ?>
                 <div class="aui-message error">
                     <span class="aui-icon icon-error"></span>
                     <span class="success" id="error-authentication_failure_invalid_credentials">Your password was reset successfully.</span>
                 </div>
-<?php }
-if (isset($successMessage) && !$successMessage) {
-    ?>
+			<?php }
+			if (isset($successMessage) && !$successMessage) {
+			    ?>
                 <div class="aui-message error">
                     <span class="aui-icon icon-error"></span>
                     <span class="error" id="error-authentication_failure_invalid_credentials">Error while attempting to reset password.</span>

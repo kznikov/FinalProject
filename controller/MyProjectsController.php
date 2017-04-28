@@ -11,8 +11,8 @@
 	    $projectDAO = new ProjectDAO();
 	    $adminProjects = $projectDAO->getAdminProjects($user_id);
 	} catch (Exception $e) {
-	
-	    $message = $e->getMessage();
+		$_SESSION['error'] = $e->getMessage();
+		header('Location:ErrorController.php', true, 302);
 	}
 	
 	include '../view/myproject.php';

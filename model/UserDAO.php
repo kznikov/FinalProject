@@ -17,7 +17,7 @@ require_once "../model/IUserDAO.php";
 		const REGISTER_NEW_USER_SQL = "INSERT INTO users (username, password, firstname, lastname, email, created) 
 																					VALUES (?, ?, ?, ?, ?, NOW())";
 		const UPDATE_TOKEN = "UPDATE users SET token = ? WHERE email LIKE ?";
-		const RESET_PASSWORD = "UPDATE users SET password = ? WHERE email LIKE ? AND token LIKE ?";
+		const RESET_PASSWORD = "UPDATE users SET password = ?, token=''  WHERE email LIKE ? AND token LIKE ?";
 		
 		const UPDATE_LOGIN = "UPDATE users SET first_login = 1 WHERE id = ?";
 		
@@ -45,53 +45,64 @@ require_once "../model/IUserDAO.php";
 		
 		
 		public function loginUser(User $user) {
-			$pstmt = $this->db->prepare(self::GET_AND_CHECK_USER_SQL);
-			$pstmt->execute(array($user->username,  hash('sha256',$user->password)));
-			
-			$res = $pstmt->fetchAll(PDO::FETCH_ASSOC);
-			
-			if (count($res) === 0)
-				throw new Exception("Try again!");
-			
-			$user = $res[0];
-			
-			if(!$user['first_login']){
-				$firstlogin = true;
-				$pstmt = $this->db->prepare(self::UPDATE_LOGIN);
-				$pstmt->execute(array($user['id']));
-			}else{
-				$firstlogin = false;
+			try{
+				$pstmt = $this->db->prepare(self::GET_AND_CHECK_USER_SQL);
+				$pstmt->execute(array($user->username,  hash('sha256',$user->password)));
+				
+				$res = $pstmt->fetchAll(PDO::FETCH_ASSOC);
+				
+				if (count($res) === 0)
+					throw new Exception("Try again!");
+				
+				$user = $res[0];
+				
+				if(!$user['first_login']){
+					$firstlogin = true;
+					$pstmt = $this->db->prepare(self::UPDATE_LOGIN);
+					$pstmt->execute(array($user['id']));
+				}else{
+					$firstlogin = false;
+				}
+				
+				return new User($user['username'], 'p', $user['firstname'], $user['lastname'], $user['email'],
+											$firstlogin, $user['phone'], $user['mobile'], $user['avatar'], $user['id']);
+			}catch (Exception $e){
+				throw $e;
 			}
-			
-			return new User($user['username'], 'p', $user['firstname'], $user['lastname'], $user['email'],
-										$firstlogin, $user['phone'], $user['mobile'], $user['avatar'], $user['id']);
 		}
 
 		public function checkUserName($username) {
-			
-			$pstmt = $this->db->prepare(self::CHECK_IF_USER_EXIST);
-			$pstmt->execute(array($username));
-			
-			$res = $pstmt->fetchAll(PDO::FETCH_ASSOC);
-
-			if (count($res) === 0) {
-				return true;
-			} else {
-				return false;
+			try{
+				$pstmt = $this->db->prepare(self::CHECK_IF_USER_EXIST);
+				$pstmt->execute(array($username));
+				
+				$res = $pstmt->fetchAll(PDO::FETCH_ASSOC);
+	
+				if (count($res) === 0) {
+					return true;
+				} else {
+					return false;
+				}
+			}catch(Exception $e){
+				throw new Exception("Something went wrong, please try again later!");
 			}
 			
 		}
 
-		public function checkEmail($email) {			
-			$pstmt = $this->db->prepare(self::CHECK_IF_EMAIL_EXIST);
-			$pstmt->execute(array($email));
-			
-			$res = $pstmt->fetchAll(PDO::FETCH_ASSOC);
-
-			if (count($res) === 0) {
-				return true;
-			} else {
-				return false;
+		public function checkEmail($email) {
+			try{
+				$pstmt = $this->db->prepare(self::CHECK_IF_EMAIL_EXIST);
+				$pstmt->execute(array($email));
+				
+				$res = $pstmt->fetchAll(PDO::FETCH_ASSOC);
+	
+				if (count($res) === 0) {
+					return true;
+				} else {
+					return false;
+				}
+			}catch(Exception $e){
+				throw new Exception("Something went wrong, please try again later!");
 			}
 			
 		}
@@ -109,8 +120,8 @@ require_once "../model/IUserDAO.php";
 				}else{
 					throw new Exception("Unsuccessful registration!");
 				}
-			}catch (Exception $e){
-				throw new Exception("Unsuccessful registration!");
+			}catch (PDOException $e){
+				throw $e;
 				//echo $e->getMessage();
 			}
 			
@@ -122,18 +133,26 @@ require_once "../model/IUserDAO.php";
 		}
 
 		public function updateUser(User $user) {
-			$pstmt = $this->db->prepare(self::UPDATE_INFO_USER);
-			$pstmt->execute(array($user->username, $user->password, $user->firstname,
-												$user->lastname, $user->email, $user->phone, $user->mobile, $user->avatar, $user->id ));			
+			try{
+				$pstmt = $this->db->prepare(self::UPDATE_INFO_USER);
+				$pstmt->execute(array($user->username, $user->password, $user->firstname,
+													$user->lastname, $user->email, $user->phone, $user->mobile, $user->avatar, $user->id ));			
+			}catch(Exception $e){
+				throw new Exception("Something went wrong, please try again later!");
+			}
 		}
 
-		public function getImage($id) {			
-			$pstmt = $this->db->prepare(self::GET_IMAGE);
-			$pstmt->execute(array($id));
-			
-			$res = $pstmt->fetchAll(PDO::FETCH_ASSOC);
-
-			return $res;
+		public function getImage($id) {	
+			try{
+				$pstmt = $this->db->prepare(self::GET_IMAGE);
+				$pstmt->execute(array($id));
+				
+				$res = $pstmt->fetchAll(PDO::FETCH_ASSOC);
+	
+				return $res;
+			}catch(Exception $e){
+				throw new Exception("Something went wrong, please try again later!");
+			}
 			
 		}
 
@@ -145,43 +164,60 @@ require_once "../model/IUserDAO.php";
 				if($res = $pstmt->fetchAll(PDO::FETCH_ASSOC)){
 					$user = $res[0];
 				}else{
-					throw new Exception("Ne sushtestvuva takuv useer");
+					throw new Exception("This user does not exists!");
 				}
 	
 				return new User($user['username'], $user['password'], $user['firstname'], $user['lastname'], $user['email'],
 						$user['first_login'], $user['phone'], $user['mobile'], $user['avatar'], $user['id']);
 			}catch (Exception $e){
+				throw new Exception("Something went wrong, please try again later!");
+			}
+			
+		}
+
+		public function selectUser() {
+			try{
+				$pstmt = $this->db->query(self::SELECT_ALL);
+				$res = $pstmt->fetchAll(PDO::FETCH_ASSOC);
+				return $res;
+			}catch(Exception $e){
+				throw new Exception("Something went wrong, please try again later!");
+			}
+		}
+
+		public function deleteUser($id) {
+			try{
+				$pstmt = $this->db->prepare(self::DELETE_USER);
+				$pstmt->execute(array(":id"=>$id));
+			}catch (Exception $e){
 				echo $e->getMessage();
 			}
 			
 		}
-
-		public function selectUser() {			
-			$pstmt = $this->db->query(self::SELECT_ALL);
-			$res = $pstmt->fetchAll(PDO::FETCH_ASSOC);
-			return $res;
-		}
-
-		public function deleteUser($id) {
-			$pstmt = $this->db->prepare(self::DELETE_USER);
-			$pstmt->execute(array(":id"=>$id));
-			
-		}
 		
 		public function forgotPassword($email, $token) {
-			$pstmt = $this->db->prepare(self::UPDATE_TOKEN);
-			if(!self::checkEmail($email)){
-				return $pstmt->execute(array($token, $email));
+			try{
+				$pstmt = $this->db->prepare(self::UPDATE_TOKEN);
+				if(!self::checkEmail($email)){
+					return $pstmt->execute(array($token, $email));
+				}
+				return false;
+			}catch (Exception $e){
+				echo $e->getMessage();
 			}
-			return false;
+				
 		}
 		
 		
-		public function resetPassword($email, $token, $pass) {			
-			$pstmt = $this->db->prepare(self::RESET_PASSWORD);
-			
-			 $pstmt->execute(array(hash('sha256', $pass), $email, $token));
-			 return $pstmt->rowCount();
+		public function resetPassword($email, $token, $pass) {
+			try{
+				$pstmt = $this->db->prepare(self::RESET_PASSWORD);
+				
+				 $pstmt->execute(array(hash('sha256', $pass), $email, $token));
+				 return $pstmt->rowCount();
+			}catch (Exception $e){
+				throw $e;
+			}
 		}
 		
 		
@@ -199,11 +235,10 @@ require_once "../model/IUserDAO.php";
 					$assocUssers [] = new User($user['username'], 'p', $user['firstname'], $user['lastname'],
 															$user['email'], null, $user['phone'], $user['mobile'], $user['avatar'], null);
 				}
-				
 				return $assocUssers;
 				
 			} catch(Exception $e){
-				throw new Exception("Failed to get information from DB!");
+				throw new Exception("Something went wrong, please try again later!");
 			}
 		}
 		

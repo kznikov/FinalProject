@@ -33,7 +33,6 @@
 			
 			
 		}catch (Exception $e) {
-
 			$message = $e->getMessage();
 			//$row = $e->getLine(); 
 			$class = "flash_error";

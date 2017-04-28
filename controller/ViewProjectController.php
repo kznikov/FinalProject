@@ -36,7 +36,8 @@
 		
 			$colors = array("Low"=>"#53ff1a","Medium"=>"#ffff1a","High"=>"#ffbf00","Escalated"=>"red",);
 		}catch (Exception $e){
-			$message =  $e->getMessage();
+			$_SESSION['error'] = $e->getMessage();
+			header('Location:ErrorController.php', true, 302);
 		}
 	}
 

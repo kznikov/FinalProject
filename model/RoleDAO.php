@@ -21,20 +21,22 @@ class RoleDAO implements IRoleDAO {
 	
 	
 	public function permissionsArray($id, $permissions){
-
-		$rolePerm = array();
-		foreach ($permissions as $perm){
-			$rolePerm[$perm['name']] =  0;
+		try {
+			$rolePerm = array();
+			foreach ($permissions as $perm){
+				$rolePerm[$perm['name']] =  0;
+			}
+			
+			$pstmt = $this->db->prepare(self::GET_ROLE_PERMISSIONS);
+			$pstmt->execute(array($id));
+			$perm = $pstmt->fetchAll(PDO::FETCH_ASSOC);
+			foreach ($perm as $val){
+				$rolePerm[$val['name']] = 1;
+			}
+			return $rolePerm;
+		}catch(Exception $e){
+			throw new Exception("Something went wrong, please try again later!");
 		}
-		
-		$pstmt = $this->db->prepare(self::GET_ROLE_PERMISSIONS);
-		$pstmt->execute(array($id));
-		$perm = $pstmt->fetchAll(PDO::FETCH_ASSOC);
-		foreach ($perm as $val){
-			$rolePerm[$val['name']] = 1;
-		}
-		return $rolePerm;
-		
 	}
 	
 	

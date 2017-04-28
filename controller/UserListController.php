@@ -2,6 +2,7 @@
 
 	include "../view/inc/autoload.php";
 	
+try{
 	$sessionVars = json_decode($_SESSION['user'], true);
 	$user_id = $sessionVars['id'];
 
@@ -15,4 +16,8 @@
 	}
 	
 	include '../view/userlist.php';
+}catch (Exception $e){
+	$_SESSION['error'] = $e->getMessage();
+	header('Location:ErrorController.php', true, 302);
+}
 ?>

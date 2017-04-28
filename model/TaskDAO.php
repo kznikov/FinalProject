@@ -63,9 +63,8 @@ class TaskDAO implements ITaskDAO {
 			}
 			
 			return $tasks;
-
-		} catch(Exception $e){
-			throw new Exception("Failed to get information from DB!");
+		}catch(Exception $e){
+			throw new Exception("Something went wrong, please try again later!");
 		}
 	}
 
@@ -81,10 +80,8 @@ class TaskDAO implements ITaskDAO {
 					$res['id'], $res['project'], $res['task_id'], $res['username']);
 			
 			return $task;
-			
-
-		} catch(Exception $e){
-			throw new Exception("Failed to get information from DB!");
+		}catch(Exception $e){
+			throw new Exception("Something went wrong, please try again later!");
 		}
 	}
 	
@@ -93,7 +90,6 @@ class TaskDAO implements ITaskDAO {
 	
 	 public function getUserAssignOpenTasks($user_id){
 		try{
-			
 			$pstmt = $this->db->prepare(self::GET_USER_ASSIGN_TASKS." AND t.task_status_id = 1");
 			$pstmt->execute(array($user_id));
 			
@@ -107,16 +103,14 @@ class TaskDAO implements ITaskDAO {
 			}
 			
 			return $openTasks;
-			
-			return $openTasks;
-		}catch(Exception $e){
-			throw new Exception("Failed to get information from DB!");
-		}
+		 }catch(Exception $e){
+		 	throw new Exception("Something went wrong, please try again later!");
+		 }
 	}
 	
 	
 	public function getUserAssignWorkingOnTasks($user_id){
-		try{			
+		try{
 			$pstmt = $this->db->prepare(self::GET_USER_ASSIGN_TASKS." AND t.task_status_id = 2");
 			$pstmt->execute(array($user_id));
 			
@@ -130,29 +124,29 @@ class TaskDAO implements ITaskDAO {
 			}
 			
 			return $workingOnTasks;
-			
-			
-			return $workingOnTasks;
 		}catch(Exception $e){
-			throw new Exception("Failed to get information from DB!");
+			throw new Exception("Something went wrong, please try again later!");
 		}
 	}
 	
 	public function toObjects($tasksArray){
-		$result = array();
-		foreach ($tasksArray as $task){
-			$result[] =  new Task($task['title'], $task['projects_id'], $task['created_by'],$task['assign_to'], $task['type'],
-					$task['priority'], $task['status'], $task['progress'], $task['description'], $task['start_date'], $task['end_date'],
-					$task['id']);
+		try{
+			$result = array();
+			foreach ($tasksArray as $task){
+				$result[] =  new Task($task['title'], $task['projects_id'], $task['created_by'],$task['assign_to'], $task['type'],
+						$task['priority'], $task['status'], $task['progress'], $task['description'], $task['start_date'], $task['end_date'],
+						$task['id']);
+			}
+		
+			return $result;
+		}catch(Exception $e){
+			throw new Exception("Something went wrong, please try again later!");
 		}
-	
-		return $result;
 	}
 	
 	
 	public function getProjectTasks($project_name){
 		try{
-						
 			$pstmt = $this->db->prepare(self::GET_PROJECT_OPEN_TASKS);
 			$pstmt->execute(array($project_name));
 			$toDoTasks= $pstmt->fetchAll(PDO::FETCH_ASSOC);
@@ -170,17 +164,16 @@ class TaskDAO implements ITaskDAO {
 			$projectTasks[] = self::toObjects($doneTasks);
 
 			return $projectTasks;
-			
 		}catch(Exception $e){
-			throw new Exception("Failed to get information from DB!");
+			throw new Exception("Something went wrong, please try again later!");
 		}
+			
 	}
 	
 	
 	
-	public function getUserAllTasks($user_id) {
+	public function getUserAllTasks($user_id) {	
 		try{
-						
 			$pstmt = $this->db->prepare(self::GET_USER_ALL_TASKS);
 			$pstmt->execute(array($user_id, $user_id));
 			
@@ -192,12 +185,11 @@ class TaskDAO implements ITaskDAO {
 						$task['priority'], $task['status'], $task['progress'], $task['description'], $task['start_date'], $task['end_date'],
 						$task['id'], $task['project'], $task['task_id'], $task['username']);
 			}
-			
 			return $allTasks;
-			
-		} catch(Exception $e){
-			throw new Exception("Failed to get information from DB!");
+		}catch(Exception $e){
+			throw new Exception("Something went wrong, please try again later!");
 		}
+			
 	}
 }
 	

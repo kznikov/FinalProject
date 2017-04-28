@@ -1,6 +1,11 @@
 <?php
 $pageTitle = "Login";
 include "inc/header.php";
+
+if(isset($_SESSION['error'])){
+	$message=$_SESSION['error'];	
+}
+
 ?>
 
 <body>
@@ -15,10 +20,9 @@ include "inc/header.php";
         <!--  class="container" -->
     </nav>
     <section id="notFound">
-        <h3><strong>404.</strong> That’s an error.<br/>The requested URL was not found on this server.</h3>
+        <h3><img alt="Broke Page" src="/FinalProject/view/images/brokenPage.png"><?=$message ?></h3>
         <a href='javascript:history.go(-1)'>GO BACK</a>
     </section><!-- /.container -->
-
 
 <?php include "inc/footer.php";?>
 
