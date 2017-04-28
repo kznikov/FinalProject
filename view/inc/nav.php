@@ -84,7 +84,7 @@ if (isset($_SESSION['user'])) {
 				<?php
 				
 				
-				if ($userData['avatar'] != NULL) {
+				if ($userData['avatar']) {
 				    ?>
                             <img id="avatar" style="width: 30px; height: 20px; " src="../view/uploaded/<?= $userData['avatar']?>">
                             <?php

@@ -9,7 +9,7 @@ if (isset($_POST['submit'])) {
         $userData = new UserDAO();
 
         $loggedUser = $userData->loginUser($user);
-
+		
         session_start();
         $_SESSION['user'] = json_encode($loggedUser);
 

@@ -2,9 +2,11 @@
 	include "../view/inc/autoload.php";
 	
 	$sessionVars = json_decode($_SESSION['user'], true);
-
+	
+	
 	$user_id = $_SESSION['userId'];
 	
+	var_dump($_SESSION);
 	$editUser = new UserDAO;
 	
 	$userInfo = $editUser->getInfoUser($user_id);
@@ -62,7 +64,7 @@
 	        $upload->setMaxSize($max);
 	        //$upload->allowAllTypes('jira');
 	        $avatar = $upload->upload();
-	
+			
 	        $saveImage = new UserDAO();
 	        $saveImage->saveImage($avatar, $user_id);
 			
@@ -75,7 +77,8 @@
 	    }
 	
 	    $updateUser = new UserDAO;
-	
+	    $sessionVars['avatar'] = $avatar;
+	    $_SESSION['user'] = json_encode($sessionVars);
 	    //,$phone, $mobile,
 	    $user = new User($username, $password, $firstname, $lastname, $email, $userInfo->first_login,
 	    												$phone, $mobile, $avatar, $user_id);
