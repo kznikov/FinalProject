@@ -75,13 +75,13 @@ $userData = json_decode($_SESSION['user'], true);
                 <li class="dropdown">
 
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-<?php
-if (isset($_SESSION['minavatar'])) {
-    $image = $_SESSION['minavatar'];
-}
-
-if ($image['avatar'] != NULL) {
-    ?>
+				<?php
+				if (isset($_SESSION['minavatar'])) {
+				    $image = $_SESSION['minavatar'];
+				}
+				
+				if ($image['avatar'] != NULL) {
+				    ?>
                             <img id="avatar" style="width: 30px; height: 20px; " src="../view/uploaded/<?php echo $image['avatar']; ?>">
                             <?php
                         } else {

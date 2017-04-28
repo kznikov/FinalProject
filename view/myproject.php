@@ -5,6 +5,7 @@ include "inc/header.php";
 if (!isset($_SESSION['user'])) {
     header('Location:../view/index.php');
 }
+
 ?>
 
 <body>
@@ -56,7 +57,7 @@ if (!isset($_SESSION['user'])) {
                                 <tr class="myproject-name" onclick="location.href = '../controller/ViewProjectController.php?project=<?= $project->name ?> ';">
                                     <td ><?= $project->name?>
                                     </td>
-                                    <td> <a href="#" title="<?= $project->username ?>"><span onclick="viewUser(<?= $project->adminId ?>)"><?= $project->adminUsername ?></span></a></td>
+                                    <td> <a href="#" title="<?= $project->adminUsername?>"><span onclick="viewUser(<?= $project->adminId ?>)"><?= $project->adminUsername ?></span></a></td>
                                     <td><?= $project->openTasks ?></td>
                                     <td><?= $project->allTasks ?></td>
                                     <td><?= ($project->client == null ? "" : $project->client) ?></td>

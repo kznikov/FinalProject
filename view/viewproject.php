@@ -133,7 +133,7 @@ if (!isset($_SESSION['user'])) {
                                         <a href="#"><span class="glyphicon glyphicon-eye-open" title="View" onclick="viewUser(<?= $user->id ?>)"></span>
                                         </a>
 
-                                        <a href="#"><span class="glyphicon glyphicon-cog" title="Edit" onclick="editUser(<?p= $user->id ?>)"></span></a>
+                                        <a href="#"><span class="glyphicon glyphicon-cog" title="Edit" onclick="editUser(<?= $user->id ?>)"></span></a>
                                         <a href="#"><span class="glyphicon glyphicon-trash" title="Delete"  onclick="deleteUser(<?= $user->id ?>)"></span></a>
                                     </td>
                                 </tr>
