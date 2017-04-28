@@ -41,29 +41,29 @@ if (!isset($_SESSION['user'])) {
                             </tr>
                         </thead>
                         <tbody>
-<?php if (isset($openTasks) && $openTasks) {
-    foreach ($openTasks as $task) {
-        ?>
+								<?php if (isset($openTasks) && $openTasks) {
+								    foreach ($openTasks as $task) {
+								        ?>
 
                                     <?php //var_dump($task); ?>
                                     <tr>
-                                        <td><?= $task['task_id'] ?></td>
-                                        <td><?= $task['title'] ?></td>
-                                        <td><img style="width: 20px; margin-right: 5px;" src="../view/images/type_<?= $task['task_type_id'] ?>.png"><?= $task['type'] ?></td>
-                                        <td><?= $task['priority'] ?><img style="width: 30px; margin-left: 0px;" src="../view/images/priority_<?= $task['task_priority_id'] ?>.png"></td>
-                                        <td><?= (empty($task['start_date']) ? "<em style='color:red;'>Not set</em>" : $task['start_date']) ?></td>
-                                        <td><?= (empty($task['end_date']) ? "<em style='color:red;'>Not set</em>" : $task['end_date']) ?></td>
+                                        <td><?= $task->prefixId ?></td>
+                                        <td><?= $task->title?></td>
+                                        <td><img style="width: 20px; margin-right: 5px;" src="../view/images/type_<?= $task->type?>.png"><?= $task->type?></td>
+                                        <td><?= $task->priority?><img style="width: 30px; margin-left: 0px;" src="../view/images/priority_<?= $task->priority?>.png"></td>
+                                         <td><?= (!strtotime($task->startDate) ? "<em style='color:red;'>Not set</em>" : $task->startDate) ?></td>
+                               			 <td><?= (!strtotime($task->startDate) ? "<em style='color:red;'>Not set</em>" : $task->endDate) ?></td>
                                         <td>
-                                            <div class="progress-wrap progress" style="background-color:orange;" data-progress-percent="<?= $task['progress'] ?>">
+                                            <div class="progress-wrap progress" style="background-color:orange;" data-progress-percent="<?= $task->progress?>">
                                                 <div class="progress-bar progress"></div>	  
                                             </div>
-                                            <p class="progress_perc" ><?= $task['progress'] ?>%</p>
+                                            <p class="progress_perc" ><?= $task->progress ?>%</p>
                                         </td>
-                                        <td><?= $task['project'] ?></td>
+                                        <td><?= $task->projectName ?></td>
                                     </tr>
-    <?php }
-} else {
-    ?>
+							    <?php }
+							} else {
+							    ?>
                                 <tr>
                                     <td colspan="9" style="text-align: center;"><em><strong>No results found.</strong></em></td>
                                 </tr>
@@ -92,19 +92,19 @@ if (!isset($_SESSION['user'])) {
 
                                     <?php //var_dump($task); ?>
                                     <tr>
-                                        <td><?= $task['task_id'] ?></td>
-                                        <td><?= $task['title'] ?></td>
-                                        <td><img style="width: 20px; margin-right: 5px;" src="../view/images/type_<?= $task['task_type_id'] ?>.png"><?= $task['type'] ?></td>
-                                        <td><?= $task['priority'] ?><img style="width: 30px; margin-left: 0px;" src="../view/images/priority_<?= $task['task_priority_id'] ?>.png"></td>
-                                        <td><?= (empty($task['start_date']) ? "<em style='color:red;'>Not set</em>" : $task['start_date']) ?></td>
-                                        <td><?= (empty($task['end_date']) ? "<em style='color:red;'>Not set</em>" : $task['end_date']) ?></td>
+                                        <td><?= $task->prefixId ?></td>
+                                        <td><?= $task->title ?></td>
+                                        <td><img style="width: 20px; margin-right: 5px;" src="../view/images/type_<?= $task->type ?>.png"><?= $task->type ?></td>
+                                        <td><?= $task->priority ?><img style="width: 30px; margin-left: 0px;" src="../view/images/priority_<?= $task->priority?>.png"></td>
+                                         <td><?= (!strtotime($task->startDate) ? "<em style='color:red;'>Not set</em>" : $task->startDate) ?></td>
+                               			 <td><?= (!strtotime($task->startDate) ? "<em style='color:red;'>Not set</em>" : $task->endDate) ?></td>
                                         <td>
-                                            <div class="progress-wrap progress" style="background-color:orange;" data-progress-percent="<?= $task['progress'] ?>">
+                                            <div class="progress-wrap progress" style="background-color:orange;" data-progress-percent="<?= $task->progress ?>">
                                                 <div class="progress-bar progress"></div>	  
                                             </div>
-                                            <p class="progress_perc" ><?= $task['progress'] ?>%</p>
+                                            <p class="progress_perc" ><?= $task->progress ?>%</p>
                                         </td>
-                                        <td><?= $task['project'] ?></td>
+                                        <td><?= $task->projectName ?></td>
                                     </tr>
                                 <?php }
                             } else {
@@ -112,7 +112,7 @@ if (!isset($_SESSION['user'])) {
                                 <tr>
                                     <td colspan="9" style="text-align: center;"><em><strong>No results found.</strong></em></td>
                                 </tr>
-<?php } ?>
+						<?php } ?>
                         </tbody>
                     </table>
 
@@ -126,8 +126,8 @@ if (!isset($_SESSION['user'])) {
                             <?php if (isset($workingOnTasks) && $workingOnTasks)
                                 foreach ($workingOnTasks as $task):
                                     ?>
-                                    <li onclick="location.href = '../controller/ViewProjectController.php?project=<?= $task['project'] ?> ';"><a href="#"><?= $task['project'] ?></a></li>
-    <?php endforeach ?>
+                                    <li onclick="location.href = '../controller/ViewProjectController.php?project=<?= $task->projectName ?> ';"><a href="#"><?= $task->projectName ?></a></li>
+  							  <?php endforeach ?>
                         </ul>
                     </div>
                     <div class="bg-info">

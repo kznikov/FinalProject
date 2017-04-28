@@ -1,9 +1,12 @@
 <?php
 
-include "../view/inc/autoload.php";
+	include_once 'CheckSession.php';
+	include "../view/inc/autoload.php";
+	
+	$roles = new RoleDAO();
+	$r = $roles->getAllRoles();
+	//var_dump($r);
+	include '../view/roles.php';
 
-$roles = new RoleDAO();
-$r = $roles->getAllRoles();
-//var_dump($r);
-include '../view/roles.php';
+
 ?>

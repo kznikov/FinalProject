@@ -1,14 +1,22 @@
 <?php
 
-include "../view/inc/autoload.php";
-$user_id = $sessionVars['id'];
+	include_once 'CheckSession.php';
+	include "../view/inc/autoload.php";
+	
+	$sessionVars = json_decode($_SESSION['user'], true);
+	$user_id = $sessionVars['id'];
+	
+	try {
+		
+		$tasksData = new TaskDAO();
+		
+		$assignTasks = $tasksData->getUserAssignTasks($user_id);
+		
+	} catch ( Exception $e ) {
+		$message = $e->getMessage ();
+	}
+	
+	//var_dump($assignTasks);
+	include '../view/mytasks.php';
 
-try {
-
-    $assignTasks = TaskDAO::getUserAssignTasks($user_id);
-} catch (Exception $e) {
-    $message = $e->getMessage();
-}
-
-include '../view/mytasks.php';
 ?>

@@ -8,7 +8,7 @@ include "inc/header.php";
         <div class="container">
             <div class="navbar-header">
 
-                <a class="navbar-brand" href="#"><img src="../controller/HomeController.php" alt=""></a>
+                <a class="navbar-brand" href="../controller/HomeController.php"><img src="../view/images/pmc-logo.svg" alt="Home"></a>
 
             </div>
         </div>

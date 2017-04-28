@@ -1,17 +1,21 @@
-<?php
+<?php 
+	
+	include_once 'CheckSession.php';
+	include "../view/inc/autoload.php";
+	
+	$sessionVars = json_decode($_SESSION['user'], true);
+	$user_id = $sessionVars['id'];
 
-include "../view/inc/autoload.php";
-
-$user_id = $sessionVars['id'];
-
-$editUser = new UserDAO;
-
-$result = $editUser->getInfoUser($user_id);
-
-if (isset($_SESSION['success_update'])) {
-    $successMessage = "Updated successfully!";
-    unset($_SESSION['success_update']);
-}
-
-include '../view/myprofile.php';
+	$user_id = $sessionVars['id'];
+	
+	$editUser = new UserDAO;
+	
+	$result = $editUser->getInfoUser($user_id);
+	
+	if (isset($_SESSION['success_update'])) {
+	    $successMessage = "Updated successfully!";
+	    unset($_SESSION['success_update']);
+	}
+	
+	include '../view/myprofile.php';
 ?>
