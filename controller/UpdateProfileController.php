@@ -61,14 +61,17 @@
 	        $upload = new UploadFile($destination);
 	        $upload->setMaxSize($max);
 	        //$upload->allowAllTypes('jira');
-	        $avatar= $upload->upload();
+	        $avatar = $upload->upload();
 	
 	        $saveImage = new UserDAO();
 	        $saveImage->saveImage($avatar, $user_id);
+			
+	        if(!$avatar){
+	        	$avatar = $userInfo->avatar;
+	        }
 	
-	        /* $userData = new UserDAO();
-	          $result = $userData->getImage($user_id);
-	          $image = $result['avatar']; */
+	    }else{
+	    	$avatar = $userInfo->avatar;
 	    }
 	
 	    $updateUser = new UserDAO;
