@@ -63,7 +63,8 @@ require_once "../model/IUserDAO.php";
 				$firstlogin = false;
 			}
 			
-			return new User($user['username'], 'p', $user['firstname'], $user['lastname'], $user['email'], $firstlogin, $user['id']);
+			return new User($user['username'], 'p', $user['firstname'], $user['lastname'], $user['email'],
+										$firstlogin, $user['phone'], $user['mobile'], $user['avatar'], $user['id']);
 		}
 
 		public function checkUserName($username) {

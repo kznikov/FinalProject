@@ -13,7 +13,7 @@ if (isset($_GET['name'])) {
     $checkUser = $userData->checkUserName($name);
 
     if ($checkUser == true) {
-        echo "<p class=\"error\"> Wrong username. </p>";
+       echo "<p class=\"error\"> Wrong username. </p>";
     }
 }
 
