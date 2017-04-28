@@ -3,6 +3,7 @@
 function __autoload($className) {
 	require_once "../model/" . $className . '.php';
 }
+
 try{
 	if (isset($_GET['name'])) {
 	
@@ -72,4 +73,6 @@ try{
 }catch (Exception $e){
 	echo $e->getMessage();
 }
+
+
 ?>

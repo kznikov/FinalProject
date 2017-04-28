@@ -3,7 +3,7 @@ $pageTitle = "Welcome to JIRA";
 include "inc/header.php";
 
 $userData = json_decode($_SESSION['user'], true);
-session_start();
+
 if (!isset($_SESSION['user'])) {
     header('Location:../view/index.php');
 }

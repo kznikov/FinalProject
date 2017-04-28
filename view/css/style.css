@@ -222,6 +222,11 @@ a.navbar-brand img {
     background: #fff;
 }
 
+
+#image-holder img {
+    width: 150px;
+}
+
 .nextstep {
     padding: 20px;
 }
