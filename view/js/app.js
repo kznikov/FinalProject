@@ -87,37 +87,37 @@ $(document).ready(function() {
 });
 
 //preview image
-// window.onload = function() {
+window.onload = function() {
     
-//     var fileInput = document.getElementById('image');
-//     var fileDisplayArea = document.getElementById('image-holder');
+    var fileInput = document.getElementById('image');
+    var fileDisplayArea = document.getElementById('image-holder');
 
-//     fileInput.addEventListener('change', function(e){
+    fileInput.addEventListener('change', function(e){
         
-//         var file = fileInput.files[0];
-//         var imageType = /image.*/;
+        var file = fileInput.files[0];
+        var imageType = /image.*/;
 
-//         if (file.type.match(imageType)) {
-//             var reader = new FileReader();
+        if (file.type.match(imageType)) {
+            var reader = new FileReader();
 
-//             reader.onload = function(e) {
+            reader.onload = function(e) {
 
-//                 fileDisplayArea.innerHTML = "";
+                fileDisplayArea.innerHTML = "";
 
-//                 var img = new Image();
-//                 img.src = reader.result;
+                var img = new Image();
+                img.src = reader.result;
 
-//                 fileDisplayArea.appendChild(img);
-//             }
+                fileDisplayArea.appendChild(img);
+            }
 
-//             reader.readAsDataURL(file);
-//         } else {
-//             fileDisplayArea.innerHTML = "File not supported.";
-//             document.getElementById("uploadImage").disabled = true;
-//         }
+            reader.readAsDataURL(file);
+        } else {
+            fileDisplayArea.innerHTML = "File not supported.";
+            document.getElementById("uploadImage").disabled = true;
+        }
 
-//     });
-// }
+    });
+}
 
 function checkName() {
     var name = document.getElementById("jira-setup-account-field-username");
