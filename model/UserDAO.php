@@ -131,7 +131,7 @@ require_once "../model/IUserDAO.php";
 			
 			$res = $pstmt->fetchAll(PDO::FETCH_ASSOC);
 
-			return $result = $res[0];
+			return $res;
 			
 		}
 

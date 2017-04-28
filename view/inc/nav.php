@@ -75,7 +75,7 @@ $userData = json_decode($_SESSION['user'], true);
                 <li class="dropdown">
 
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                            <?php
+                            <!-- <?php
                             if (isset($_SESSION['minavatar'])) {
                                 $image = $_SESSION['minavatar'];
                             }
@@ -89,7 +89,7 @@ $userData = json_decode($_SESSION['user'], true);
                             <img id="avatar" style="width: 30px; height: 20px; " src="../view/images/add-avatar_2.png" alt="avatar">
                             <?php
                         }
-                        ?>
+                        ?> -->
 
                         <?= $userData['lastname'] . ", " . $userData['firstname'] . " " ?><span class="caret"></span></a>
                     <ul class="dropdown-menu">
