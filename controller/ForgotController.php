@@ -10,8 +10,10 @@
 		
 		/* $userData = new UserDAO();
 		$password = $userData->forgotPassword($_POST['email']);  */
+		
+		$userDAO = new UserDAO();
 		$token = hash('sha256', time());
-		if(UserDAO::forgotPassword($_POST['email'], $token)){
+		if($userDAO->forgotPassword($_POST['email'], $token)){
 		
 			$mail = new PHPMailer;
 			$mail->isSMTP();

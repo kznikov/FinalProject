@@ -11,7 +11,7 @@
 
 		 	$projectId = htmlentities(trim($_POST['project']));
 		 	$title = htmlentities(trim($_POST['title']));
-		 	$owner = htmlentities(trim($_POST['owner']));
+		 	$ownerId = htmlentities(trim($_POST['owner']));
 		 	$description = htmlentities(trim($_POST['description']));
 		 	$type = htmlentities(trim($_POST['type']));
 		 	$priority = htmlentities(trim($_POST['priority']));
@@ -20,9 +20,10 @@
 		 	$startDate = htmlentities(trim($_POST['start_date']));
 		 	$endDate = htmlentities(trim($_POST['end_date']));
 		 	
-		 	if(!empty($projectId) && !empty($title) && !empty($owner)){
+		 	if(!empty($projectId) && !empty($title) && !empty($ownerId)){
 				
-		 		$task = new Task($title, $projectId, $userId, $owner, $type, $priority, $status, $progress, $description, $startDate, $endDate, $id = null);
+		 		$task = new Task($title, $projectId, $userId, $ownerId, $type, $priority, $status, $progress,
+		 				$description, $startDate, $endDate, $id = null, $projectName = null, $prefixId = null, $ownerUsername = null);
 
 			 	//var_dump($task);
 				$taskData = new TaskDAO();

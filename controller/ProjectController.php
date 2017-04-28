@@ -16,9 +16,8 @@
 		 	$status =  htmlentities(trim($_POST['status']));
 		 	
 		 	if(!empty($projectName) && !empty($prefix) && !empty($status)){
-
-			 	$project = new Project($projectName,$prefix, $userId, null, $description, $client, $startDate,$endDate, $status);
-
+		 		$project = new Project($projectName,$prefix, $userId, null, $description, $client, $startDate,$endDate, $status, null, null, null, null, null);
+					
 			 	//var_dump($project);
 				$projectData = new ProjectDAO();
 				

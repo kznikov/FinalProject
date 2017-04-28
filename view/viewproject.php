@@ -1,5 +1,5 @@
 <?php
-$pageTitle = "Project: " . $infoProject['name'];
+$pageTitle = "Project: " . $projectInfo->name;
 include "inc/header.php";
 
 if (!isset($_SESSION['user'])) {
@@ -16,7 +16,7 @@ if (!isset($_SESSION['user'])) {
             <div class="row">          
                 <div class="myproject-header">
                     <div class="myproject-title col-xs-12 col-md-10">
-                        <h2><img style="width: 40px; margin-right: 5px;" src="../view/images/project_status_<?= $infoProject['project_status_id'] ?>.png"> Project: <?php echo $infoProject['name']; ?></h2>
+                        <h2><img style="width: 40px; margin-right: 5px;" src="../view/images/project_status_<?= $projectInfo->status ?>.png"> Project: <?=$projectInfo->name ?></h2>
                     </div>
                     <div style="margin:0px;" class="myproject-button col-xs-12 col-md-2">
                         <button onclick="location.href = '../controller/MyProjectsController.php';" class="btn btn-primary">Back</button>
@@ -27,58 +27,58 @@ if (!isset($_SESSION['user'])) {
                 <table id="viewproject" style="width: 40%; float:left;" class="myproject-table table table-responsive table-bordered">
                     <tr>
                         <th>Name</th>
-                        <td><?php echo $infoProject['name']; ?></td>
+                        <td><?=$projectInfo->name ?></td>
                     </tr>
                     <tr>
                         <th >Prefix</th>
-                        <td><?php echo $infoProject['prefix']; ?></td>
+                        <td><?=$projectInfo->prefix; ?></td>
                     </tr>
                     <tr>
                         <th>Admin</th>
-                        <td><?php echo $infoProject['username']; ?></td>
+                        <td><?= $projectInfo->adminUsername ?></td>
                     </tr>
                     <tr>
                         <th>Client</th>
-                        <td><?php echo $infoProject['client']; ?></td>
+                        <td><?= $projectInfo->client ?></td>
                     </tr>
                     <tr>
                         <th>Status</th>
-                        <td><?php echo $infoProject['status']; ?></td>
+                        <td><?= $projectInfo->status ?></td>
                     </tr>
                     <tr>
                         <th>All tasks</th>
-                        <td><?php echo $infoProject['all_tasks']; ?></td>
+                        <td><?= $projectInfo->allTasks ?></td>
                     </tr>
                     <tr>
                         <th>Progress</th>
                         <td><?php
-                            if ($infoProject['avg_tasks_progress'] == null) {
+                        if ($projectInfo->progress == null) {
                                 echo "<em>No tasks found.</em>";
                             } else {
                                 ?>
 
-                                <div class="progress-wrap progress" data-progress-percent="<?= $infoProject['avg_tasks_progress'] ?>">
+                                <div class="progress-wrap progress" data-progress-percent="<?= $projectInfo->progress?>">
                                     <div class="progress-bar progress"></div>
 
                                 </div>
-                                <p class="progress_perc" ><?= $infoProject['avg_tasks_progress'] ?>%</p>
-<?php } ?>
+                                <p class="progress_perc" ><?= $projectInfo->progress?>%</p>
+						<?php } ?>
                         </td>
                     </tr>
                     <tr>
                         <th>Start Date</th>
-                        <td><?= ($infoProject['start_date'] == '0000-00-00' ? "<em style='color:red;'>Not set</em>" : $infoProject['start_date']) ?></td>
+                        <td><?= ($projectInfo->startDate == '0000-00-00' ? "<em style='color:red;'>Not set</em>" : $projectInfo->startDate) ?></td>
                     </tr>
                     <tr>
                         <th>End Date</th>
-                        <td><?= ($infoProject['end_date'] == '0000-00-00' ? "<em style='color:red;'>Not set</em>" : $infoProject['end_date']) ?></td>
+                        <td><?= ($projectInfo->endDate== '0000-00-00' ? "<em style='color:red;'>Not set</em>" : $projectInfo->endDate) ?></td>
                     </tr>
                     <tr>
                         <th>Email</th>
                         <td>
-                            <a href="mailto:<?php if (isset($infoProject['user_email'])) {
-    $infoProject['user_email'];
-} ?>"><span class="glyphicon glyphicon-envelope"></span></a>
+                            <a href="mailto:<?php if (isset($projectInfo->adminEmail)) {
+                            	$projectInfo->adminEmail;
+						} ?>"><span class="glyphicon glyphicon-envelope"></span></a>
                         </td>
                     </tr>
                 </table>
@@ -87,7 +87,7 @@ if (!isset($_SESSION['user'])) {
                 <table id="assoc_userlist"  style="width: 57%; float:left; margin-left:3%;" class="myproject-table table table-responsive table-bordered">
                     <thead style="background-color: #205081; color: #fff;">
                         <tr>
-                            <td colspan="9" style="text-align: center;"><em><strong>Users associated to <?= $infoProject['name']; ?></strong></em></td>
+                            <td colspan="9" style="text-align: center;"><em><strong>Users associated to <?= $projectInfo->name ?></strong></em></td>
                         </tr>
                         <tr>
                             <th>Avatar</th>
@@ -100,29 +100,29 @@ if (!isset($_SESSION['user'])) {
                     </thead>
                     <tbody>
 
-<?php
-if (isset($users) && $users) {
-    foreach ($users as $user) {
-        ?>
+						<?php
+						if (isset($users) && $users) {
+						    foreach ($users as $user) {
+						        ?>
 
                                 <tr>
                                     <td class="text-center">
 
-                                        <?php if ($user['avatar'] != NULL) {
+                                        <?php if ($user->avatar != NULL) {
                                             ?>
-                                            <img id="avatar" class="img-thumbnail" style="width: 70px;" src="../view/uploaded/<?php echo $user['avatar']; ?>" alt="avatar">
+                                            <img id="avatar" class="img-thumbnail" style="width: 70px;" src="../view/uploaded/<?= $user->avatar ?>" alt="avatar">
                                             <?php
                                         } else {
                                             ?>
                                             <img id="avatar" style="width: 70px;" src="../view/images/add-avatar_2.png" alt="avatar">
-            <?php
-        }
-        ?>    
+					            <?php
+					        }
+					        ?>    
 
                                     </td>
-                                    <td><?php echo $user['firstname'] . " " . $user['lastname']; ?></td>
-                                    <td><?php echo $user['username']; ?></td>
-                                    <td><?php echo $user['email']; ?></td>
+                                    <td><?=  $user->firstname . " " . $user->lastname ?></td>
+                                    <td><?= $user->username ?></td>
+                                    <td><?= $user->email ?></td>
                                     <td>
                                         <p>Application Manager</p>
                                         <p>Developer</p>
@@ -130,21 +130,21 @@ if (isset($users) && $users) {
                                     </td>
                                     <td class="text-center"> 
 
-                                        <a href="#"><span class="glyphicon glyphicon-eye-open" title="View" onclick="viewUser(<?php echo $user['id']; ?>)"></span>
+                                        <a href="#"><span class="glyphicon glyphicon-eye-open" title="View" onclick="viewUser(<?= $user->id ?>)"></span>
                                         </a>
 
-                                        <a href="#"><span class="glyphicon glyphicon-cog" title="Edit" onclick="editUser(<?php echo $user['id']; ?>)"></span></a>
-                                        <a href="#"><span class="glyphicon glyphicon-trash" title="Delete"  onclick="deleteUser(<?php echo $user['id'] ?>)"></span></a>
+                                        <a href="#"><span class="glyphicon glyphicon-cog" title="Edit" onclick="editUser(<?p= $user->id ?>)"></span></a>
+                                        <a href="#"><span class="glyphicon glyphicon-trash" title="Delete"  onclick="deleteUser(<?= $user->id ?>)"></span></a>
                                     </td>
                                 </tr>
 
-    <?php }
-} else {
-    ?>
+						    <?php }
+						} else {
+						    ?>
                             <tr>
                                 <td colspan="9" style="text-align: center;"><em><strong>No results found.</strong></em></td>
                             </tr>
-<?php } ?>
+					<?php } ?>
 
                     </tbody>
 
@@ -160,53 +160,53 @@ if (isset($users) && $users) {
                 <div id="board">
                     <ul class="tasks_board">
                         <li>To Do</li>
-<?php if (isset($toDoTasks) && $toDoTasks) {
-    foreach ($toDoTasks as $task) {
-        ?>
-                                <li class="board_note" style="background-color:<?= $colors[$task['priority']] ?>" onclick="location.href = '../controller/ViewTaskController.php?name=<?= $task['id'] ?> ';">
+						<?php if (isset($toDoTasks) && $toDoTasks) {
+						    foreach ($toDoTasks as $task) {
+						        ?>
+                                <li class="board_note" style="background-color:<?= $colors[$task->priority] ?>" onclick="location.href = '../controller/ViewTaskController.php?name=<?= $task->id ?> ';">
                                     <ul>
-                                        <li style="font-size: 1.3em;"><em><?= $task['title'] ?></em></li>
-                                        <li><?= $task['status'] ?></li>
+                                        <li style="font-size: 1.3em;"><em><?= $task->title?></em></li>
+                                        <li><?= $task->status?></li>
                                     </ul>
                                     <ul>
-                                        <li><img style="width: 20px; margin-right: 5px;" src="../view/images/type_<?= $task['task_type_id'] ?>.png"><?= $task['type'] ?></li>
+                                        <li><img style="width: 20px; margin-right: 5px;" src="../view/images/type_<?= $task->type ?>.png"><?= $task->type?></li>
                                     </ul>
                                     <ul style="clear: both;width: 50%">
                                         <li>
-                                            <div class="progress-wrap progress" style="background-color:orange;" data-progress-percent="<?= $task['progress'] ?>">
+                                            <div class="progress-wrap progress" style="background-color:orange;" data-progress-percent="<?= $task->progress?>">
                                                 <div class="progress-bar progress"></div>	  
                                             </div>
-                                            <p class="progress_perc" ><?= $task['progress'] ?>%</p>
+                                            <p class="progress_perc" ><?= $task->progress?>%</p>
                                         </li>
                                     </ul>
                                 </li>
-    <?php
-    }
-} else {
-    echo "<li style='text-align:center'><em><strong>No tasks found.</strong></em></li>";
-}
-?>
+						    <?php
+						    }
+						} else {
+						    echo "<li style='text-align:center'><em><strong>No tasks found.</strong></em></li>";
+						}
+						?>
 
                     </ul>
                     <ul class="tasks_board">
                         <li>Working On</li>
-<?php if (isset($workingOnTasks) && $workingOnTasks) {
-    foreach ($workingOnTasks as $task) {
-        ?>
-                                <li class="board_note" style="background-color:<?= $colors[$task['priority']] ?>" onclick="location.href = '../controller/ViewTaskController.php?name=<?= $task['id'] ?> ';">
+					<?php if (isset($workingOnTasks) && $workingOnTasks) {
+					    foreach ($workingOnTasks as $task) {
+					        ?>
+                                <li class="board_note" style="background-color:<?= $colors[$task->priority] ?>" onclick="location.href = '../controller/ViewTaskController.php?name=<?= $task->id ?> ';">
                                     <ul>
-                                        <li style="font-size: 1.3em;"><em><?= $task['title'] ?></em></li>
-                                        <li><?= $task['status'] ?></li>
+                                        <li style="font-size: 1.3em;"><em><?= $task->title ?></em></li>
+                                        <li><?= $task->status ?></li>
                                     </ul>
                                     <ul>
-                                        <li><img style="width: 20px; margin-right: 5px;" src="../view/images/type_<?= $task['task_type_id'] ?>.png"><?= $task['type'] ?></li>
+                                        <li><img style="width: 20px; margin-right: 5px;" src="../view/images/type_<?= $task->type ?>.png"><?= $task->type ?></li>
                                     </ul>
                                     <ul style="clear: both;width: 50%">
                                         <li>
-                                            <div class="progress-wrap progress" style="background-color:orange;" data-progress-percent="<?= $task['progress'] ?>">
+                                            <div class="progress-wrap progress" style="background-color:orange;" data-progress-percent="<?= $task->progress ?>">
                                                 <div class="progress-bar progress"></div>	  
                                             </div>
-                                            <p class="progress_perc" ><?= $task['progress'] ?>%</p>
+                                            <p class="progress_perc" ><?= $task->progress?>%</p>
                                         </li>
                                     </ul>
                                 </li>
@@ -220,32 +220,32 @@ if (isset($users) && $users) {
                     </ul>
                     <ul class="tasks_board">
                         <li>Done</li>
-<?php if (isset($doneTasks) && $doneTasks) {
-    foreach ($doneTasks as $task) {
-        ?>
-                                <li class="board_note" style="background-color:<?= $colors[$task['priority']] ?>" onclick="location.href = '../controller/ViewTaskController.php?name=<?= $task['id'] ?> ';">
+					<?php if (isset($doneTasks) && $doneTasks) {
+					    foreach ($doneTasks as $task) {
+					        ?>
+                                <li class="board_note" style="background-color:<?= $colors[$task->priority] ?>" onclick="location.href = '../controller/ViewTaskController.php?name=<?= $task->id ?> ';">
                                     <ul>
-                                        <li style="font-size: 1.3em;"><em><?= $task['title'] ?></em></li>
-                                        <li><?= $task['status'] ?></li>
+                                        <li style="font-size: 1.3em;"><em><?= $task->title ?></em></li>
+                                        <li><?= $task->status ?></li>
                                     </ul>
                                     <ul>
-                                        <li><img style="width: 20px; margin-right: 5px;" src="../view/images/type_<?= $task['task_type_id'] ?>.png"><?= $task['type'] ?></li>
+                                        <li><img style="width: 20px; margin-right: 5px;" src="../view/images/type_<?= $task->type ?>.png"><?= $task->type ?></li>
                                     </ul>
                                     <ul style="clear: both;width: 50%">
                                         <li> 			        			
-                                            <div class="progress-wrap progress" style="background-color:orange;" data-progress-percent="<?= $task['progress'] ?>">
+                                            <div class="progress-wrap progress" style="background-color:orange;" data-progress-percent="<?= $task->progress ?>">
                                                 <div class="progress-bar progress"></div>	  
                                             </div>
-                                            <p class="progress_perc" ><?= $task['progress'] ?>%</p>
+                                            <p class="progress_perc" ><?= $task->progress?>%</p>
                                         </li>
                                     </ul>
                                 </li>
-    <?php
-    }
-} else {
-    echo "<li style='text-align:center;'><em><strong>No tasks found.</strong></em></li>";
-}
-?>
+					    <?php
+					    }
+					} else {
+					    echo "<li style='text-align:center;'><em><strong>No tasks found.</strong></em></li>";
+					}
+					?>
 
                     </ul>
                 </div>

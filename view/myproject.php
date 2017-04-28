@@ -50,29 +50,27 @@ if (!isset($_SESSION['user'])) {
                         </tr>
                     </thead>
                     <tbody>
-<?php if (isset($adminProjects) && $adminProjects) {
-    foreach ($adminProjects as $project) {
-        ?>
-                                <tr class="myproject-name" onclick="location.href = '../controller/ViewProjectController.php?project=<?= $project['name'] ?> ';">
-                                    <td ><?= $project['name'] ?>
+						<?php if (isset($adminProjects) && $adminProjects) {
+						    foreach ($adminProjects as $project) {
+						        ?>
+                                <tr class="myproject-name" onclick="location.href = '../controller/ViewProjectController.php?project=<?= $project->name ?> ';">
+                                    <td ><?= $project->name?>
                                     </td>
-                                    <td> <a href="#" title="<?= $project['username'] ?>"><span onclick="viewUser(<?= $project['user_id'] ?>)"><?= $project['username'] ?></span></a></td>
-                                    <td><?= $project['open_tasks'] ?></td>
-                                    <td><?= $project['all_tasks'] ?></td>
-                                    <td><?= ($project['client'] == null ? "" : $project['client']) ?></td>
-                                    <td><img style="width: 20px; margin-right: 5px;" src="../view/images/project_status_<?= $project['project_status_id'] ?>.png"><?= $project['status'] ?></td>
+                                    <td> <a href="#" title="<?= $project->username ?>"><span onclick="viewUser(<?= $project->adminId ?>)"><?= $project->adminUsername ?></span></a></td>
+                                    <td><?= $project->openTasks ?></td>
+                                    <td><?= $project->allTasks ?></td>
+                                    <td><?= ($project->client == null ? "" : $project->client) ?></td>
+                                    <td><img style="width: 20px; margin-right: 5px;" src="../view/images/project_status_<?= $project->status ?>.png"><?= $project->status ?></td>
                                     <td><?php
-                                if ($project['avg_tasks_progress'] == null) {
+                                if ($project->progress == null) {
                                     echo "<em>No tasks found.</em>";
                                 } else {
                                     ?>
-
-                                            <div class="progress-wrap progress" data-progress-percent="<?= $project['avg_tasks_progress'] ?>">
-                                                <div class="progress-bar progress"></div>
-
-                                            </div>
-                                            <p class="progress_perc" ><?= $project['avg_tasks_progress'] ?>%</p>
-        <?php } ?>
+                                        <div class="progress-wrap progress" data-progress-percent="<?= $project->progress ?>">
+											<div class="progress-bar progress"></div>
+										</div>
+										 <p class="progress_perc" ><?= $project->progress ?>%</p>
+       							 <?php } ?>
                                     </td>
                                     <td class="text-center">
                                         <a href="#"><span class="glyphicon glyphicon-eye-open" title="View"></span></a>
@@ -80,7 +78,7 @@ if (!isset($_SESSION['user'])) {
                                         <a href="#"><span class="glyphicon glyphicon-trash" title="Delete"></span></a>
                                     </td>
                                     <td class="text-center">
-                                        <a href="mailto:<?= $user_email ?>"><span class="glyphicon glyphicon-envelope"></span></a>
+                                        <a href="mailto:<?= $project->adminEmail ?>"><span class="glyphicon glyphicon-envelope"></span></a>
                                     </td>
                                 </tr>
                             <?php }
@@ -89,7 +87,7 @@ if (!isset($_SESSION['user'])) {
                             <tr>
                                 <td colspan="9" style="text-align: center;"><em><strong>No results found.</strong></em></td>
                             </tr>
-<?php } ?>
+					<?php } ?>
                     </tbody>
                 </table>
                 <div class="bg-success">

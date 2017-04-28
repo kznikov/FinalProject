@@ -6,7 +6,7 @@ class Task implements JsonSerializable {
     private $title;
     private $description;
     private $createdBy;
-    private $owner;
+    private $ownerId;
     private $progress;
     private $type;
     private $status;
@@ -14,8 +14,12 @@ class Task implements JsonSerializable {
     private $priority;
     private $startDate;
     private $endDate;
+    private $projectName;
+    private $prefixId;
+    private $ownerUsername;
 
-    function __construct($title, $projectId, $createdBy, $owner, $type, $priority, $status, $progress, $description = null, $startDate = null, $endDate = null, $id = null) {
+    function __construct($title, $projectId, $createdBy, $ownerId, $type, $priority, $status, $progress,
+    		$description = null, $startDate = null, $endDate = null, $id = null, $projectName = null, $prefixId = null, $ownerUsername = null) {
         if (empty($title)) {
             throw new Exception('Empty task!');
         }
@@ -23,7 +27,7 @@ class Task implements JsonSerializable {
         $this->title = $title;
         $this->projectId = $projectId;
         $this->createdBy = $createdBy;
-        $this->owner = $owner;
+        $this->ownerId = $ownerId;
         $this->type = $type;
         $this->priority = $priority;
         $this->status = $status;
@@ -32,6 +36,9 @@ class Task implements JsonSerializable {
         $this->startDate = $startDate;
         $this->endDate = $endDate;
         $this->id = $id;
+        $this->projectName = $projectName;
+        $this->prefixId = $prefixId;
+        $this->ownerUsername = $ownerUsername;
     }
 
     public function jsonSerialize() {

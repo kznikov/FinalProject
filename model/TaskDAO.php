@@ -38,7 +38,7 @@ class TaskDAO implements ITaskDAO {
 		try{
 			$pstmt = $this->db->prepare(self::INSERT_NEW_TASK);
 			//var_dump($task);
-			$pstmt->execute(array($task->title, $task->description, $task->createdBy, $task->owner, $task->progress, $task->startDate, $task->endDate,
+			$pstmt->execute(array($task->title, $task->description, $task->createdBy, $task->ownerId, $task->progress, $task->startDate, $task->endDate,
 									$task->type, $task->status, $task->projectId, $task->priority));
 			
 			return true;
@@ -53,7 +53,14 @@ class TaskDAO implements ITaskDAO {
 			$pstmt = $this->db->prepare(self::GET_USER_ASSIGN_TASKS);
 			$pstmt->execute(array($user_id));
 			
-			$tasks= $pstmt->fetchAll(PDO::FETCH_ASSOC);
+			$res = $pstmt->fetchAll(PDO::FETCH_ASSOC);
+			
+			$tasks = array();
+			foreach ($res as $task){
+				$tasks[] = new Task($task['title'], $task['projects_id'], $task['created_by'],$task['assign_to'], $task['type'],
+						$task['priority'], $task['status'], $task['progress'], $task['description'], $task['start_date'], $task['end_date'],
+						$task['id'], $task['project'], $task['task_id'], $task['username']);
+			}
 			
 			return $tasks;
 
@@ -67,9 +74,13 @@ class TaskDAO implements ITaskDAO {
 			$pstmt = $this->db->prepare(self::GET_TASKS);
 			$pstmt->execute(array($task_id));
 			
-			$task = $pstmt->fetchAll(PDO::FETCH_ASSOC);
+			$res = $pstmt->fetch(PDO::FETCH_ASSOC);
 			
-			return $task[0];
+			$task = new Task($res['title'], $res['projects_id'], $res['created_by'],$res['assign_to'], $res['type'],
+					$res['priority'], $res['status'], $res['progress'], $res['description'], $res['start_date'], $res['end_date'],
+					$res['id'], $res['project'], $res['task_id'], $res['username']);
+			
+			return $task;
 			
 
 		} catch(Exception $e){
@@ -86,7 +97,16 @@ class TaskDAO implements ITaskDAO {
 			$pstmt = $this->db->prepare(self::GET_USER_ASSIGN_TASKS." AND t.task_status_id = 1");
 			$pstmt->execute(array($user_id));
 			
-			$openTasks = $pstmt->fetchAll(PDO::FETCH_ASSOC);
+			$res = $pstmt->fetchAll(PDO::FETCH_ASSOC);
+			
+			$openTasks = array();
+			foreach ($res as $task){
+				$openTasks[] = new Task($task['title'], $task['projects_id'], $task['created_by'],$task['assign_to'], $task['type'],
+						$task['priority'], $task['status'], $task['progress'], $task['description'], $task['start_date'], $task['end_date'],
+						$task['id'], $task['project'], $task['task_id'], $task['username']);
+			}
+			
+			return $openTasks;
 			
 			return $openTasks;
 		}catch(Exception $e){
@@ -100,7 +120,17 @@ class TaskDAO implements ITaskDAO {
 			$pstmt = $this->db->prepare(self::GET_USER_ASSIGN_TASKS." AND t.task_status_id = 2");
 			$pstmt->execute(array($user_id));
 			
-			$workingOnTasks= $pstmt->fetchAll(PDO::FETCH_ASSOC);
+			$res = $pstmt->fetchAll(PDO::FETCH_ASSOC);
+			
+			$workingOnTasks= array();
+			foreach ($res as $task){
+				$workingOnTasks[] = new Task($task['title'], $task['projects_id'], $task['created_by'],$task['assign_to'], $task['type'],
+						$task['priority'], $task['status'], $task['progress'], $task['description'], $task['start_date'], $task['end_date'],
+						$task['id'], $task['project'], $task['task_id'], $task['username']);
+			}
+			
+			return $workingOnTasks;
+			
 			
 			return $workingOnTasks;
 		}catch(Exception $e){
@@ -108,6 +138,16 @@ class TaskDAO implements ITaskDAO {
 		}
 	}
 	
+	public function toObjects($tasksArray){
+		$result = array();
+		foreach ($tasksArray as $task){
+			$result[] =  new Task($task['title'], $task['projects_id'], $task['created_by'],$task['assign_to'], $task['type'],
+					$task['priority'], $task['status'], $task['progress'], $task['description'], $task['start_date'], $task['end_date'],
+					$task['id']);
+		}
+	
+		return $result;
+	}
 	
 	
 	public function getProjectTasks($project_name){
@@ -125,9 +165,10 @@ class TaskDAO implements ITaskDAO {
 			$pstmt->execute(array($project_name));
 			$doneTasks= $pstmt->fetchAll(PDO::FETCH_ASSOC);
 			
-			$projectTasks [] = $toDoTasks;
-			$projectTasks [] = $workingOnTasks;
-			$projectTasks [] = $doneTasks;
+			$projectTasks[] = self::toObjects($toDoTasks);
+			$projectTasks[] = self::toObjects($workingOnTasks);
+			$projectTasks[] = self::toObjects($doneTasks);
+
 			return $projectTasks;
 			
 		}catch(Exception $e){
@@ -143,7 +184,14 @@ class TaskDAO implements ITaskDAO {
 			$pstmt = $this->db->prepare(self::GET_USER_ALL_TASKS);
 			$pstmt->execute(array($user_id, $user_id));
 			
-			$allTasks = $pstmt->fetchAll(PDO::FETCH_ASSOC);
+			$res = $pstmt->fetchAll(PDO::FETCH_ASSOC);
+			
+			$allTasks = array();
+			foreach ($res as $task){
+				$allTasks[] = new Task($task['title'], $task['projects_id'], $task['created_by'],$task['assign_to'], $task['type'],
+						$task['priority'], $task['status'], $task['progress'], $task['description'], $task['start_date'], $task['end_date'],
+						$task['id'], $task['project'], $task['task_id'], $task['username']);
+			}
 			
 			return $allTasks;
 			

@@ -1,5 +1,5 @@
 <?php
-$pageTitle = "Task: " . $task['task_id'];
+$pageTitle = "Task: " . $task->prefixId;
 ;
 include "inc/header.php";
 
@@ -18,7 +18,7 @@ if (!isset($_SESSION['user'])) {
                     <div class="myproject-header">
                         <div class="myproject-title">
                             <div class="col-xs-12 col-md-5">
-                                <h2>Tasks - <?php echo $task['task_id']; ?></h2>
+                                <h2>Tasks - <?=$task->prefixId ?></h2>
                             </div>
                             <div class="col-xs-12 col-md-7">
                                 <ul class="nav nav-pills  text-right" role="tablist">
@@ -39,48 +39,48 @@ if (!isset($_SESSION['user'])) {
                         <table class="table table-striped">
                             <tr>
                                 <th scope="row">Project</th>
-                                <td><?php echo $task['project']; ?></td>
+                                <td><?= $task->projectName?></td>
                             </tr>
                             <tr>
                                 <th scope="row">Title</th>
-                                <td><?php echo $task['title']; ?></td>
+                                <td><?= $task->title?></td>
                             </tr>
                             <tr>
                                 <th scope="row">Description</th>
-                                <td><?php echo $task['description']; ?></td>
+                               <td><?= $task->description?></td>
                             </tr>
                             <tr>
                                 <th scope="row">Type</th>
-                                <td><img style="width: 20px; margin-right:5px;" src="../view/images/type_<?= $task['task_type_id'] ?>.png"><?php echo $task['type']; ?></td>
+                                <td><img style="width: 20px; margin-right:5px;" src="../view/images/type_<?= $task->type ?>.png"><?= $task->type ?></td>
                             </tr>
                             <tr>
                                 <th scope="row">Priority</th>
-                                <td><?php echo $task['priority']; ?><img style="width:30px; margin-left: 0px;" src="../view/images/priority_<?= $task['task_priority_id'] ?>.png"></td>
+                                <td><?=$task->priority?><img style="width:30px; margin-left: 0px;" src="../view/images/priority_<?= $task->priority ?>.png"></td>
                             </tr>
                             <tr>
                                 <th scope="row">Status</th>
-                                <td><?php echo $task['status']; ?></td>
+                                <td><?= $task->status?></td>
                             </tr>
                             <tr>
                                 <th>Progress</th>
                                 <td>
-                                    <div class="progress-wrap progress" style="background-color:orange;" data-progress-percent="<?= $task['progress'] ?>">
+                                    <div class="progress-wrap progress" style="background-color:orange;" data-progress-percent="<?= $task->progress?>">
                                         <div class="progress-bar progress"></div>	  
                                     </div>
-                                    <p class="progress_perc" ><?= $task['progress'] ?>%</p>
+                                    <p class="progress_perc" ><?= $task->progress ?>%</p>
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row">Owner</th>
-                                <td><?php echo $task['username']; ?></td>
+                                <td><?= $task->ownerUsername?></td>
                             </tr>
                             <tr>
                                 <th scope="row">Start date</th>
-                                <td><?= (empty($task['start_date']) ? "<em style='color:red;'>Not set</em>" : $task['start_date']) ?></td>
+                                <td><?= (!strtotime($task->startDate) ? "<em style='color:red;'>Not set</em>" : $task->startDate) ?></td>
                             </tr>
                             <tr>
                                 <th scope="row">End date</th>
-                                <td><?= (empty($task['end_date']) ? "<em style='color:red;'>Not set</em>" : $task['end_date']) ?></td>
+                                <td><?= (!strtotime($task->endDate) ? "<em style='color:red;'>Not set</em>" : $task->endDate) ?></td>
                             </tr>
                         </table>
                     </div>
@@ -102,8 +102,8 @@ if (!isset($_SESSION['user'])) {
 
                         <div class="form-group ">
                             <input type="hidden" name="MAX_FILE_SIZE" value="<?php if (isset($max)) {
-    echo $max;
-} ?>">
+						    echo $max;
+						} ?>">
                             <label for="image">File input</label>
                             <input type="file" id="image" name="image">
                             <p class="help-block">Please upload file.</p>

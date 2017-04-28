@@ -11,8 +11,16 @@ class Project implements JsonSerializable {
     private $startDate;
     private $endDate;
     private $status;
-
-    function __construct($name, $prefix, $adminId, $id = null, $description = null, $client = null, $startDate = null, $endDate = null, $status = null) {
+    private $progress;
+    private $openTasks;
+    private $allTasks;
+    private $adminUsername;
+    private $adminEmail;
+    
+    
+    function __construct($name, $prefix, $adminId, $id = null, $description = null, $client = null, $startDate = null, 
+    		$endDate = null, $status = null, $progress = null, $openTasks = null, $allTasks = null, $adminUsername = null, $adminEmail = null) {
+    	
         if (empty($name)) {
             throw new Exception('Empty project');
         }
@@ -27,6 +35,11 @@ class Project implements JsonSerializable {
         $this->startDate = $startDate;
         $this->endDate = $endDate;
         $this->status = $status;
+        $this->progress = $progress;
+        $this->openTasks = $openTasks;
+        $this->allTasks = $allTasks;
+        $this->adminUsername = $adminUsername;
+        $this->adminEmail = $adminEmail;
     }
 
     public function jsonSerialize() {

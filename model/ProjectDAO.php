@@ -10,7 +10,7 @@ class ProjectDAO implements IProjectDAO {
 	const INSERT_NEW_PROJECT = "INSERT INTO projects (id, name, description, prefix, create_date, admin_id, client, start_date, end_date, project_status_id) 
 						VALUES (null, ?, ?, ?, now(), ?, ?, ?, ?, ?)";
 
-	const GET_ADMIN_PROJECTS = "SELECT p.*, u.id as user_id, u.username, ps.name as status, COUNT(t.id) as 'all_tasks' FROM projects p JOIN users u ON p.admin_id = u.id JOIN project_status ps
+	const GET_ADMIN_PROJECTS = "SELECT p.*, u.id as user_id, u.username, u.email, ps.name as status, COUNT(t.id) as 'all_tasks' FROM projects p JOIN users u ON p.admin_id = u.id JOIN project_status ps
 								 ON p.project_status_id = ps.id left JOIN tasks t ON p.id = t.projects_id WHERE p.admin_id = ? GROUP BY p.id";
 	
 	const GET_ADMIN_ALL_OPEN_TASK_CNT = "SELECT p.id, count(t.id) as 'open_tasks' FROM projects p LEFT JOIN tasks t ON p.id = t.projects_id and t.task_status_id = 1 WHERE p.admin_id = ? GROUP BY p.id";
@@ -36,9 +36,7 @@ class ProjectDAO implements IProjectDAO {
     const GET_INFO_PROJECT = "SELECT p.*, u.*, ps.name as status, COUNT(t.id) as 'all_tasks',ROUND(AVG(t.progress)) as 'avg_tasks_progress' FROM projects p JOIN users u 
 						ON p.admin_id=u.id JOIN project_status ps ON p.project_status_id = ps.id left JOIN tasks t ON p.id = t.projects_id WHERE p.name LIKE ?";
     const SELECT_NAME = "SELECT name FROM projects";
-    const GET_PROJECT_ASSOC_USERS = "SELECT * from (SELECT u.* FROM users u JOIN user_projects up 
-							ON u.id = up.user_id JOIN projects p ON up.project_id = p.id WHERE p.name LIKE ?) as users 
-												union (SELECT u.* FROM users u JOIN projects p ON p.admin_id = u.id WHERE p.name LIKE ?)";
+   
 
 
 	public function __construct() {
@@ -85,7 +83,14 @@ class ProjectDAO implements IProjectDAO {
 			for($index = 0;$index <= count($tmp)-1;$index++){
 				$result[] = array_merge($tmp[$index], $projectProgress[$index]);
 			}
-			return $result;
+			
+			$adminProjects = array();
+			foreach ($result as $project){
+				$adminProjects[] = new Project($project['name'], $project['prefix'], $project['admin_id'], $project['id'], $project['description'], $project['client'], $project['start_date'],
+						$project['end_date'], $project['status'], $project['avg_tasks_progress'], $project['open_tasks'], $project['all_tasks'], $project['username'], $project['email']);
+			}
+			
+			return $adminProjects;
 		}catch(Exception $e){
 			throw new Exception("Failed to get information from DB!");
 		}
@@ -121,7 +126,15 @@ class ProjectDAO implements IProjectDAO {
 				$result[] = array_merge($tmp[$index], $projectProgress[$index]);
 			} 
 			
-			return array_merge($adminProjects, $result);
+			$newResult = array();
+			foreach ($result as $project){
+				$newResult [] = new Project($project['name'], $project['prefix'], $project['admin_id'], $project['id'], $project['description'], $project['client'], $project['start_date'],
+						$project['end_date'], $project['status'], $project['avg_tasks_progress'], $project['open_tasks'], $project['all_tasks'], $project['username'], $project['user_email']);
+			}
+			
+			$allProjects = array_merge($adminProjects, $newResult);
+			
+			return $allProjects;
 			
 		}catch(Exception $e){
 			throw new Exception("Failed to get information from DB!");
@@ -163,10 +176,12 @@ class ProjectDAO implements IProjectDAO {
 			$pstmt = $this->db->prepare(self::GET_INFO_PROJECT);
 			$pstmt->execute(array($name));
 			
-			$res = $pstmt->fetchAll(PDO::FETCH_ASSOC);
-			$infoProject = $res[0];
-
-			return $infoProject;
+			$project = $pstmt->fetch(PDO::FETCH_ASSOC);
+			
+			$projectInfo = new Project($project['name'], $project['prefix'], $project['admin_id'], $project['id'], $project['description'], $project['client'], $project['start_date'],
+					$project['end_date'], $project['status'], $project['avg_tasks_progress'], null, $project['all_tasks'], $project['username'], $project['email']);
+			
+			return $projectInfo;
 
 		} catch(Exception $e){
 			throw new Exception("Failed to get information from DB!");
@@ -182,20 +197,7 @@ class ProjectDAO implements IProjectDAO {
 
 	
 	
-	public function getProjectAssocUsers($projectName) {
-		
-		try{			
-			$pstmt = $this->db->prepare(self::GET_PROJECT_ASSOC_USERS);
-			$pstmt->execute(array($projectName, $projectName));
-			
-			$users = $pstmt->fetchAll(PDO::FETCH_ASSOC);
-			
-			return $users;
-			
-		} catch(Exception $e){
-			throw new Exception("Failed to get information from DB!");
-		}
-	}
+	
 
 }
 	

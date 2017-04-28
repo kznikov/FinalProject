@@ -49,23 +49,23 @@
                             foreach ($allProjects as $project) {
                                 ?>
                                 <tr>
-                                    <td><?= $project['name'] ?></td>
-                                    <td><a href="#"><span onclick="viewUser(<?= $project['admin_id'] ?>)"><?= $project['username'] ?></span></a></td>
-                                    <td><?= $project['open_tasks'] ?></td>
-                                    <td><?= $project['all_tasks'] ?></td>
-                                    <td><?= ($project['client'] == null ? "" : $project['client']) ?></td>
-                                    <td><img style="width: 20px; margin-right: 5px;" src="../view/images/project_status_<?= $project['project_status_id'] ?>.png"><?= $project['status'] ?></td>
+                                    <td><?= $project->name ?></td>
+                                    <td><a href="#"><span onclick="viewUser(<?= $project->adminId ?>)"><?= $project->adminUsername ?></span></a></td>
+                                    <td><?= $project->openTasks ?></td>
+                                    <td><?= $project->allTasks ?></td>
+                                    <td><?= ($project->client == null ? "" : $project->client) ?></td>
+                                    <td><img style="width: 20px; margin-right: 5px;" src="../view/images/project_status_<?= $project->status ?>.png"><?= $project->status ?></td>
                                     <td><?php
-                                        if ($project['avg_tasks_progress'] == null) {
+                                        if ($project->progress == null) {
                                             echo "<em>No tasks found.</em>";
                                         } else {
                                             ?>
 
-                                            <div class="progress-wrap progress" data-progress-percent="<?= $project['avg_tasks_progress'] ?>">
+                                            <div class="progress-wrap progress" data-progress-percent="<?= $project->progress ?>">
                                                 <div class="progress-bar progress"></div>
 
                                             </div>
-                                            <p class="progress_perc" ><?= $project['avg_tasks_progress'] ?>%</p>
+                                            <p class="progress_perc" ><?= $project->progress ?>%</p>
                                         <?php } ?>
                                     </td>
                                     <td class="text-center">
@@ -76,8 +76,8 @@
                                     <td lass="text-center">
 
                                         <a href="mailto:
-                                <?php if (isset($project['user_email'])) {
-                                    echo $project['user_email'];
+                                <?php if (isset($project->adminEmail)) {
+                                    echo $project->email;
                                 } ?>"><span class="glyphicon glyphicon-envelope"></span></a>
 
                                     </td>
@@ -88,7 +88,7 @@
                             <tr>
                                 <td colspan="9" style="text-align: center;"><em><strong>No results found.</strong></em></td>
                             </tr>
-<?php } ?>
+						<?php } ?>
                     </tbody>
                 </table>
                 <div class="bg-success">

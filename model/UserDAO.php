@@ -34,6 +34,11 @@ require_once "../model/IUserDAO.php";
 		const DELETE_USER = "DELETE FROM users WHERE id=:id";
 		
 		
+		const GET_PROJECT_ASSOC_USERS = "SELECT * from (SELECT u.* FROM users u JOIN user_projects up
+							ON u.id = up.user_id JOIN projects p ON up.project_id = p.id WHERE p.name LIKE ?) as users
+												union (SELECT u.* FROM users u JOIN projects p ON p.admin_id = u.id WHERE p.name LIKE ?)";
+		
+		
 		public function __construct() {
 			$this->db = DBConnection::getDb();
 		}
@@ -130,7 +135,8 @@ require_once "../model/IUserDAO.php";
 			
 		}
 
-		public function getInfoUser($id) {			
+		public function getInfoUser($id) {	
+	
 			$pstmt = $this->db->prepare(self::GET_INFO_USER);
 			$pstmt->execute(array($id));
 			
@@ -153,7 +159,7 @@ require_once "../model/IUserDAO.php";
 			
 		}
 		
-		public static function forgotPassword($email, $token) {
+		public function forgotPassword($email, $token) {
 			$pstmt = $this->db->prepare(self::UPDATE_TOKEN);
 			if(!self::checkEmail($email)){
 				return $pstmt->execute(array($token, $email));
@@ -162,11 +168,34 @@ require_once "../model/IUserDAO.php";
 		}
 		
 		
-		public static function resetPassword($email, $token, $pass) {			
+		public function resetPassword($email, $token, $pass) {			
 			$pstmt = $this->db->prepare(self::RESET_PASSWORD);
 			
 			 $pstmt->execute(array(hash('sha256', $pass), $email, $token));
 			 return $pstmt->rowCount();
+		}
+		
+		
+		
+		public function getProjectAssocUsers($projectName) {
+			
+			try{
+				$pstmt = $this->db->prepare(self::GET_PROJECT_ASSOC_USERS);
+				$pstmt->execute(array($projectName, $projectName));
+				
+				$users = $pstmt->fetchAll(PDO::FETCH_ASSOC);
+				
+				$assocUssers = array();
+				foreach ($users as $user){
+					$assocUssers [] = new User($user['username'], 'p', $user['firstname'], $user['lastname'],
+															$user['email'], null, $user['phone'], $user['mobile'], $user['avatar'], null);
+				}
+				
+				return $assocUssers;
+				
+			} catch(Exception $e){
+				throw new Exception("Failed to get information from DB!");
+			}
 		}
 		
 		

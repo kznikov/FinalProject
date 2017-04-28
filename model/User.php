@@ -9,8 +9,12 @@ class User implements JsonSerializable {
     private $lastname;
     private $email;
     private $firstLogin;
+    private $phone;
+    private $mobile;
+    private $avatar;
 
-    function __construct($username, $password, $firstname = null, $lastname = null, $email = null, $firstlogin = null, $id = null) {
+    function __construct($username, $password, $firstname = null, $lastname = null, $email = null,
+    								$firstlogin = null, $phone = null, $mobile = null, $avatar = null, $id = null) {
         if (empty($username)) {
             throw new Exception('Empty username');
         }
@@ -26,6 +30,10 @@ class User implements JsonSerializable {
         $this->lastname = $lastname;
         $this->email = $email;
         $this->firstLogin = $firstlogin;
+        $this->phone = $phone;
+        $this->mobile = $mobile;
+        $this->avatar = $avatar;
+        
     }
 
     public function jsonSerialize() {

@@ -12,26 +12,23 @@
 		$name = $_GET['project'];
 
 		try{
-			$projects = new ProjectDAO();
-			$infoProject = $projects->getInfoProject($name);
+			$projectDAO = new ProjectDAO();
+			$projectInfo = $projectDAO->getInfoProject($name);
 			
-			if(empty($infoProject['name'])){
+			if(!$projectInfo->name){
 				include '../view/pageNotFound.php';
 				die();
 			}
-			$user_id = $infoProject['admin_id'];
+			$user_id = $projectInfo->adminId;
 
-			$infoUser = new UserDAO;
-			$result = $infoUser->getInfoUser($user_id);
+			$userDAO = new UserDAO;
+			$result = $userDAO->getInfoUser($user_id);
 			
-			$projectDao = new ProjectDAO();
+			$users = $userDAO->getProjectAssocUsers($name);
 			
+			$taskDAO = new TaskDAO();
 			
-			$users = $projectDao->getProjectAssocUsers($name);
-			
-			$taskDao = new TaskDAO();
-			
-			$projectTasks = $taskDao->getProjectTasks($name);
+			$projectTasks = $taskDAO->getProjectTasks($name);
 		
 			
 			$toDoTasks = $projectTasks[0];

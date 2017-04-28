@@ -8,9 +8,8 @@
 	$user_email = $sessionVars['email'];
 	
 	try {
-	
-	    $projects = new ProjectDAO();
-	    $adminProjects = $projects->getAdminProjects($user_id);
+	    $projectDAO = new ProjectDAO();
+	    $adminProjects = $projectDAO->getAdminProjects($user_id);
 	} catch (Exception $e) {
 	
 	    $message = $e->getMessage();
