@@ -1,13 +1,5 @@
 <?php
-	//include "../view/inc/autoload.php";
-	//
-	
-	function __autoload($className) {
-		require_once "../model/" . $className . '.php';
-	}
-	include_once 'CheckSession.php';
-	
-	$sessionVars = json_decode($_SESSION['user'], true);
+include "../view/inc/autoload.php";
 
 	$user_id = $sessionVars['id'];
 	$user_email = $sessionVars['email'];

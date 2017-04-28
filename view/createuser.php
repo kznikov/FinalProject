@@ -19,8 +19,6 @@ if (!isset($_SESSION['user'])) {
                         <h2>Create user</h2>
                     </div>
                 </div>
-
-
                 <form id="create-user" action="" method="post">
                     <div class="tab">
                         <ul class="nav nav-tabs" role="tablist">
@@ -190,12 +188,6 @@ if (!isset($_SESSION['user'])) {
                     </div> <!-- class="buttons-container" -->
 
                 </form>
-
-
-
-
-
-
 
             </div> <!-- class="row" -->
         </div>
