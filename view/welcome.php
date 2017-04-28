@@ -21,7 +21,7 @@ $user_id = $userData['id'];
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#"><img src="/FinalProject/view/images/aui-header-logo-jira.png" alt=""></a>
+                <a class="navbar-brand" href="#"><img src="../view/images/pmc-logo.svg" alt="PMC"></a>
 
             </div>
             <div id="navbar" class="navbar-collapse collapse">
@@ -46,7 +46,7 @@ $user_id = $userData['id'];
             <hr>
             <div class="avatar-body">
 
-                <p>Let's get started! You'll need an avatar to help other users identify you in JIRA.</p>
+                <p>Let's get started! You'll need an avatar to help other users identify you in PMC.</p>
                 <?php if (isset($result) && $result) { ?>
                     <ul class="result">
                         <?php
@@ -86,7 +86,7 @@ $user_id = $userData['id'];
                         <div class="row">
                             <div class="col-md-6 text-left">
                                 <div class="buttons"> 
-                                    <input type="submit" name="upload" class="btn btn-primary" value="Upload">
+                                    <input type="submit" name="upload" id="uploadImage" class="btn btn-primary" value="Upload">
                                 </div>
                             </div>
                             <div class="col-md-6 text-right">

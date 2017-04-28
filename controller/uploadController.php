@@ -19,12 +19,12 @@ if ($_SESSION['user']){
 				$upload = new UploadFile($destination);
 				$upload->setMaxSize($max);
 				//$upload->allowAllTypes('jira');
+				//
 				$imageName = $upload->upload();
-				
 				$saveImage = new UserDAO();
 				$saveImage->saveImage($imageName, $user_id);
 
-				$userData = new UserDAO();
+				$userData = new UserDAO(); //show image
 				$result = $userData->getInfoUser($user_id);
 				$image = $result->avatar;
 				
