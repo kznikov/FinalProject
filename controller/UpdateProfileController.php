@@ -10,6 +10,7 @@
 	$editUser = new UserDAO;
 	
 	$userInfo = $editUser->getInfoUser($user_id);
+	$result = array();
 	
 	
 	if (isset($_POST['submit'])) {

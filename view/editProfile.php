@@ -107,6 +107,17 @@ include "inc/header.php";
                                     }
                                     ?>
                                 </div>
+                                <div>
+                                     <?php if (isset($result) && $result) { ?>
+                                        <ul class="result">
+                                            <?php
+                                            foreach ($result as $message) {
+                                                echo "<li>$message</li>";
+                                            }
+                                            ?>
+                                        </ul>
+                                    <?php } ?>
+                                </div>
 
                                 <div class="form-group col-md-9" style="height: 200px;">
                                 <input type="hidden" name="MAX_FILE_SIZE" value="<?php if (isset($max)) { echo $max; } ?>">
@@ -133,7 +144,7 @@ include "inc/header.php";
                     </div>
                     <div class="buttons-container text-right">
                         <div class="buttons"> 
-                            <input type="submit" class="btn btn-primary" name="submit" value="Save">
+                            <input type="submit" class="btn btn-primary" id="uploadImage" name="submit" value="Save">
                         </div>
                     </div> <!-- class="buttons-container" -->
 
