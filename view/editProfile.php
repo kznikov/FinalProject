@@ -109,11 +109,11 @@ include "inc/header.php";
                                 </div>
 
                                 <div class="form-group col-md-9" style="height: 200px;">
+                                <input type="hidden" name="MAX_FILE_SIZE" value="<?php if (isset($max)) { echo $max; } ?>">
                                     <label for="fileUpload">Avatar</label>
                                     <input type="file" id="image" name="image">
                                     <p class="help-block">Please upload image.</p>
                                 </div>
-
 
                             </div>
                             <div role="tabpanel" class="tab-pane" id="notifications">

@@ -19,10 +19,10 @@ include "inc/header.php";
             <div class="login-header">
                 <h1>Log in</h1>
             </div>
-<?php if (isset($errorMessage) && $errorMessage) { ?>
-                <div  class="flash_login_error" >Sorry, we didn&#x27;t recognize that username and password combination. Please double-check and try again.</div>
+            <?php if (isset($errorMessage) && $errorMessage) { ?>
+                            <div  class="flash_login_error" >Sorry, we didn&#x27;t recognize that username and password combination. Please double-check and try again.</div>
 
-<?php } ?>
+            <?php } ?>
 
             <?php if (isset($message)) { ?>
                 <div  class="<?= $class ?> ?>" ><?= $message ?></div>
