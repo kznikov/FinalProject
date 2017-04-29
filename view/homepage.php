@@ -46,7 +46,7 @@ if (!isset($_SESSION['user'])) {
 								        ?>
 
                                     <?php //var_dump($task); ?>
-                                    <tr>
+                                    <tr  class="myproject-name" onclick="location.href = '../controller/ViewTaskController.php?name=<?= $task->id ?> ';">
                                         <td><?= $task->prefixId ?></td>
                                         <td><?= $task->title?></td>
                                         <td><img style="width: 20px; margin-right: 5px;" src="../view/images/type_<?= $task->type?>.png"><?= $task->type?></td>
@@ -91,7 +91,7 @@ if (!isset($_SESSION['user'])) {
                                     ?>
 
                                     <?php //var_dump($task); ?>
-                                    <tr>
+                                    <tr  class="myproject-name" onclick="location.href = '../controller/ViewTaskController.php?name=<?= $task->id ?> ';">
                                         <td><?= $task->prefixId ?></td>
                                         <td><?= $task->title ?></td>
                                         <td><img style="width: 20px; margin-right: 5px;" src="../view/images/type_<?= $task->type ?>.png"><?= $task->type ?></td>
