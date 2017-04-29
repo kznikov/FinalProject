@@ -42,7 +42,7 @@ if (isset($_SESSION['user'])) {
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Users <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="../controller/UserListController.php">List</a></li>
+                        <li><a href="../controller/UserListController.php">Find User</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="../controller/CreateUserController.php">Create</a></li>
                     </ul>

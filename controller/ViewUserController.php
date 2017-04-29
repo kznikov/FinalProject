@@ -17,6 +17,8 @@ try{
 	    } else {
 	        include '../view/pageNotFound.php';
 	    }
+	}else{
+		header('Location:UserListController.php', true, 302);
 	}
 	
 }catch (Exception $e){

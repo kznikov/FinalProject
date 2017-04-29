@@ -20,4 +20,8 @@ try{
 	$_SESSION['error'] = $e->getMessage();
 	header('Location:ErrorController.php', true, 302);
 }
+
+
+
+
 ?>

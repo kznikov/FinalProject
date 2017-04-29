@@ -13,7 +13,7 @@ try{
 			}
 		}else{
 				$response =  "<ul id='username-list'>";
-					$response.= "<li>No results found.</li>";
+				$response.= "<li>No results found.</li>";
 			}
 			$response.="</ul>";
 			echo $response;

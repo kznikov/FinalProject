@@ -35,6 +35,8 @@ require_once "../model/IUserDAO.php";
 		
 		const GET_ALL_USERNAMES = "SELECT username FROM users WHERE username LIKE CONCAT('%',?,'%') ORDER BY username";
 		
+		const SEARCH_FOR_USERS = "SELECT * FROM users WHERE MATCH (username,firstname, lastname, email) AGAINST
+																 (? IN BOOLEAN MODE) HAVING email LIKE '%@%';";
 		
 		const GET_PROJECT_ASSOC_USERS = "SELECT * from (SELECT u.* FROM users u JOIN user_projects up
 							ON u.id = up.user_id JOIN projects p ON up.project_id = p.id WHERE p.name LIKE ?) as users
@@ -263,6 +265,28 @@ require_once "../model/IUserDAO.php";
 		 		$usernames = $pstmt->fetchAll(PDO::FETCH_ASSOC);
 		 		
 		 		return $usernames;
+		 		
+		 	} catch(Exception $e){
+		 		throw new Exception("Something went wrong, please try again later!");
+		 	}
+		 }
+		 
+		 
+		 
+		 public function serchUsers($keyword){
+		 	try{
+		 		$pstmt = $this->db->prepare(self::SEARCH_FOR_USERS);
+		 		$pstmt->execute(array($keyword));
+		 		
+		 		$users = $pstmt->fetchAll(PDO::FETCH_ASSOC);
+		 		
+		 		$allUsers = array();
+		 		foreach ($users as $user){
+		 			$allUsers [] = new User($user['username'], 'p', $user['firstname'], $user['lastname'], $user['email'],
+		 					$user['first_login'], $user['phone'], $user['mobile'], $user['avatar'], $user['id']);
+		 		}
+		 		
+		 		return $allUsers;
 		 		
 		 	} catch(Exception $e){
 		 		throw new Exception("Something went wrong, please try again later!");

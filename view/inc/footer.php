@@ -16,7 +16,8 @@
 
    
     <script src="/FinalProject/view/js/app.js"></script>
-         <script src="/FinalProject/view/js/autocomplete.js"></script>
+    <script src="/FinalProject/view/js/autocomplete.js"></script>
+    <script src="/FinalProject/view/js/searchUsers.js"></script>
      
 
 
