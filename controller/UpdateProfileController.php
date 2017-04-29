@@ -8,7 +8,6 @@ try{
 	
 	$user_id = $_SESSION['userId'];
 	
-	var_dump($_SESSION);
 	$editUser = new UserDAO;
 	
 	$userInfo = $editUser->getInfoUser($user_id);
@@ -60,20 +59,39 @@ try{
 	    }
 	
 	    if (!empty($_FILES)) {
-	
-	        $max = 500 * 1024;
-	        $destination = '../view/uploaded/';
-	        $upload = new UploadFile($destination);
-	        $upload->setMaxSize($max);
-	        //$upload->allowAllTypes('jira');
-	        $avatar = $upload->upload();
-			
-	        $saveImage = new UserDAO();
-	        $saveImage->saveImage($avatar, $user_id);
-			
-	        if(!$avatar){
-	        	$avatar = $userInfo->avatar;
-	        }
+
+	    	$an_image = preg_match("/^.*\.(jpg|jpeg|png|gif)$/i", $_FILES['image']['name']);
+
+	    	if ($an_image) {
+				
+				try {
+			        $max = 500 * 1024;
+			        $destination = '../view/uploaded/';
+			        $upload = new UploadFile($destination);
+			        $upload->setMaxSize($max);
+			        //$upload->allowAllTypes('jira');
+			        $avatar = $upload->upload();
+					
+			        $saveImage = new UserDAO();
+			        $saveImage->saveImage($avatar, $user_id);
+
+			        $result= $upload->getMessages();
+					
+			        if(!$avatar){
+			        	$avatar = $userInfo->avatar;
+			        }
+			        
+			    } catch (Exception $e) {
+					$result[] = $e->getMessage();
+					include '../controller/editProfileController.php';
+				}
+
+		    } else {
+		    	$result[] =' This is not permitted type of file.';
+		    	include '../controller/editProfileController.php';
+		    }
+
+
 	
 	    }else{
 	    	$avatar = $userInfo->avatar;
@@ -83,7 +101,7 @@ try{
 	    $sessionVars['avatar'] = $avatar;
 	    $_SESSION['user'] = json_encode($sessionVars);
 	    //,$phone, $mobile,
-	    $user = new User($username, $password, $firstname, $lastname, $email, $userInfo->first_login,
+	    $user = new User($username, $password, $firstname, $lastname, $email, $userInfo->firstLogin,
 	    												$phone, $mobile, $avatar, $user_id);
 	    $updateUser->updateUser($user);
 	

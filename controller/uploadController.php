@@ -13,8 +13,6 @@ if ($_SESSION['user']){
 	
 		$destination ='../view/uploaded/';
 
-		var_dump($_FILES);
-
 		$an_image = preg_match("/^.*\.(jpg|jpeg|png|gif)$/i", $_FILES['image']['name']);
 
 
