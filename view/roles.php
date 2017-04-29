@@ -24,6 +24,7 @@ if (!isset($_SESSION['user'])) {
                         <button onclick="location.href = 'createrole.php';" class="btn btn-primary">Create  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
                     </div>
                 </div>
+                <div style="height: 100%; max-height: 500px; overflow-y: scroll; margin-top: 20px;">
                 <table class=" myproject-table table table-responsive table-bordered">
                     <thead style="background-color: #205081; color: #fff;">
                         <tr>
@@ -77,6 +78,7 @@ if (!isset($_SESSION['user'])) {
                     </div>
                     </tbody>
                 </table>
+                </div>
             </div>
             <!-- class="row" -->
         </div>

@@ -32,8 +32,7 @@ if (!isset($_SESSION['user'])) {
                 <input type="text" id="search" class="form-control" placeholder="Type to search">
             </div>
 
-            <div class="row" style="height: 380px; overflow: hidden;">   
-
+            <div class="row" style="height: 100%; max-height: 500px; overflow-y: scroll;">   
                 <table id="userlist"  class="myproject-table table table-responsive table-bordered">
                     <thead style="background-color: #205081; color: #fff;">
                         <tr>

@@ -9,6 +9,7 @@
 			
 			$openTasks = $tasksData->getUserAssignOpenTasks($user['id']);
 			$workingOnTasks = $tasksData->getUserAssignWorkingOnTasks($user['id']);
+
 			
 			include '../view/homepage.php';
 		}catch (Exception $e){

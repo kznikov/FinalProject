@@ -25,7 +25,7 @@ if (!isset($_SESSION['user'])) {
                 <div class="search-input">
                     <input type="text" id="search" class="form-control" placeholder="Type to search">
                 </div>
-
+                <div style="height: 100%; max-height: 500px; overflow-y: scroll; margin-top: 20px;">
                 <table id="userlist" class="myproject-table table table-responsive table-bordered">
                     <thead style="background-color: #205081; color: #fff;">
                         <tr>
@@ -76,6 +76,7 @@ if (!isset($_SESSION['user'])) {
 					<?php } ?>
                     </tbody>
                 </table>
+                </div>
                 <div class="bg-success">
                     <p>Export as word, exel, pdf</p>
                 </div>
