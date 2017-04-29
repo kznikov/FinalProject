@@ -82,9 +82,54 @@ if (!isset($_SESSION['user'])) {
                         </td>
                     </tr>
                 </table>
+                
+                
+              
+                <form action="" method="post" accept-charset="utf-8">
 
 
-                <table id="assoc_userlist"  style="width: 57%; float:left; margin-left:3%;" class="myproject-table table table-responsive table-bordered">
+                    <table id="add_user" style="width: 57%; float:left; margin-left:3%;" class="myproject-table table table-responsive table-bordered">
+                        <thead style="background-color: #205081; color: #fff;">
+                            <tr>
+                                <th>User</th>
+                                <th>Role</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <td>
+                            <select class="form-control" id="roles-users" name="roles-users">
+                                <option disabled selected>Please select</option>
+                                <?php foreach ($getuser as $value): ?>
+                                    <option value="<?php echo $value['username']; ?>"><?php echo $value['username']; ?></option>
+                                <?php endforeach ?>
+                            </select>
+                        </td>
+                        <td>
+                            <select class="form-control" id="role"  name="role">
+                                <option disabled selected>Please select</option>
+                                <?php foreach ($result as $value): ?>
+                                    <option value="<?php echo $value['name']; ?>"><?php echo $value['name']; ?></option>
+                                <?php endforeach ?>
+                            </select>
+                        </td>
+                        <td class="text-center">
+                            <input type="submit" class="btn btn-primary" name="submit" value="Add User">
+                        </td>
+                        </tbody>
+                    </table>
+                </form>
+                
+                
+                
+                
+                
+                
+                
+                
+
+				<div id="re" style="width: 57%; float:left; margin-left:3%;">
+                <table id="assoc_userlist"   class="myproject-table table table-responsive table-bordered">
                     <thead style="background-color: #205081; color: #fff;">
                         <tr>
                             <td colspan="9" style="text-align: center;"><em><strong>Users associated to <?= $projectInfo->name ?></strong></em></td>
@@ -124,9 +169,7 @@ if (!isset($_SESSION['user'])) {
                                     <td><?= $user->username ?></td>
                                     <td><?= $user->email ?></td>
                                     <td>
-                                        <p>Application Manager</p>
-                                        <p>Developer</p>
-                                        <p>Project Manager</p>
+                                        
                                     </td>
                                     <td class="text-center"> 
 
@@ -149,6 +192,7 @@ if (!isset($_SESSION['user'])) {
                     </tbody>
 
                 </table>
+                </div>
                 <table id="priority_legend">
                     <tr>
                         <td><div class="priority_legend" style="background-color:#53ff1a"></div>Low</td>
@@ -261,5 +305,7 @@ if (!isset($_SESSION['user'])) {
 
     </div>
 </section><!-- /.container -->
+
+
 <?php include "inc/footer.php"; ?>
 

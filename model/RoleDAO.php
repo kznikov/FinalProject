@@ -33,6 +33,7 @@ class RoleDAO implements IRoleDAO {
 			foreach ($perm as $val){
 				$rolePerm[$val['name']] = 1;
 			}
+
 			return $rolePerm;
 		}catch(Exception $e){
 			throw new Exception("Something went wrong, please try again later!");

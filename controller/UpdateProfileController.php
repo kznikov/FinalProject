@@ -8,11 +8,11 @@ try{
 	
 	$user_id = $_SESSION['userId'];
 	
-	var_dump($_SESSION);
+	//var_dump($_SESSION);
 	$editUser = new UserDAO;
 	
 	$userInfo = $editUser->getInfoUser($user_id);
-	
+	var_dump($userInfo);
 	
 	if (isset($_POST['submit'])) {
 	
@@ -82,7 +82,7 @@ try{
 	    $sessionVars['avatar'] = $avatar;
 	    $_SESSION['user'] = json_encode($sessionVars);
 	    //,$phone, $mobile,
-	    $user = new User($username, $password, $firstname, $lastname, $email, $userInfo->first_login,
+	    $user = new User($username, $password, $firstname, $lastname, $email, $userInfo->firstLogin,
 	    												$phone, $mobile, $avatar, $user_id);
 	    $updateUser->updateUser($user);
 	
@@ -91,7 +91,7 @@ try{
 	
 	    //include '../controller/editProfileController.php';
 	    if ($sessionVars['id'] == $user_id) {
-	        header("Location: MyProfileController.php");
+	       header("Location: MyProfileController.php");
 	    } else {
 	        header("Location: UserListController.php");
 	    }

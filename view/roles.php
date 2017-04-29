@@ -39,12 +39,10 @@ if (!isset($_SESSION['user'])) {
                                 <div id="search-area">
                                     <select class="form-control" id="roles">
                                         <option disabled selected>Please select</option>
-                                        <option value="Application Manager">Application Manager</option>
-                                        <option value="Developer">Developer</option>
+                                        <option value="Project Admin">Project Admin</option>
                                         <option value="Project Manager">Project Manager</option>
-                                        <option value="Role Manager">Role Manager</option>
-                                        <option value="Task Manager">Task Manager</option>
-                                        <option value="User Manager">User Manager</option>
+                                        <option value="QA">QA</option>
+                                        <option value="Developer">Developer</option>
                                     </select>
                                 </div>
                             </td>

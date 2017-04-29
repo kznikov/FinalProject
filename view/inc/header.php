@@ -20,9 +20,6 @@
     <link rel="stylesheet" type="text/css" href="/FinalProject/view/css/style.css">
 
   	
-	<link rel="stylesheet" type="text/css" href="/FinalProject/view/css/dd.css" />
-    
-    
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>

@@ -32,16 +32,15 @@ if (!isset($_SESSION['user'])) {
                 <input type="text" id="search" class="form-control" placeholder="Type to search">
             </div>
 
-            <div class="row">   
+            <div class="row" style="height: 380px; overflow: hidden;">   
 
-                <table id="userlist" class="myproject-table table table-responsive table-bordered">
+                <table id="userlist"  class="myproject-table table table-responsive table-bordered">
                     <thead style="background-color: #205081; color: #fff;">
                         <tr>
-                            <th>Avatar</th>
+                            <th style="width: 200px;">Avatar</th>
                             <th class="name">Name <span class="glyphicon glyphicon-resize-vertical"></span></th>
                             <th class="username">Username  <span class="glyphicon glyphicon-resize-vertical"></th>
                             <th class="email">Email <span class="glyphicon glyphicon-resize-vertical"></span></th>
-                            <th>Role</th>
                             <th>Action</th> 
                         </tr>
                     </thead>
@@ -67,22 +66,14 @@ if (!isset($_SESSION['user'])) {
                                 <td><?php echo $value['firstname'] . " " . $value['lastname']; ?></td>
                                 <td><?php echo $value['username']; ?></td>
                                 <td><?php echo $value['email']; ?></td>
-                                <td>
-                                    <p>Application Manager</p>
-                                    <p>Developer</p>
-                                    <p>Project Manager</p>
-                                </td>
                                 <td class="text-center"> 
 
                                     <a href="#"><span class="glyphicon glyphicon-eye-open" title="View" onclick="viewUser(<?php echo $value['id']; ?>)"></span>
                                     </a>
-
-                                    <a href="#"><span class="glyphicon glyphicon-cog" title="Edit" onclick="editUser(<?php echo $value['id']; ?>)"></span></a>
-                                    <a href="#"><span class="glyphicon glyphicon-trash" title="Delete"  onclick="deleteUser(<?php echo $value['id'] ?>)"></span></a>
                                 </td>
                             </tr>
 
-<?php endforeach ?>
+							<?php endforeach ?>
 
 
 
