@@ -71,7 +71,7 @@ try{
 	    }
 	}
 }catch (Exception $e){
-	echo $e->getMessage();
+	echo "<p style='color:red;'>".$e->getMessage()."</p>";
 }
 
 

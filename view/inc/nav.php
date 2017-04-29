@@ -45,7 +45,6 @@ if (isset($_SESSION['user'])) {
                         <li><a href="../controller/UserListController.php">List</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="../controller/CreateUserController.php">Create</a></li>
-                        <li><a href="../controller/CreateRoleController.php">Role</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">

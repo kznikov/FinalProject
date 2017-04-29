@@ -49,7 +49,7 @@
 
                             foreach ($allProjects as $project) {
                                 ?>
-                                <tr>
+                                <tr class="myproject-name" onclick="location.href = '../controller/ViewProjectController.php?project=<?= $project->name ?> ';">
                                     <td><?= $project->name ?></td>
                                     <td><a href="#"><span onclick="viewUser(<?= $project->adminId ?>)"><?= $project->adminUsername ?></span></a></td>
                                     <td><?= $project->openTasks ?></td>
@@ -74,19 +74,15 @@
                                         <a href="#"><span class="glyphicon glyphicon-cog" title="Edit"></span></a>
                                         <a href="#"><span class="glyphicon glyphicon-trash" title="Delete"></span></a>
                                     </td>
-                                    <td lass="text-center">
-
-                                        <a href="mailto:
-                                <?php if (isset($project->adminEmail)) {
-                                    echo $project->email;
-                                } ?>"><span class="glyphicon glyphicon-envelope"></span></a>
-
+                                    <td class="text-center">
+                                        <a href="mailto:<?= $project->adminEmail ?>"><span class="glyphicon glyphicon-envelope"></span></a>
                                     </td>
                                 </tr>
                             <?php }
                         } else {
                             ?>
                             <tr>
+                            
                                 <td colspan="9" style="text-align: center;"><em><strong>No results found.</strong></em></td>
                             </tr>
 						<?php } ?>

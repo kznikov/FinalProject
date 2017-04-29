@@ -23,8 +23,9 @@ class ProjectDAO implements IProjectDAO {
 	const CHECK_IF_PREFIXNAME_EXIST = "SELECT prefix FROM projects WHERE prefix = ?";
 	
 	
-	const GET_USER_ASSOC_PROJECTS = "SELECT p.*, u.id as user_id, u.email as user_email, u.username, ps.name as status, COUNT(t.id) as all_tasks FROM projects p JOIN user_projects up 
-					ON p.id = up.project_id JOIN users u ON u.id = up.user_id JOIN project_status ps ON p.project_status_id = ps.id LEFT JOIN tasks t ON p.id = t.projects_id where u.id = ? GROUP BY p.id";
+	const GET_USER_ASSOC_PROJECTS = "SELECT p.*, u.id as user_id, (SELECT u.email FROM users u WHERE u.id = p.admin_id) as user_email, (SELECT u.username FROM users u WHERE u.id = p.admin_id) 
+						as username, ps.name as status, COUNT(t.id) as all_tasks FROM projects p JOIN user_projects up ON p.id = up.project_id JOIN users u ON u.id = up.user_id JOIN project_status
+									ps ON p.project_status_id = ps.id LEFT JOIN tasks t ON p.id = t.projects_id where  p.admin_id <> ? GROUP BY p.id";
 	
 	const GET_USER_ASSOC_PROJECTS_OPEN_TASKS_CNT = "SELECT p.id, count(t.id) as 'open_tasks' FROM projects p JOIN user_projects up ON p.id = up.project_id LEFT JOIN tasks t
 							 ON p.id = t.projects_id and t.task_status_id = 1 WHERE up.user_id = ? GROUP BY p.id";

@@ -37,7 +37,9 @@ if (isset($_POST['submit'])) {
     	session_start();
     	$_SESSION['error'] = $e->getMessage();
     	header('Location:ErrorController.php', true, 302);
-    } catch (Exception $e) {
+    } catch (Exception $e) {	
+    	$_SESSION['error'] = $e->getMessage();
+    	header('Location:ErrorController.php', true, 302);
         $errorMessage = true;
         include '../view/index.php';
     }

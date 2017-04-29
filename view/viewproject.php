@@ -98,19 +98,14 @@ if (!isset($_SESSION['user'])) {
                         </thead>
                         <tbody>
                         <td>
-                            <select class="form-control" id="roles-users" name="roles-users">
-                                <option disabled selected>Please select</option>
-                                <?php foreach ($getuser as $value): ?>
-                                    <option value="<?php echo $value['username']; ?>"><?php echo $value['username']; ?></option>
-                                <?php endforeach ?>
-                            </select>
+                          <input class="form-control" type="text" name="username" placeholder="Username">
                         </td>
                         <td>
                             <select class="form-control" id="role"  name="role">
-                                <option disabled selected>Please select</option>
-                                <?php foreach ($result as $value): ?>
-                                    <option value="<?php echo $value['name']; ?>"><?php echo $value['name']; ?></option>
-                                <?php endforeach ?>
+                                  <option value="4">Developer</option>
+                                  <option value="3">QA</option>
+                                  <option value="2">Project Manager</option>
+                                  <option value="1">Project Admin</option>
                             </select>
                         </td>
                         <td class="text-center">
@@ -121,12 +116,7 @@ if (!isset($_SESSION['user'])) {
                 </form>
                 
                 
-                
-                
-                
-                
-                
-                
+
 
 				<div id="re" style="width: 57%; float:left; margin-left:3%;">
                 <table id="assoc_userlist"   class="myproject-table table table-responsive table-bordered">
