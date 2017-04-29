@@ -576,6 +576,8 @@ table td{
 }
 
 
+/* STYLING SCROLLBAR */
+
 ::-webkit-scrollbar {
     width: 12px;
 }
