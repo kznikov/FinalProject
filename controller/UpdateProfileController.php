@@ -8,9 +8,11 @@ try{
 	
 	$user_id = $_SESSION['userId'];
 	
+
 	$editUser = new UserDAO;
 	
 	$userInfo = $editUser->getInfoUser($user_id);
+
 	$result = array();
 	
 	
@@ -110,7 +112,7 @@ try{
 	
 	    //include '../controller/editProfileController.php';
 	    if ($sessionVars['id'] == $user_id) {
-	        header("Location: MyProfileController.php");
+	       header("Location: MyProfileController.php");
 	    } else {
 	        header("Location: UserListController.php");
 	    }
