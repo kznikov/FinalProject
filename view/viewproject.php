@@ -97,20 +97,24 @@ if (!isset($_SESSION['user'])) {
                             </tr>
                         </thead>
                         <tbody>
-                        <td>
-                          <input class="form-control" type="text" name="username" placeholder="Username">
-                        </td>
-                        <td>
-                            <select class="form-control" id="role"  name="role">
-                                  <option value="4">Developer</option>
-                                  <option value="3">QA</option>
-                                  <option value="2">Project Manager</option>
-                                  <option value="1">Project Admin</option>
-                            </select>
-                        </td>
-                        <td class="text-center">
-                            <input type="submit" class="btn btn-primary" name="submit" value="Add User">
-                        </td>
+                        <tr>
+	                        <td>
+	                          <input id="search-box" autocomplete="off" class="form-control txt-auto" type="text" name="username" placeholder="Username">
+	                       	<div id="suggesstion-box" style='z-index:123'></div>
+	                        </td>
+	                        
+	                        <td>
+	                            <select class="form-control" id="role"  name="role">
+	                                  <option value="4">Developer</option>
+	                                  <option value="3">QA</option>
+	                                  <option value="2">Project Manager</option>
+	                                  <option value="1">Project Admin</option>
+	                            </select>
+	                        </td>
+	                        <td class="text-center">
+	                            <input type="submit" class="btn btn-primary" name="submit" value="Add User">
+	                        </td>
+	                     </tr>
                         </tbody>
                     </table>
                 </form>

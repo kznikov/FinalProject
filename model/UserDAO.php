@@ -33,6 +33,8 @@ require_once "../model/IUserDAO.php";
 
 		const DELETE_USER = "DELETE FROM users WHERE id=:id";
 		
+		const GET_ALL_USERNAMES = "SELECT username FROM users WHERE username LIKE CONCAT('%',?,'%') ORDER BY username";
+		
 		
 		const GET_PROJECT_ASSOC_USERS = "SELECT * from (SELECT u.* FROM users u JOIN user_projects up
 							ON u.id = up.user_id JOIN projects p ON up.project_id = p.id WHERE p.name LIKE ?) as users
@@ -250,6 +252,21 @@ require_once "../model/IUserDAO.php";
 		      case (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) : return $_SERVER['HTTP_X_FORWARDED_FOR'];
 		      default : return $_SERVER['REMOTE_ADDR'];
 		    }
+		 }
+		 
+		 
+		 public function getAllUsernames($keyword){
+		 	try{
+		 		$pstmt = $this->db->prepare(self::GET_ALL_USERNAMES);
+		 		$pstmt->execute(array($keyword));
+		 		
+		 		$usernames = $pstmt->fetchAll(PDO::FETCH_ASSOC);
+		 		
+		 		return $usernames;
+		 		
+		 	} catch(Exception $e){
+		 		throw new Exception("Something went wrong, please try again later!");
+		 	}
 		 }
 		
 
