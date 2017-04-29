@@ -12,7 +12,9 @@ try{
 	$editUser = new UserDAO;
 	
 	$userInfo = $editUser->getInfoUser($user_id);
-	var_dump($userInfo);
+
+	$result = array();
+	
 	
 	if (isset($_POST['submit'])) {
 	

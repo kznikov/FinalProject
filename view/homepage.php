@@ -9,11 +9,6 @@ if (!isset($_SESSION['user'])) {
 
 <body>
 
-<?php if (isset($message)) { ?>
-
-        <div  class="<?= $class ?>" style="margin-top:60px;"><?= $message ?></div>
-
-<?php } ?>
     <!-- Fixed navbar -->
     <?php include "inc/nav.php"; ?>
     <section id="content" role="main" class="container">
@@ -23,6 +18,11 @@ if (!isset($_SESSION['user'])) {
             <div class="row">
 
                 <div class="col-md-10">
+                    <?php if (isset($message)) { ?>
+
+                            <div  class="<?= $class ?>"><?= $message ?></div>
+
+                    <?php } ?>
                     <h3>My Open Tasks</h3>
                     <div class="search-input">
                         <input type="text" id="search" class="form-control" placeholder="Type to search">

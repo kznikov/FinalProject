@@ -13,8 +13,14 @@ if ($_SESSION['user']){
 	
 		$destination ='../view/uploaded/';
 
-		if ($_FILES['image']['type'] == "image/jpg" || $_FILES['image']['type'] == "image/png" || $_FILES['image']['type'] == "image/jpeg" || $_FILES['image']['type'] == "image/gif") {
-				try {
+		var_dump($_FILES);
+
+		$an_image = preg_match("/^.*\.(jpg|jpeg|png|gif)$/i", $_FILES['image']['name']);
+
+
+		if ($an_image) {
+
+			try {
 		
 				$upload = new UploadFile($destination);
 				$upload->setMaxSize($max);

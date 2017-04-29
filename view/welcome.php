@@ -9,6 +9,7 @@ if (!isset($_SESSION['user'])) {
 
 $userData = json_decode($_SESSION['user'], true);
 $user_id = $userData['id'];
+
 ?>
 
 <body>
@@ -41,7 +42,7 @@ $user_id = $userData['id'];
     <section id="content" role="main" class="container">
         <div id="register-panel">
             <div class="register-header">
-                <h2>Welcome to JIRA, <?= $userData['firstname'] . " " . $userData['lastname'] . " " ?></h2>
+                <h2>Welcome to PMC, <?= $userData['firstname'] . " " . $userData['lastname'] . " " ?></h2>
             </div>
             <hr>
             <div class="avatar-body">

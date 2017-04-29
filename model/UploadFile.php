@@ -12,14 +12,13 @@ class UploadFile {
     protected $maxSize = 51200;
     protected $permittedTypes = array(
         'image/jpeg',
-        'image/pjpeg',
+        'image/jpg',
         'image/gif',
-        'image/png',
-        'image/webp'
+        'image/png'
     );
     protected $newName;
     protected $typeCheckingOn = true;
-    protected $notTrusted = array('bin', 'cgi', 'exe', 'js', 'pl', 'php', 'py', 'sh');
+    protected $notTrusted = array('bin', 'cgi', 'exe', 'js', 'pl', 'php', 'py', 'sh', 'iso');
     protected $suffix = '.upload';
     protected $renameDuplicates;
 

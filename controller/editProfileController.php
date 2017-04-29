@@ -4,7 +4,6 @@
 	
 	$sessionVars = json_decode($_SESSION['user'], true);
 
-	
 
 try{
 	if (isset($_GET['user'])) {
