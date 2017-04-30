@@ -10,14 +10,14 @@ function deleteTask(taskId, allTasksPage) {
     if (confirm("Do you realy want to delete this task?")) {
 
         $.ajax({
-            url: '../controller/ValidateController.php',
-            method: 'POST',
+            url: '../controller/TaskController.php',
+            method: 'DELETE',
             data: { task_id: taskId,
-            		allTasks: allTasksPage},
+            		allTasks: allTasksPage
+            },
             success: function(data) {
             	if(allTasks){
             		$("#alltasks_tbody").html(data);
-            		
             	}
             	else{
             		$("#mytasks_tbody").html(data);
