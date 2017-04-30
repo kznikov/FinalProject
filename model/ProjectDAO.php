@@ -23,12 +23,12 @@ class ProjectDAO implements IProjectDAO {
 	const CHECK_IF_PREFIXNAME_EXIST = "SELECT prefix FROM projects WHERE prefix = ?";
 	
 	
-	const GET_USER_ASSOC_PROJECTS = "SELECT p.*, u.id as user_id, (SELECT u.email FROM users u WHERE u.id = p.admin_id) as user_email, (SELECT u.username FROM users u WHERE u.id = p.admin_id) 
-						as username, ps.name as status, COUNT(t.id) as all_tasks FROM projects p JOIN user_projects up ON p.id = up.project_id JOIN users u ON u.id = up.user_id JOIN project_status
-									ps ON p.project_status_id = ps.id LEFT JOIN tasks t ON p.id = t.projects_id where  p.admin_id <> ? GROUP BY p.id";
+	const GET_USER_ASSOC_PROJECTS = "SELECT p.*, u.id as user_id, (SELECT u.email FROM users u WHERE u.id = p.admin_id) as user_email, (SELECT u.username FROM users u WHERE u.id = p.admin_id) as username, ps.name as status,
+					COUNT(t.id) as all_tasks FROM projects p JOIN user_projects up ON p.id = up.project_id JOIN users u ON u.id = up.user_id JOIN project_status ps ON p.project_status_id = ps.id LEFT JOIN tasks t ON p.id = t.projects_id 
+															where u.id = ? AND p.admin_id <> ? GROUP BY p.id";
 	
-	const GET_USER_ASSOC_PROJECTS_OPEN_TASKS_CNT = "SELECT p.id, count(t.id) as 'open_tasks' FROM projects p JOIN user_projects up ON p.id = up.project_id LEFT JOIN tasks t
-							 ON p.id = t.projects_id and t.task_status_id = 1 WHERE up.user_id = ? GROUP BY p.id";
+	const GET_USER_ASSOC_PROJECTS_OPEN_TASKS_CNT = "SELECT p.id, count(t.id) as 'open_tasks' FROM projects p JOIN user_projects up ON p.id = up.project_id LEFT JOIN tasks t ON p.id = t.projects_id and t.task_status_id = 1
+																 WHERE up.user_id = ? AND p.admin_id <> ? GROUP BY p.id";
 	
 	
 	const GET_ASSOC_PROJECTS_PROGRESS = "SELECT p.id, ROUND(AVG(t.progress)) as 'avg_tasks_progress' FROM projects p JOIN user_projects up ON p.id = up.project_id LEFT JOIN tasks t
@@ -37,9 +37,21 @@ class ProjectDAO implements IProjectDAO {
     const GET_INFO_PROJECT = "SELECT p.*, u.*, ps.name as status, COUNT(t.id) as 'all_tasks',ROUND(AVG(t.progress)) as 'avg_tasks_progress' FROM projects p JOIN users u 
 						ON p.admin_id=u.id JOIN project_status ps ON p.project_status_id = ps.id left JOIN tasks t ON p.id = t.projects_id WHERE p.name LIKE ?";
     const SELECT_NAME = "SELECT name FROM projects";
+    
+    
+    
+   // const SELECT_NAME = "SELECT name FROM projects";
    
+	const USER_ASSIGN_PERM_PROJECTS = "SELECT p.id, p.prefix, p.name from projects p JOIN user_projects up ON p.id=up.project_id WHERE up.user_id = ? AND up.roles_id IN (1,2,3)";
+	
+	const ADD_USER_TO_PROJECT = "INSERT INTO user_projects (`user_id`,`project_id`,`roles_id`) VALUES (?, ?, ?)";
 
-
+	const GET_PPROJECT_ID = "SELECT id FROM projects WHERE name = ?";
+	
+	const GET_LAST_CREATED_PROJECTS = "SELECT p.name, p.prefix,p.admin_id, s.name as status FROM projects p JOIN project_status s ON p.project_status_id = s.id WHERE admin_id = ? ORDER by create_date DESC LIMIT 7";
+	
+	
+	
 	public function __construct() {
 		$this->db = DBConnection::getDb();
 	}
@@ -105,27 +117,34 @@ class ProjectDAO implements IProjectDAO {
 			$adminProjects = self::getAdminProjects($id);
 			
 			$pstmt = $this->db->prepare(self::GET_USER_ASSOC_PROJECTS);
-			$pstmt->execute(array($id));
+			$pstmt->execute(array($id, $id));
 			$assocProjects = $pstmt->fetchAll(PDO::FETCH_ASSOC);
 			
 			$pstmt = $this->db->prepare(self::GET_USER_ASSOC_PROJECTS_OPEN_TASKS_CNT);
-			$pstmt->execute(array($id));
+			$pstmt->execute(array($id, $id));
 			$openTasks = $pstmt->fetchAll(PDO::FETCH_ASSOC);
 			
 			$tmp = array();
 			$result = array();
+			$allProjects = array();
 			
 			$pstmt = $this->db->prepare(self::GET_ASSOC_PROJECTS_PROGRESS);
 			$pstmt->execute(array($id));
 			$projectProgress= $pstmt->fetchAll(PDO::FETCH_ASSOC);
-			
-			for($index = 0;$index <= count($assocProjects)-1;$index++){
-				$tmp[] = array_merge($assocProjects[$index], $openTasks[$index]);
-			}
-			
-			for($index = 0;$index <= count($tmp)-1;$index++){
-				$result[] = array_merge($tmp[$index], $projectProgress[$index]);
-			} 
+			//if($openTasks && $projectProgress && $tmp && $assocProjects){
+				for($index = 0;$index <= count($assocProjects)-1;$index++){
+					$tmp[] = array_merge((array)$assocProjects[$index], (array)$openTasks[$index]);
+				}
+				
+				for($index = 0;$index <= count($tmp)-1;$index++){
+					$result[] = array_merge((array)$tmp[$index], (array)$projectProgress[$index]);
+				} 
+			/*var_dump($tmp)."<br/>";
+			 var_dump($result)."<br/>";
+			var_dump($projectProgress)."<br/>";
+			var_dump($openTasks)."<br/>"; */
+				
+				//var_dump($openTasks);
 			
 			$newResult = array();
 			foreach ($result as $project){
@@ -207,7 +226,62 @@ class ProjectDAO implements IProjectDAO {
 		
 	}
 
+	public function userAssignPermProjects($userId) {
+		try{
+			$pstmt = $this->db->prepare(self::USER_ASSIGN_PERM_PROJECTS);
+			$pstmt->execute(array($userId));
+			
+			$projects = $pstmt->fetchAll(PDO::FETCH_ASSOC);
+			
+			$allProejcts = array();
+			foreach ($projects as $project){
+				$allProejcts [] = new Project($project['name'],$project['prefix'], $project['id']);
+			}
+			return $allProejcts;
+		}catch(Exception $e){
+			throw new Exception("Something went wrong, please try again later!");
+		}
+		
+	}
 	
+	
+	
+	public function addUserToProject($userId, $projectId, $roleId) {
+		try{
+			$pstmt = $this->db->prepare(self::ADD_USER_TO_PROJECT);
+			$pstmt->execute(array($userId, $projectId, $roleId));
+			
+			if(!$pstmt){
+				throw new Exception("This user is already in this project!");
+			}
+		}catch(Exception $e){
+			throw $e;
+		}
+		
+	}
+	
+	
+	public function getLastCreatedUserProjects($userId) {
+		try{
+			$pstmt = $this->db->prepare(self::GET_LAST_CREATED_PROJECTS);
+			$pstmt->execute(array($userId));
+			$projects = $pstmt->fetchAll(PDO::FETCH_ASSOC);
+			
+			$lastProjects = array();
+			foreach ($projects as $project){
+				$lastProjects [] = new Project($project['name'], $project['prefix'], $project['admin_id'],
+						null, null, null, null, null, $project['status']);
+			}
+			
+			return $lastProjects;
+		}catch(Exception $e){
+			throw $e;
+		}
+		
+	}
+	
+	
+
 	
 	
 

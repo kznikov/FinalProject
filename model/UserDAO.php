@@ -33,6 +33,8 @@ require_once "../model/IUserDAO.php";
 
 		const DELETE_USER = "DELETE FROM users WHERE id=:id";
 		
+		const GET_USER_ID = "SELECT id FROM users WHERE username = ?";
+		
 		const GET_ALL_USERNAMES = "SELECT username FROM users WHERE username LIKE CONCAT('%',?,'%') ORDER BY username";
 		
 		const SEARCH_FOR_USERS = "SELECT * FROM users WHERE MATCH (username,firstname, lastname, email) AGAINST
@@ -42,6 +44,13 @@ require_once "../model/IUserDAO.php";
 							ON u.id = up.user_id JOIN projects p ON up.project_id = p.id WHERE p.name LIKE ?) as users
 												union (SELECT u.* FROM users u JOIN projects p ON p.admin_id = u.id WHERE p.name LIKE ?)";
 		
+		const INSERT_INTO_ONLINE_USERS = "INSERT INTO online_users (user_id, username) VALUES (?, ?)";
+		
+		const REMOVE_ONLINE_USER = "DELETE FROM online_users WHERE user_id = ?";
+		
+		
+		const GET_ONLINE_USERS = "SELECT DISTINCT(ou.user_id),ou.username FROM online_users ou JOIN user_projects up 
+															ON ou.user_id = up.user_id WHERE up.project_id IN (?)";
 		
 		public function __construct() {
 			$this->db = DBConnection::getDb();
@@ -50,6 +59,8 @@ require_once "../model/IUserDAO.php";
 		
 		public function loginUser(User $user) {
 			try{
+				
+				
 				$pstmt = $this->db->prepare(self::GET_AND_CHECK_USER_SQL);
 				$pstmt->execute(array($user->username,  hash('sha256',$user->password)));
 				
@@ -60,6 +71,7 @@ require_once "../model/IUserDAO.php";
 				
 				$user = $res[0];
 				
+	
 				if(!$user['first_login']){
 					$firstlogin = true;
 					$pstmt = $this->db->prepare(self::UPDATE_LOGIN);
@@ -71,17 +83,19 @@ require_once "../model/IUserDAO.php";
 				return new User($user['username'], 'p', $user['firstname'], $user['lastname'], $user['email'],
 											$firstlogin, $user['phone'], $user['mobile'], $user['avatar'], $user['id']);
 			}catch (Exception $e){
+				
 				throw $e;
 			}
 		}
 
 		public function checkUserName($username) {
 			try{
+				
 				$pstmt = $this->db->prepare(self::CHECK_IF_USER_EXIST);
 				$pstmt->execute(array($username));
 				
 				$res = $pstmt->fetchAll(PDO::FETCH_ASSOC);
-	
+				
 				if (count($res) === 0) {
 					return true;
 				} else {
@@ -293,7 +307,78 @@ require_once "../model/IUserDAO.php";
 		 	}
 		 }
 		
+		 
+		 public function getUserId($username){
+		 	try{
+			 	$pstmt = $this->db->prepare(self::SEARCH_FOR_USERS);
+			 	$pstmt->execute(array($username));
+			 	
+			 	$userId = $pstmt->fetchColumn(PDO::FETCH_ASSOC);
+		 	} catch(Exception $e){
+		 		throw new Exception("Something went wrong, please try again later!");
+		 	}
+		 }
+		 
+		 
+		 public function addNewOnlineUser($userID, $username){
+			 try{
+			 	$pstmt = $this->db->prepare(self::INSERT_INTO_ONLINE_USERS);
+			 	$pstmt->execute(array($userID, $username));
+			 	if($pstmt){
+			 		return true;
+			 	}
+			 	
+			 } catch(Exception $e){
+			 	throw new Exception("Something went wrong, please try again later!");
+			 }
+		 }
+		 
+		 
+		 public function removeOnlineUser($userID){
+		 	try{
+		 		$pstmt = $this->db->prepare(self::REMOVE_ONLINE_USER);
+		 		$pstmt->execute(array($userID));
+		 		if($pstmt){
+		 			return true;
+		 		}
+		 		
+		 	} catch(Exception $e){
+		 		throw new Exception("Something went wrong, please try again later!");
+		 	}
+		 }
 
+		 
+		 
+		 function getOnlineUSers($userId){
+		 	try{
+		 		$onlineUsers = array();
+			 	$projectDao = new ProjectDAO();
+			 	$allPorjects = $projectDao->getUserAllProjects($userId);
+			 	$projectsIds = array();
+			 	$str = "";
+			 	if(!empty($allPorjects)){
+				 	foreach ($allPorjects as $project){
+				 		$str.= $project->id.", ";
+				 	}
+				 	$str{strlen($str)-1} = '';
+				 	$str{strlen($str)-2} = '';
+				 	$pstmt = $this->db->prepare(self::GET_ONLINE_USERS);
+				 	$pstmt->execute(array($str));
+			 	}else{
+			 		return $onlineUsers;
+			 	}
+			 	$users = $pstmt->fetchAll(PDO::FETCH_ASSOC);
+			 	
+			 	foreach ($users as $user){
+			 		$onlineUsers [] = new User($user['username'], 'p', null, null, null, null, null, null, null, $user['user_id']);
+						 		
+			 	}
+			 	return $onlineUsers;
+		 	} catch(Exception $e){
+		 		throw new Exception($pstmt);
+		 	}
+			 	
+		 }
 }
 	
 

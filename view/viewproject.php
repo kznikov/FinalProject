@@ -35,7 +35,7 @@ if (!isset($_SESSION['user'])) {
                     </tr>
                     <tr>
                         <th>Admin</th>
-                        <td><?= $projectInfo->adminUsername ?></td>
+						<td> <a href="#" title="<?= $projectInfo->adminUsername?>"><span onclick="viewUser(<?= $projectInfo->adminId ?>)"><?= $projectInfo->adminUsername ?></span></a></td>
                     </tr>
                     <tr>
                         <th>Client</th>
@@ -85,7 +85,7 @@ if (!isset($_SESSION['user'])) {
                 
                 
               
-                <form action="" method="post" accept-charset="utf-8">
+                <form action="/FinalProject/controller/AdduserToProject.php" method="post" accept-charset="utf-8">
 
 
                     <table id="add_user" style="width: 57%; float:left; margin-left:3%;" class="myproject-table table table-responsive table-bordered">
@@ -100,9 +100,9 @@ if (!isset($_SESSION['user'])) {
                         <tr>
 	                        <td>
 	                          <input id="search-box" autocomplete="off" class="form-control txt-auto" type="text" name="username" placeholder="Username">
+	                       		<input type="hidden" value="<?= $_GET['project'] ?>">
 	                       	<div id="suggesstion-box" style='z-index:123'></div>
 	                        </td>
-	                        
 	                        <td>
 	                            <select class="form-control" id="role"  name="role">
 	                                  <option value="4">Developer</option>

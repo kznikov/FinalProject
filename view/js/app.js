@@ -362,6 +362,17 @@ function deleteUser(taskId) {
 
 function viewUser(userId) {
     window.location = '../controller/ViewUserController.php?user=' + userId;
+    if (!e) var e = window.event;
+    e.cancelBubble = true;
+    if (e.stopPropagation) e.stopPropagation();
+}
+
+
+function viewProject(projectName) {
+    window.location = '../controller/ViewProjectController.php?project=' + projectName;
+    if (!e) var e = window.event;
+    e.cancelBubble = true;
+    if (e.stopPropagation) e.stopPropagation();
 }
 
 

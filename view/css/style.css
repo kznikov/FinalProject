@@ -617,3 +617,21 @@ table td{
 	width: 300px;
 }
 
+#sub_header{
+	font-size: 0.8em;
+	font-style: italic;
+	font-weight: bold;
+}
+
+
+.home_page_lists{
+	list-style: none;
+	padding-left: 15px;
+}
+
+
+#home_page_project_icons{
+	width: 14px;
+}
+
+

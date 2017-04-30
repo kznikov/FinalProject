@@ -21,5 +21,5 @@ try{
 		
 }catch (Exception $e){
 	//http_response_code(401);
-	echo "Something went wrong, please try again later!";
+	echo "<p style='color:red;margin:0px'>Something went wrong, please try again later!</p>";
 }

@@ -24,9 +24,7 @@ if (!isset($_SESSION['user'])) {
                     <div class="myproject-title col-xs-12 col-md-10">
                         <h2>Find Users</h2>
                     </div>
-                    <div class="myproject-button col-xs-12 col-md-2">
-                        <button onclick="location.href = '../controller/CreateUserController.php';" class="btn btn-primary">Create  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
-                    </div>
+                    
 
                 </div>
                 <input type="text" id="search-user" class="form-control" placeholder="Type to search">

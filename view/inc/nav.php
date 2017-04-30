@@ -43,8 +43,6 @@ if (isset($_SESSION['user'])) {
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Users <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="../controller/UserListController.php">Find User</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="../controller/CreateUserController.php">Create</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
@@ -60,8 +58,6 @@ if (isset($_SESSION['user'])) {
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Roles <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="../controller/RoleController.php">List</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="../controller/CreateRoleController.php">Create</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">

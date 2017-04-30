@@ -72,7 +72,7 @@ if (!isset($_SESSION['user'])) {
                             </tr>
                             <tr>
                                 <th scope="row">Owner</th>
-                                <td><?= $task->ownerUsername?></td>
+								<td> <a href="#" title="<?= $task->ownerUsername?>"><span onclick="viewUser(<?= $task->ownerId?>)"><?= $task->ownerUsername?></span></a></td>
                             </tr>
                             <tr>
                                 <th scope="row">Start date</th>

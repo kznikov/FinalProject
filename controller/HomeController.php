@@ -7,17 +7,20 @@
 	if (isset($_SESSION['user'])) {	
 		try{
 			$user = json_decode($_SESSION['user'],true);
+			$userId = (int)($user['id']);
 			
+			$userDAO = new UserDAO();
 			$tasksData = new TaskDAO();
+			$projectDAO = new ProjectDAO();
 			
-			$openTasks = $tasksData->getUserAssignOpenTasks($user['id']);
-			$workingOnTasks = $tasksData->getUserAssignWorkingOnTasks($user['id']);
-
+			$openTasks = $tasksData->getUserAssignOpenTasks($userId);
+			$workingOnTasks = $tasksData->getUserAssignWorkingOnTasks($userId);
+			$onlineUsers = $userDAO->getOnlineUSers($userId);
+			$lastProjects = $projectDAO->getLastCreatedUserProjects($userId);
 			
 			include '../view/homepage.php';
 		}catch (Exception $e){
-			$_SESSION['error'] = $e->getMessage();
-			header('Location:ErrorController.php', true, 302);
+			
 		}
 	}
 	else{

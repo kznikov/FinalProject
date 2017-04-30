@@ -60,7 +60,7 @@ if (!isset($_SESSION['user'])) {
                                     </div>
                                     <p class="progress_perc" ><?= $task->progress ?>%</p>
                                 </td>
-                                <td><?= $task->projectName ?></td>
+                                    <td><a href="#" title="<?= $task->projectName ?>"><span onclick="viewProject('<?= $task->projectName?>')"><?= $task->projectName?></span></a></td>
                                 <td class="text-center">
                                     <a href="#"><span class="glyphicon glyphicon-eye-open" title="View"></span></a>
                                     <a href="#"><span class="glyphicon glyphicon-cog" title="Edit"></span></a>

@@ -9,9 +9,6 @@ try{
 	$isFirstInsert = true;
 	$key = '';
 	if(!empty($_POST["keyword"])) {
-		if(in_array($_POST['keyword'], array("@", "]", "(", ")", "^", "%", ">", "<", "[", "+", "*"))){
-			$_POST['keyword'] = $_POST['keyword'].".";
-		}
 			$_POST['keyword'] = $_POST['keyword']."* ";
 		
 		//echo $_POST['keyword'];
@@ -23,7 +20,7 @@ try{
 				$table .= "<tr>".
 						"<td class='text-center'>";
 				if ($user->avatar != NULL) {
-					$table .= "<img id='avatar' class='img-thumbnail' style='width: 190px;' src='../view/uploaded/".$useravatar."' alt='avatar'>";
+					$table .= "<img id='avatar' class='img-thumbnail' style='width: 190px;' src='../view/uploaded/".$user->avatar."' alt='avatar'>";
 					
 				} else {
 					
@@ -35,11 +32,14 @@ try{
                                 <td>".$user->username."</td>
                                 <td>".$user->email."</td>
                                 <td class='text-center'>
-                                 <a href='#'><span class='glyphicon glyphicon-eye-open' title='View' onclick='viewUser('".$user->id."')></span>
+                                 <a href='#'><span class='glyphicon glyphicon-eye-open' title='View' onclick='viewUser(".$user->id.")'></span>
                                     </a></td></tr>";
 			}
-			echo $table;
+			
+		}else{
+			$table = "<tr><td colspan='5' style='text-align: center;'><em><strong>No results found.</strong></em></td></tr>";
 		}
+		echo $table;
 	}
 	
 }catch (Exception $e){

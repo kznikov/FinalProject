@@ -56,7 +56,7 @@ if (!isset($_SESSION['user'])) {
                               <tr class="myproject-name" onclick="location.href = '../controller/ViewTaskController.php?name=<?= $task->id ?> ';">
                                 <td><?= $task->prefixId?></td>
                                 <td><?= $task->title ?></td>
-                                <td><?= $task->ownerUsername?></td>
+								<td><a title="<?= $task->ownerUsername ?>"><span onclick="viewUser(<?= $task->ownerId?>)"><?= $task->ownerUsername?></span></a></td>
                                 <td><img style="width: 20px; margin-right: 5px;" src="../view/images/type_<?= $task->type ?>.png"><?= $task->type?></td>
                                 <td><?= (!strtotime($task->startDate) ? "<em style='color:red;'>Not set</em>" : $task->startDate) ?></td>
                                 <td><?= (!strtotime($task->endDate) ? "<em style='color:red;'>Not set</em>" : $task->endDate) ?></td>
@@ -67,7 +67,7 @@ if (!isset($_SESSION['user'])) {
                                     </div>
                                     <p class="progress_perc" ><?= $task->progress ?>%</p>
                                 </td>
-                                <td><?= $task->projectName ?></td>
+                                    <td><a href="#" title="<?= $task->projectName ?>"><span onclick="viewProject('<?= $task->projectName?>')"><?= $task->projectName?></span></a></td>
                                 <td class="text-center">
                                     <a href="#"><span class="glyphicon glyphicon-eye-open" title="View"></span></a>
                                     <a href="#"><span class="glyphicon glyphicon-cog" title="Edit"></span></a>

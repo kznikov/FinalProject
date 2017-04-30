@@ -27,9 +27,9 @@ if (!isset($_SESSION['user'])) {
 
                                 <!-- взима данни от таблицата за регистрирани потребители -->
                                 <select name="project" id="selectproject" class="form-control">
-                                    <option value="48">Choose</option> 
-                                    <option value="2">Name1</option>
-                                    <option>Name2</option>
+                                <?php foreach ($projects as $project) {?>
+                                    <option value="<?= $project->id ?>"><?= $project->name ?></option> 
+                                   <?php } ?>
                                 </select>
                             </div>
                             <div class="form-group">
