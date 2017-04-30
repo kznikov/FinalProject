@@ -49,7 +49,7 @@ if (!isset($_SESSION['user'])) {
                             <th>Action</th>
                         </tr>
                     </thead>
-
+					<tbody id="alltasks_tbody">
                     <?php if (isset($allTasks) && $allTasks) {
                         foreach ($allTasks as $task) {
                             ?>
@@ -71,7 +71,7 @@ if (!isset($_SESSION['user'])) {
                                 <td class="text-center">
                                     <a href="#"><span class="glyphicon glyphicon-eye-open" title="View"></span></a>
                                     <a href="#"><span class="glyphicon glyphicon-cog" title="Edit"></span></a>
-                                    <a href="#"><span class="glyphicon glyphicon-trash" title="Delete"></span></a>
+                                     <a href="#"><span class="glyphicon glyphicon-trash" title="Delete"  onclick="deleteTask(<?=$task->id ?>, 1)"></span></a>
                                 </td>
                             </tr>
                         <?php }

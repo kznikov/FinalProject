@@ -26,6 +26,8 @@ class TaskDAO implements ITaskDAO {
     const GET_USER_ALL_TASKS = "SELECT CONCAT(p.prefix, t.id) as task_id, p.name as project, t.*, u.username, tt.name as type, ts.name as status, tp.name as priority FROM tasks t JOIN task_priority tp ON t.task_priority_id = tp.id JOIN task_status ts ON t.task_status_id = ts.id JOIN task_type tt 
 											ON t.task_type_id = tt.id JOIN users u ON u.id = t.assign_to JOIN projects p ON p.id = t.projects_id WHERE t.created_by = ? OR t.assign_to = ?";
 	
+    
+    const DELETE_TASK = "DELETE FROM tasks WHERE id = ?";
 	
     public function __construct() {
     	$this->db = DBConnection::getDb();
@@ -191,6 +193,27 @@ class TaskDAO implements ITaskDAO {
 		}
 			
 	}
+	
+	
+	public function deleteTask($taskId) {
+		try{
+			$pstmt = $this->db->prepare(self::DELETE_TASK);
+			$pstmt->execute(array($taskId));
+			
+			if($pstmt){
+				return true;
+			}
+			return false;
+			
+		}catch(Exception $e){
+			throw new Exception("Something went wrong, please try again later!");
+		}
+		
+	}
+	
+	
+	
+	
 }
 	
 

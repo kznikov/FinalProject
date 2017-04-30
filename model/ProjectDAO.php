@@ -233,11 +233,11 @@ class ProjectDAO implements IProjectDAO {
 			
 			$projects = $pstmt->fetchAll(PDO::FETCH_ASSOC);
 			
-			$allProejcts = array();
+			$allProjects = array();
 			foreach ($projects as $project){
-				$allProejcts [] = new Project($project['name'],$project['prefix'], $project['id']);
+				$allProjects [] = new Project($project['name'],$project['prefix'],null, $project['id']);
 			}
-			return $allProejcts;
+			return $allProjects;
 		}catch(Exception $e){
 			throw new Exception("Something went wrong, please try again later!");
 		}

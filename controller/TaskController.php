@@ -5,6 +5,9 @@
 	$userId = json_decode($_SESSION['user'],true)['id'];
 	$userId = (int)($userId);
 	
+	$tasksDao = new TaskDAO();
+	$allTasks = $tasksDao->getUserAllTasks($userId);
+	
 	 if (isset($_POST['submit'])) {
 		 try {
 

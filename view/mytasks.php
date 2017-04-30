@@ -42,7 +42,7 @@ if (!isset($_SESSION['user'])) {
                             <th>Action</th>
                         </tr>
                     </thead>
-
+					<tbody id="mytasks_tbody">
                     <?php if (isset($assignTasks) && $assignTasks) {
                         foreach ($assignTasks as $task) {
                             ?>
@@ -64,7 +64,7 @@ if (!isset($_SESSION['user'])) {
                                 <td class="text-center">
                                     <a href="#"><span class="glyphicon glyphicon-eye-open" title="View"></span></a>
                                     <a href="#"><span class="glyphicon glyphicon-cog" title="Edit"></span></a>
-                                    <a href="#"><span class="glyphicon glyphicon-trash" title="Delete"></span></a>
+                                     <a href="#"><span class="glyphicon glyphicon-trash" title="Delete"  onclick="deleteTask(<?= $task->id ?>, 0)"></span></a>
                                 </td>
                             </tr>
                         <?php }

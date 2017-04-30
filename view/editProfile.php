@@ -108,10 +108,10 @@ include "inc/header.php";
                                     ?>
                                 </div>
                                 <div>
-                                     <?php if (isset($result) && $result) { ?>
+                                     <?php if (isset($result1) && $result1) { ?>
                                         <ul class="result">
                                             <?php
-                                            foreach ($result as $message) {
+                                            foreach ($result1 as $message) {
                                                 echo "<li>$message</li>";
                                             }
                                             ?>
