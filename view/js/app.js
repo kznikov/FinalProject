@@ -90,12 +90,12 @@ $(document).ready(function() {
 
 
 window.onload = function() {
-    
+
     var fileInput = document.getElementById('image');
     var fileDisplayArea = document.getElementById('image-holder');
 
-    fileInput.addEventListener('change', function(e){
-        
+    fileInput.addEventListener('change', function(e) {
+
         var file = fileInput.files[0];
         var imageType = /image.*/;
 
@@ -175,17 +175,17 @@ function checkUserName() {
     var name = document.getElementById("username");
     var nameValue = name.value;
     console.log(nameValue);
-   
+
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             if (this.responseText) {
                 document.getElementById("exist").innerHTML =
-                this.responseText;
+                    this.responseText;
                 document.getElementById("login").disabled = true;
             } else {
                 document.getElementById("login").disabled = false;
-                document.getElementById("exist").style.display = 'none';  
+                document.getElementById("exist").style.display = 'none';
             }
         }
     };
@@ -257,17 +257,6 @@ $(function() {
         }
     });
 });
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -447,25 +436,25 @@ $('#search').keyup(function() {
 
 
 
-
+//check create task
 $(function() {
 
     $("form[name='create-task']").validate({
 
         rules: {
-        	project: "required",
+            project: "required",
             title: {
-            	
-            	required: true
+
+                required: true
             },
             owner: "required"
         },
         messages: {
-        	project: "Please choose project name",
+            project: "Please choose project name",
             title: "Please enter a title",
             owner: "Please choose task owner"
         },
-        
+
         submitHandler: function(form) {
             form.submit();
         }
@@ -473,6 +462,19 @@ $(function() {
 });
 
 
+//delete project
+function deleteProject(projectId) {
+    if (confirm("Do you realy want to delete this project?")) {
 
-
-
+        $.ajax({
+            url: '../controller/DeleteProjectController.php',
+            method: 'POST',
+            data: {projectId:projectId},
+            success: function (data) {
+                $('#ajax_msg').css('display', 'block').delay(3000).slideUp(300).html(data);
+            }
+        });
+        window.location.reload();
+    }
+    return false;
+}

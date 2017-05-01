@@ -1,5 +1,5 @@
 <?php
-$pageTitle = "Welcome to JIRA";
+$pageTitle = "Welcome to PMC";
 include "inc/header.php";
 session_cache_limiter('private_no_expire'); // works
 session_cache_limiter('public'); // works too

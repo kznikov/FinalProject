@@ -36,11 +36,8 @@ class ProjectDAO implements IProjectDAO {
 
     const GET_INFO_PROJECT = "SELECT p.*, u.*, ps.name as status, COUNT(t.id) as 'all_tasks',ROUND(AVG(t.progress)) as 'avg_tasks_progress' FROM projects p JOIN users u 
 						ON p.admin_id=u.id JOIN project_status ps ON p.project_status_id = ps.id left JOIN tasks t ON p.id = t.projects_id WHERE p.name LIKE ?";
+
     const SELECT_NAME = "SELECT name FROM projects";
-    
-    
-    
-   // const SELECT_NAME = "SELECT name FROM projects";
    
 	const USER_ASSIGN_PERM_PROJECTS = "SELECT p.id, p.prefix, p.name from projects p JOIN user_projects up ON p.id=up.project_id WHERE up.user_id = ? AND up.roles_id IN (1,2,3)";
 	
@@ -51,6 +48,11 @@ class ProjectDAO implements IProjectDAO {
 	const GET_LAST_CREATED_PROJECTS = "SELECT p.name, p.prefix,p.admin_id, s.name as status FROM projects p JOIN project_status s ON p.project_status_id = s.id WHERE admin_id = ? ORDER by create_date DESC LIMIT 7";
 	
 	const SET_PROJECT_ADMIN = "INSERT into user_projects (user_id, project_id, roles_id) VALUES (?, ?, 1)";
+
+	const DELETE_PROJECT = "UPDATE `projects` SET `last_update`= NOW(), `last_update_by`= admin_id , `project_status_id`=4 WHERE id= ?";
+
+
+
 	
 	public function __construct() {
 		$this->db = DBConnection::getDb();
@@ -308,6 +310,17 @@ class ProjectDAO implements IProjectDAO {
 			$projectName = $pstmt->fetchAll(PDO::FETCH_ASSOC);
 			
 			return $projectName[0];
+		}catch(Exception $e){
+			throw $e;
+		}
+		
+	}
+
+	//delete project
+	public function delProject($projectId) {
+		try{
+			$pstmt = $this->db->prepare(self::DELETE_PROJECT);
+			$pstmt->execute(array($projectId));			
 		}catch(Exception $e){
 			throw $e;
 		}

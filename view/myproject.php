@@ -9,7 +9,8 @@ if (!isset($_SESSION['user'])) {
 ?>
 
 <body>
-
+    <!-- App Alert-->
+    <div id="ajax_msg" class="alert alert-success"></div>
     <?php include "inc/nav.php"; ?>
     <?php
     if (isset($message)) {
@@ -35,7 +36,7 @@ if (!isset($_SESSION['user'])) {
                 <div class="search-input">
                     <input type="text" id="search" class="form-control" placeholder="Type to search">
                 </div>
-            <div style="height: 100%; max-height: 500px; overflow-y: scroll; margin-top:  20px;">        
+            <div style="height: 100%; max-height: 500px; overflow-y: scroll; margin-top: 20px;">
               <table id="userlist" class="myproject-table table table-responsive table-bordered tablesorter">
                     <thead style="background-color: #205081; color: #fff;">
                         <tr>
@@ -54,8 +55,8 @@ if (!isset($_SESSION['user'])) {
 						<?php if (isset($adminProjects) && $adminProjects) {
 						    foreach ($adminProjects as $project) {
 						        ?>
-                                <tr class="myproject-name" onclick="location.href = '../controller/ViewProjectController.php?project=<?= $project->name ?> ';">
-                                    <td ><?= $project->name?>
+                                <tr >
+                                    <td><?= $project->name?>
                                     </td>
                                     <td> <a href="#" title="<?= $project->adminUsername?>"><span onclick="viewUser(<?= $project->adminId ?>)"><?= $project->adminUsername ?></span></a></td>
                                     <td><?= $project->openTasks ?></td>
@@ -74,9 +75,9 @@ if (!isset($_SESSION['user'])) {
        							 <?php } ?>
                                     </td>
                                     <td class="text-center">
-                                        <a href="#"><span class="glyphicon glyphicon-eye-open" title="View"></span></a>
+                                        <a href="#"><span class="glyphicon glyphicon-eye-open" class="myproject-name" onclick="location.href = '../controller/ViewProjectController.php?project=<?= $project->name ?> ';" title="View"></span></a>
                                         <a href="#"><span class="glyphicon glyphicon-cog" title="Edit"></span></a>
-                                        <a href="#"><span class="glyphicon glyphicon-trash" title="Delete"></span></a>
+                                        <a href="#"><span class="glyphicon glyphicon-trash" onclick="deleteProject(<?= $project->id ?>)" title="Delete"></span></a>
                                     </td>
                                     <td class="text-center">
                                         <a href="mailto:<?= $project->adminEmail ?>"><span class="glyphicon glyphicon-envelope"></span></a>
