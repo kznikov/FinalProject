@@ -2,7 +2,7 @@
 
 	include "../view/inc/autoload.php";
 
-	if (isset($_POST['projectId'])) {
+	if (isset($_POST['projectId']) && isset($_SESSION['user'])) {
 
 		$projectId = htmlentities(trim($_POST['projectId']));
 		try {

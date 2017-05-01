@@ -16,7 +16,14 @@ try{
 		 	
 		 	if(!empty($projectName) && !empty($prefix) && !empty($status)){
 		 		$project = new Project($projectName,$prefix, $userId, null, $description, $client, $startDate,$endDate, $status, null, null, null, null, null);
-					
+				
+		 		if($startDate > $endDate){
+		 			$message = "The start date must be earlier than the end date.";
+		 			$message_class = "flash_error";
+		 			include '../view/newproject.php';
+		 			die();
+		 		}
+		 		
 			 	//var_dump($project);
 				$dao = new ProjectDAO();
 				

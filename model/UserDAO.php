@@ -33,16 +33,15 @@ require_once "../model/IUserDAO.php";
 
 		const DELETE_USER = "DELETE FROM users WHERE id=:id";
 		
-		const GET_USER_ID = "SELECT id FROM users WHERE username = ?";
+		const GET_USER_ID = "SELECT id FROM users WHERE username LIKE ?";
 		
 		const GET_ALL_USERNAMES = "SELECT username FROM users WHERE username LIKE CONCAT('%',?,'%') ORDER BY username";
 		
 		const SEARCH_FOR_USERS = "SELECT * FROM users WHERE MATCH (username,firstname, lastname, email) AGAINST
 																 (? IN BOOLEAN MODE) HAVING email LIKE '%@%';";
 		
-		const GET_PROJECT_ASSOC_USERS = "SELECT * from (SELECT u.* FROM users u JOIN user_projects up
-							ON u.id = up.user_id JOIN projects p ON up.project_id = p.id WHERE p.name LIKE ?) as users
-												union (SELECT u.* FROM users u JOIN projects p ON p.admin_id = u.id WHERE p.name LIKE ?)";
+		const GET_PROJECT_ASSOC_USERS = "SELECT u.*, r.name as role FROM users u JOIN user_projects up ON u.id = up.user_id
+									 JOIN roles r ON r.id=up.roles_id JOIN projects p ON up.project_id = p.id WHERE p.name LIKE ?";
 		
 		const INSERT_INTO_ONLINE_USERS = "INSERT INTO online_users (user_id, username) VALUES (?, ?)";
 		
@@ -244,16 +243,11 @@ require_once "../model/IUserDAO.php";
 			
 			try{
 				$pstmt = $this->db->prepare(self::GET_PROJECT_ASSOC_USERS);
-				$pstmt->execute(array($projectName, $projectName));
+				$pstmt->execute(array($projectName));
 				
 				$users = $pstmt->fetchAll(PDO::FETCH_ASSOC);
 				
-				$assocUssers = array();
-				foreach ($users as $user){
-					$assocUssers [] = new User($user['username'], 'p', $user['firstname'], $user['lastname'],
-															$user['email'], null, $user['phone'], $user['mobile'], $user['avatar'], $user['id']);
-				}
-				return $assocUssers;
+				return $users;
 				
 			} catch(Exception $e){
 				throw new Exception("Something went wrong, please try again later!");
@@ -310,14 +304,16 @@ require_once "../model/IUserDAO.php";
 		 
 		 public function getUserId($username){
 		 	try{
-			 	$pstmt = $this->db->prepare(self::SEARCH_FOR_USERS);
+		 		$pstmt = $this->db->prepare(self::GET_USER_ID);
 			 	$pstmt->execute(array($username));
 			 	
-			 	$userId = $pstmt->fetchColumn(PDO::FETCH_ASSOC);
+			 	$userId = $pstmt->fetchAll(PDO::FETCH_ASSOC);
+			 	return $userId[0];
 		 	} catch(Exception $e){
 		 		throw new Exception("Something went wrong, please try again later!");
 		 	}
 		 }
+		 
 		 
 		 
 		 public function addNewOnlineUser($userID, $username){

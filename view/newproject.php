@@ -11,7 +11,9 @@ if (!isset($_SESSION['user'])) {
     <?php include "inc/nav.php"; ?>
     <section id="content" role="main" class="container">
         <div id="homepage-panel">
-
+			<?php if (isset($message)) { ?>
+		        <div  class="<?= $message_class?>" style="margin-top:0px;"><?= $message ?></div>
+					<?php }?>
             <div class="create-header text-center">
                 <h1>Create project</h1>
                 <p>Use this project to work on new features for your product and also track any bugs. This project provides you with a basic workflow and issue type configuration, which you can change later on.</p>
@@ -21,7 +23,7 @@ if (!isset($_SESSION['user'])) {
                 <form id="create-project" name="create-project" action="../controller/ProjectController.php" method="post">
                     <fieldset> 
                         <div class="col-md-8">
-
+								
                             <div class="form-group">
                                 <label for="projectname">Name</label>
                                 <input type="text" name="project_name" id="projectname" class="form-control" onblur="checkProjectName()" placeholder="Project name">

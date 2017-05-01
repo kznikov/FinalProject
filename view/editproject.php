@@ -14,6 +14,9 @@ if (!isset($_SESSION['user'])) {
 
     <section id="content" role="main" class="container">
         <div id="homepage-panel">
+       			 <?php if (isset($message)) { ?>
+		       		 <div  class="<?= $message_class?>" style="margin-top:0px;"><?= $message ?></div>
+					<?php }?>
             <div class="row">          
                 <div class="myproject-header">
                     <div class="myproject-title col-xs-12 col-md-10">
@@ -121,7 +124,7 @@ if (!isset($_SESSION['user'])) {
                     </tr>
                 </table>
                 <div class="text-right">
-                    <input type="submit" name="submit" class="btn btn-primary" value="Submit">                    
+                    <input type="submit" name="submit" class="btn btn-primary" value="Save">                    
                 </div>
 
             </form>
