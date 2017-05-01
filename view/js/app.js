@@ -232,6 +232,7 @@ $(function() {
 });
 
 
+
 // chek create project form 
 $(function() {
 
@@ -256,6 +257,19 @@ $(function() {
         }
     });
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function checkProjectName() {
     var project = document.getElementById("projectname");
@@ -433,6 +447,30 @@ $('#search').keyup(function() {
 
 
 
+
+$(function() {
+
+    $("form[name='create-task']").validate({
+
+        rules: {
+        	project: "required",
+            title: {
+            	
+            	required: true
+            },
+            owner: "required"
+        },
+        messages: {
+        	project: "Please choose project name",
+            title: "Please enter a title",
+            owner: "Please choose task owner"
+        },
+        
+        submitHandler: function(form) {
+            form.submit();
+        }
+    });
+});
 
 
 

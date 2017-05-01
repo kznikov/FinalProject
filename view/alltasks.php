@@ -8,17 +8,13 @@ if (!isset($_SESSION['user'])) {
 ?>
 
 <body>
-    <?php if (isset($message)) { ?>
-
-        <div  class="<?= $class ?>" style="margin-top:60px;"><?= $message ?></div>
-
-    <?php } ?>
-
-    <?php include "inc/nav.php"; ?>
-
+   
     <section id="content" role="main" class="container">
         <div id="homepage-panel">
-            <div class="row">          
+            <div class="row">  
+            
+			    <?php include "inc/nav.php"; ?>
+                    
                 <div class="myproject-header">
                     <div class="myproject-title col-xs-12 col-md-10">
                         <h2>All tasks</h2>
@@ -58,8 +54,8 @@ if (!isset($_SESSION['user'])) {
                                 <td><?= $task->title ?></td>
 								<td><a title="<?= $task->ownerUsername ?>"><span onclick="viewUser(<?= $task->ownerId?>)"><?= $task->ownerUsername?></span></a></td>
                                 <td><img style="width: 20px; margin-right: 5px;" src="../view/images/type_<?= $task->type ?>.png"><?= $task->type?></td>
-                                <td><?= (!strtotime($task->startDate) ? "<em style='color:red;'>Not set</em>" : $task->startDate) ?></td>
-                                <td><?= (!strtotime($task->endDate) ? "<em style='color:red;'>Not set</em>" : $task->endDate) ?></td>
+                                <td><?= (!strtotime($task->startDate) ? "<em style='color:red;'>Not set</em>" : date("d/m/Y",strtotime($task->startDate))) ?></td>
+                                <td><?= (!strtotime($task->endDate) ? "<em style='color:red;'>Not set</em>" : date("d/m/Y",strtotime($task->endDate))) ?></td>
                                 <td><?= $task->status?></td>
                                 <td><?= $task->priority ?><img style="width: 30px; margin-left: 0px;" src="../view/images/priority_<?= $task->priority?>.png"></td>
                                 <td><div class="progress-wrap progress" style="background-color:orange;" data-progress-percent="<?= $task->progress?>">

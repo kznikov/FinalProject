@@ -46,11 +46,11 @@ class ProjectDAO implements IProjectDAO {
 	
 	const ADD_USER_TO_PROJECT = "INSERT INTO user_projects (`user_id`,`project_id`,`roles_id`) VALUES (?, ?, ?)";
 
-	const GET_PPROJECT_ID = "SELECT id FROM projects WHERE name = ?";
+	const GET_PROJECT_NAME = "SELECT name FROM projects WHERE id = ?";
 	
 	const GET_LAST_CREATED_PROJECTS = "SELECT p.name, p.prefix,p.admin_id, s.name as status FROM projects p JOIN project_status s ON p.project_status_id = s.id WHERE admin_id = ? ORDER by create_date DESC LIMIT 7";
 	
-	
+	const SET_PROJECT_ADMIN = "INSERT into user_projects (user_id, project_id, roles_id) VALUES (?, ?, 1)";
 	
 	public function __construct() {
 		$this->db = DBConnection::getDb();
@@ -60,14 +60,20 @@ class ProjectDAO implements IProjectDAO {
 	public function createProject(Project $project) {
 
 		try{
+			$this->db->beginTransaction(); 
 			
 			$pstmt = $this->db->prepare(self::INSERT_NEW_PROJECT);
 			
 			$pstmt->execute(array($project->name, $project->description, $project->prefix, $project->adminId, $project->client, $project->startDate, 
 								$project->endDate, $project->status));
 			
+			$projectId = $this->db->lastInsertId();
+			self::setProjectAdmin($project->adminId, $projectId);
+			
+			$this->db->commit(); 
 			return true;
 		}catch(Exception $e){
+			$this->db->rollback(); 
 			throw new Exception("Something went wrong, please try again later!");
 		}
 	}
@@ -281,8 +287,33 @@ class ProjectDAO implements IProjectDAO {
 	}
 	
 	
-
 	
+	public function setProjectAdmin($userId, $projectId) {
+		try{
+			$pstmt = $this->db->prepare(self::SET_PROJECT_ADMIN);
+			$pstmt->execute(array($userId, $projectId));
+			
+			return $pstmt;
+		}catch(Exception $e){
+			throw $e;
+		}
+		
+	}
+	
+	
+	public function getProjectName($projectId) {
+		try{
+			$pstmt = $this->db->prepare(self::GET_PROJECT_NAME);
+			$pstmt->execute(array($projectId));
+			$projectName = $pstmt->fetchAll(PDO::FETCH_ASSOC);
+			
+			return $projectName[0];
+		}catch(Exception $e){
+			throw $e;
+		}
+		
+	}
+
 	
 
 }

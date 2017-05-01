@@ -251,7 +251,7 @@ require_once "../model/IUserDAO.php";
 				$assocUssers = array();
 				foreach ($users as $user){
 					$assocUssers [] = new User($user['username'], 'p', $user['firstname'], $user['lastname'],
-															$user['email'], null, $user['phone'], $user['mobile'], $user['avatar'], null);
+															$user['email'], null, $user['phone'], $user['mobile'], $user['avatar'], $user['id']);
 				}
 				return $assocUssers;
 				

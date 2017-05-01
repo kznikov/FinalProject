@@ -57,7 +57,7 @@ try{
 		} else {
 			$mobile = $userInfo->mobile;
 		}
-		
+		$avatar = $userInfo->avatar;
 		if (!empty($_FILES)) {
 			$an_image = preg_match("/^.*\.(jpg|jpeg|png|gif)$/i", $_FILES['image']['name']);
 			if ($an_image) {
@@ -80,11 +80,11 @@ try{
 					
 				} catch (Exception $e) {
 					$result[] = $e->getMessage();
-					include '../controller/editProfileController.php';
+					header("Location: editProfileController.php");
 				}
 			} else {
 				$result[] =' This is not permitted type of file.';
-				include '../controller/editProfileController.php';
+				header("Location: editProfileController.php");
 			}
 			
 		}else{

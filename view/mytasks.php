@@ -11,7 +11,14 @@ if (!isset($_SESSION['user'])) {
     <?php include "inc/nav.php"; ?>
     <section id="content" role="main" class="container">
         <div id="homepage-panel">
-            <div class="row">          
+            <div class="row">
+             <?php if (isset($_SESSION['message']) && isset($_SESSION['message_class'])) { ?>
+			
+			        <div  class="<?= $_SESSION['message_class']?>" style="margin-top:0px;"><?= $_SESSION['message']?></div>
+					<?php
+					unset($_SESSION['message']);
+					unset($_SESSION['message_class']);
+				}?>
                 <div class="myproject-header">
                     <div class="myproject-title col-xs-12 col-md-10">
                         <h2>My tasks</h2>
@@ -49,10 +56,10 @@ if (!isset($_SESSION['user'])) {
                             <tr class="myproject-name" onclick="location.href = '../controller/ViewTaskController.php?name=<?= $task->id ?> ';">
                                 <td><?= $task->prefixId?></td>
                                 <td><?= $task->title ?></td>
-                                <td><?= $task->ownerUsername?></td>
+								<td><a title="<?= $task->ownerUsername ?>"><span onclick="viewUser(<?= $task->ownerId?>)"><?= $task->ownerUsername?></span></a></td>
                                 <td><img style="width: 20px; margin-right: 5px;" src="../view/images/type_<?= $task->type ?>.png"><?= $task->type?></td>
-                                <td><?= (!strtotime($task->startDate) ? "<em style='color:red;'>Not set</em>" : $task->startDate) ?></td>
-                                <td><?= (!strtotime($task->endDate) ? "<em style='color:red;'>Not set</em>" : $task->endDate) ?></td>
+                                <td><?= (!strtotime($task->startDate) ? "<em style='color:red;'>Not set</em>" : date("d/m/Y",strtotime($task->startDate))) ?></td>
+                                <td><?= (!strtotime($task->endDate) ? "<em style='color:red;'>Not set</em>" : date("d/m/Y",strtotime($task->endDate))) ?></td>
                                 <td><?= $task->status?></td>
                                 <td><?= $task->priority ?><img style="width: 30px; margin-left: 0px;" src="../view/images/priority_<?= $task->priority?>.png"></td>
                                 <td><div class="progress-wrap progress" style="background-color:orange;" data-progress-percent="<?= $task->progress?>">

@@ -18,11 +18,13 @@ if (!isset($_SESSION['user'])) {
             <div class="row">
 
                 <div class="col-md-10">
-                    <?php if (isset($message)) { ?>
-
-                            <div  class="<?= $class ?>"><?= $message ?></div>
-
-                    <?php } ?>
+                     <?php if (isset($_SESSION['message']) && isset($_SESSION['message_class'])) { ?>
+			
+			        <div  class="<?= $_SESSION['message_class']?>" style="margin-top:0px;"><?= $_SESSION['message']?></div>
+					<?php
+					unset($_SESSION['message']);
+					unset($_SESSION['message_class']);
+						}?>
                     <h3>My Open Tasks</h3>
                     <div class="search-input">
                         <input type="text" id="search" class="form-control" placeholder="Type to search">
@@ -52,8 +54,8 @@ if (!isset($_SESSION['user'])) {
                                         <td><?= $task->title?></td>
                                         <td><img style="width: 20px; margin-right: 5px;" src="../view/images/type_<?= $task->type?>.png"><?= $task->type?></td>
                                         <td><?= $task->priority?><img style="width: 30px; margin-left: 0px;" src="../view/images/priority_<?= $task->priority?>.png"></td>
-                                         <td><?= (!strtotime($task->startDate) ? "<em style='color:red;'>Not set</em>" : $task->startDate) ?></td>
-                               			 <td><?= (!strtotime($task->startDate) ? "<em style='color:red;'>Not set</em>" : $task->endDate) ?></td>
+                                         <td><?= (!strtotime($task->startDate) ? "<em style='color:red;'>Not set</em>" : date("d/m/Y",strtotime($task->startDate))) ?></td>
+                               			 <td><?= (!strtotime($task->startDate) ? "<em style='color:red;'>Not set</em>" : date("d/m/Y",strtotime($task->endDate))) ?></td>
                                         <td>
                                             <div class="progress-wrap progress" style="background-color:orange;" data-progress-percent="<?= $task->progress?>">
                                                 <div class="progress-bar progress"></div>	  
@@ -99,8 +101,8 @@ if (!isset($_SESSION['user'])) {
                                         <td><?= $task->title ?></td>
                                         <td><img style="width: 20px; margin-right: 5px;" src="../view/images/type_<?= $task->type ?>.png"><?= $task->type ?></td>
                                         <td><?= $task->priority ?><img style="width: 30px; margin-left: 0px;" src="../view/images/priority_<?= $task->priority?>.png"></td>
-                                         <td><?= (!strtotime($task->startDate) ? "<em style='color:red;'>Not set</em>" : $task->startDate) ?></td>
-                               			 <td><?= (!strtotime($task->startDate) ? "<em style='color:red;'>Not set</em>" : $task->endDate) ?></td>
+                                         <td><?= (!strtotime($task->startDate) ? "<em style='color:red;'>Not set</em>" : date("d/m/Y",strtotime($task->startDate))) ?></td>
+                               			 <td><?= (!strtotime($task->startDate) ? "<em style='color:red;'>Not set</em>" : date("d/m/Y",strtotime($task->endDate))) ?></td>
                                         <td>
                                             <div class="progress-wrap progress" style="background-color:orange;" data-progress-percent="<?= $task->progress ?>">
                                                 <div class="progress-bar progress"></div>	  
