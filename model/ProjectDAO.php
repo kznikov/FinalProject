@@ -14,7 +14,7 @@ class ProjectDAO implements IProjectDAO {
 								 ON p.project_status_id = ps.id left JOIN tasks t ON p.id = t.projects_id WHERE p.admin_id = ? GROUP BY p.id";
 	
 	const GET_ADMIN_ALL_OPEN_TASK_CNT = "SELECT p.id, count(t.id) as 'open_tasks' FROM projects p LEFT JOIN tasks t ON p.id = t.projects_id and t.task_status_id = 1 WHERE p.admin_id = ? GROUP BY p.id";
-
+	
 	
 	const GET_PROJECT_PROGRESS = "SELECT p.id, ROUND(AVG(t.progress)) as 'avg_tasks_progress' FROM projects p left JOIN tasks t ON p.id = t.projects_id WHERE p.admin_id = ? GROUP BY p.id";
 	
@@ -53,8 +53,8 @@ class ProjectDAO implements IProjectDAO {
 
 	const UPDATE_PROJECT = "UPDATE `projects` SET `start_date`= ?,`end_date`= ?,`last_update`=NOW(),`last_update_by`=admin_id,`project_status_id`= ? WHERE name = ? ";
 
-
-
+	const CHECK_IF_USER_IN_PROJECT = "SELECT * from user_projects WHERE user_id = ? AND project_id = ?";
+	
 	
 	public function __construct() {
 		$this->db = DBConnection::getDb();
@@ -256,10 +256,8 @@ class ProjectDAO implements IProjectDAO {
 	
 	
 	
-	public function addUserToProject($username, $projectId, $roleId) {
+	public function addUserToProject($userId, $projectId, $roleId) {
 		try{
-			$dao = new UserDAO();
-			$userId = $dao->getUserId($username);
 			$pstmt = $this->db->prepare(self::ADD_USER_TO_PROJECT);
 			$pstmt->execute(array($userId, $projectId, $roleId));
 			
@@ -313,7 +311,7 @@ class ProjectDAO implements IProjectDAO {
 			$pstmt->execute(array($projectId));
 			$projectName = $pstmt->fetchAll(PDO::FETCH_ASSOC);
 			
-			return $projectName;
+			return $projectName[0];
 		}catch(Exception $e){
 			throw $e;
 		}
@@ -342,6 +340,27 @@ class ProjectDAO implements IProjectDAO {
 		
 	}
 
+	
+	
+	public function checkUserInProject($username, $projectId){
+		try{
+			$dao = new UserDAO();
+			$userId = $dao->getUserId($username);
+			
+			$pstmt = $this->db->prepare(self::CHECK_IF_USER_IN_PROJECT);
+			$pstmt->execute(array($userId['id'], $projectId));
+			$user = $pstmt->fetchAll(PDO::FETCH_ASSOC);
+			
+			if(count($user) === 0){
+				return false;
+			}
+			
+			return true;
+		}catch(Exception $e){
+			throw $e;
+		}
+		
+	}
 	
 
 }

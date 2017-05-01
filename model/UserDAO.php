@@ -33,7 +33,7 @@ require_once "../model/IUserDAO.php";
 
 		const DELETE_USER = "DELETE FROM users WHERE id=:id";
 		
-		const GET_USER_ID = "SELECT id FROM users WHERE username = ?";
+		const GET_USER_ID = "SELECT id FROM users WHERE username LIKE ?";
 		
 		const GET_ALL_USERNAMES = "SELECT username FROM users WHERE username LIKE CONCAT('%',?,'%') ORDER BY username";
 		
@@ -304,11 +304,11 @@ require_once "../model/IUserDAO.php";
 		 
 		 public function getUserId($username){
 		 	try{
-			 	$pstmt = $this->db->prepare(self::SEARCH_FOR_USERS);
+		 		$pstmt = $this->db->prepare(self::GET_USER_ID);
 			 	$pstmt->execute(array($username));
 			 	
-			 	$userId = $pstmt->fetchColumn(PDO::FETCH_ASSOC);
-			 	return $userId;
+			 	$userId = $pstmt->fetchAll(PDO::FETCH_ASSOC);
+			 	return $userId[0];
 		 	} catch(Exception $e){
 		 		throw new Exception("Something went wrong, please try again later!");
 		 	}

@@ -69,3 +69,51 @@ $('#selectproject').change(function(){
         }
     });
 });
+
+
+
+
+
+
+$("#add-user").submit(function(e) {
+    $.ajax({
+        url: '../controller/AddUserToProject.php',
+        method: 'POST',
+        data: $("#add-user").serialize(),
+        dataType :"json",
+        success: function(data) {
+        	if (data.error) {
+        		$("#user-exist").html(data.error);
+        	}else{
+        		var users = data;
+            	//var users = JSON.parse(data);
+            	//alert(data);
+            	var result = '';
+            	for(var i=0; i<=users.length-1; i++){
+            		result += "<tr>";
+            		result += "<td class='text-center'>";
+
+                         if (users[i].avatar != null) 
+                        	 result += "<img id='avatar' class='img-thumbnail' style='width: 70px;' src='../view/uploaded/"+users[i].avatar+"' alt='avatar'>";
+                        else
+                        	result += "<img id='avatar' style='width: 70px;' src='../view/images/add-avatar_2.png' alt='avatar'>";
+    	  
+                        result += "</td>";
+                        result += "<td>"+users[i].firstname+ " " +users[i].lastname+"</td>";
+                        result += "<td>"+users[i].username+"</td>";
+                        result += "<td>"+users[i].email+"</td>";
+                        result +=  "<td>"+users[i].role+"</td>";
+                        result +=  "<td class='text-center'>"; 
+                        result +=  "<a href='#'><span class='glyphicon glyphicon-eye-open' title='View' onclick='viewUser("+users[i].id+")'></span>";
+                        result += "</a>";
+                        result +=  "<a href='#'><span class='glyphicon glyphicon-cog' title='Edit' onclick='editUser("+users[i].id+")'></span></a>";
+                        result +=  "<a href='#'><span class='glyphicon glyphicon-trash' title='Delete'  onclick='deleteUser("+ users[i].id+")'></span></a>";
+                        result +=  "</td>";
+                        result +=  "</tr>";
+            	}
+            	$("#assoc-user-tbody").html(result);
+        	}
+        }
+    });
+    	e.preventDefault();
+});
