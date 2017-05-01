@@ -18,11 +18,13 @@ if (!isset($_SESSION['user'])) {
             <div class="row">
 
                 <div class="col-md-10">
-                    <?php if (isset($message)) { ?>
-
-                            <div  class="<?= $class ?>"><?= $message ?></div>
-
-                    <?php } ?>
+                     <?php if (isset($_SESSION['message']) && isset($_SESSION['message_class'])) { ?>
+			
+			        <div  class="<?= $_SESSION['message_class']?>" style="margin-top:0px;"><?= $_SESSION['message']?></div>
+					<?php
+					unset($_SESSION['message']);
+					unset($_SESSION['message_class']);
+						}?>
                     <h3>My Open Tasks</h3>
                     <div class="search-input">
                         <input type="text" id="search" class="form-control" placeholder="Type to search">
@@ -52,15 +54,15 @@ if (!isset($_SESSION['user'])) {
                                         <td><?= $task->title?></td>
                                         <td><img style="width: 20px; margin-right: 5px;" src="../view/images/type_<?= $task->type?>.png"><?= $task->type?></td>
                                         <td><?= $task->priority?><img style="width: 30px; margin-left: 0px;" src="../view/images/priority_<?= $task->priority?>.png"></td>
-                                         <td><?= (!strtotime($task->startDate) ? "<em style='color:red;'>Not set</em>" : $task->startDate) ?></td>
-                               			 <td><?= (!strtotime($task->startDate) ? "<em style='color:red;'>Not set</em>" : $task->endDate) ?></td>
+                                         <td><?= (!strtotime($task->startDate) ? "<em style='color:red;'>Not set</em>" : date("d/m/Y",strtotime($task->startDate))) ?></td>
+                               			 <td><?= (!strtotime($task->startDate) ? "<em style='color:red;'>Not set</em>" : date("d/m/Y",strtotime($task->endDate))) ?></td>
                                         <td>
                                             <div class="progress-wrap progress" style="background-color:orange;" data-progress-percent="<?= $task->progress?>">
                                                 <div class="progress-bar progress"></div>	  
                                             </div>
                                             <p class="progress_perc" ><?= $task->progress ?>%</p>
                                         </td>
-                                        <td><?= $task->projectName ?></td>
+                                   		 <td><a href="#" title="<?= $task->projectName ?>"><span onclick="viewProject('<?= $task->projectName?>')"><?= $task->projectName?></span></a></td>
                                     </tr>
 							    <?php }
 							} else {
@@ -99,15 +101,15 @@ if (!isset($_SESSION['user'])) {
                                         <td><?= $task->title ?></td>
                                         <td><img style="width: 20px; margin-right: 5px;" src="../view/images/type_<?= $task->type ?>.png"><?= $task->type ?></td>
                                         <td><?= $task->priority ?><img style="width: 30px; margin-left: 0px;" src="../view/images/priority_<?= $task->priority?>.png"></td>
-                                         <td><?= (!strtotime($task->startDate) ? "<em style='color:red;'>Not set</em>" : $task->startDate) ?></td>
-                               			 <td><?= (!strtotime($task->startDate) ? "<em style='color:red;'>Not set</em>" : $task->endDate) ?></td>
+                                         <td><?= (!strtotime($task->startDate) ? "<em style='color:red;'>Not set</em>" : date("d/m/Y",strtotime($task->startDate))) ?></td>
+                               			 <td><?= (!strtotime($task->startDate) ? "<em style='color:red;'>Not set</em>" : date("d/m/Y",strtotime($task->endDate))) ?></td>
                                         <td>
                                             <div class="progress-wrap progress" style="background-color:orange;" data-progress-percent="<?= $task->progress ?>">
                                                 <div class="progress-bar progress"></div>	  
                                             </div>
                                             <p class="progress_perc" ><?= $task->progress ?>%</p>
                                         </td>
-                                        <td><?= $task->projectName ?></td>
+                                   		 <td><a href="#" title="<?= $task->projectName ?>"><span onclick="viewProject('<?= $task->projectName?>')"><?= $task->projectName?></span></a></td>
                                     </tr>
                                 <?php }
                             } else {
@@ -126,18 +128,28 @@ if (!isset($_SESSION['user'])) {
                 <aside class="col-md-2 sidebar">
                     <div class="bg-info">
                         <h3 class="text-center">My projects</h3>
-                        <ul>
-                            <?php if (isset($workingOnTasks) && $workingOnTasks)
-                                foreach ($workingOnTasks as $task):
+                        <p id="sub_header" class="text-center">(Last Created)</p>
+                        <ul class="home_page_lists">
+                            <?php if (isset($lastProjects) && $lastProjects)
+                            	foreach ($lastProjects as $project){
                                     ?>
-                                    <li onclick="location.href = '../controller/ViewProjectController.php?project=<?= $task->projectName ?> ';"><a href="#"><?= $task->projectName ?></a></li>
-  							  <?php endforeach ?>
+                                    <li onclick="location.href = '../controller/ViewProjectController.php?project=<?= $project->name?> ';">
+                                    <img id="home_page_project_icons" src="/FinalProject/view/images/project_status_<?=$project->status ?>.png"> <a href="#"><?= $project->name ?></a></li>
+  							  <?php }?>
                         </ul>
                     </div>
                     <div class="bg-info">
-                        <h3 class="text-center">Users</h3>
-                        <ul>
-                            <li></li>
+                        <h3 class="text-center">Online Users</h3>
+                        <ul class="home_page_lists">
+                             <?php
+                             if(isset($onlineUsers) && $onlineUsers){
+                             	foreach ($onlineUsers as $user){
+                                    ?>
+                                     <li onclick="location.href = '../controller/ViewUserController.php?user=<?= $user->id ?> ';">
+                                    	<img id="home_page_project_icons" src="/FinalProject/view/images/online_user.ico"> <a href="#"><?= $user->username ?></a>
+                                    </li>
+  							  <?php }
+  							  }?>
                         </ul>
 
                     </div>

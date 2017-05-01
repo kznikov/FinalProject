@@ -38,16 +38,19 @@
 			$roles = new RoleDAO();
 			$result = $roles->getRoles();
 			
-			  $users = new UserDAO();
-			$getuser = $users->selectUser();  
+			/*   $users = new UserDAO();
+			$getuser = $users->selectUser();   */
 		
-			$colors = array("Low"=>"#53ff1a","Medium"=>"#ffff1a","High"=>"#ffbf00","Escalated"=>"red",);
+			$colors = array("Low"=>"#53ff1a","Medium"=>"#ffff1a","High"=>"#ffbf00","Escalated"=>"red");
+			include '../view/viewproject.php';
 		}catch (Exception $e){
 			$_SESSION['error'] = $e->getMessage();
 			header('Location:ErrorController.php', true, 302);
 		}
+	}else{
+		header('Location:../view/pageNotFound.php', true, 302);
 	}
 
-	include '../view/viewproject.php';
+	
 
 ?>

@@ -72,15 +72,15 @@ if (!isset($_SESSION['user'])) {
                             </tr>
                             <tr>
                                 <th scope="row">Owner</th>
-                                <td><?= $task->ownerUsername?></td>
+								<td> <a href="#" title="<?= $task->ownerUsername?>"><span onclick="viewUser(<?= $task->ownerId?>)"><?= $task->ownerUsername?></span></a></td>
                             </tr>
                             <tr>
                                 <th scope="row">Start date</th>
-                                <td><?= (!strtotime($task->startDate) ? "<em style='color:red;'>Not set</em>" : $task->startDate) ?></td>
+                                <td><?= (!strtotime($task->startDate) ? "<em style='color:red;'>Not set</em>" : date("d/m/Y",strtotime($task->startDate))) ?></td>
                             </tr>
                             <tr>
                                 <th scope="row">End date</th>
-                                <td><?= (!strtotime($task->endDate) ? "<em style='color:red;'>Not set</em>" : $task->endDate) ?></td>
+                                <td><?= (!strtotime($task->endDate) ? "<em style='color:red;'>Not set</em>" : date("d/m/Y",strtotime($task->endDate))) ?></td>
                             </tr>
                         </table>
                     </div>

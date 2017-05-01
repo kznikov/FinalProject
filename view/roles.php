@@ -18,10 +18,7 @@ if (!isset($_SESSION['user'])) {
             <div class="row">
                 <div class="myproject-header">
                     <div class="myproject-title col-xs-12 col-md-10">
-                        <h2>Roles</h2>
-                    </div>
-                    <div class="myproject-button col-xs-12 col-md-2">
-                        <button onclick="location.href = 'createrole.php';" class="btn btn-primary">Create  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+                        <h2>Roles List</h2>
                     </div>
                 </div>
                 <div style="height: 100%; max-height: 500px; overflow-y: scroll; margin-top: 20px;">

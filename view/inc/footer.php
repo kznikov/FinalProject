@@ -16,7 +16,11 @@
 
    
     <script src="/FinalProject/view/js/app.js"></script>
-     
+    <script src="/FinalProject/view/js/autocomplete.js"></script>
+    <script src="/FinalProject/view/js/searchUsers.js"></script>
+    <script src="/FinalProject/view/js/deleteObject.js"></script>
+    <script src="/FinalProject/view/js/projectUsers.js"></script>
+    <script src="/FinalProject/view/js/validateTask.js"></script>	 
 
 
   </body>

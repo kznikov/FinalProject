@@ -3,7 +3,7 @@
 	include "../view/inc/autoload.php";
 	
 	$userId = json_decode($_SESSION['user'],true)['id'];
-		
+try{
 	if (isset($_POST['submit'])) {
 		 try {
 		 	$projectName = htmlentities(trim($_POST['project_name']));
@@ -18,31 +18,29 @@
 		 		$project = new Project($projectName,$prefix, $userId, null, $description, $client, $startDate,$endDate, $status, null, null, null, null, null);
 					
 			 	//var_dump($project);
-				$projectData = new ProjectDAO();
+				$dao = new ProjectDAO();
 				
-				$result = $projectData->createProject($project);
+				$result = $dao->createProject($project);
 				
 				if(!$result){
 					throw new Exception("Failed to create new project!");
 				}else{
-					$message = "Project $projectName successfully created.";
-					$class = "flash_success";
-					include '../view/homepage.php';
+					$_SESSION['message'] = "Project $projectName successfully created.";
+					$_SESSION['message_class'] = "flash_success";
+					header('Location:HomeController.php', true, 302);
 				}
 			}
 			
-			
 		}catch (Exception $e) {
-			$message = $e->getMessage();
-			//$row = $e->getLine(); 
-			$class = "flash_error";
-			include '../view/homepage.php';
+			$_SESSION['message'] = "Failed to create new project!";
+			$_SESSION['message_class'] = "flash_error";
+			header('Location:HomeController.php', true, 302);
 		}
-	}else{
-		$message = "Failed to create new project!";
-		$class = "flash_error";
-		include '../view/homepage.php';
 	}
+}catch(Exception $e){
+	$_SESSION['error'] = $e->getMessage();
+	header('Location:ErrorController.php', true, 302);
+}
 	
 	//include '../view/index.php';
 ?>

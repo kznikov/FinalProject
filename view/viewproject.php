@@ -35,7 +35,7 @@ if (!isset($_SESSION['user'])) {
                     </tr>
                     <tr>
                         <th>Admin</th>
-                        <td><?= $projectInfo->adminUsername ?></td>
+						<td> <a href="#" title="<?= $projectInfo->adminUsername?>"><span onclick="viewUser(<?= $projectInfo->adminId ?>)"><?= $projectInfo->adminUsername ?></span></a></td>
                     </tr>
                     <tr>
                         <th>Client</th>
@@ -67,11 +67,11 @@ if (!isset($_SESSION['user'])) {
                     </tr>
                     <tr>
                         <th>Start Date</th>
-                        <td><?= ($projectInfo->startDate == '0000-00-00' ? "<em style='color:red;'>Not set</em>" : $projectInfo->startDate) ?></td>
+                        <td><?= ($projectInfo->startDate == '0000-00-00' ? "<em style='color:red;'>Not set</em>" : date("d/m/Y",strtotime($projectInfo->startDate))) ?></td>
                     </tr>
                     <tr>
                         <th>End Date</th>
-                        <td><?= ($projectInfo->endDate== '0000-00-00' ? "<em style='color:red;'>Not set</em>" : $projectInfo->endDate) ?></td>
+                        <td><?= ($projectInfo->endDate== '0000-00-00' ? "<em style='color:red;'>Not set</em>" : date("d/m/Y",strtotime($projectInfo->endDate))) ?></td>
                     </tr>
                     <tr>
                         <th>Email</th>
@@ -85,7 +85,7 @@ if (!isset($_SESSION['user'])) {
                 
                 
               
-                <form action="" method="post" accept-charset="utf-8">
+                <form action="/FinalProject/controller/AdduserToProject.php" method="post" accept-charset="utf-8">
 
 
                     <table id="add_user" style="width: 57%; float:left; margin-left:3%;" class="myproject-table table table-responsive table-bordered">
@@ -97,36 +97,30 @@ if (!isset($_SESSION['user'])) {
                             </tr>
                         </thead>
                         <tbody>
-                        <td>
-                            <select class="form-control" id="roles-users" name="roles-users">
-                                <option disabled selected>Please select</option>
-                                <?php foreach ($getuser as $value): ?>
-                                    <option value="<?php echo $value['username']; ?>"><?php echo $value['username']; ?></option>
-                                <?php endforeach ?>
-                            </select>
-                        </td>
-                        <td>
-                            <select class="form-control" id="role"  name="role">
-                                <option disabled selected>Please select</option>
-                                <?php foreach ($result as $value): ?>
-                                    <option value="<?php echo $value['name']; ?>"><?php echo $value['name']; ?></option>
-                                <?php endforeach ?>
-                            </select>
-                        </td>
-                        <td class="text-center">
-                            <input type="submit" class="btn btn-primary" name="submit" value="Add User">
-                        </td>
+                        <tr>
+	                        <td>
+	                          <input id="search-box" autocomplete="off" class="form-control txt-auto" type="text" name="username" placeholder="Username">
+	                       		<input type="hidden" value="<?= $_GET['project'] ?>">
+	                       	<div id="suggesstion-box" style='z-index:123'></div>
+	                        </td>
+	                        <td>
+	                            <select class="form-control" id="role"  name="role">
+	                                  <option value="4">Developer</option>
+	                                  <option value="3">QA</option>
+	                                  <option value="2">Project Manager</option>
+	                                  <option value="1">Project Admin</option>
+	                            </select>
+	                        </td>
+	                        <td class="text-center">
+	                            <input type="submit" class="btn btn-primary" name="submit" value="Add User">
+	                        </td>
+	                     </tr>
                         </tbody>
                     </table>
                 </form>
                 
                 
-                
-                
-                
-                
-                
-                
+
 
 				<div id="re" style="width: 57%; float:left; margin-left:3%;">
                 <table id="assoc_userlist"   class="myproject-table table table-responsive table-bordered">

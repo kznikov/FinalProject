@@ -18,7 +18,7 @@ if (!isset($_SESSION['user'])) {
             </div>
             <hr>
             <div class="row">               
-                <form id="create-project" action="/FinalProject/controller/TaskController.php" method="post">
+                <form id="create-task" name="create-task" action="/FinalProject/controller/TaskController.php" method="post">
                     <fieldset> 
                         <div class="col-md-8">
 
@@ -27,9 +27,9 @@ if (!isset($_SESSION['user'])) {
 
                                 <!-- взима данни от таблицата за регистрирани потребители -->
                                 <select name="project" id="selectproject" class="form-control">
-                                    <option value="48">Choose</option> 
-                                    <option value="2">Name1</option>
-                                    <option>Name2</option>
+                                <?php foreach ($projects as $project) {?>
+                                    <option value="<?= $project->id ?>"><?= $project->name ?></option> 
+                                   <?php } ?>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -41,9 +41,7 @@ if (!isset($_SESSION['user'])) {
 
                                 <!-- взима данни от таблицата за регистрирани потребители -->
                                 <select name="owner" id="selectusers" class="form-control">
-                                    <option value="1">Choose</option> 
-                                    <option value="2">Name1</option>
-                                    <option>Name2</option>
+                                   <option class="form-control" disabled="disabled"><em>Please choose project first</em></option>
                                 </select>
                             </div>
 

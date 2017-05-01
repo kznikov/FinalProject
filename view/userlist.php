@@ -22,14 +22,12 @@ if (!isset($_SESSION['user'])) {
             <div class="row">        
                 <div class="userlist-header">
                     <div class="myproject-title col-xs-12 col-md-10">
-                        <h2>Users</h2>
+                        <h2>Find Users</h2>
                     </div>
-                    <div class="myproject-button col-xs-12 col-md-2">
-                        <button onclick="location.href = '../controller/CreateUserController.php';" class="btn btn-primary">Create  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
-                    </div>
+                    
 
                 </div>
-                <input type="text" id="search" class="form-control" placeholder="Type to search">
+                <input type="text" id="search-user" class="form-control" placeholder="Type to search">
             </div>
 
             <div class="row" style="height: 100%; max-height: 500px; overflow-y: scroll;">   
@@ -43,40 +41,10 @@ if (!isset($_SESSION['user'])) {
                             <th>Action</th> 
                         </tr>
                     </thead>
-                    <tbody>
-
-                        <?php foreach ($result as $value): ?>
-
-                            <tr>
-                                <td class="text-center">
-
-                                    <?php if ($value['avatar'] != NULL) {
-                                        ?>
-                                        <img id="avatar" class="img-thumbnail" style="width: 190px;" src="../view/uploaded/<?php echo $value['avatar']; ?>" alt="avatar">
-                                        <?php
-                                    } else {
-                                        ?>
-                                        <img id="avatar" style="width: 150px;" src="../view/images/add-avatar_2.png" alt="avatar">
-                                        <?php
-                                    }
-                                    ?>    
-
-                                </td>
-                                <td><?php echo $value['firstname'] . " " . $value['lastname']; ?></td>
-                                <td><?php echo $value['username']; ?></td>
-                                <td><?php echo $value['email']; ?></td>
-                                <td class="text-center"> 
-
-                                    <a href="#"><span class="glyphicon glyphicon-eye-open" title="View" onclick="viewUser(<?php echo $value['id']; ?>)"></span>
-                                    </a>
-                                </td>
-                            </tr>
-
-							<?php endforeach ?>
-
-
-
-
+                    <tbody id="search_tbody">
+						<tr id="empty_result" >
+							<td colspan="5" style="text-align: center;"><em><strong>No results found.</strong></em></td>
+						</tr>
                     </tbody>
                 </table>
                 <div class="bg-success">

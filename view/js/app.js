@@ -113,8 +113,9 @@ window.onload = function() {
             }
 
             reader.readAsDataURL(file);
+            document.getElementById("uploadImage").disabled = false;
         } else {
-            fileDisplayArea.innerHTML = "File not supported.";
+            fileDisplayArea.innerHTML = "<p style='color:red;'>File not supported.</p>";
             document.getElementById("uploadImage").disabled = true;
         }
 
@@ -231,6 +232,7 @@ $(function() {
 });
 
 
+
 // chek create project form 
 $(function() {
 
@@ -255,6 +257,19 @@ $(function() {
         }
     });
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function checkProjectName() {
     var project = document.getElementById("projectname");
@@ -337,31 +352,21 @@ function moveProgressBar(percent, bar) {
 
 
 
-//delete user
-function deleteUser(taskId) {
 
-    var id = taskId;
-    console.log(id);
-
-    if (confirm("Do you realy want to delete this user?")) {
-
-        $.ajax({
-            url: '../controller/ValidateController.php',
-            method: 'POST',
-            data: { id: taskId },
-            success: function(data) {
-                console.log(data);
-                $('#ajax_msg').css('display', 'block').delay(5000).slideUp(300).html(data);
-                location.reload();
-            }
-        });
-
-    }
-    return false;
-}
 
 function viewUser(userId) {
     window.location = '../controller/ViewUserController.php?user=' + userId;
+    if (!e) var e = window.event;
+    e.cancelBubble = true;
+    if (e.stopPropagation) e.stopPropagation();
+}
+
+
+function viewProject(projectName) {
+    window.location = '../controller/ViewProjectController.php?project=' + projectName;
+    if (!e) var e = window.event;
+    e.cancelBubble = true;
+    if (e.stopPropagation) e.stopPropagation();
 }
 
 
@@ -442,6 +447,30 @@ $('#search').keyup(function() {
 
 
 
+
+$(function() {
+
+    $("form[name='create-task']").validate({
+
+        rules: {
+        	project: "required",
+            title: {
+            	
+            	required: true
+            },
+            owner: "required"
+        },
+        messages: {
+        	project: "Please choose project name",
+            title: "Please enter a title",
+            owner: "Please choose task owner"
+        },
+        
+        submitHandler: function(form) {
+            form.submit();
+        }
+    });
+});
 
 
 

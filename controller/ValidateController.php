@@ -4,6 +4,13 @@ function __autoload($className) {
 	require_once "../model/" . $className . '.php';
 }
 
+session_start();
+if(isset($_SESSION['user'])){
+	$sessionVars = json_decode($_SESSION['user'], true);
+	$user_id = $sessionVars['id'];
+}
+
+
 try{
 	if (isset($_GET['name'])) {
 	
@@ -56,22 +63,9 @@ try{
 	        echo "<p class=\"error\"> This prefix already exist. </p>";
 	    }
 	}
-	
-	
-	if (isset($_POST['id'])) {
-	
-	    $id = $_POST['id'];
-	
-	    $delete = new UserDAO();
-	
-	    $delete->deleteUser($id);
-	
-	    if ($delete) {
-	        echo "Record deleted";
-	    }
-	}
+	   
 }catch (Exception $e){
-	echo $e->getMessage();
+	echo "<p style='color:red;'>".$e->getMessage()."</p>";
 }
 
 
