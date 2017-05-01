@@ -32,16 +32,16 @@ if (!isset($_SESSION['user'])) {
                 <table id="userlist" class="myproject-table table table-responsive table-bordered">
                     <thead style="background-color: #205081; color: #fff;">
                         <tr>
-                            <th>id</th>
-                            <th>Title</th>
-                            <th>Owner</th>
-                            <th>Type</th>
-                            <th>Start date</th>
-                            <th>End date</th>
-                            <th>Status</th>
-                            <th>Priority</th>
+                            <th class="username">id <span class="glyphicon glyphicon-resize-vertical"></span></th>
+                            <th class="username">Title <span class="glyphicon glyphicon-resize-vertical"></span></th>
+                            <th class="username">Owner <span class="glyphicon glyphicon-resize-vertical"></span></th>
+                            <th class="username">Type <span class="glyphicon glyphicon-resize-vertical"></span></th>
+                            <th class="username">Start date <span class="glyphicon glyphicon-resize-vertical"></span></th>
+                            <th class="username">End date <span class="glyphicon glyphicon-resize-vertical"></span></th>
+                            <th class="username">Status <span class="glyphicon glyphicon-resize-vertical"></span></th>
+                            <th class="username">Priority <span class="glyphicon glyphicon-resize-vertical"></span></th>
                             <th style="width: 190px;">Progress</th>
-                            <th>Project</th>
+                            <th class="username">Project <span class="glyphicon glyphicon-resize-vertical"></span></th>
                             <th>Action</th>
                         </tr>
                     </thead>

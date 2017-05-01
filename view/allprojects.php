@@ -33,12 +33,12 @@
                 <table id="userlist" class="myproject-table table table-responsive table-bordered">
                     <thead style="background-color: #205081; color: #fff;">
                         <tr>
-                            <th>Name</th>
-                            <th>Admin</th>
-                            <th>Open tasks</th>
-                            <th>All tasks</th>
-                            <th>Client</th>
-                            <th>Status</th>
+                            <th class="username">Name <span class="glyphicon glyphicon-resize-vertical"></th>
+                            <th class="username">Admin <span class="glyphicon glyphicon-resize-vertical"></th>
+                            <th class="username">Open tasks <span class="glyphicon glyphicon-resize-vertical"></th>
+                            <th class="username">All tasks <span class="glyphicon glyphicon-resize-vertical"></th>
+                            <th class="username">Client <span class="glyphicon glyphicon-resize-vertical"></th>
+                            <th class="username">Status <span class="glyphicon glyphicon-resize-vertical"></th>
                             <th>Progress</th>
                             <th>Action</th>
                             <th>Email</th>

@@ -9,7 +9,6 @@
 	    $projectDAO = new ProjectDAO();
 	    $adminProjects = $projectDAO->getAdminProjects($user_id);
 
-	    //var_dump($adminProjects);
 	} catch (Exception $e) {
 		$_SESSION['error'] = $e->getMessage();
 		header('Location:ErrorController.php', true, 302);
