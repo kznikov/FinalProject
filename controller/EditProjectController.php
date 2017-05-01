@@ -23,7 +23,7 @@ if (isset($_POST['submit'])) {
 			  	$endDate = htmlentities(trim($_POST['end_date']));
 			} else {
 				$noMistake = false;
-			    $messages = "The start date must be earlier than the end date.";
+			    $message = "The start date must be earlier than the end date.";
 			}
 		} else {
 			$startDate = NULL;
@@ -33,13 +33,15 @@ if (isset($_POST['submit'])) {
 		if ($noMistake) {
 			$projectDAO = new ProjectDAO();
 			$projectDAO->updateProject($startDate, $endDate, $status, $name);
-			header('Location: MyProjectsController.php', true, 302);
-
+			$_SESSION['message'] = "Project successfully updated.";
+			$_SESSION['message_class'] = "flash_success";
+			header('Location:HomeController.php', true, 302);
 		} else {
-			$_SESSION['error'] = $messages;
-			header('Location:ErrorController.php', true, 302);
+			$message_class = "flash_error";
+			include '../view/editproject.php';
+			die();
 		}
-		echo $messages;
+		//echo $messages;
 
 	} catch (Exception $e) {
 
