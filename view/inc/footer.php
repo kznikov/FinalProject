@@ -18,9 +18,12 @@
     <script src="/FinalProject/view/js/app.js"></script>
     <script src="/FinalProject/view/js/autocomplete.js"></script>
     <script src="/FinalProject/view/js/searchUsers.js"></script>
-    <script src="/FinalProject/view/js/deleteObject.js"></script>
-    <script src="/FinalProject/view/js/projectUsers.js"></script>
-    <script src="/FinalProject/view/js/validateTask.js"></script>	 
+    <script src="/FinalProject/view/js/ajax.js"></script>
+    
+    <noscript>
+      <META HTTP-EQUIV="Refresh" CONTENT="10; URL=/FinalProject/view/javascriptError.php">
+    </noscript>
+  
 
 
   </body>

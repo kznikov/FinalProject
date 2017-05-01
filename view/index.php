@@ -35,7 +35,7 @@ if(isset($_SESSION['user'])){
                 <div  class="<?= $class ?> ?>" ><?= $message ?></div>
             <?php } ?>
             <div class="login-body">
-                <h2 class="login-heading">Use your <strong>JIRA</strong> account</h2>
+                <h2 class="login-heading">Use your <strong>PMC</strong> account</h2>
 
                 <form id="jira-setup-account" action="../controller/LoginController.php" method="post">
                     <div class="form-group">

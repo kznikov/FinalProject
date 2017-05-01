@@ -1,5 +1,6 @@
 <?php
 
+try{
 	include "../view/inc/autoload.php";
 	
 	$userId = json_decode($_SESSION['user'],true)['id'];
@@ -95,8 +96,13 @@
 			$tbody .= "</tr>";
 			echo $tbody;
 		}
+	}if($_SERVER ['REQUEST_METHOD'] === 'GET' && isset($_POST['submit'])){
+		
 	}else{
 		echo "<p style='color:red'>Error</p>";
 	}
-
+}catch (ErrorException $e){
+	$_SESSION['error'] = $e->getMessage();
+	header('Location:ErrorController.php', true, 302);
+}
 ?>
