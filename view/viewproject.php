@@ -5,10 +5,10 @@ include "inc/header.php";
 if (!isset($_SESSION['user'])) {
     header('Location:../view/index.php');
 }
+
 ?>
 
 <body>
-
     <?php include "inc/nav.php"; ?>
 
     <section id="content" role="main" class="container">
@@ -85,7 +85,7 @@ if (!isset($_SESSION['user'])) {
                 
                 
               
-                <form action="/FinalProject/controller/AdduserToProject.php" method="post" accept-charset="utf-8">
+                <form  name="add-project-user" action="/FinalProject/controller/AdduserToProject.php" method="post" accept-charset="utf-8">
 
 
                     <table id="add_user" style="width: 57%; float:left; margin-left:3%;" class="myproject-table table table-responsive table-bordered">
@@ -105,12 +105,13 @@ if (!isset($_SESSION['user'])) {
 	                        </td>
 	                        <td>
 	                            <select class="form-control" id="role"  name="role">
+	                            	  <option disabled="disabled" selected="selected">Please choose role</option> 
 	                                  <option value="4">Developer</option>
 	                                  <option value="3">QA</option>
 	                                  <option value="2">Project Manager</option>
-	                                  <option value="1">Project Admin</option>
 	                            </select>
 	                        </td>
+	                        <input type="hidden" name="projectId" value="<?= $projectInfo->id ?>"/>
 	                        <td class="text-center">
 	                            <input type="submit" class="btn btn-primary" name="submit" value="Add User">
 	                        </td>
@@ -141,15 +142,15 @@ if (!isset($_SESSION['user'])) {
 
 						<?php
 						if (isset($users) && $users) {
-						    foreach ($users as $user) {
+							foreach ($users as $user) {
 						        ?>
 
                                 <tr>
                                     <td class="text-center">
 
-                                        <?php if ($user->avatar != NULL) {
+                                        <?php if ($user['avatar'] != NULL) {
                                             ?>
-                                            <img id="avatar" class="img-thumbnail" style="width: 70px;" src="../view/uploaded/<?= $user->avatar ?>" alt="avatar">
+                                            <img id="avatar" class="img-thumbnail" style="width: 70px;" src="../view/uploaded/<?= $user['avatar'] ?>" alt="avatar">
                                             <?php
                                         } else {
                                             ?>
@@ -159,19 +160,15 @@ if (!isset($_SESSION['user'])) {
 					        ?>    
 
                                     </td>
-                                    <td><?=  $user->firstname . " " . $user->lastname ?></td>
-                                    <td><?= $user->username ?></td>
-                                    <td><?= $user->email ?></td>
-                                    <td>
-                                        
-                                    </td>
+                                    <td><?=  $user['firstname'] . " " . $user['lastname'] ?></td>
+                                    <td><?= $user['username'] ?></td>
+                                    <td><?= $user['email'] ?></td>
+                                    <td><?= $user['role'] ?></td>
                                     <td class="text-center"> 
-
-                                        <a href="#"><span class="glyphicon glyphicon-eye-open" title="View" onclick="viewUser(<?= $user->id ?>)"></span>
+                                        <a href="#"><span class="glyphicon glyphicon-eye-open" title="View" onclick="viewUser(<?= $user['id'] ?>)"></span>
                                         </a>
-
-                                        <a href="#"><span class="glyphicon glyphicon-cog" title="Edit" onclick="editUser(<?= $user->id ?>)"></span></a>
-                                        <a href="#"><span class="glyphicon glyphicon-trash" title="Delete"  onclick="deleteUser(<?= $user->id ?>)"></span></a>
+                                       <a href="#"><span class="glyphicon glyphicon-cog" title="Edit" onclick="editUser(<?= $user['id']?>)"></span></a>
+                                        <a href="#"><span class="glyphicon glyphicon-trash" title="Delete"  onclick="deleteUser(<?= $user['id']?>)"></span></a>
                                     </td>
                                 </tr>
 

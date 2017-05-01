@@ -34,7 +34,7 @@ class ProjectDAO implements IProjectDAO {
 	const GET_ASSOC_PROJECTS_PROGRESS = "SELECT p.id, ROUND(AVG(t.progress)) as 'avg_tasks_progress' FROM projects p JOIN user_projects up ON p.id = up.project_id LEFT JOIN tasks t
 													 ON p.id = t.projects_id WHERE  up.user_id = ? GROUP BY p.id";
 
-    const GET_INFO_PROJECT = "SELECT p.*, u.*, ps.name as status, COUNT(t.id) as 'all_tasks',ROUND(AVG(t.progress)) as 'avg_tasks_progress' FROM projects p JOIN users u 
+    const GET_INFO_PROJECT = "SELECT p.id as project_id, p.*, u.*, ps.name as status, COUNT(t.id) as 'all_tasks',ROUND(AVG(t.progress)) as 'avg_tasks_progress' FROM projects p JOIN users u 
 						ON p.admin_id=u.id JOIN project_status ps ON p.project_status_id = ps.id left JOIN tasks t ON p.id = t.projects_id WHERE p.name LIKE ?";
 
     const SELECT_NAME = "SELECT name FROM projects";
@@ -212,7 +212,7 @@ class ProjectDAO implements IProjectDAO {
 			
 			$project = $pstmt->fetch(PDO::FETCH_ASSOC);
 			
-			$projectInfo = new Project($project['name'], $project['prefix'], $project['admin_id'], $project['id'], $project['description'], $project['client'], $project['start_date'],
+			$projectInfo = new Project($project['name'], $project['prefix'], $project['admin_id'], $project['project_id'], $project['description'], $project['client'], $project['start_date'],
 					$project['end_date'], $project['status'], $project['avg_tasks_progress'], null, $project['all_tasks'], $project['username'], $project['email']);
 			
 			return $projectInfo;
@@ -254,8 +254,10 @@ class ProjectDAO implements IProjectDAO {
 	
 	
 	
-	public function addUserToProject($userId, $projectId, $roleId) {
+	public function addUserToProject($username, $projectId, $roleId) {
 		try{
+			$dao = new UserDAO();
+			$userId = $dao->getUserId($username);
 			$pstmt = $this->db->prepare(self::ADD_USER_TO_PROJECT);
 			$pstmt->execute(array($userId, $projectId, $roleId));
 			
@@ -309,7 +311,7 @@ class ProjectDAO implements IProjectDAO {
 			$pstmt->execute(array($projectId));
 			$projectName = $pstmt->fetchAll(PDO::FETCH_ASSOC);
 			
-			return $projectName[0];
+			return $projectName;
 		}catch(Exception $e){
 			throw $e;
 		}

@@ -462,6 +462,34 @@ $(function() {
 });
 
 
+
+//addproject users
+$(function() {
+
+    $("form[name='add-project-user']").validate({
+
+        rules: {
+        	username: "required",
+            role: {
+
+                required: true
+            },
+        },
+        messages: {
+        	username: "Please enter a username",
+        	role: ""
+        },
+
+        submitHandler: function(form) {
+            form.submit();
+        }
+    });
+});
+
+
+
+
+
 //delete project
 function deleteProject(projectId) {
     if (confirm("Do you realy want to delete this project?")) {
