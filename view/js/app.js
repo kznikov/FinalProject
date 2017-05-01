@@ -439,7 +439,6 @@ $(function() {
         rules: {
             project: "required",
             title: {
-
                 required: true
             },
             owner: "required"
@@ -474,4 +473,4 @@ function deleteProject(projectId) {
     return false;
 }
 
-//update project 
+//updatetask

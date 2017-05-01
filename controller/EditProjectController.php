@@ -12,9 +12,6 @@ if (isset($_POST['submit'])) {
 			$name = $_SESSION['name'];
 		}
 
-		$projectDAO = new ProjectDAO();
-		$projectInfo = $projectDAO->getInfoProject($name);
-
 		$status =  htmlentities(trim($_POST['status']));
 
 		if ($_POST['start_date'] != '' && $_POST['end_date'] != '') {
@@ -39,7 +36,7 @@ if (isset($_POST['submit'])) {
 			$_SESSION['error'] = $messages;
 			header('Location:ErrorController.php', true, 302);
 		}
-		echo $messages;
+		
 
 	} catch (Exception $e) {
 

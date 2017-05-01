@@ -14,7 +14,7 @@ if (!isset($_SESSION['user'])) {
         <div id="homepage-panel">
             <div class="row">
 
-                <div class="col-xs-12 col-md-8">
+                <div class="col-xs-12">
                     <div class="myproject-header">
                         <div class="myproject-title">
                             <div class="col-xs-12 col-md-5">
@@ -26,12 +26,15 @@ if (!isset($_SESSION['user'])) {
                                         <a href="#" title="Create" onclick="location.href = '../controller/CreateTaskController.php';">Create <span class="glyphicon glyphicon-tasks" title="Create"></span></a>
                                     </li>
                                     <li role="presentation">
-                                        <a href="#" title="Edit">Edit <span class="glyphicon glyphicon-cog" title="Edit"></span></a>
+                                        <a href="../controller/ViewEditTaskController.php?name=<?= $task->id?>" title="Edit">Edit <span class="glyphicon glyphicon-cog" title="Edit"></span></a>
                                     </li>
                                     <li role="presentation">
                                         <a href="/FinalProject/controller/TaskController.php?task_id=<?= $task->id?>" title="Delete">Delete <span class="glyphicon glyphicon-trash" title="Delete"></span></a>
                                     </li>
                                 </ul>
+                                  <div class="myproject-button col-xs-12">
+                                    <button onclick="location.href = '../controller/UserAssignTasksController.php';" class="btn btn-primary">Back</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -85,40 +88,7 @@ if (!isset($_SESSION['user'])) {
                         </table>
                     </div>
 
-                </div><!-- class="col-xs-12 col-md-8" -->
-
-                <div class="col-xs-12 col-md-4">
-
-                    <div class="myproject-button col-xs-12">
-                        <button onclick="location.href = '../controller/UserAssignTasksController.php';" class="btn btn-primary">Back</button>
-                    </div>
-
-                    <form enctype="multipart/form-data" id="jira-file" action="../controller/uploadController.php" method="post">
-
-                        <div id="image-holder">
-                            <img id="avatar" style="width: 150px;" src="/FinalProject/view/images/add-avatar_2.png" alt="avatar">
-
-                        </div>
-
-                        <div class="form-group ">
-                            <input type="hidden" name="MAX_FILE_SIZE" value="<?php if (isset($max)) {
-						    echo $max;
-						} ?>">
-                            <label for="image">File input</label>
-                            <input type="file" id="image" name="image">
-                            <p class="help-block">Please upload file.</p>
-                        </div>
-
-                        <div id="errors"></div>
-                        <div class="buttons-container text-right">
-                            <input type="submit" name="upload" class="btn btn-primary" value="Upload">
-                        </div> <!-- class="buttons-container" --> 
-
-                    </form>
-
-                </div><!-- class="col-xs-12 col-md-4" -->
-
-
+                </div><!-- class="col-xs-12" -->
 
             </div> <!-- class="row" -->
             <div class="row">
