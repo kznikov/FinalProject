@@ -104,6 +104,9 @@ h6 {
     padding: 20px 5px;
 }
 
+ul li.error {
+    list-style-type: none;
+}
 
 /*HEADER*/
 

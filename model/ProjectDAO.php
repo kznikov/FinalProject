@@ -51,6 +51,8 @@ class ProjectDAO implements IProjectDAO {
 
 	const DELETE_PROJECT = "UPDATE `projects` SET `last_update`= NOW(), `last_update_by`= admin_id , `project_status_id`=4 WHERE id= ?";
 
+	const UPDATE_PROJECT = "UPDATE `projects` SET `start_date`= ?,`end_date`= ?,`last_update`=NOW(),`last_update_by`=admin_id,`project_status_id`= ? WHERE name = ? ";
+
 
 
 	
@@ -321,6 +323,17 @@ class ProjectDAO implements IProjectDAO {
 		try{
 			$pstmt = $this->db->prepare(self::DELETE_PROJECT);
 			$pstmt->execute(array($projectId));			
+		}catch(Exception $e){
+			throw $e;
+		}
+		
+	}
+
+	//update project
+	public function updateProject($startDate, $endDate, $status, $name) {
+		try{
+			$pstmt = $this->db->prepare(self::UPDATE_PROJECT);
+			$pstmt->execute(array($startDate, $endDate, $status, $name));			
 		}catch(Exception $e){
 			throw $e;
 		}
