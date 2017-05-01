@@ -29,7 +29,7 @@ if (!isset($_SESSION['user'])) {
                                         <a href="../controller/ViewEditTaskController.php?name=<?= $task->id?>" title="Edit">Edit <span class="glyphicon glyphicon-cog" title="Edit"></span></a>
                                     </li>
                                     <li role="presentation">
-                                        <a href="/FinalProject/controller/TaskController.php?task_id=<?= $task->id?>" title="Delete">Delete <span class="glyphicon glyphicon-trash" title="Delete"></span></a>
+                                        <a onclick="deleteTask(<?= $task->id ?>, 2)"  title="Delete">Delete <span class="glyphicon glyphicon-trash" title="Delete"></span></a>
                                     </li>
                                 </ul>
                                   <div class="myproject-button col-xs-12">

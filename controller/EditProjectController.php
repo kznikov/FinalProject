@@ -34,13 +34,13 @@ if (isset($_POST['submit'])) {
 			$_SESSION['message_class'] = "flash_success";
 			header('Location:HomeController.php', true, 302);
 		} else {
-			$message_class = "flash_error";
-			include '../view/editproject.php';
-			die();
+			$_SESSION['message'] = $message;
+			$_SESSION['message_class'] = "flash_error";
+			header('Location:ViewEditProjectController.php?project='.$_POST['project_name'], true, 302);
+			
 		}
 
 	} catch (Exception $e) {
-
 		$_SESSION['error'] = "Failed to update project!";
 		header('Location:ErrorController.php', true, 302);
 	}

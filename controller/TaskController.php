@@ -59,7 +59,11 @@ try{
 		$deleted = $deleteDao->deleteTask($id);
 		
 		$tasksData = new TaskDAO();
-		if($allTasks){
+		if($allTasks == 2){
+			echo "Task was successfully deleted!";
+			die();
+		}
+		if($allTasks == 1){
 			$tasks =  $tasksData->getUserAllTasks($userId);
 		}else{
 			$tasks =  $tasksData->getUserAssignTasks($userId);

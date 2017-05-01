@@ -1,5 +1,5 @@
 <?php
-$pageTitle = "Task: " . $task->prefixId;
+$pageTitle = "Edit Task: " . $task->prefixId;
 ;
 include "inc/header.php";
 
@@ -12,13 +12,20 @@ if (!isset($_SESSION['user'])) {
 <?php include "inc/nav.php"; ?>
     <section id="content" role="main" class="container">
         <div id="homepage-panel">
+         <?php if (isset($_SESSION['message']) && isset($_SESSION['message_class'])) { ?>
+			
+			        <div  class="<?= $_SESSION['message_class']?>" style="margin-top:0px;"><?= $_SESSION['message']?></div>
+					<?php
+					unset($_SESSION['message']);
+					unset($_SESSION['message_class']);
+						}?>
             <div class="row">
 
                 <div class="col-xs-12">
                     <div class="myproject-header">
                         <div class="myproject-title">
                             <div class="col-xs-12 col-md-5">
-                                <h2>Tasks - <?=$task->prefixId ?></h2>
+                                <h2>Edit Task - <?=$task->prefixId ?></h2>
                             </div>
                             <div class="col-xs-12 col-md-7">
                                   <div class="myproject-button">
@@ -134,6 +141,7 @@ if (!isset($_SESSION['user'])) {
                                 </tr>
                             </table>
                         </div>
+						<input type="hidden" name="task_id" value="<?= $task->id ?>" >
                         <div class="text-right">
                              <input type="submit" name="submit" class="btn btn-primary" value="Update">         
                         </div>

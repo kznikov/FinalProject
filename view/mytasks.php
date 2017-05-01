@@ -12,6 +12,7 @@ if (!isset($_SESSION['user'])) {
     <section id="content" role="main" class="container">
         <div id="homepage-panel">
             <div class="row">
+            <p id="id"></p>
              <?php if (isset($_SESSION['message']) && isset($_SESSION['message_class'])) { ?>
 			
 			        <div  class="<?= $_SESSION['message_class']?>" style="margin-top:0px;"><?= $_SESSION['message']?></div>
@@ -70,8 +71,8 @@ if (!isset($_SESSION['user'])) {
                                     <td><a href="#" title="<?= $task->projectName ?>"><span onclick="viewProject('<?= $task->projectName?>')"><?= $task->projectName?></span></a></td>
                                 <td class="text-center">
                                     <a href="#"><span class="glyphicon glyphicon-eye-open" title="View"></span></a>
-                                  <!--   <a href="#"><span class="glyphicon glyphicon-cog" title="Edit"></span></a>
-                                     <a href="#"><span class="glyphicon glyphicon-trash" title="Delete"  onclick="deleteTask(<?= $task->id ?>, 0)"></span></a> -->
+                                     <a href="/FinalProject/controller/ViewEditTaskController.php?name=<?=$task->id ?>"><span class="glyphicon glyphicon-cog" title="Edit"></span></a>
+                                     <a href="#"><span class="glyphicon glyphicon-trash" title="Delete"  onclick="deleteTask(<?= $task->id ?>, 0)"></span></a>
                                 </td>
                             </tr>
                         <?php }

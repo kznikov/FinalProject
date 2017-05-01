@@ -71,7 +71,7 @@
                                     </td>
                                     <td class="text-center">
                                         <a href="#"><span class="glyphicon glyphicon-eye-open" title="View"></span></a>
-                                        <a href="#"><span class="glyphicon glyphicon-cog" title="Edit"></span></a>
+                                        <a href="#"><span class="glyphicon glyphicon-cog" onclick="location.href = '../controller/ViewEditProjectController.php?project=<?= $project->name ?> ';" title="Edit"></span></a>
                                         <a href="#"><span class="glyphicon glyphicon-trash" title="Delete"></span></a>
                                     </td>
                                     <td class="text-center">

@@ -48,11 +48,14 @@ if ($_SERVER ['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 
 			$taskUpdate = new TaskDAO();
 			$task = $taskUpdate->updateTask($title,$description,$startDate,$endDate, $type, $status, $priority, $name);
-			header('Location: AllTasksController.php', true, 302);
+			$_SESSION['message'] = "Task successfully updated.";
+			$_SESSION['message_class'] = "flash_success";
+			header('Location:UserAssignTasksController.php', true, 302);
 
 		} else {
-			$_SESSION['error'] = $messages;
-			header('Location:ErrorController.php', true, 302);
+			$_SESSION['message'] = $messages;
+			$_SESSION['message_class'] = "flash_error";
+			header('Location:ViewEditTaskController.php?name='.$_POST['task_id'], true, 302);
 		}
 
 	} catch (Exception $e) {

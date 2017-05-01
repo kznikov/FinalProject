@@ -32,12 +32,14 @@ function deleteTask(taskId, allTasksPage) {
             		allTasks: allTasksPage
             },
             success: function(data) {
-            	if(allTasks){
+            	if(allTasks == 1){
             		$("#alltasks_tbody").html(data);
+            	}else if(allTasks == 2){
+            		window.location = "/FinalProject/controller/UserAssignTasksController.php";
+            		alert(data);
             	}
             	else{
             		$("#mytasks_tbody").html(data);
-            		
             	}
             	
             }
@@ -123,34 +125,3 @@ $("#add-user").submit(function(e) {
 
 
 
-
-function deleteTask(taskId, allTasksPage) {
-	 if (!e) var e = window.event;
-	    e.cancelBubble = true;
-	    if (e.stopPropagation) e.stopPropagation();
-   var task_id = taskId;
-   var allTasks = allTasksPage;
-
-   if (confirm("Do you realy want to delete this task?")) {
-
-       $.ajax({
-           url: '../controller/TaskController.php',
-           method: 'DELETE',
-           data: { task_id: taskId,
-           		allTasks: allTasksPage
-           },
-           success: function(data) {
-           	if(allTasks){
-           		$("#alltasks_tbody").html(data);
-           	}
-           	else{
-           		$("#mytasks_tbody").html(data);
-           		
-           	}
-           	
-           }
-       });	
-   }
-   
-   return false;
-}

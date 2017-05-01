@@ -66,7 +66,7 @@ if (!isset($_SESSION['user'])) {
                                     <td><a href="#" title="<?= $task->projectName ?>"><span onclick="viewProject('<?= $task->projectName?>')"><?= $task->projectName?></span></a></td>
                                 <td class="text-center">
                                     <a href="#"><span class="glyphicon glyphicon-eye-open" title="View"></span></a>
-                                    <a href="#"><span class="glyphicon glyphicon-cog" title="Edit"></span></a>
+                                    <a href="/FinalProject/controller/ViewEditTaskController.php?name=<?=$task->id ?>"><span class="glyphicon glyphicon-cog" title="Edit"></span></a>
                                      <a href="#"><span class="glyphicon glyphicon-trash" title="Delete"  onclick="deleteTask(<?=$task->id ?>, 1)"></span></a>
                                 </td>
                             </tr>
