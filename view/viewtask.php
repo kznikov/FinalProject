@@ -29,7 +29,7 @@ if (!isset($_SESSION['user'])) {
                                         <a href="#" title="Edit">Edit <span class="glyphicon glyphicon-cog" title="Edit"></span></a>
                                     </li>
                                     <li role="presentation">
-                                        <a href="#" title="Delete">Delete <span class="glyphicon glyphicon-trash" title="Delete"></span></a>
+                                        <a href="/FinalProject/controller/TaskController.php?task_id=<?= $task->id?>" title="Delete">Delete <span class="glyphicon glyphicon-trash" title="Delete"></span></a>
                                     </li>
                                 </ul>
                             </div>
