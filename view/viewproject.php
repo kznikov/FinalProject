@@ -67,11 +67,11 @@ if (!isset($_SESSION['user'])) {
                     </tr>
                     <tr>
                         <th>Start Date</th>
-                        <td><?= ($projectInfo->startDate == '0000-00-00' ? "<em style='color:red;'>Not set</em>" : date("d/m/Y",strtotime($projectInfo->startDate))) ?></td>
+                        <td><?= ($projectInfo->startDate == '0000-00-00' ||  $projectInfo->startDate == null ? "<em style='color:red;'>Not set</em>" : date("d/m/Y",strtotime($projectInfo->startDate))) ?></td>
                     </tr>
                     <tr>
                         <th>End Date</th>
-                        <td><?= ($projectInfo->endDate== '0000-00-00' ? "<em style='color:red;'>Not set</em>" : date("d/m/Y",strtotime($projectInfo->endDate))) ?></td>
+                        <td><?= ($projectInfo->endDate== '0000-00-00' ||  $projectInfo->startDate == null ? "<em style='color:red;'>Not set</em>" : date("d/m/Y",strtotime($projectInfo->endDate))) ?></td>
                     </tr>
                     <tr>
                         <th>Email</th>

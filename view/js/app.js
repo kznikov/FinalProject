@@ -308,8 +308,6 @@ function checkPrefixName() {
 }
 
 
-
-
 $('.progress-wrap').each(function() {
     percent = $(this);
     bar = $(this).children('.progress-bar');
@@ -338,9 +336,6 @@ function moveProgressBar(percent, bar) {
         left: progressTotal
     }, animationLength);
 }
-
-
-
 
 
 function viewUser(userId) {
@@ -506,3 +501,5 @@ function deleteProject(projectId) {
     }
     return false;
 }
+
+//update project 

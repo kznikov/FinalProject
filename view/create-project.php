@@ -100,12 +100,9 @@ if (!isset($_SESSION['user'])) {
                                             <label for="description">Description</label>
                                             <textarea id="description" rows="3"  class="form-control" name="description"  placeholder="Enter description"></textarea>
                                         </div>
-
                                         <div class="form-group"> 
                                             <label for="status">Status</label>
-
-                                            <!-- взима данни от таблицата за регистрирани потребители -->
-                                            <select id="status" name="status"class="form-control">
+                                            <select id="status" name="status" class="form-control">
                                                 <option value="1">Open</option> 
                                                 <option value="2">Suspended</option>
                                                 <option value="3">Closed</option>
