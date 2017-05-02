@@ -40,8 +40,9 @@ require_once "../model/IUserDAO.php";
 		const SEARCH_FOR_USERS = "SELECT * FROM users WHERE MATCH (username,firstname, lastname, email) AGAINST
 																 (? IN BOOLEAN MODE) HAVING email LIKE '%@%';";
 		
-		const GET_PROJECT_ASSOC_USERS = "SELECT u.*, r.name as role FROM users u JOIN user_projects up ON u.id = up.user_id
-									 JOIN roles r ON r.id=up.roles_id JOIN projects p ON up.project_id = p.id WHERE p.name LIKE ?";
+		const GET_PROJECT_ASSOC_USERS = "SELECT u.*, r.name as role, up.roles_id FROM users u JOIN user_projects up 
+							ON u.id = up.user_id JOIN roles r ON r.id=up.roles_id JOIN projects p 
+												ON up.project_id = p.id WHERE p.name LIKE ?";
 		
 		const INSERT_INTO_ONLINE_USERS = "INSERT INTO online_users (user_id, username) VALUES (?, ?)";
 		
@@ -50,6 +51,9 @@ require_once "../model/IUserDAO.php";
 		
 		const GET_ONLINE_USERS = "SELECT DISTINCT(ou.user_id),ou.username FROM online_users ou JOIN user_projects up 
 															ON ou.user_id = up.user_id WHERE up.project_id IN (?)";
+		
+		const GET_USER_ROLE = "SELECT roles_id FROM user_projects WHERE user_id = ? AND project_id = ?";
+		
 		
 		public function __construct() {
 			$this->db = DBConnection::getDb();
@@ -374,6 +378,21 @@ require_once "../model/IUserDAO.php";
 		 		throw new Exception($pstmt);
 		 	}
 			 	
+		 }
+		 
+		 
+		 
+		 public function getUserProjectRole($userId, $projectId){
+		 	try{
+		 		$pstmt = $this->db->prepare(self::GET_USER_ROLE);
+		 		$pstmt->execute(array($userId, $projectId));
+		 		
+		 		$role = $pstmt->fetchAll(PDO::FETCH_ASSOC);
+		 		
+		 		return $role[0]['roles_id'];
+		 	} catch(Exception $e){
+		 		throw new Exception("Something went wrong, please try again later!");
+		 	}
 		 }
 }
 	

@@ -81,41 +81,42 @@ $("#add-user").submit(function(e) {
     $.ajax({
         url: '../controller/AddUserToProject.php',
         method: 'POST',
-        data: $("#add-user").serialize(),
+        data: $("#add-user").serializeArray(),
         dataType :"json",
         success: function(data) {
-        	if (data.error) {
-        		$("#user-exist").html(data.error);
-        	}else{
-        		var users = data;
-            	//var users = JSON.parse(data);
-            	//alert(data);
-            	var result = '';
-            	for(var i=0; i<=users.length-1; i++){
-            		result += "<tr>";
-            		result += "<td class='text-center'>";
+        	var fields = $("#add-user").serializeArray();
+        	 if (data.error) {
+            		$("#user-exist").html(data.error);
+            	}else{
+            		var users = data;
+                	//var users = JSON.parse(data);
+                	//alert(data);
+                	var result = '';
+                	for(var i=0; i<=users.length-1; i++){
+                		result += "<tr>";
+                		result += "<td class='text-center'>";
 
-                         if (users[i].avatar != null) 
-                        	 result += "<img id='avatar' class='img-thumbnail' style='width: 70px;' src='../view/uploaded/"+users[i].avatar+"' alt='avatar'>";
-                        else
-                        	result += "<img id='avatar' style='width: 70px;' src='../view/images/add-avatar_2.png' alt='avatar'>";
-    	  
-                        result += "</td>";
-                        result += "<td>"+users[i].firstname+ " " +users[i].lastname+"</td>";
-                        result += "<td>"+users[i].username+"</td>";
-                        result += "<td>"+users[i].email+"</td>";
-                        result +=  "<td>"+users[i].role+"</td>";
-                        result +=  "<td class='text-center'>"; 
-                        result +=  "<a href='#'><span class='glyphicon glyphicon-eye-open' title='View' onclick='viewUser("+users[i].id+")'></span>";
-                        result += "</a>";
-                        result +=  "<a href='#'><span class='glyphicon glyphicon-cog' title='Edit' onclick='editUser("+users[i].id+")'></span></a>";
-                        result +=  "<a href='#'><span class='glyphicon glyphicon-trash' title='Delete'  onclick='deleteUser("+ users[i].id+")'></span></a>";
-                        result +=  "</td>";
-                        result +=  "</tr>";
+                             if (users[i].avatar != null) 
+                            	 result += "<img id='avatar' class='img-thumbnail' style='width: 70px;' src='../view/uploaded/"+users[i].avatar+"' alt='avatar'>";
+                            else
+                            	result += "<img id='avatar' style='width: 70px;' src='../view/images/add-avatar_2.png' alt='avatar'>";
+        	  
+                            result += "</td>";
+                            result += "<td>"+users[i].firstname+ " " +users[i].lastname+"</td>";
+                            result += "<td>"+users[i].username+"</td>";
+                            result += "<td>"+users[i].email+"</td>";
+                            result +=  "<td>"+users[i].role+"</td>";
+                            result +=  "<td class='text-center'>"; 
+                            result +=  "<a href='#'><span class='glyphicon glyphicon-eye-open' title='View' onclick='viewUser("+users[i].id+")'></span>";
+                            result += "</a>";
+                            result +=  "<a href='#'><span class='glyphicon glyphicon-cog' title='Edit' onclick='editUser("+users[i].id+")'></span></a>";
+                            result +=  "<a href='#'><span class='glyphicon glyphicon-trash' title='Delete'  onclick='deleteUser("+ users[i].id+","+fields[2].value+","+users[i].roles_id+")'></span></a>";
+                            result +=  "</td>";
+                            result +=  "</tr>";
+                	}
+                	$("#assoc-user-tbody").html(result);
             	}
-            	$("#assoc-user-tbody").html(result);
-        	}
-        }
+            }
     });
     	e.preventDefault();
 });
@@ -123,5 +124,56 @@ $("#add-user").submit(function(e) {
 
 
 
+
+function deleteUser(userId, projectId, roleId) {
+	
+   if (confirm("Do you realy want to remove this user?")) {
+
+       $.ajax({
+           url: '../controller/AddUserToProject.php',
+           method: 'DELETE',
+           data: { user_id: userId,
+           			project_id: projectId,
+           			role_id:roleId
+           },
+           dataType :"json",
+           success: function(data) {
+          	 if (data.error) {
+              		$("#user-exist").html(data.error);
+              	}else{
+              		var users = data;
+                  	//var users = JSON.parse(data);
+                  	//alert(data);
+                  	var result = '';
+                  	for(var i=0; i<=users.length-1; i++){
+                  		result += "<tr>";
+                  		result += "<td class='text-center'>";
+
+                               if (users[i].avatar != null) 
+                              	 result += "<img id='avatar' class='img-thumbnail' style='width: 70px;' src='../view/uploaded/"+users[i].avatar+"' alt='avatar'>";
+                              else
+                              	result += "<img id='avatar' style='width: 70px;' src='../view/images/add-avatar_2.png' alt='avatar'>";
+          	  
+                              result += "</td>";
+                              result += "<td>"+users[i].firstname+ " " +users[i].lastname+"</td>";
+                              result += "<td>"+users[i].username+"</td>";
+                              result += "<td>"+users[i].email+"</td>";
+                              result +=  "<td>"+users[i].role+"</td>";
+                              result +=  "<td class='text-center'>"; 
+                              result +=  "<a href='#'><span class='glyphicon glyphicon-eye-open' title='View' onclick='viewUser("+users[i].id+")'></span>";
+                              result += "</a>";
+                              result +=  "<a href='#'><span class='glyphicon glyphicon-cog' title='Edit' onclick='editUser("+users[i].id+")'></span></a>";
+                              result +=  "<a href='#'><span class='glyphicon glyphicon-trash' title='Delete'  onclick='deleteUser("+ users[i].id+","+projectId+","+users[i].roles_id+")'></span></a>";
+                              result +=  "</td>";
+                              result +=  "</tr>";
+                  	}
+                	$("#assoc-user-tbody").html(result);
+              	}
+              }
+       });	
+   }
+   
+   return false;
+}
 
 

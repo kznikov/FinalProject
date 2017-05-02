@@ -25,6 +25,7 @@ if (!isset($_SESSION['user'])) {
                                     <li role="presentation">
                                         <a href="#" title="Create" onclick="location.href = '../controller/CreateTaskController.php';">Create <span class="glyphicon glyphicon-tasks" title="Create"></span></a>
                                     </li>
+                                    <?php if($userRole !== 4 || $task->ownerId === $user_id){?>
                                     <li role="presentation">
                                         <a href="../controller/ViewEditTaskController.php?name=<?= $task->id?>" title="Edit">Edit <span class="glyphicon glyphicon-cog" title="Edit"></span></a>
                                     </li>
@@ -32,6 +33,7 @@ if (!isset($_SESSION['user'])) {
                                         <a onclick="deleteTask(<?= $task->id ?>, 2)"  title="Delete">Delete <span class="glyphicon glyphicon-trash" title="Delete"></span></a>
                                     </li>
                                 </ul>
+                                <?php }?>
                                   <div class="myproject-button col-xs-12">
                                     <button onclick="location.href = '../controller/UserAssignTasksController.php';" class="btn btn-primary">Back</button>
                                 </div>

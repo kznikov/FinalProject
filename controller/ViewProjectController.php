@@ -5,12 +5,13 @@ try{
 	$sessionVars = json_decode($_SESSION['user'], true);
 
 	$user_email = $sessionVars['email'];
+	$userId = $sessionVars['id'];
 
 	if (isset($_GET['project'])) {
 
 			$name = $_GET['project'];
 			$projectDAO = new ProjectDAO();
-			var_dump($name);
+			//var_dump($name);
 			$userProjects = $projectDAO->getUserAllProjects($sessionVars['id']);
 			$allProjects = array();
 			foreach ($userProjects as $key=>$project){
@@ -37,11 +38,11 @@ try{
 				
 				$projectTasks = $taskDAO->getProjectTasks($name);
 				
+				$userRole = $userDAO->getUserProjectRole($userId, $projectInfo->id);
 				
 				$toDoTasks = $projectTasks[0];
 				$workingOnTasks = $projectTasks[1];
 				$doneTasks = $projectTasks[2];
-				
 				
 				$roles = new RoleDAO();
 				$result = $roles->getRoles();

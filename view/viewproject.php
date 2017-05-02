@@ -83,8 +83,8 @@ if (!isset($_SESSION['user'])) {
                     </tr>
                 </table>
                 
-                
-              
+
+              <?php if($userRole == 1 || $userRole == 2){?>
                 <form id="add-user" name="add-project-user" action="/FinalProject/controller/AdduserToProject.php" method="post" accept-charset="utf-8">
 
 
@@ -120,7 +120,7 @@ if (!isset($_SESSION['user'])) {
                         </tbody>
                     </table>
                 </form>
-                
+                <?php }?>
                 
 
 
@@ -169,7 +169,11 @@ if (!isset($_SESSION['user'])) {
                                         <a href="#"><span class="glyphicon glyphicon-eye-open" title="View" onclick="viewUser(<?= $user['id'] ?>)"></span>
                                         </a>
                                        <a href="#"><span class="glyphicon glyphicon-cog" title="Edit" onclick="editUser(<?= $user['id']?>)"></span></a>
-                                        <a href="#"><span class="glyphicon glyphicon-trash" title="Delete"  onclick="deleteUser(<?= $user['id']?>)"></span></a>
+                                       <?php if($userRole == 1 || $userRole == 2){?>
+	                                       <?php if($projectInfo->adminId !== $user['id']){?>
+	                                        <a href="#"><span class="glyphicon glyphicon-trash" title="Delete"  onclick="deleteUser(<?= $user['id']?>, <?= $projectInfo->id ?>, <?= $user['roles_id']?>)"></span></a>
+	                                  		<?php }?>
+										<?php } ?>
                                     </td>
                                 </tr>
 

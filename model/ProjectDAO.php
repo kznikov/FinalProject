@@ -55,6 +55,7 @@ class ProjectDAO implements IProjectDAO {
 
 	const CHECK_IF_USER_IN_PROJECT = "SELECT * from user_projects WHERE user_id = ? AND project_id = ?";
 	
+	const REMOVE_USER_FROM_PROJECT = "DELETE FROM user_projects WHERE user_id = ? AND project_id = ?";
 	
 	public function __construct() {
 		$this->db = DBConnection::getDb();
@@ -360,6 +361,17 @@ class ProjectDAO implements IProjectDAO {
 			throw $e;
 		}
 		
+	}
+	
+	
+	
+	public function removeUserFromProject($userId, $projectId){
+		try{
+			$pstmt = $this->db->prepare(self::REMOVE_USER_FROM_PROJECT);
+			$pstmt->execute(array($userId, $projectId));
+		}catch(Exception $e){
+			throw $e;
+		}
 	}
 	
 

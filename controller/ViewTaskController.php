@@ -8,13 +8,15 @@
 			$name = $_GET['name'];
 	
 			$taskDao = new TaskDAO();
-			
+			$userDAO = new UserDAO();
 			$task = $taskDao->getTask($name);
 			//var_dump($task);
 			if(!$task){
 				include '../view/pageNotFound.php';
 				die();
 			}
+			
+			$userRole = $userDAO->getUserProjectRole($user_id, $task->projectId);
 			
 			include '../view/viewtask.php';
 		}catch (Exception $e){
