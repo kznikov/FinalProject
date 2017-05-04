@@ -55,6 +55,8 @@ require_once "../model/IUserDAO.php";
 		const GET_USER_ROLE = "SELECT roles_id FROM user_projects WHERE user_id = ? AND project_id = ?";
 		
 		
+		const GET_USER_ALL_PROJECTS_ROLES = "SELECT project_id, roles_id FROM user_projects WHERE user_id = ?";
+		
 		public function __construct() {
 			$this->db = DBConnection::getDb();
 		}
@@ -285,7 +287,7 @@ require_once "../model/IUserDAO.php";
 		 
 		 
 		 
-		 public function serchUsers($keyword){
+		 public function searchUsers($keyword){
 		 	try{
 		 		$pstmt = $this->db->prepare(self::SEARCH_FOR_USERS);
 		 		$pstmt->execute(array($keyword));
@@ -390,6 +392,20 @@ require_once "../model/IUserDAO.php";
 		 		$role = $pstmt->fetchAll(PDO::FETCH_ASSOC);
 		 		
 		 		return $role[0]['roles_id'];
+		 	} catch(Exception $e){
+		 		throw new Exception("Something went wrong, please try again later!");
+		 	}
+		 }
+		 
+		 
+		 public function getUserAllProjectRole($userId){
+		 	try{
+		 		$pstmt = $this->db->prepare(self::GET_USER_ALL_PROJECTS_ROLES);
+		 		$pstmt->execute(array($userId));
+		 		
+		 		$roles = $pstmt->fetchAll(PDO::FETCH_ASSOC);
+		 		
+		 		return $roles;
 		 	} catch(Exception $e){
 		 		throw new Exception("Something went wrong, please try again later!");
 		 	}

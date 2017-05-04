@@ -26,6 +26,12 @@ if ($_SERVER ['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 		} else {
 			$description = $task->description;
 		}
+		
+		if (isset($_POST['progress']) && $_POST['progress'] != "") {
+			$progress= htmlentities(trim($_POST['progress']));
+		} else {
+			$progress = $task->progress;
+		}
 
 		$type = htmlentities(trim($_POST['type']));
 	 	$priority = htmlentities(trim($_POST['priority']));
@@ -47,7 +53,7 @@ if ($_SERVER ['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 		if ($noMistake) {
 
 			$taskUpdate = new TaskDAO();
-			$task = $taskUpdate->updateTask($title,$description,$startDate,$endDate, $type, $status, $priority, $name);
+			$task = $taskUpdate->updateTask($title,$description, $progress ,$startDate,$endDate, $type, $status, $priority, $name);
 			$_SESSION['message'] = "Task successfully updated.";
 			$_SESSION['message_class'] = "flash_success";
 			header('Location:UserAssignTasksController.php', true, 302);
@@ -60,7 +66,9 @@ if ($_SERVER ['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 
 	} catch (Exception $e) {
 		$_SESSION['error'] = "Failed to update task!";
-		header('Location:ErrorController.php', true, 302);
+		echo $e->getLine();
+		echo $e->getFile();
+		//header('Location:ErrorController.php', true, 302);
 	}
 	
 } else {

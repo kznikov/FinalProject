@@ -10,7 +10,7 @@ class ProjectDAO implements IProjectDAO {
 	const INSERT_NEW_PROJECT = "INSERT INTO projects (id, name, description, prefix, create_date, admin_id, client, start_date, end_date, project_status_id) 
 						VALUES (null, ?, ?, ?, now(), ?, ?, ?, ?, ?)";
 
-	const GET_ADMIN_PROJECTS = "SELECT p.*, u.id as user_id, u.username, u.email, ps.name as status, COUNT(t.id) as 'all_tasks' FROM projects p JOIN users u ON p.admin_id = u.id JOIN project_status ps
+	const GET_ADMIN_PROJECTS = "SELECT p.*, u.id as user_id, u.username, u.email, ps.name as status, COUNT(t.id) as 'all_tasks', ROUND(AVG(t.progress)) as 'avg_tasks_progress'  FROM projects p JOIN users u ON p.admin_id = u.id JOIN project_status ps
 								 ON p.project_status_id = ps.id left JOIN tasks t ON p.id = t.projects_id WHERE p.admin_id = ? GROUP BY p.id";
 	
 	const GET_ADMIN_ALL_OPEN_TASK_CNT = "SELECT p.id, count(t.id) as 'open_tasks' FROM projects p LEFT JOIN tasks t ON p.id = t.projects_id and t.task_status_id = 1 WHERE p.admin_id = ? GROUP BY p.id";

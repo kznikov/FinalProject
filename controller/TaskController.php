@@ -26,6 +26,16 @@ try{
 		 		$task = new Task($title, $projectId, $userId, $ownerId, $type, $priority, $status, $progress,
 		 				$description, $startDate, $endDate, $id = null, $projectName = null, $prefixId = null, $ownerUsername = null);
 
+		 		
+		 		
+		 		if($startDate > $endDate){
+		 			$message = "The start date must be earlier than the end date.";
+		 			$message_class = "flash_error";
+		 			include '../view/createtask.php';
+		 			die();
+		 		}
+		 		
+		 		
 			 	//var_dump($task);
 				$taskData = new TaskDAO();
 				
@@ -45,7 +55,6 @@ try{
 			}
 			
 		}catch (Exception $e) {
-
 			$message = $e->getMessage();
 			$class = "flash_error";
 			include '../view/alltasks.php';

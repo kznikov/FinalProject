@@ -13,7 +13,7 @@ try{
 		
 		//echo $_POST['keyword'];
 		$userDAO = new UserDAO();
-		$users = $userDAO->serchUsers($_POST['keyword']);
+		$users = $userDAO->searchUsers($_POST['keyword']);
 		$table = "";
 		if(!empty($users)) {
 			foreach ($users as $user){

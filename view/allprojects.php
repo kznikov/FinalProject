@@ -46,7 +46,7 @@
                     </thead>
                     <tbody>
                         <?php if (isset($allProjects) && $allProjects) {
-
+						
                             foreach ($allProjects as $project) {
                                 ?>
                                 <tr class="myproject-name" onclick="location.href = '../controller/ViewProjectController.php?project=<?= $project->name ?> ';">
@@ -57,6 +57,7 @@
                                     <td><?= ($project->client == null ? "" : $project->client) ?></td>
                                     <td><img style="width: 20px; margin-right: 5px;" src="../view/images/project_status_<?= $project->status ?>.png"><?= $project->status ?></td>
                                     <td><?php
+
                                         if ($project->progress == null) {
                                             echo "<em>No tasks found.</em>";
                                         } else {
@@ -70,9 +71,13 @@
                                         <?php } ?>
                                     </td>
                                     <td class="text-center">
-                                        <a href="#"><span class="glyphicon glyphicon-eye-open" title="View"></span></a>
-                                        <a href="#"><span class="glyphicon glyphicon-cog" onclick="location.href = '../controller/ViewEditProjectController.php?project=<?= $project->name ?> ';" title="Edit"></span></a>
-                                        <a href="#"><span class="glyphicon glyphicon-trash" title="Delete"></span></a>
+                                        <a href="#"><span class="glyphicon glyphicon-eye-open" onclick="location.href = '../controller/ViewProjectController.php?project=<?= $project->name ?> ';" title="View"></span></a>
+                                           <?php 
+                                           	//var_dump($allRoles);
+                                           if($allRoles[$project->id] == 1 || $allRoles[$project->id] == 2){ ?>
+				                                        <a href="#"><span class="glyphicon glyphicon-cog" onclick="location.href = '../controller/ViewEditProjectController.php?project=<?= $project->name ?> ';" title="Edit"></span></a>
+				                                        <a href="#"><span class="glyphicon glyphicon-trash" onclick="deleteProject(<?= $project->id ?>)" title="Delete"></span></a>
+                                   			<?php }?>
                                     </td>
                                     <td class="text-center">
                                         <a href="mailto:<?= $project->adminEmail ?>"><span class="glyphicon glyphicon-envelope"></span></a>

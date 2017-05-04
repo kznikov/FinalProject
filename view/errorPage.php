@@ -20,7 +20,7 @@ if(isset($_SESSION['error'])){
         <!--  class="container" -->
     </nav>
     <section id="notFound">
-        <h3 class="error"><img alt="Broke Page" src="/FinalProject/view/images/brokenPage.png"><?php echo $message; ?></h3>
+        <h3><img alt="Broke Page" src="/FinalProject/view/images/brokenPage.png"><?php echo $message; ?></h3>
         <a href='javascript:history.go(-1)'>GO BACK</a>
     </section><!-- /.container -->
 

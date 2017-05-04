@@ -30,7 +30,7 @@ class TaskDAO implements ITaskDAO {
     const DELETE_TASK = "DELETE FROM tasks WHERE id = ?";
 
 
-    const UPDATE_TASK = "UPDATE `tasks` SET `title`= ?,`description`= ?,`start_date`= ?,`end_date`=?,`last_update_by`=created_by,`last_update`= Now(),`task_type_id`= ?,`task_status_id`=?,`task_priority_id`=? WHERE id=?";
+    const UPDATE_TASK = "UPDATE `tasks` SET `title`= ?,`description`= ?, `progress` = ?, `start_date`= ?,`end_date`=?, `last_update`= Now(),`task_type_id`= ?,`task_status_id`=?,`task_priority_id`=? WHERE id=?";
 
 	
     public function __construct() {
@@ -216,10 +216,10 @@ class TaskDAO implements ITaskDAO {
 	}
 
 	//update project
-	public function updateTask($title, $description, $startDate, $endDate, $type, $status, $priority, $id) {
+	public function updateTask($title, $description, $progress, $startDate, $endDate, $type, $status, $priority, $id) {
 		try{
 			$pstmt = $this->db->prepare(self::UPDATE_TASK);
-			$pstmt->execute(array($title, $description, $startDate, $endDate, $type, $status, $priority, $id));			
+			$pstmt->execute(array($title, $description, $progress, $startDate, $endDate, $type, $status, $priority, $id));			
 		}catch(Exception $e){
 			throw new Exception("Something went wrong, please try again later!");
 		}

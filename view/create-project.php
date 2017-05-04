@@ -77,7 +77,7 @@ if (!isset($_SESSION['user'])) {
                             </div>
                             <div class="modal-body">
 
-                                <form  id="create-project" action="../controller/ProjectController.php" method="post">
+                                <form  id="create-project" name="create-project" action="../controller/ProjectController.php" method="post">
                                     <fieldset>
 
                                         <div class="form-group">
@@ -127,7 +127,7 @@ if (!isset($_SESSION['user'])) {
                                             </div>
                                         </div>
 
-                                        <input type="submit" name="submit" class="btn btn-primary" value="Submit">
+                                        <input type="submit" name="submit" class="btn btn-primary" value="submit">
                                     </fieldset>
                                 </form>
 

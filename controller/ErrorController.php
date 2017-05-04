@@ -3,4 +3,5 @@
 	
 	include_once '../view/errorPage.php';
 	$_SESSION['error'] = '';
+	
 ?>

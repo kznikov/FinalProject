@@ -12,7 +12,9 @@ if (!isset($_SESSION['user'])) {
     <?php include "inc/nav.php"; ?>
     <section id="content" role="main" class="container">
         <div id="homepage-panel">
-
+				<?php if (isset($message)) { ?>
+		        	<div  class="<?= $message_class?>" style="margin-top:0px;"><?= $message ?></div>
+					<?php }?>
             <div class="create-header text-center">
                 <h1>Create task</h1>
             </div>
@@ -27,6 +29,7 @@ if (!isset($_SESSION['user'])) {
 
                                 <!-- взима данни от таблицата за регистрирани потребители -->
                                 <select name="project" id="selectproject" class="form-control">
+                                <option selected="selected">Choose project</option>
                                 <?php foreach ($projects as $project) {?>
                                     <option value="<?= $project->id ?>"><?= $project->name ?></option> 
                                    <?php } ?>

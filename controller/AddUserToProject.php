@@ -20,7 +20,7 @@ try {
 				$assocUsersTable = $userDao->getProjectAssocUsers($projectName['name']);
 				echo json_encode($assocUsersTable);
 			}else{
-				echo '{"error": "The user is already in this project!"}';
+				echo '{"error" : "The user is already in this project!"}';
 			}
 		}elseif($_SERVER ['REQUEST_METHOD'] === 'DELETE' && isset($_SESSION['user'])){
 			$userId= explode('=',file_get_contents('php://input'))[1];

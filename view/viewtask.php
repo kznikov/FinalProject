@@ -25,7 +25,8 @@ if (!isset($_SESSION['user'])) {
                                     <li role="presentation">
                                         <a href="#" title="Create" onclick="location.href = '../controller/CreateTaskController.php';">Create <span class="glyphicon glyphicon-tasks" title="Create"></span></a>
                                     </li>
-                                    <?php if($userRole !== 4 || $task->ownerId === $user_id){?>
+                                  
+                                    <?php if($userRole != 4 || $task->ownerId === $user_id){?>
                                     <li role="presentation">
                                         <a href="../controller/ViewEditTaskController.php?name=<?= $task->id?>" title="Edit">Edit <span class="glyphicon glyphicon-cog" title="Edit"></span></a>
                                     </li>

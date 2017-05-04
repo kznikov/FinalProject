@@ -101,7 +101,10 @@ if (!isset($_SESSION['user'])) {
                                 <tr>
                                     <th>Progress</th>
                                     <td>
-                                        <div class="progress-wrap progress" style="background-color:orange;" data-progress-percent="<?= $task->progress?>">
+                                    <div style="float:left;width:10%;"> 
+                                    	<input  type="number" name="progress" min="0" max="100" step="5" class="form-control" />
+                                    </div>
+                                        <div class="progress-wrap progress" style="background-color:orange;width: 90%" data-progress-percent="<?= $task->progress?>">
                                             <div class="progress-bar progress"></div>	  
                                         </div>
                                         <p class="progress_perc" ><?= $task->progress ?>%</p>
